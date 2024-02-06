@@ -1,0 +1,120 @@
+
+      .login100-form {
+      width: 290px; 
+      }
+        .input100 {
+        font-family: Poppins-Medium;
+        font-size: 15px;
+        line-height: 1.5;
+        color: #666666;
+        display: block;
+        width: 100%;
+        background: #e6e6e6;
+        height: 50px;
+        border-radius: 25px;
+        padding: 0 30px 0 68px;
+      }
+      input {
+          outline: none;
+          border: none;
+      }
+      button, input {
+      overflow: visible;
+      }
+      .modal-content{
+        justify-content: center;
+        align-items: center;
+      }
+      #btn-close{
+      position: relative;
+      left: 200px;
+      }
+      .symbol-input100 {
+      font-size: 15px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      border-radius: 25px;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding-left: 35px;
+      pointer-events: none;
+      color: #666666;
+  
+      -webkit-transition: all 0.4s;
+      -o-transition: all 0.4s;
+      -moz-transition: all 0.4s;
+      transition: all 0.4s;
+      }
+      .input100:focus + .focus-input100 + .symbol-input100 {
+      color: #7830b7;
+      padding-left: 28px;
+    }
+      .focus-input100 {
+      display: block;
+      position: absolute;
+      border-radius: 25px;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0px 0px 0px 0px;
+      color: #7830b7;
+    }
+  
+    .input100:focus + .focus-input100 {
+      -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
+      animation: anim-shadow 0.5s ease-in-out forwards;
+    }
+  
+    @-webkit-keyframes anim-shadow {
+      to {
+        box-shadow: 0px 0px 70px 25px;
+        opacity: 0;
+      }
+    }
+  
+    @keyframes anim-shadow {
+      to {
+        box-shadow: 0px 0px 70px 25px;
+        opacity: 0;
+      }
+    }
+      .wrap-input100 {
+      position: relative;
+      width: 100%;
+      z-index: 1;
+      margin-bottom: 10px;
+      }
+      .container-login100-form-btn {
+        width: 90%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 15px;
+      }
+        .txt1 {
+        font-family: Poppins-Regular;
+        font-size: 15px;
+        line-height: 5;
+        color: #707070;
+      }
+  
+      .txt2 {
+        font-family: Poppins-Regular;
+        font-size: 15px;
+        line-height: 5;
+        color: #3d3d3d;
+      }
+  

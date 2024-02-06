@@ -1,0 +1,69 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+html{
+    font-size: 62.5%;
+}
+.contenedor-odontograma{
+    width: 5rem;
+    margin-left: 5rem;
+}
+.odontograma{
+    width: 10rem;
+    min-width: 30rem;
+    margin-left: 5rem;
+
+}
+.parte-odontograma{
+    width: 7.5rem;
+    height: 18rem;
+    margin-right: 35rem;
+    margin-left: 27.46rem;
+    margin-top: -23.6rem;
+    transition-duration:  .2s;
+}
+.parte-odontograma-1{
+    width: 18rem;
+    height: 7.5rem;
+    margin-left: 11rem;
+    margin-top: -7.52rem;
+    transition-duration:  .2s;
+}
+
+.parte-odontograma-2{
+    width: 7.5rem;
+    height: 18rem;
+    margin-left: 5.13rem;
+    margin-top: -23.6rem;
+    transition-duration:  .2s;
+}
+.parte-odontograma-3{
+    width: 18.6rem;
+    height: 7.5rem;
+    margin-left: 11rem;
+    margin-bottom: 4rem;
+    margin-top: -29.46rem;
+    transition-duration:  .2s;
+}
+.parte-odontograma-4{
+    width: 12.3rem;
+    height: 12.3rem;
+    margin-top: -20.6rem;
+    margin-bottom: 4rem;
+    margin-left: 14rem;
+    transition-duration:  .2s;
+}
+.parte-o:hover{
+    background-color: blueviolet;
+    transform: scale(.9) ;
+    border-radius: 10rem;
+}
+.parte-o:active{
+    background-color:rgb(7, 194, 29) ;
+}
+.parte-o:visited{
+    background-color:rgb(35, 194, 7) ;
+}
+

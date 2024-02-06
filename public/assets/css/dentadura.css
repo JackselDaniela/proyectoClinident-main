@@ -1,0 +1,294 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+html{
+    font-size: 62.5%;
+}
+
+/*CONTENEDOR DENTADURA*/
+
+.dentadura{
+    width: 50rem;
+    min-width: 30rem;
+
+}
+
+/* Piezas*/
+/*Maxilar superior*/
+.p11{
+width: 3.6rem ;
+height: 3.7rem ;
+margin-top:6.5rem; 
+margin-left:-52.7rem;
+transition: .5s;  
+border-radius: 45%;
+}
+.p21{
+width: 3.6rem ;
+height: 3.7rem ;
+margin-top:6.5rem; 
+margin-left:-47.7rem;
+transition: .5s;  
+border-radius: 45%;
+}
+
+.p12{
+width: 3.6rem ;
+height: 3.7rem ;
+margin-top:7.2rem; 
+margin-left:-56rem;
+transition: .5s;  
+border-radius: 45%;
+}
+.p22{
+width: 2.5rem ;
+height: 3.5rem ;
+margin-top:7.3rem; 
+margin-left:-42.5rem;
+transition: .5s;  
+border-radius: 45%;
+}
+.p13{
+width: 3.6rem ;
+height: 3.7rem;
+margin-top:8.1rem; 
+margin-left:-60rem;
+transition: .5s;
+border-radius: 45%;  
+}
+.p23{
+width: 3rem ;
+height: 3.7rem;
+margin-top:8.5rem; 
+margin-left:-39rem;
+transition: .5s;
+border-radius: 45%;  
+}
+.p14{
+width: 3.6rem ;
+height: 3.7rem;
+margin-top:10.3rem; 
+margin-left:-61.5rem;
+transition: .5s;
+border-radius: 45%;  
+}
+.p24{
+width: 3.3rem ;
+height: 3.5rem;
+margin-top:10.3rem; 
+margin-left:-38.6rem;
+transition: .5s;
+border-radius: 45%;  
+}
+.p15{
+width: 3.6rem ;
+height: 3.7rem;
+margin-top:12.1rem; 
+margin-left:-63.3rem;
+transition: .5s;
+border-radius: 45%;  
+}
+.p25{
+width: 3.3rem ;
+height: 3.4rem;
+margin-top:12.1rem; 
+margin-left:-36.3rem;
+transition: .5s;
+border-radius: 45%;  
+}
+.p16{
+width: 4.6rem ;
+height: 4.6rem;
+margin-top:14rem; 
+margin-left:-64.6rem;
+transition: .5s;
+border-radius: 45%;  
+}
+.p26{
+width: 4.3rem ;
+height: 4.4rem;
+margin-top:14.5rem; 
+margin-left:-34.9rem;
+transition: .5s;
+border-radius: 45%;  
+}
+.p17{
+width: 4.6rem ;
+min-width:4.6rem;
+height: 4.6rem ;
+min-height: 4.6rem ;
+margin-top:17.3rem; 
+margin-left:-66rem;
+transition: .5s;
+border-radius: 45%;  
+}
+.p27{
+width: 4.4rem ;
+min-width:4.4rem;
+height: 4.6rem ;
+min-height: 4.6rem ;
+margin-top:17.3rem; 
+margin-left:-33.7rem;
+transition: .5s;
+border-radius: 45%;  
+}
+.p18{
+width: 4.6rem ;
+height: 4.6rem ;
+margin-top:20.4rem; 
+margin-left:-66.4rem;
+transition: .5s;
+border-radius: 45%;  
+}
+.p28{
+width: 4.3rem ;
+height: 4.3rem ;
+margin-top:20.8rem; 
+margin-left:-34rem;
+transition: .5s;
+border-radius: 45%;  
+}
+
+/*Maxilar Inferior*/
+.p41{
+    width: 2.6rem ;
+    height: 2.6rem ;
+    margin-top:44.8rem; 
+    margin-left:-50.8rem;
+    transition: .5s;  
+    border-radius: 45%;
+    }
+.p31{
+    width: 2.1rem ;
+    height: 3.2rem ;
+    margin-top:44.5rem; 
+    margin-left:-48.3rem;
+    transition: .5s;  
+    border-radius: 45%;
+    }
+.p42{
+    width: 2.6rem ;
+    height: 2.6rem ;
+    margin-top:44.7rem; 
+    margin-left:-54.5rem;
+    transition: .5s;  
+    border-radius: 45%;
+    }
+.p32{
+    width: 2.2rem ;
+    height: 3rem ;
+    margin-top:44.3rem; 
+    margin-left:-44.5rem;
+    transition: .5s;  
+    border-radius: 45%;
+    }
+.p43{
+    width: 2.6rem ;
+    height: 2.6rem ;
+    margin-top:43.7rem; 
+    margin-left:-57.5rem;
+    transition: .5s;  
+    border-radius: 45%;
+    }
+.p33{
+    width: 2.5rem ;
+    height: 2.5rem ;
+    margin-top:43.5rem; 
+    margin-left:-41rem;
+    transition: .5s;  
+    border-radius: 45%;
+    }
+.p44{
+    width: 2.7rem ;
+    height: 2.7rem ;
+    margin-top:41.8rem; 
+    margin-left:-60.5rem;
+    transition: .5s;  
+    border-radius: 45%;
+    }
+.p34{
+    width: 2.7rem ;
+    height: 2.7rem ;
+    margin-top:41.6rem; 
+    margin-left:-39rem;
+    transition: .5s;  
+    border-radius: 45%;
+    }
+.p45{
+    width: 2.9rem ;
+    height: 2.9rem ;
+    margin-top:39.9rem; 
+    margin-left:-62.3rem;
+    transition: .5s;  
+    border-radius: 40%;
+    }
+.p35{
+    width: 2.8rem ;
+    height: 2.6rem ;
+    margin-top:39.6rem; 
+    margin-left:-37.3rem;
+    transition: .5s;  
+    border-radius: 45%;
+    }
+.p46{
+    width: 4rem ;
+    height: 4rem ;
+    margin-top:36.3rem; 
+    margin-left:-63.5rem;
+    transition: .5s;  
+    border-radius: 45%;
+    }
+.p36{
+    width: 4rem ;
+    height: 4rem ;
+    margin-top:36.3rem; 
+    margin-left:-36rem;
+    transition: .5s;  
+    border-radius: 45%;
+    }
+.p47{
+    width: 4.2rem ;
+    height: 4.2rem ;
+    margin-top:32.7rem; 
+    margin-left:-64rem;
+    transition: .5s;  
+    border-radius: 30%;
+    }
+.p37{
+    width: 4.2rem ;
+    height: 4.2rem ;
+    margin-top:32.7rem; 
+    margin-left:-34.6rem;
+    transition: .5s;  
+    border-radius: 30%;
+    }
+.p48{
+    width: 4rem ;
+    height: 4rem ;
+    margin-top:29.3rem; 
+    margin-left:-65.8rem;
+    transition: .5s;  
+    border-radius: 30%;
+    }
+.p38{
+    width: 4rem ;
+    height: 4rem ;
+    margin-top:29.3rem; 
+    margin-left:-32.8rem;
+    transition: .5s;  
+    border-radius: 30%;
+    }
+
+
+.pieza:hover{
+   background-color: rgba(156, 7, 255, 0.523);
+   transform: scale(.9) rotate(-6deg);}
+
+.pieza-2:hover{
+   background-color: rgba(44, 199, 255, 0.687);
+   transform: scale(.9) rotate(-8deg);}
+
+  
+

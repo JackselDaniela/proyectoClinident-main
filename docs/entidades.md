@@ -3,15 +3,14 @@
 - nombre
 - descripción
 - codigo
-- elaboracion
-- vencimiento
-- serial
 - tipo
 
 # Carga
 
 - codigo
 - cantidad
+- elaboracion
+- vencimiento
 - insumo_id
 - usuario_id
 

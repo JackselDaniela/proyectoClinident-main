@@ -18,9 +18,6 @@ class CreateInsumosTable extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->string('codigo');
-            $table->dateTime('elaboracion');
-            $table->dateTime('vencimiento')->nullable();
-            $table->string('serial');
             $table->enum('tipo', ['Consumible', 'Reutilizable']);
             $table->timestamps();
         });

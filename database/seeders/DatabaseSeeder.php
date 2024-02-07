@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             CiudadesSeeder::class,
             ParroquiaSeeder::class,
             InsumoSeeder::class,
-            // CargaSeeder::class,
+            CargaSeeder::class,
             // ConsumoSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();

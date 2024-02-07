@@ -18,7 +18,7 @@ class CreateCargasTable extends Migration
             $table->string('codigo');
             $table->integer('cantidad');
             $table->date('elaboracion');
-            $table->date('vencimiento');
+            $table->date('vencimiento')->nullable();
             $table->foreignId('insumo_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

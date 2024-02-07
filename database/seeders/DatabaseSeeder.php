@@ -16,20 +16,21 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TipoPersonasSeeder::class,
             PiezaSeeder::class,
-          //TratamientoSeeder::class,
-            // // DatoUbicacionSeeder::class,
-            // // PersonaSeeder::class,
-            // // PacienteSeeder::class,
-            // // ExpedienteSeeder::class,
-           EspecialidadSeeder::class,
-            // // DoctorSeeder::class,
-             DiagnosticoSeeder::class,
-            EstatusTratamientoSeeder::class,
+            EspecialidadSeeder::class,
+            TratamientoSeeder::class,
             EstadoSeeder::class,
             MunicipioSeeder::class,
             CiudadesSeeder::class,
             ParroquiaSeeder::class,
+            DatoUbicacionSeeder::class,
+            PersonaSeeder::class,
+            PacienteSeeder::class,
+            ExpedienteSeeder::class,
+            DoctorSeeder::class,
+            DiagnosticoSeeder::class,
+            EstatusTratamientoSeeder::class,
         ]);
+        
         // \App\Models\User::factory(10)->create();
     }
 }

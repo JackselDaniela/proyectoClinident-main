@@ -15,8 +15,8 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('reserva_id');
-            $table->foreignId('operacion_id');
+            $table->foreignId('reserva_id')->constrained();
+            $table->foreignId('operacion_id')->constrained();
             $table->timestamps();
         });
     }

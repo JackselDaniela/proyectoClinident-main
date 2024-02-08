@@ -15,7 +15,7 @@ class CreateCargasTable extends Migration
     {
         Schema::create('cargas', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo');
+            $table->string('codigo')->unique();
             $table->date('elaboracion');
             $table->date('vencimiento')->nullable();
             $table->foreignId('operacion_id')->constrained();

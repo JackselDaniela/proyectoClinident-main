@@ -16,7 +16,7 @@ class CreateOperacionsTable extends Migration
         Schema::create('operacions', function (Blueprint $table) {
             $table->id();
             $table->integer('cantidad');
-            $table->foreignId('suministro_id');
+            $table->foreignId('suministro_id')->constrained();
             $table->timestamps();
         });
     }

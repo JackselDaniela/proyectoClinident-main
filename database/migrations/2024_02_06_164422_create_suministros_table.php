@@ -15,9 +15,9 @@ class CreateSuministrosTable extends Migration
     {
         Schema::create('suministros', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->string('descripcion');
-            $table->string('codigo');
+            $table->string('codigo')->unique();
             $table->enum('tipo', ['Insumo', 'Instrumento']);
             $table->timestamps();
         });

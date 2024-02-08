@@ -5,19 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Insumo extends Model
+class Suministro extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
 
-    public function consumos()
+    public function operacion()
     {
-        return $this->hasMany(Consumo::class);
-    }
-
-    public function cargas()
-    {
-        return $this->hasMany(Carga::class);
+        return $this->hasMany(Operacion::class);
     }
 }

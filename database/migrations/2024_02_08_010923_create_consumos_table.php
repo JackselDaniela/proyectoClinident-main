@@ -15,11 +15,8 @@ class CreateConsumosTable extends Migration
     {
         Schema::create('consumos', function (Blueprint $table) {
             $table->id();
-            $table->integer('cantidad');
-            $table->foreignId('paciente_diagnostico_id')
-                ->constrained();
-            $table->foreignId('insumo_id')
-                ->constrained();
+            $table->foreignId('paciente_diagnostico_id')->constrained();
+            $table->foreignId('operacion_id')->constrained();
             $table->timestamps();
         });
     }

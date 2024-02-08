@@ -9,11 +9,9 @@ class Consumo extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-
-    public function insumo()
+    public function operacion()
     {
-        return $this->belongsTo(Insumo::class);
+        return $this->belongsTo(Operacion::class);
     }
 
     public function paciente_diagnostico()

@@ -8,7 +8,7 @@
 # Operacion
 
 - cantidad
-- tipo
+- suministro_id
 
 # Carga
 
@@ -20,14 +20,10 @@
 
 # Consumo
 
-- cantidad
 - paciente_diagnostico_id
-- suministro_id
 - operacion_id
 
 # Uso
 
-- cantidad
 - restitucion
-- suministro_id
 - operacion_id

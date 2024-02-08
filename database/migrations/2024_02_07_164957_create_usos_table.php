@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCargasTable extends Migration
+class CreateUsosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateCargasTable extends Migration
      */
     public function up()
     {
-        Schema::create('cargas', function (Blueprint $table) {
+        Schema::create('usos', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo');
-            $table->date('elaboracion');
-            $table->date('vencimiento')->nullable();
+            $table->timestamp('restitucion');
             $table->foreignId('operacion_id')->constrained();
-            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateCargasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cargas');
+        Schema::dropIfExists('usos');
     }
 }

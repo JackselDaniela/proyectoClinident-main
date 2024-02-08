@@ -102,6 +102,13 @@ Route::put('/update-RutaT/{id}', [App\Http\Controllers\RutaTController::class, '
 /* Gestión de Insumos */
 Route::resource('/insumos', InsumoController::class);
 
+Route::get('/reservas/create', function () {
+    return view('reservas.create');
+})->name('reservas.create');
+
+Route::get('/operaciones', function () {
+    return view('operaciones.index');
+})->name('operaciones.index');
 
 /* Ganancias Acumuladas */ 
 Route::get('/GananciasA', [App\Http\Controllers\GananciasAController::class, 'index'])->name('GananciasA');

@@ -15,7 +15,7 @@ class ItemSeeder extends Seeder
 
     public function __construct()
     {
-        $this->suministros = Suministro::where('tipo', 'Instrumento')->get();
+        $this->suministros = Suministro::where('tipo', 'Equipo')->get();
         $this->reservas = Reserva::all();
     }
     /**

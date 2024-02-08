@@ -18,7 +18,7 @@ class CreateSuministrosTable extends Migration
             $table->string('nombre')->unique();
             $table->string('descripcion');
             $table->string('codigo')->unique();
-            $table->enum('tipo', ['Insumo', 'Instrumento']);
+            $table->enum('tipo', ['Insumo', 'Equipo']);
             $table->timestamps();
         });
     }

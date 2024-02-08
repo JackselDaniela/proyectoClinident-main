@@ -19,7 +19,7 @@ class SuministroSeeder extends Seeder
             'nombre' => 'Kit de cirugía',
             'descripcion' => 'Kit de 13 piezas para cirugía odontológica de acero inoxidable.',
             'codigo' => "INS-{$faker->randomNumber(5)}",
-            'tipo' => 'Instrumento',
+            'tipo' => 'Equipo',
         ]);
 
         Suministro::create([
@@ -33,7 +33,7 @@ class SuministroSeeder extends Seeder
             'nombre' => 'Espejo dental',
             'descripcion' => 'Espejo dental de acero inoxidable con mango de 6 pulgadas.',
             'codigo' => "INS-{$faker->randomNumber(5)}",
-            'tipo' => 'Instrumento',
+            'tipo' => 'Equipo',
         ]);
 
         Suministro::create([

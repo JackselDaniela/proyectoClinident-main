@@ -14,8 +14,8 @@ class Codigo
 
             $prefijo = match ($tipo) {
                 'carga' => 'CRG',
-                'instrumento' => 'IST',
-                'insumo' => 'ISM'
+                'equipo' => 'EQU',
+                'insumo' => 'INS'
             };
 
             $codigo = "{$prefijo}-{$random}";

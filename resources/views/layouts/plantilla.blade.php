@@ -263,9 +263,8 @@
                         <li>
                           <a href="#">Equipos Médico</a>
                         </li>
-                        {{-- route('operaciones.index') --}}
                         <li>
-                          <a href="#">Control de Inventario</a>
+                          <a href="{{ route('operaciones.index') }}">Control de Inventario</a>
                         </li>
                     </ul>
                 </li>

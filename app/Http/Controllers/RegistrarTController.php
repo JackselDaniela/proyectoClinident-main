@@ -1,13 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\estatus;
 use App\Models\registrar_tratamiento;
 use App\Models\especialidad;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Str;
 
 
 class RegistrarTController extends Controller
@@ -24,7 +21,7 @@ class RegistrarTController extends Controller
         
         ->get();
         
-        return view('RegistrarT',compact('tratamiento','especialidad'));
+        return view('registrarT',compact('tratamiento','especialidad'));
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('title')
-<title>Clinident/ Gestion de Insumos </title>
+<title>Clinident / Gestion de Insumos</title>
 @endsection
 @section('css-externo')
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -157,7 +157,8 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-8 offset-lg-2">
-                                <form action="{{route('SolicitudI.store')}}" method="POST">
+                                {{-- {{route('reserva.store')}} --}}
+                                <form action="" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-sm-6">

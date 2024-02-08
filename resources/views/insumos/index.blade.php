@@ -17,7 +17,9 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{asset('Index')}}">Gestion de Insumos</a></li>
-                <li class="breadcrumb-item"><a href="{{asset('NuevaC')}}"> Insumos</a></li>
+                <li class="breadcrumb-item">
+                  <a href="{{ route('insumos.index') }}">Listado de Insumos</a>
+                </li>
             </ol>
         </nav>
         <section>

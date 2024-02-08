@@ -15,4 +15,10 @@ class Suministro extends Model
     {
         return $this->hasMany(Operacion::class);
     }
+
+    public function getExistenciaAttribute() {
+        return $this->operaciones->reduce(
+            fn($suma, $operacion) => $suma += $operacion->cantidad
+        );
+    }
 }

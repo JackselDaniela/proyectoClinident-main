@@ -15,7 +15,11 @@ class InsumoController extends Controller
      */
     public function index()
     {
-        return view('insumos.index');
+        return view('insumos.index', [
+            'insumos' => Suministro::with('operaciones')
+                ->where('tipo', 'Insumo')
+                ->get(),
+        ]);
     }
 
     /**

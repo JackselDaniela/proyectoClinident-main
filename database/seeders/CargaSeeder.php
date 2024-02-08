@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Carga;
 use App\Models\Insumo;
+use App\Models\Operacion;
+use App\Models\Suministro;
 use App\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
@@ -21,41 +23,46 @@ class CargaSeeder extends Seeder
 
         $user = User::first();
 
-        $insumos = Insumo::all();
+        $cantidades = [10, 20, 15, 30];
+
+        $operaciones = Suministro::all()->map(
+            function (Suministro $suministro, int $i) use($cantidades) {
+                return Operacion::create([
+                    'cantidad' => $cantidades[$i],
+                    'suministro_id' => $suministro->id,
+                ]);
+            }
+        );
 
         Carga::create([
             'codigo' => "CRG-{$faker->randomNumber(5)}",
-            'cantidad' => 10,
             'elaboracion' => '2023-12-01',
             'vencimiento' => null,
-            'insumo_id' => $insumos[0]->id,
+            'operacion_id' => $operaciones[0]->id,
             'user_id' => $user->id,
         ]);
 
         Carga::create([
             'codigo' => "CRG-{$faker->randomNumber(5)}",
-            'cantidad' => 20,
             'elaboracion' => '2024-01-04',
             'vencimiento' => '2024-05-04',
-            'insumo_id' => $insumos[1]->id,
+            'operacion_id' => $operaciones[1]->id,
             'user_id' => $user->id,
         ]);
 
         Carga::create([
             'codigo' => "CRG-{$faker->randomNumber(5)}",
-            'cantidad' => 15,
             'elaboracion' => '2023-06-02',
             'vencimiento' => null,
-            'insumo_id' => $insumos[2]->id,
+            'operacion_id' => $operaciones[2]->id,
             'user_id' => $user->id,
         ]);
 
         Carga::create([
             'codigo' => "CRG-{$faker->randomNumber(5)}",
-            'cantidad' => 30,
             'elaboracion' => '2024-02-04',
             'vencimiento' => '2024-03-04',
-            'insumo_id' => $insumos[3]->id,
+            'operacion_id' => $operaciones[3]->id,
             'user_id' => $user->id,
         ]);
     }

@@ -11,7 +11,7 @@ class Suministro extends Model
 
     protected $guarded = [];
 
-    public function operacion()
+    public function operaciones()
     {
         return $this->hasMany(Operacion::class);
     }

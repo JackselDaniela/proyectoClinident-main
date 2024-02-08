@@ -29,6 +29,11 @@ class DatabaseSeeder extends Seeder
             DoctorSeeder::class,
             DiagnosticoSeeder::class,
             EstatusTratamientoSeeder::class,
+            SuministroSeeder::class,
+            CargaSeeder::class,
+            ConsumoSeeder::class,
+            ReservaSeeder::class,
+            ItemSeeder::class,
         ]);
         
         // \App\Models\User::factory(10)->create();

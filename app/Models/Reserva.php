@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Uso extends Model
+class Reserva extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
 
-    public function operacion()
+    public function items()
     {
-        return $this->belongsTo(Operacion::class);
+        return $this->hasMany(Item::class);
     }
 }

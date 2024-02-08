@@ -23,7 +23,11 @@
 - paciente_diagnostico_id
 - operacion_id
 
-# Uso
+# Reserva
 
 - restitucion
+
+# Item
+
+- reserva_id
 - operacion_id

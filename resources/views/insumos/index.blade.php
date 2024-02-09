@@ -37,6 +37,7 @@
                       <tr>
                         <th>Codigo</th>
                         <th>Nombre</th>
+                        <th>Tipo</th>
                         <th>Descripcion</th>
                         <th>Existencia</th>
                         <th>Acciones</th>
@@ -47,7 +48,8 @@
                         <tr>
                           <td>{{ $insumo->codigo }}</td>
                           <td>{{ $insumo->nombre }}</td>
-                          <td>{{ $insumo->descripcion }}</td>
+                          <td>{{ $insumo->tipo }}</td>
+                          <td style="max-width: 15rem">{{ $insumo->descripcion }}</td>
                           <td>{{ $insumo->existencia }}</td>
                           <td style="min-width: 7rem">
                             {{-- {{ route('cargas.create') }} --}}

@@ -100,7 +100,8 @@ Route::put('/update-RutaT/{id}', [App\Http\Controllers\RutaTController::class, '
 
 
 /* Gestión de Insumos */
-Route::resource('/insumos', InsumoController::class);
+Route::resource('/insumos', InsumoController::class)
+    ->except('show');
 
 Route::get('/reservas/create', function () {
     return view('reservas.create');

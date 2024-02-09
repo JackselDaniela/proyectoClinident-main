@@ -1,8 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('title')
-  <title>
-    Clinident / Gestion de Insumos</title>
+  <title>Clinident / Gestion de Insumos</title>
 @endsection
 
 @section('contenido')
@@ -30,8 +29,7 @@
         <form class="container" action="{{ route('insumos.store') }}" method="POST">
           @csrf
           <h4 class="text-center mb-4">Datos del Insumo</h4>
-          <div class="row">
-            <div class="col-sm-1"></div>
+          <div class="row justify-content-center">
             <div class="col-sm-5">
               <div class="form-group">
                 <label for="nombre">
@@ -68,7 +66,6 @@
                 @enderror
               </div>
             </div>
-            <div class="col-sm-1"></div>
           </div>
           <div class="mt-4" id="carga-section">
             <h4 class="text-center mb-4">Carga Inicial</h4>
@@ -119,7 +116,7 @@
           </div>
           <div class="row justify-content-center mt-4">
             <button type="submit" class="btn btn-primary submit-btn">
-              Registrar insumo
+              Registrar Insumo
             </button>
           </div>
         </form>

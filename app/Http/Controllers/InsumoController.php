@@ -8,6 +8,7 @@ use App\Models\Suministro;
 use App\Models\User;
 use App\Services\Codigo;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class InsumoController extends Controller
 {
@@ -44,7 +45,7 @@ class InsumoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => ['required', 'string', 'min:5', 'max:30'],
+            'nombre' => ['required', 'string', 'min:5', 'max:30', Rule::unique('suministros')],
             'descripcion' => ['required', 'string', 'min:10', 'max:80'],
             'carga' => 'sometimes',
             'cantidad' => ['required_with:carga', 'numeric', 'integer', 'min:1', 'max:1000'],
@@ -52,7 +53,7 @@ class InsumoController extends Controller
             'vencimiento' => ['required_with:carga', 'date', 'before:today', 'after:elaboracion']
         ]);
 
-        $suministro = Suministro::create([
+        $insumo = Suministro::create([
             ...$request->only(['nombre', 'descripcion']),
             'codigo' => Codigo::generar('insumo'),
             'tipo' => 'Insumo',
@@ -66,7 +67,7 @@ class InsumoController extends Controller
         
         $operacion = Operacion::create([
             'cantidad' => $request->input('cantidad'),
-            'suministro_id' => $suministro->id,
+            'suministro_id' => $insumo->id,
         ]);
 
         Carga::create([
@@ -81,47 +82,47 @@ class InsumoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Suministro $insumo
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Suministro $insumo)
     {
-        //
+        return view('insumos.edit', [
+            'insumo' => $insumo,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Suministro $insumo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Suministro $insumo)
     {
-        //
+        $data = $request->validate([
+            'nombre' => ['required', 'string', 'min:5', 'max:30', Rule::unique('suministros')->ignoreModel($insumo)],
+            'descripcion' => ['required', 'string', 'min:10', 'max:80'],
+        ]);
+
+        $insumo->update($data);
+
+        return redirect()->route('insumos.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Suministro $insumo
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Suministro $insumo)
     {
-        //
+        $insumo->delete();
+
+        return redirect()->route('insumos.index');
     }
 }

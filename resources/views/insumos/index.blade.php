@@ -58,7 +58,8 @@
                             <a class="btn btn-sm btn-warning" href="{{ route('insumos.edit', $insumo) }}">
                               <i class="fa fa-edit"></i>
                             </a>
-                            <form class="d-inline" action="{{ route('insumos.destroy', $insumo) }}">
+                            <form class="d-inline" method="POST" action="{{ route('insumos.destroy', $insumo) }}">
+                              @csrf @method('DELETE')
                               <button type="submit" class="btn btn-sm btn-danger">
                                 <i class="fa fa-trash-o"></i>
                               </button>

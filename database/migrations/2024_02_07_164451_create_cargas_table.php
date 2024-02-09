@@ -18,8 +18,8 @@ class CreateCargasTable extends Migration
             $table->string('codigo')->unique();
             $table->date('elaboracion');
             $table->date('vencimiento')->nullable();
-            $table->foreignId('operacion_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('operacion_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

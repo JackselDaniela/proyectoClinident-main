@@ -83,5 +83,4 @@
   <script src="{{ asset('assets/js/jquery.fullcalendar.js') }}"></script>
   <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
   <script src="{{ asset('/assets/js/app.js') }}"></script>
-  <script src="{{ asset('/assets/js/modal.js') }}"></script>
 @endsection

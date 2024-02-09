@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carga;
+use App\Models\Operacion;
 use App\Models\Suministro;
+use App\Models\User;
 use App\Services\Codigo;
 use Illuminate\Http\Request;
 
@@ -29,7 +32,7 @@ class InsumoController extends Controller
      */
     public function create()
     {
-        //
+        return view('insumos.create');
     }
 
     /**
@@ -40,18 +43,41 @@ class InsumoController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
             'nombre' => ['required', 'string', 'min:5', 'max:30'],
-            'descripcion' => ['required', 'string', 'min:10', 'max:100'],
+            'descripcion' => ['required', 'string', 'min:10', 'max:80'],
+            'carga' => 'sometimes',
+            'cantidad' => ['required_with:carga', 'numeric', 'integer', 'min:1', 'max:1000'],
+            'elaboracion' => ['required_with:carga', 'date', 'before:today'],
+            'vencimiento' => ['required_with:carga', 'date', 'before:today', 'after:elaboracion']
         ]);
 
-        Suministro::create([
-            ...$data,
+        $suministro = Suministro::create([
+            ...$request->only(['nombre', 'descripcion']),
             'codigo' => Codigo::generar('insumo'),
             'tipo' => 'Insumo',
         ]);
 
-        return redirect()->route('insumos.index');
+        $redirect = redirect()->route('insumos.index');
+
+        if ($request->input('carga') === null) {
+            return $redirect;
+        }
+        
+        $operacion = Operacion::create([
+            'cantidad' => $request->input('cantidad'),
+            'suministro_id' => $suministro->id,
+        ]);
+
+        Carga::create([
+            ...$request->only(['elaboracion', 'vencimiento']),
+            'codigo' => Codigo::generar('carga'),
+            'operacion_id' => $operacion->id,
+            // TODO -> poner el usuario actual cuando haya auth
+            'user_id' => User::first()->id,
+        ]);
+
+        return $redirect;
     }
 
     /**

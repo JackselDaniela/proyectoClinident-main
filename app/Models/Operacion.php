@@ -11,9 +11,9 @@ class Operacion extends Model
 
     protected $guarded = [];
 
-    public function suministro()
+    public function insumo()
     {
-        return $this->belongsTo(Suministro::class);
+        return $this->belongsTo(Insumo::class);
     }
 
     public function carga()

@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Carga;
 use App\Models\Insumo;
 use App\Models\Operacion;
-use App\Models\Suministro;
 use App\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
@@ -25,11 +24,11 @@ class CargaSeeder extends Seeder
 
         $cantidades = [10, 20, 15, 30];
 
-        $operaciones = Suministro::all()->map(
-            function (Suministro $suministro, int $i) use($cantidades) {
+        $operaciones = Insumo::all()->map(
+            function (Insumo $insumo, int $i) use($cantidades) {
                 return Operacion::create([
                     'cantidad' => $cantidades[$i],
-                    'suministro_id' => $suministro->id,
+                    'insumo_id' => $insumo->id,
                 ]);
             }
         );

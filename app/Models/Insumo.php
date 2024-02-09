@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Suministro extends Model
+class Insumo extends Model
 {
     use HasFactory;
 
@@ -19,6 +19,6 @@ class Suministro extends Model
     public function getExistenciaAttribute() {
         return $this->operaciones->reduce(
             fn($suma, $operacion) => $suma += $operacion->cantidad
-        );
+        , 0);
     }
 }

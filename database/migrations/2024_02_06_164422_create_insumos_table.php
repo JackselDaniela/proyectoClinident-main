@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSuministrosTable extends Migration
+class CreateInsumosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSuministrosTable extends Migration
      */
     public function up()
     {
-        Schema::create('suministros', function (Blueprint $table) {
+        Schema::create('insumos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->unique();
             $table->string('descripcion');
             $table->string('codigo')->unique();
-            $table->enum('tipo', ['Insumo', 'Equipo']);
+            $table->enum('tipo', ['Consumible', 'Equipo Médico']);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateSuministrosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('suministros');
+        Schema::dropIfExists('insumos');
     }
 }

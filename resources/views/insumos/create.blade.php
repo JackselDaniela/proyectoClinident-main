@@ -29,8 +29,17 @@
         <form class="container" action="{{ route('insumos.store') }}" method="POST">
           @csrf
           <h4 class="text-center mb-4">Datos del Insumo</h4>
-          <div class="row justify-content-center">
-            <div class="col-sm-5">
+          <div class="row">
+            @if ($errors->any())
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li class="text-danger">{{ $error  }}</li>
+                @endforeach
+              </ul>
+            @endif
+          </div>
+          <div class="row px-5 mx-2">
+            <div class="col-sm-4">
               <div class="form-group">
                 <label for="nombre">
                   Nombre del Insumo
@@ -51,7 +60,7 @@
                 </label>
               </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
               <div class="form-group">
                 <label for="descripcion">
                   Descripción
@@ -66,10 +75,23 @@
                 @enderror
               </div>
             </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="tipo">
+                  Tipo de Insumo
+                  <span class="text-danger">*</span>
+                </label>
+                <select class="col-sm-2 select" name="tipo" id="tipo" required>
+                  @foreach (['Consumible', 'Equipo Médico'] as $opcion)
+                    <option value="{{ $opcion }}">{{ $opcion }}</option>
+                  @endforeach
+                </select> 
+            </div>
+            </div>
           </div>
           <div class="mt-4" id="carga-section">
             <h4 class="text-center mb-4">Carga Inicial</h4>
-            <div class="row px-5 mx-2">
+            <div class="row px-5 mx-2 justify-content-center">
               <div class="col-sm-4">
                 <div class="form-group">
                   <label for="cantidad">

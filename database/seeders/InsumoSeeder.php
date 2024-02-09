@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Suministro;
+use App\Models\Insumo;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 
-class SuministroSeeder extends Seeder
+class InsumoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,32 +15,32 @@ class SuministroSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        Suministro::create([
+        Insumo::create([
             'nombre' => 'Kit de cirugía',
             'descripcion' => 'Kit de 13 piezas para cirugía odontológica de acero inoxidable.',
             'codigo' => "INS-{$faker->randomNumber(5, true)}",
-            'tipo' => 'Equipo',
+            'tipo' => 'Equipo Médico',
         ]);
 
-        Suministro::create([
+        Insumo::create([
             'nombre' => 'Guantes médicos',
             'descripcion' => 'Guantes médicos esterilizados usados en cirugías y procedimientos.',
             'codigo' => "INS-{$faker->randomNumber(5, true)}",
-            'tipo' => 'Insumo',
+            'tipo' => 'Consumible',
         ]);
 
-        Suministro::create([
+        Insumo::create([
             'nombre' => 'Espejo dental',
             'descripcion' => 'Espejo dental de acero inoxidable con mango de 6 pulgadas.',
             'codigo' => "INS-{$faker->randomNumber(5, true)}",
-            'tipo' => 'Equipo',
+            'tipo' => 'Equipo Médico',
         ]);
 
-        Suministro::create([
+        Insumo::create([
             'nombre' => 'Jeringa de muela del juicio',
             'descripcion' => 'Paquete de 5 jeringas dentales de riego con punta curvada para cuidado dental.',
             'codigo' => "INS-{$faker->randomNumber(5, true)}",
-            'tipo' => 'Insumo',
+            'tipo' => 'Consumible',
         ]);
     }
 }

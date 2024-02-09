@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Carga;
-use App\Models\Suministro;
+use App\Models\Insumo;
 
 class Codigo
 {
@@ -14,8 +14,7 @@ class Codigo
 
             $prefijo = match ($tipo) {
                 'carga' => 'CRG',
-                'equipo' => 'EQU',
-                'insumo' => 'INS'
+                'insumo' => 'INS',
             };
 
             $codigo = "{$prefijo}-{$random}";
@@ -32,6 +31,6 @@ class Codigo
             return Carga::firstWhere('codigo', $codigo) === null;
         }
 
-        return Suministro::firstWhere('codigo', $codigo) === null;
+        return Insumo::firstWhere('codigo', $codigo) === null;
     }
 }

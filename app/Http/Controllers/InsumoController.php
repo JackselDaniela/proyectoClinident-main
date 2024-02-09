@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Carga;
 use App\Models\Operacion;
-use App\Models\Suministro;
+use App\Models\Insumo;
 use App\Models\User;
 use App\Services\Codigo;
 use Illuminate\Http\Request;
@@ -20,8 +20,7 @@ class InsumoController extends Controller
     public function index()
     {
         return view('insumos.index', [
-            'insumos' => Suministro::with('operaciones')
-                ->where('tipo', 'Insumo')
+            'insumos' => Insumo::with('operaciones')
                 ->get(),
         ]);
     }
@@ -45,29 +44,29 @@ class InsumoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => ['required', 'string', 'min:5', 'max:30', Rule::unique('suministros')],
+            'nombre' => ['required', 'string', 'min:5', 'max:30', Rule::unique('insumos')],
             'descripcion' => ['required', 'string', 'min:10', 'max:80'],
+            'tipo' => ['required', 'string', 'in:Consumible,Equipo Médico'],
             'carga' => 'sometimes',
             'cantidad' => ['required_with:carga', 'numeric', 'integer', 'min:1', 'max:1000'],
             'elaboracion' => ['required_with:carga', 'date', 'before:today'],
-            'vencimiento' => ['required_with:carga', 'date', 'before:today', 'after:elaboracion']
+            'vencimiento' => ['sometimes', 'required_if:carga,on', 'required_if:tipo,Consumible', 'date', 'before:today', 'after:elaboracion'],
         ]);
 
-        $insumo = Suministro::create([
+        $insumo = Insumo::create([
             ...$request->only(['nombre', 'descripcion']),
             'codigo' => Codigo::generar('insumo'),
-            'tipo' => 'Insumo',
         ]);
 
         $redirect = redirect()->route('insumos.index');
 
-        if ($request->input('carga') === null) {
+        if (!$request->has('carga')) {
             return $redirect;
         }
         
         $operacion = Operacion::create([
             'cantidad' => $request->input('cantidad'),
-            'suministro_id' => $insumo->id,
+            'insumo_id' => $insumo->id,
         ]);
 
         Carga::create([
@@ -84,10 +83,10 @@ class InsumoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Suministro $insumo
+     * @param  Insumo $insumo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Suministro $insumo)
+    public function edit(Insumo $insumo)
     {
         return view('insumos.edit', [
             'insumo' => $insumo,
@@ -98,13 +97,13 @@ class InsumoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Suministro $insumo
+     * @param  Insumo $insumo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Suministro $insumo)
+    public function update(Request $request, Insumo $insumo)
     {
         $data = $request->validate([
-            'nombre' => ['required', 'string', 'min:5', 'max:30', Rule::unique('suministros')->ignoreModel($insumo)],
+            'nombre' => ['required', 'string', 'min:5', 'max:30', Rule::unique('insumos')->ignoreModel($insumo)],
             'descripcion' => ['required', 'string', 'min:10', 'max:80'],
         ]);
 
@@ -116,10 +115,10 @@ class InsumoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Suministro $insumo
+     * @param  Insumo $insumo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Suministro $insumo)
+    public function destroy(Insumo $insumo)
     {
         $insumo->delete();
 

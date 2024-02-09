@@ -1,4 +1,4 @@
-# Suministro
+# Insumo
 
 - código
 - nombre
@@ -8,7 +8,7 @@
 # Operacion
 
 - cantidad
-- suministro_id
+- insumo_id
 
 # Carga
 

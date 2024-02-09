@@ -47,9 +47,9 @@
                         <tr>
                           <td>{{ $insumo->codigo }}</td>
                           <td>{{ $insumo->nombre }}</td>
-                          <td style="max-width: 25ch;">{{ $insumo->descripcion }}</td>
+                          <td>{{ $insumo->descripcion }}</td>
                           <td>{{ $insumo->existencia }}</td>
-                          <td>
+                          <td style="min-width: 7rem">
                             {{-- {{ route('cargas.create') }} --}}
                             <a href="#" class="btn btn-sm btn-success">
                               <i class="fa fa-plus"></i>

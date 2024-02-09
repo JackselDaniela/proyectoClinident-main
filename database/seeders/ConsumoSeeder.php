@@ -10,17 +10,17 @@ use App\Models\paciente;
 use App\Models\paciente_diagnostico;
 use App\Models\pieza;
 use App\Models\registrar_tratamiento;
-use App\Models\Suministro;
+use App\Models\Insumo;
 use Illuminate\Database\Seeder;
 
 class ConsumoSeeder extends Seeder
 {
     public $datos;
-    public $suministros;
+    public $insumos;
 
     public function __construct()
     {
-        $this->suministros = Suministro::where('tipo', 'Insumo')->get();
+        $this->insumos = Insumo::where('tipo', 'Consumible')->get();
 
         $this->datos = [
             'pacientes_id' => paciente::first()->id,
@@ -56,10 +56,10 @@ class ConsumoSeeder extends Seeder
 
     public function crearConsumos(paciente_diagnostico $diagnostico): void
     {
-        $this->suministros->map(function ($suministro) use ($diagnostico) {
+        $this->insumos->map(function ($insumo) use ($diagnostico) {
             $operacion = Operacion::create([
                 'cantidad' => -3,
-                'suministro_id' => $suministro->id,
+                'insumo_id' => $insumo->id,
             ]);
 
             Consumo::create([

@@ -28,7 +28,7 @@
       <section class="py-4">
         <form class="container" action="{{ route('insumos.store') }}" method="POST">
           @csrf
-          <h4 class="text-center mb-4">Datos del Insumo</h4>
+          <h3 class="text-center mb-4">Datos del Insumo</h3>
           <div class="row">
             @if ($errors->any())
               <ul>
@@ -90,7 +90,7 @@
             </div>
           </div>
           <div class="mt-4" id="carga-section">
-            <h4 class="text-center mb-4">Carga Inicial</h4>
+            <h3 class="text-center mb-4">Carga Inicial</h3>
             <div class="row px-5 mx-2 justify-content-center">
               <div class="col-sm-4">
                 <div class="form-group">

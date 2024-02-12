@@ -1,6 +1,7 @@
 <?php
 //use App\Http\Controllers\;
 
+use App\Http\Controllers\CargaController;
 use App\Http\Controllers\InsumoController;
 use Illuminate\Support\Facades\Route;
 
@@ -102,6 +103,8 @@ Route::put('/update-RutaT/{id}', [App\Http\Controllers\RutaTController::class, '
 /* Gestión de Insumos */
 Route::resource('/insumos', InsumoController::class)
     ->except('show');
+
+Route::resource('/cargas', CargaController::class);
 
 Route::get('/reservas/create', function () {
     return view('reservas.create');

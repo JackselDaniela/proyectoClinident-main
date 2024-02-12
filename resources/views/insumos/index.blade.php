@@ -53,7 +53,7 @@
                           <td>{{ $insumo->existencia }}</td>
                           <td style="min-width: 7rem">
                             {{-- {{ route('cargas.create') }} --}}
-                            <a href="#" class="btn btn-sm btn-success">
+                            <a href="{{ route('cargas.create', ['insumo_id' => $insumo->id]) }}" class="btn btn-sm btn-success">
                               <i class="fa fa-plus"></i>
                               <span class="fs-sm"></span>
                             </a>

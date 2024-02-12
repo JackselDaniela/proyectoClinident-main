@@ -83,7 +83,9 @@ class CargaController extends Controller
      */
     public function edit(Carga $carga)
     {
-        //
+        return view('cargas.edit', [
+            'carga' => $carga,
+        ]);
     }
 
     /**
@@ -95,7 +97,21 @@ class CargaController extends Controller
      */
     public function update(Request $request, Carga $carga)
     {
-        //
+        $data = $request->validate([
+            'cantidad' => ['sometimes', 'numeric', 'integer', 'min:1', 'max:1000', 'exclude'],
+            'elaboracion' => ['required', 'date', 'before:today'],
+            'vencimiento' => ['sometimes', 'date', 'before:today', 'after:elaboracion'],
+        ]);
+
+        if ($request->has('cantidad') && $carga->mutable) {
+            $carga->operacion()->update([
+                'cantidad' => $request->input('cantidad'),
+            ]);
+        }
+
+        $carga->update($data);
+
+        return redirect()->route('cargas.index');
     }
 
     /**
@@ -106,6 +122,10 @@ class CargaController extends Controller
      */
     public function destroy(Carga $carga)
     {
+        if (!$carga->mutable) {
+            abort(404);
+        }
+
         $carga->delete();
 
         return redirect()->route('cargas.index');

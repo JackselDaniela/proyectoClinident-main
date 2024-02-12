@@ -54,15 +54,15 @@
                           <td>{{ $carga->codigo }}</td>
                           <td>{{ $operacion->insumo->nombre }}</td>
                           <td>{{ $operacion->cantidad }}</td>
-                          <td>{{ $carga->elaboracion->format('Y-m-d') }}</td>
-                          <td>{{ $carga->vencimiento?->format('Y-m-d') ?? 'N/A' }}</td>
+                          <td>{{ $carga->elaboracion->format('d-m-Y') }}</td>
+                          <td>{{ $carga->vencimiento?->format('d-m-Y') ?? 'N/A' }}</td>
                           <td>{{ $carga->user->name }}</td>
-                          <td>{{ $carga->created_at->format('Y-m-d') }}</td>
+                          <td>{{ $carga->created_at->format('d-m-Y') }}</td>
                           <td class="text-center" style="min-width: 7rem">
                             <a class="btn btn-sm btn-warning" href="{{ route('cargas.edit', $carga) }}">
                               <i class="fa fa-edit"></i>
                             </a>
-                            @if($carga->mutable)
+                            @if ($carga->mutable)
                               <form class="d-inline" method="POST" action="{{ route('cargas.destroy', $carga) }}">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">

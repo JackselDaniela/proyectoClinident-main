@@ -1,10 +1,5 @@
 # ToDo
 
-### Cargas
-- *Ver lista de cargas*
-- Actualizar carga (20 min)
-- Eliminar carga (20 min)
-
 ### Operaciones
 - Ver historial de operaciones de inventario
 - Ver link al origen de la operacion (carga, consumo o reserva).

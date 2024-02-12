@@ -259,9 +259,8 @@
                         <li>
                           <a href="{{ route('insumos.index') }}">Listado de Insumos</a>
                         </li>
-                        {{-- route('equipos.index') --}}
                         <li>
-                          <a href="#">Equipos Médico</a>
+                          <a href="{{ route('cargas.index') }}">Cargas de Insumos</a>
                         </li>
                         <li>
                           <a href="{{ route('operaciones.index') }}">Control de Inventario</a>

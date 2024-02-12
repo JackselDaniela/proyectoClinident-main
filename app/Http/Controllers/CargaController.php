@@ -18,7 +18,9 @@ class CargaController extends Controller
      */
     public function index()
     {
-        
+        return view('cargas.index', [
+            'cargas' => Carga::with('user', 'operacion', 'operacion.insumo')->get(),
+        ]);
     }
 
     /**
@@ -74,17 +76,6 @@ class CargaController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Carga  $carga
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Carga $carga)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Carga  $carga
@@ -115,6 +106,8 @@ class CargaController extends Controller
      */
     public function destroy(Carga $carga)
     {
-        //
+        $carga->delete();
+
+        return redirect()->route('cargas.index');
     }
 }

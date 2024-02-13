@@ -18,6 +18,8 @@ class CreateReservasTable extends Migration
             $table->string('codigo')->unique();
             $table->string('descripcion');
             $table->timestamp('restitucion')->nullable();
+            $table->foreignId('paciente_diagnostico_id')
+                ->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

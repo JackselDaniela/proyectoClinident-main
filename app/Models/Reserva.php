@@ -21,6 +21,11 @@ class Reserva extends Model
         return $this->hasMany(Item::class);
     }
 
+    public function paciente_diagnostico()
+    {
+        return $this->belongsTo(paciente_diagnostico::class);
+    }
+
     public function getCantidadAttribute()
     {
         $cantidad = $this->items->reduce(function ($sum, $item) {

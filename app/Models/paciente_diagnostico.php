@@ -30,4 +30,9 @@ class paciente_diagnostico extends Model
     {
         return $this->hasMany(Consumo::class);
     }
+
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class);
+    }
 }

@@ -23,7 +23,6 @@ class ConsumoSeeder extends Seeder
         $this->insumos = Insumo::where('tipo', 'Consumible')->get();
 
         $this->datos = [
-            'pacientes_id' => paciente::first()->id,
             'diagnosticos_id' => diagnostico::first()->id,
             'piezas_id' => pieza::first()->id,
             'registrar_tratamientos_id' => registrar_tratamiento::first()->id,
@@ -37,19 +36,22 @@ class ConsumoSeeder extends Seeder
      */
     public function run()
     {
-        $proceso = $this->crearDiagnostico('En Proceso');
-        $terminado = $this->crearDiagnostico('Terminado');
-
-        $this->crearConsumos($proceso);
+        paciente::all()->each(function ($paciente) {
+            $proceso = $this->crearDiagnostico('En Proceso', $paciente->id);
+            $this->crearConsumos($proceso);
+        });
+        
+        $terminado = $this->crearDiagnostico('Terminado', paciente::first()->id);
         $this->crearConsumos($terminado);
     }
 
-    public function crearDiagnostico(string $estatus): paciente_diagnostico
+    public function crearDiagnostico(string $estatus, int $pacienteId): paciente_diagnostico
     {
         $id = estatus_tratamiento::firstWhere('estatus', $estatus)->id;
 
         return paciente_diagnostico::create([
             ...$this->datos,
+            'pacientes_id' => $pacienteId,
             'estatus_tratamientos_id' => $id,
         ]);
     }

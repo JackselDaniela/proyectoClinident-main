@@ -19,7 +19,8 @@ class CargaController extends Controller
     public function index()
     {
         return view('cargas.index', [
-            'cargas' => Carga::with('user', 'operacion', 'operacion.insumo')->get(),
+            'cargas' => Carga::with('user', 'operacion', 'operacion.insumo')
+                ->latest()->get(),
         ]);
     }
 

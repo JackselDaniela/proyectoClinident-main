@@ -4,6 +4,7 @@
 use App\Http\Controllers\CargaController;
 use App\Http\Controllers\InsumoController;
 use App\Http\Controllers\OperacionController;
+use App\Http\Controllers\ReservaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -108,12 +109,10 @@ Route::resource('/insumos', InsumoController::class)
 Route::resource('/cargas', CargaController::class)
     ->except('show');
 
+Route::resource('/reservas', ReservaController::class);
+
 Route::get('/operaciones', OperacionController::class)
     ->name('operaciones.index');
-
-Route::get('/reservas/create', function () {
-    return view('reservas.create');
-})->name('reservas.create');
 
 /* Ganancias Acumuladas */ 
 Route::get('/GananciasA', [App\Http\Controllers\GananciasAController::class, 'index'])->name('GananciasA');

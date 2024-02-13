@@ -6,6 +6,7 @@ use App\Models\Carga;
 use App\Models\Insumo;
 use App\Models\Operacion;
 use App\Models\User;
+use App\Services\Codigo;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 
@@ -36,7 +37,7 @@ class CargaSeeder extends Seeder
         );
 
         Carga::create([
-            'codigo' => "CRG-{$faker->randomNumber(5, true)}",
+            'codigo' => Codigo::generar('carga'),
             'elaboracion' => '2023-12-01',
             'vencimiento' => null,
             'operacion_id' => $operaciones[0]->id,
@@ -44,7 +45,7 @@ class CargaSeeder extends Seeder
         ]);
 
         Carga::create([
-            'codigo' => "CRG-{$faker->randomNumber(5, true)}",
+            'codigo' => Codigo::generar('carga'),
             'elaboracion' => '2024-01-04',
             'vencimiento' => '2024-05-04',
             'operacion_id' => $operaciones[1]->id,
@@ -52,7 +53,7 @@ class CargaSeeder extends Seeder
         ]);
 
         Carga::create([
-            'codigo' => "CRG-{$faker->randomNumber(5, true)}",
+            'codigo' => Codigo::generar('carga'),
             'elaboracion' => '2023-06-02',
             'vencimiento' => null,
             'operacion_id' => $operaciones[2]->id,
@@ -60,7 +61,7 @@ class CargaSeeder extends Seeder
         ]);
 
         Carga::create([
-            'codigo' => "CRG-{$faker->randomNumber(5, true)}",
+            'codigo' => Codigo::generar('carga'),
             'elaboracion' => '2024-02-04',
             'vencimiento' => '2024-03-04',
             'operacion_id' => $operaciones[3]->id,

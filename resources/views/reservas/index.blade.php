@@ -12,7 +12,7 @@
           <h4 class="page-title">Reservas de Equipos</h4>
         </div>
         <div class="col-6">
-          <a href="{{ route('insumos.create') }}" class="btn btn-primary float-right btn-rounded btn-add btn-press">
+          <a href="{{ route('reservas.create') }}" class="btn btn-primary float-right btn-rounded btn-add btn-press">
             <i class="fa fa-plus"></i>
             Registrar Reserva
           </a>

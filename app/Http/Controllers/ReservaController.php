@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\estatus_tratamiento;
+use App\Models\Insumo;
+use App\Models\paciente_diagnostico;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
 
@@ -28,7 +31,28 @@ class ReservaController extends Controller
      */
     public function create()
     {
-        //
+        $proceso = estatus_tratamiento::firstWhere('estatus', 'En Proceso');
+
+        $diagnosticos = paciente_diagnostico::with([
+            'paciente.persona',
+            'registrar_tratamiento'
+        ])
+            ->where('estatus_tratamientos_id', $proceso->id)
+            ->latest()->get()->map(function ($diagnostico) {
+                return [
+                    'id' => $diagnostico->id,
+                    'nombre' => $diagnostico->paciente->persona->nombre,
+                    'tratamiento' => $diagnostico->registrar_tratamiento->nom_tratamiento,
+                ];
+            });
+
+        $insumos = Insumo::where('tipo', 'Equipo Médico')
+            ->latest()->get();
+
+        return view('reservas.create', [
+            'insumos' => $insumos,
+            'diagnosticos' => $diagnosticos,
+        ]);
     }
 
     /**

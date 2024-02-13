@@ -1,0 +1,37 @@
+[x-cloak] {
+  display: none;
+}
+
+.select-list {
+  top: 110%;
+  max-height: 14.5rem;
+  overflow-y: auto;
+}
+
+.select-arrow {
+  top: 10px;
+  right: 1rem;
+}
+
+.select-item {
+  transition-property: background-color, color;
+  transition-duration: 150ms;
+}
+
+.select-item {
+  cursor: pointer;
+  text-align: left;
+}
+
+.select-item:focus, .select-item:active {
+  outline: none;
+}
+
+.select-item:hover {
+  background-color: #ddd;
+}
+
+.select-item:active, .select-item:focus {
+  background-color: #009efb;
+  color: white;
+}

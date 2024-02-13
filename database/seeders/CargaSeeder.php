@@ -29,6 +29,8 @@ class CargaSeeder extends Seeder
                 return Operacion::create([
                     'cantidad' => $cantidades[$i],
                     'insumo_id' => $insumo->id,
+                    'created_at' => now()->subDays(2),
+                    'updated_at' => now()->subDays(2),
                 ]);
             }
         );

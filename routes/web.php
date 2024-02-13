@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\CargaController;
 use App\Http\Controllers\InsumoController;
+use App\Http\Controllers\OperacionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -104,15 +105,15 @@ Route::put('/update-RutaT/{id}', [App\Http\Controllers\RutaTController::class, '
 Route::resource('/insumos', InsumoController::class)
     ->except('show');
 
-Route::resource('/cargas', CargaController::class);
+Route::resource('/cargas', CargaController::class)
+    ->except('show');
+
+Route::get('/operaciones', OperacionController::class)
+    ->name('operaciones.index');
 
 Route::get('/reservas/create', function () {
     return view('reservas.create');
 })->name('reservas.create');
-
-Route::get('/operaciones', function () {
-    return view('operaciones.index');
-})->name('operaciones.index');
 
 /* Ganancias Acumuladas */ 
 Route::get('/GananciasA', [App\Http\Controllers\GananciasAController::class, 'index'])->name('GananciasA');

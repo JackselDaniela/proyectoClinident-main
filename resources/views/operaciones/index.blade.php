@@ -9,85 +9,50 @@
     <div class="content">
       <div class="row">
         <div class="col-sm-12">
-          <h4 class="page-title">Insumos Disponibles</h4>
+          <h4 class="page-title">Historial de Inventario</h4>
         </div>
       </div>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ asset('Index') }}">Gestion de Insumos</a></li>
+          <li class="breadcrumb-item">
+            <a href="{{ route('operaciones.index') }}">Historial de Inventario</a>
+          </li>
+        </ol>
+      </nav>
       <section>
-        <div class="row filter-row">
-          <div class="col-sm-4 col-md-4">
-            <div class="form-group row">
-              <div class="col-md-12">
-                <div class="input-group">
-                  <input class="form-control datetimepicker" placeholder="Fecha vencimiento" type="datetime">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" style="border-radius: .8rem"><i
-                        class="fa fa-search"></i></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-md-4">
-            <div class="form-group row">
-              <div class="col-md-12">
-                <div class="input-group">
-                  <input class="form-control" placeholder="Codigo Insumo" type="text">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" style="border-radius: .8rem"><i
-                        class="fa fa-search"></i></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-md-4">
-            <div class="form-group row">
-              <div class="col-md-12">
-                <div class="input-group">
-                  <input class="form-control" placeholder="Nombre" type="text">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" style="border-radius: .8rem"><i
-                        class="fa fa-search"></i></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="row">
           <div class="col-sm-12">
             <div class="card-box">
               <div class="card-block">
                 <div class="table-responsive">
-                  <table class="datatable table table-stripped " style="overflow: hidden;!important">
+                  <table class="datatable table table-stripped" style="overflow: hidden;!important">
                     <thead>
                       <tr>
-                        <th>Código</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Presentación</th>
-                        <th>Función</th>
-                        <th>Fecha Elab.</th>
-                        <th>Fecha Venc.</th>
-                        <th>Serial</th>
-                        <th>Existencia</th>
+                        <th>Fecha</th>
+                        <th>Insumo</th>
+                        <th>Tipo</th>
+                        <th>Operacion</th>
+                        <th>Motivo</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>GQ-001</td>
-                        <td style="text-decoration: underline!important; color:blue!important"><img
-                            src="{{ asset('assets/img/carrito/guantes quirurgicos.jpg') }}"
-                            style="width: 50px!important;border-radius: 50%"> <a href="#">Guantes Quirurgicos</a>
-                        </td>
-                        <td>Proteccion e Higiene</td>
-                        <td>Docena</td>
-                        <td>Inhibir la transmision de agentes patógenos</td>
-                        <td>23/02/2022</td>
-                        <td>23/02/2026</td>
-                        <td>9876t3ghjk--l9383</td>
-                        <td><span class="custom-badge status-red">1 Docena</span></td>
-                      </tr>
+                      @foreach ($operaciones as $operacion)
+                        @php
+                          $positivo = $operacion->cantidad > 0;
+                        @endphp
+                        <tr>
+                          <td>{{ $operacion->created_at->format('d-m-Y') }}</td> 
+                          <td>{{ $operacion->insumo->nombre }}</td>
+                          <td>{{ $operacion->insumo->tipo }}</td>
+                          <td @class([
+                            'font-weight-bold',
+                            'text-success' => $positivo,
+                            'text-danger' => !$positivo,
+                            ])>{{ $operacion->movimiento }}</td>
+                          <td>{{ $operacion->motivo }}</td>
+                        </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

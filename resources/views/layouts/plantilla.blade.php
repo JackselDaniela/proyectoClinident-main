@@ -263,7 +263,7 @@
                           <a href="{{ route('cargas.index') }}">Cargas de Insumos</a>
                         </li>
                         <li>
-                          <a href="{{ route('operaciones.index') }}">Control de Inventario</a>
+                          <a href="{{ route('operaciones.index') }}">Historial de Inventario</a>
                         </li>
                     </ul>
                 </li>

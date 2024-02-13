@@ -30,24 +30,14 @@ class ItemSeeder extends Seeder
                 $operacion = Operacion::create([
                     'cantidad' => -3,
                     'insumo_id' => $insumo->id,
+                    'created_at' => now()->subDay(),
+                    'updated_at' => now()->subDay(),
                 ]);
 
                 Item::create([
                     'reserva_id' => $reserva->id,
                     'operacion_id' => $operacion->id,
                 ]);
-    
-                if ($reserva->restitucion !== null) {
-                    $restitucion = Operacion::create([
-                        'cantidad' => 3,
-                        'insumo_id' => $insumo->id,
-                    ]);
-
-                    Item::create([
-                        'reserva_id' => $reserva->id,
-                        'operacion_id' => $restitucion->id,
-                    ]);
-                }
             });
         });
     }

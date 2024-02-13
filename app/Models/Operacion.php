@@ -26,8 +26,24 @@ class Operacion extends Model
         return $this->hasOne(Consumo::class);
     }
 
-    public function uso()
+    public function item()
     {
-        return $this->hasOne(Uso::class);
+        return $this->hasOne(Item::class);
+    }
+
+    public function getMovimientoAttribute()
+    {
+        $signo = $this->cantidad > 0 ? '+' : '';
+        return "{$signo}{$this->cantidad}";
+    }
+
+    public function getMotivoAttribute()
+    {
+        return match (true) {
+            $this->consumo !== null => 'Gasto de insumos.',
+            $this->carga !== null => 'Carga de insumos.',
+            $this->cantidad < 0 => 'Reserva de equipos médicos.',
+            $this->cantidad > 0 => 'Restitución de equipos médicos.',
+        };
     }
 }

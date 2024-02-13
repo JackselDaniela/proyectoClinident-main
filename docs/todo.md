@@ -1,7 +1,6 @@
 # ToDo
 
 ### Operaciones
-- Ver historial de operaciones de inventario
 - Ver link al origen de la operacion (carga, consumo o reserva).
 
 ### Reservas
@@ -20,4 +19,4 @@
 ### Misc
 - Filtrar por tipo en insumos.index
 - Notificaciones en bajo stock de insumo
-- Hacer algo con las rutas de "reservas/create" y "/operaciones"
+- Hacer algo con la ruta de "reservas/create"

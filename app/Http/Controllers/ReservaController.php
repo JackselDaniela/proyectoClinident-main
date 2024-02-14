@@ -41,13 +41,20 @@ class ReservaController extends Controller
             ->latest()->get()->map(function ($diagnostico) {
                 return [
                     'id' => $diagnostico->id,
-                    'nombre' => $diagnostico->paciente->persona->nombre,
-                    'tratamiento' => $diagnostico->registrar_tratamiento->nom_tratamiento,
+                    'title' => $diagnostico->paciente->persona->nombre,
+                    'subtitle' => $diagnostico->registrar_tratamiento->nom_tratamiento,
                 ];
             });
 
         $insumos = Insumo::where('tipo', 'Equipo Médico')
-            ->latest()->get();
+            ->latest()->get()->map(function ($insumo) {
+                return [
+                    'id' => $insumo->id,
+                    'codigo' => $insumo->codigo,
+                    'title' => $insumo->nombre,
+                    'subtitle' => $insumo->codigo,
+                ];
+            });
 
         return view('reservas.create', [
             'insumos' => $insumos,
@@ -63,7 +70,7 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

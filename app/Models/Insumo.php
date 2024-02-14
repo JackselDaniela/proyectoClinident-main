@@ -17,6 +17,7 @@ class Insumo extends Model
     }
 
     public function getExistenciaAttribute() {
+        // TODO -> actualizar para tener en cuenta las restituciones
         return $this->operaciones->reduce(
             fn($suma, $operacion) => $suma += $operacion->cantidad
         , 0);

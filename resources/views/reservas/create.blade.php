@@ -30,7 +30,7 @@
         </ol>
       </nav>
       <section class="py-4">
-        <form class="container" action="{{ route('reservas.store') }}" method="POST">
+        <form enctype="multipart/form-data" class="container" action="{{ route('reservas.store') }}" method="POST">
           @csrf
           <h3 class="text-center mb-4">Registrar Reserva</h3>
           <div class="row">
@@ -42,14 +42,14 @@
               </ul>
             @endif
           </div>
-          <div class="row px-5 mx-2">
-            <div class="col-sm-6">
+          <div class="row justify-content-center">
+            <div class="col-sm-5">
               <div class="form-group">
                 <label for="descripcion">
                   Descripción
                   <span class="text-danger">*</span>
                 </label>
-                <textarea class="form-control" minlength="10" maxlength="80" placeholder="Ej. Reservado por procedimientos." name="descripcion" id="descripcion" required>{{ old('descripcion') }}</textarea>
+                <textarea class="form-control" minlength="10" maxlength="80" placeholder="Ej. Reservado por procedimientos." name="descripcion" id="descripcion" rows="1" required>{{ old('descripcion') }}</textarea>
                 @error('descripcion')
                   <p class="text-danger">
                     {{ $message }}
@@ -57,13 +57,90 @@
                 @enderror
               </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-5">
               <div class="form-group">
-                <label for="paciente_diagnostico_id">
+                <label>
                   Tratamiento
                   <span class="text-danger">*</span>
                 </label>
-                <x-select-tratamiento />
+                <x-select key="diagnosticos" name="paciente_diagnostico_id" />
+              </div>
+            </div>
+          </div>
+          <h4 class="text-center mt-4 mb-2">Equipos Médicos a reservar: </h4>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box border" style="border-color: #eee">
+                <div class="card-block" x-data="insumos" @addinsumo.window="addInsumo">
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>
+                          Equipo Médico
+                          <span class="text-danger">*</span>
+                        </label>
+                        <x-select key="insumos" x-model="insumo" />
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="cantidad">
+                          Cantidad
+                          <span class="text-danger">*</span>
+                        </label>
+                        {{-- TODO -> poner max según inventario disponible --}}
+                        <input form="add-insumo" class="form-control" value="{{ old('cantidad') }}" min="1" placeholder="Ej. 50" name="cantidad" id="cantidad" type="number" x-model="cantidad" required />
+                        @error('cantidad')
+                          <p class="text-danger">
+                            {{ $message }}
+                          </p>
+                        @enderror
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      {{-- TODO -> validar que haya sido seleccionado un insumo antes de añadir un record a la tabla --}}
+                      <button form="add-insumo" type="submit" class="btn btn-primary btn-add">
+                        <i class="fa fa-plus"></i>
+                        Añadir
+                      </button>
+                    </div>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-stripped">
+                      <thead>
+                        <tr>
+                          <th>Código</th>
+                          <th>Equipo</th>
+                          <th>Cantidad</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <template x-for="{ id, cantidad }, index in insumos">
+                          <tr x-data="{ current: datosInsumo(id) }">
+                            <td x-text="current.codigo"></td>
+                            <td x-text="current.title"></td>
+                            <td x-text="cantidad"></td>
+                            <td>
+                              <button @click="removeInsumo" :data-id="id" type="button" class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                              </button>
+                              <input type="hidden" name="insumo_id[]" :value="id">
+                              <input type="hidden" name="cantidad[]" :value="cantidad">
+                            </td>
+                          </tr>
+                        </template>
+                        <template x-if="insumos.length === 0">
+                          <tr>
+                            <td class="text-center" colspan="4">
+                              No se ha añadido ningún equipo médico.
+                            </td>
+                          </tr>
+                        </template>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -73,6 +150,7 @@
             </button>
           </div>
         </form>
+        <form name="add-insumo" id="add-insumo"></form>
       </section>
     </div>
   </div>
@@ -85,37 +163,63 @@
   <script src="{{ asset('/assets/js/app.js') }}"></script>
   <script>
     window.diagnosticos = {{ Js::from($diagnosticos) }}
+    window.insumos = {{ Js::from($insumos) }}
   </script>
   <script defer src="{{ asset('assets/js/alpine.js') }}"></script>
   <script defer>
     document.addEventListener('alpine:init', () => {
-      Alpine.data('select', () => ({
-        diagnosticos: window.diagnosticos,
+      Alpine.data('insumos', () => ({
+        insumos: [],
+        insumo: null,
+        cantidad: null,
+        addInsumo() {
+          this.insumos.push({ id: this.insumo, cantidad: this.cantidad })
+          this.insumo = null
+          this.cantidad = null
+        },
+        removeInsumo(id) {
+          const index = this.insumos.findIndex(ins => ins.id === id)
+          this.insumos.splice(index, 1)
+        },
+        datosInsumo(id) {
+          return window.insumos.find(ins => ins.id === id)
+        }
+      }))
+
+      Alpine.data('select', (options) => ({
+        options,
         selected: null,
         open: false,
         search: '',
         display: '',
         get searched() {
-          return this.diagnosticos.filter(({ nombre, id }) => {
+          return this.options.filter(({ title, id }) => {
             let included = true
+            let inInsumos = false
+
+            if (this.insumos !== undefined && this.insumos.length !== 0) {
+              inInsumos = Boolean(
+                this.insumos.find(insumo => insumo.id === id)
+              )
+            }
 
             if (this.search !== '') {
               const search = this.search.toLowerCase()
-              included = nombre.toLowerCase().includes(search)
+              included = title.toLowerCase().includes(search)
             }
 
-            return included && id !== this.selected
+            return !inInsumos && included && id !== this.selected
           })
         },
         get display() {
           if (this.selected === null) return 'Seleccionar...'
 
-          const current = this.diagnosticos.find(
-            diagnostico => diagnostico.id === this.selected
+          const current = this.options.find(
+            option => option.id === this.selected
           )
 
-          const { nombre, tratamiento } = current
-          return `${nombre} - ${tratamiento}`
+          const { title, subtitle } = current
+          return `${title} - ${subtitle}`
         },
         openDropdown() {
           this.open = true
@@ -129,11 +233,16 @@
           this.search = ''
         },
         selectOption() {
-          const { id } = this.$el
+          const { id } = this.$el.dataset
           this.selected = Number(id)
           this.open = false
         }
       }))
+    })
+
+    document.querySelector('#add-insumo').addEventListener('submit', (event) => {
+      event.preventDefault()
+      window.dispatchEvent(new CustomEvent('addinsumo'))
     })
   </script>
 @endsection

@@ -6,6 +6,8 @@
   top: 110%;
   max-height: 14.5rem;
   overflow-y: auto;
+  z-index: 10;
+  border: solid 1px #ddd;
 }
 
 .select-arrow {

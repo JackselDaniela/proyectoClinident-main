@@ -31,19 +31,36 @@ class Operacion extends Model
         return $this->hasOne(Item::class);
     }
 
+    public function getRestituidoAttribute()
+    {
+        return $this->tipo === 'reserva' 
+            && $this->item->reserva->restitucion !== null;
+    }
+
+    public function getTipoAttribute()
+    {
+        return match (true) {
+            $this->consumo !== null => 'consumo',
+            $this->carga !== null => 'carga',
+            $this->item !== null => 'reserva',
+        };
+    }
+
     public function getMovimientoAttribute()
     {
         $signo = $this->cantidad > 0 ? '+' : '';
+
         return "{$signo}{$this->cantidad}";
     }
 
     public function getMotivoAttribute()
     {
-        return match (true) {
-            $this->consumo !== null => 'Gasto de insumos.',
-            $this->carga !== null => 'Carga de insumos.',
-            $this->cantidad < 0 => 'Reserva de equipos médicos.',
-            $this->cantidad > 0 => 'Restitución de equipos médicos.',
+        return match ($this->tipo) {
+            'consumo' => 'Gasto de insumos.',
+            'carga' => 'Carga de insumos.',
+            'reserva' => $this->replicado
+                ? 'Restitución de equipos médicos.'
+                : 'Reserva de equipos médicos.'
         };
     }
 }

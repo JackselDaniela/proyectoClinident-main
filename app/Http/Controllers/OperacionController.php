@@ -33,6 +33,7 @@ class OperacionController extends Controller
 
             $restitucion->created_at = $operacion->item->reserva->restitucion;
             $restitucion->cantidad = abs($operacion->cantidad);
+            $restitucion->replicado = true;
 
             $operaciones->push($restitucion);
         });

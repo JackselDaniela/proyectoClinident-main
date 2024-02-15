@@ -17,9 +17,12 @@ class Insumo extends Model
     }
 
     public function getExistenciaAttribute() {
-        // TODO -> actualizar para tener en cuenta las restituciones
-        return $this->operaciones->reduce(
-            fn($suma, $operacion) => $suma += $operacion->cantidad
-        , 0);
+        return $this->operaciones->reduce(function ($suma, $op) {
+            if ($op?->item?->reserva?->restitucion === null) {
+                return $suma += $op->cantidad;
+            }
+
+            return $suma;
+        }, 0);
     }
 }

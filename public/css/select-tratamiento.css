@@ -37,3 +37,11 @@
   background-color: #009efb;
   color: white;
 }
+
+button.btn.btn-primary[disabled],
+button.btn.btn-primary[disabled]:hover,
+button.btn.btn-primary.submit-btn[disabled],
+button.btn.btn-primary.submit-btn[disabled]:hover {
+  background-color: #777;
+  border-color: #777;
+}

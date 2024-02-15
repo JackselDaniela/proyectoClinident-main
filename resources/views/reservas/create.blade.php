@@ -30,7 +30,7 @@
         </ol>
       </nav>
       <section class="py-4">
-        <form enctype="multipart/form-data" class="container" action="{{ route('reservas.store') }}" method="POST">
+        <form enctype="multipart/form-data" class="container" action="{{ route('reservas.store') }}" method="POST" x-data="{ diagnostico: null, reservados: [] }">
           @csrf
           <h3 class="text-center mb-4">Registrar Reserva</h3>
           <div class="row">
@@ -63,7 +63,7 @@
                   Tratamiento
                   <span class="text-danger">*</span>
                 </label>
-                <x-select key="diagnosticos" name="paciente_diagnostico_id" />
+                <x-select key="diagnosticos" name="paciente_diagnostico_id" x-model="diagnostico" />
               </div>
             </div>
           </div>
@@ -71,7 +71,9 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="card-box border" style="border-color: #eee">
-                <div class="card-block" x-data="insumos" @addinsumo.window="addInsumo">
+
+
+                <div class="card-block" x-data="insumos" x-modelable="insumos" x-model="reservados" @addinsumo.window="addInsumo">
                   <div class="row justify-content-center align-items-center">
                     <div class="col-sm-4">
                       <div class="form-group">
@@ -82,14 +84,13 @@
                         <x-select key="insumos" x-model="insumo" />
                       </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4" x-show="insumo !== null" x-cloak>
                       <div class="form-group">
                         <label for="cantidad">
-                          Cantidad
+                          Cantidad (max. <span x-text="datosInsumo(insumo)?.max"></span>)
                           <span class="text-danger">*</span>
                         </label>
-                        {{-- TODO -> poner max según inventario disponible --}}
-                        <input form="add-insumo" class="form-control" value="{{ old('cantidad') }}" min="1" placeholder="Ej. 50" name="cantidad" id="cantidad" type="number" x-model="cantidad" required />
+                        <input form="add-insumo" class="form-control" value="{{ old('cantidad') }}" min="1" :max="Number(datosInsumo(insumo)?.max) + 5" placeholder="Ej. 50" name="cantidad" id="cantidad" type="number" x-model="cantidad" required />
                         @error('cantidad')
                           <p class="text-danger">
                             {{ $message }}
@@ -98,8 +99,7 @@
                       </div>
                     </div>
                     <div class="col-sm-2">
-                      {{-- TODO -> validar que haya sido seleccionado un insumo antes de añadir un record a la tabla --}}
-                      <button form="add-insumo" type="submit" class="btn btn-primary btn-add">
+                      <button form="add-insumo" type="submit" class="btn btn-primary" :disabled="!submitable">
                         <i class="fa fa-plus"></i>
                         Añadir
                       </button>
@@ -125,8 +125,8 @@
                               <button @click="removeInsumo" :data-id="id" type="button" class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash"></i>
                               </button>
-                              <input type="hidden" name="insumo_id[]" :value="id">
-                              <input type="hidden" name="cantidad[]" :value="cantidad">
+                              <input type="hidden" :name="`insumos[${index}][id]`" :value="id">
+                              <input type="hidden" :name="`insumos[${index}][cantidad]`" :value="cantidad">
                             </td>
                           </tr>
                         </template>
@@ -141,12 +141,14 @@
                     </table>
                   </div>
                 </div>
+
+
               </div>
             </div>
           </div>
           <div class="row justify-content-center mt-4">
-            <button type="submit" class="btn btn-primary submit-btn">
-              Registrar Insumo
+            <button type="submit" class="btn btn-primary submit-btn" :disabled="diagnostico === null || reservados.length < 1">
+              Registrar Reserva
             </button>
           </div>
         </form>
@@ -172,6 +174,9 @@
         insumos: [],
         insumo: null,
         cantidad: null,
+        get submitable() {
+          return this.insumo !== null && this.cantidad !== null
+        },
         addInsumo() {
           this.insumos.push({ id: this.insumo, cantidad: this.cantidad })
           this.insumo = null
@@ -183,7 +188,7 @@
         },
         datosInsumo(id) {
           return window.insumos.find(ins => ins.id === id)
-        }
+        },
       }))
 
       Alpine.data('select', (options) => ({

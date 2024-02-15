@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\estatus_tratamiento;
 use App\Models\Insumo;
+use App\Models\Item;
+use App\Models\Operacion;
 use App\Models\paciente_diagnostico;
 use App\Models\Reserva;
+use App\Services\Codigo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ReservaController extends Controller
 {
@@ -53,6 +57,7 @@ class ReservaController extends Controller
                     'codigo' => $insumo->codigo,
                     'title' => $insumo->nombre,
                     'subtitle' => $insumo->codigo,
+                    'max' => $insumo->existencia,
                 ];
             });
 
@@ -70,7 +75,42 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'descripcion' => ['required', 'string', 'min:10', 'max:80'],
+            'paciente_diagnostico_id' => ['required', 'numeric', 'integer'],
+            'insumos' => ['required', 'array', 'min:1'],
+            'insumos.*' => ['array:id,cantidad'],
+            'insumos.*.id' => ['numeric', 'integer'],
+        ]);
+
+        $insumos = collect($request->input('insumos'));
+
+        $insumos->each(function ($data) {
+            $insumo = Insumo::find($data['id']);
+
+            Validator::make($data, [
+                'cantidad' => ['numeric', 'integer', 'min:1', 'max:'.$insumo->existencia],
+            ], ["La cantidad del insumo \"{$insumo->nombre}\" no debe ser menor a {$insumo->existencia}"])->validate();
+        });
+
+        $reserva = Reserva::create([
+            'codigo' => Codigo::generar('reserva'),
+            ...$request->only(['paciente_diagnostico_id', 'descripcion'])
+        ]);
+
+        $insumos->each(function ($insumo) use ($reserva) {
+            $operacion = Operacion::create([
+                'insumo_id' => $insumo['id'],
+                'cantidad' => $insumo['cantidad'],
+            ]);
+
+            Item::create([
+                'reserva_id' => $reserva->id,
+                'operacion_id' => $operacion->id,
+            ]);
+        });
+
+        return redirect()->route('reservas.index');
     }
 
     /**

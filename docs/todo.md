@@ -1,7 +1,6 @@
 # ToDo
 
 ### Reservas
-- Registrar reserva de equipo
 - Detalle de reserva de equipo
 - Actualizar reserva de equipo (20 min)
 - Finalizar reserva de equipo (restitución)

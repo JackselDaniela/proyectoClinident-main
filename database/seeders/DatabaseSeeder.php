@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CiudadesSeeder::class,
             ParroquiaSeeder::class,
             DatoUbicacionSeeder::class,
+            NacionalidadSeeder::class,
             PersonaSeeder::class,
             PacienteSeeder::class,
             ExpedienteSeeder::class,

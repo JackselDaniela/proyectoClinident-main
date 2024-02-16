@@ -25,4 +25,14 @@ class paciente_diagnostico extends Model
     public function estatus_tratamiento(){
         return $this->belongsTo(estatus_tratamiento::class,'estatus_tratamientos_id');
     }
+
+    public function consumos()
+    {
+        return $this->hasMany(Consumo::class);
+    }
+
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class);
+    }
 }

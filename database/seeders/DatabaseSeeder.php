@@ -23,12 +23,18 @@ class DatabaseSeeder extends Seeder
             CiudadesSeeder::class,
             ParroquiaSeeder::class,
             DatoUbicacionSeeder::class,
+            NacionalidadSeeder::class,
             PersonaSeeder::class,
             PacienteSeeder::class,
             ExpedienteSeeder::class,
             DoctorSeeder::class,
             DiagnosticoSeeder::class,
             EstatusTratamientoSeeder::class,
+            InsumoSeeder::class,
+            CargaSeeder::class,
+            ConsumoSeeder::class,
+            ReservaSeeder::class,
+            ItemSeeder::class,
         ]);
         
         // \App\Models\User::factory(10)->create();

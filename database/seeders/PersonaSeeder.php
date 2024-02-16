@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Str;
 use App\Models\dato_ubicacion;
+use App\Models\nacionalidad;
 use App\Models\persona;
 use App\Models\tipo_persona;
 
@@ -22,6 +23,8 @@ class PersonaSeeder extends Seeder
          //$tipo = tipo_persona::where('tipo_persona','Paciente')->first();
         // $dato_ubicacion = persona::where('id','=','dato_ubicacions_id')->first();
 
+        $ve = nacionalidad::first();
+
 
         persona::create([
             'doc_identidad'      => '111111111',
@@ -32,7 +35,7 @@ class PersonaSeeder extends Seeder
             'foto'               => 'imagen',
             'tipo_personas_id'   => '1',
             'dato_ubicacions_id' => '1' ,
-
+            'nacionalidads_id' => $ve->id,
         ]);
 
       
@@ -46,6 +49,7 @@ class PersonaSeeder extends Seeder
             'foto'               => 'imagen2',
             'tipo_personas_id'   => '1',
             'dato_ubicacions_id' =>'2' ,
+            'nacionalidads_id' => $ve->id,
 
         ]);
 
@@ -58,6 +62,7 @@ class PersonaSeeder extends Seeder
             'foto'               => 'imagen3',
             'tipo_personas_id'   => '2',
             'dato_ubicacions_id' => '3' ,
+            'nacionalidads_id' => $ve->id,
 
         ]);
 
@@ -70,6 +75,7 @@ class PersonaSeeder extends Seeder
             'foto'               => 'Imagen4',
             'tipo_personas_id'   => '2' ,
             'dato_ubicacions_id' => '4' ,
+            'nacionalidads_id' => $ve->id,
 
         ]);
         persona::create([
@@ -81,6 +87,7 @@ class PersonaSeeder extends Seeder
             'foto'               => 'imagen5',
             'tipo_personas_id'   => '2' ,
             'dato_ubicacions_id' => '5' ,
+            'nacionalidads_id' => $ve->id,
 
         ]);
 

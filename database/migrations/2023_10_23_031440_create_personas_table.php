@@ -15,7 +15,7 @@ class CreatePersonasTable extends Migration
     {
         Schema::create('personas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('nacionalidads_id')->nullable();
+            $table->unsignedBigInteger('nacionalidads_id');
             $table->foreign('nacionalidads_id')->references('id')->on('nacionalidads')->onDelete('cascade');
 
             $table->string('doc_identidad',255);
@@ -25,7 +25,7 @@ class CreatePersonasTable extends Migration
             $table->string('genero',255);
             $table->string('foto',255);
 
-            $table->unsignedBigInteger('dato_ubicacions_id')->nullable();
+            $table->unsignedBigInteger('dato_ubicacions_id');
             $table->foreign('dato_ubicacions_id')->references('id')->on('dato_ubicacions')->onDelete('cascade');
 
             $table->unsignedBigInteger('tipo_personas_id');

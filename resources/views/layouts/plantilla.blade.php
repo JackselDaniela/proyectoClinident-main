@@ -173,22 +173,26 @@
 								<li><a href="citasConfirmadas.html">Citas Confirmadas</a></li>
 							</ul>
 						</li>
-                        <li class="submenu">
-							<a href="#"><i class="fa fa-wheelchair"></i> <span> Gestion de Paciente</span> <span class="menu-arrow"></span></a>
+            <li class="submenu">
+							<a href="#">
+                <i class="fa fa-wheelchair"></i>
+                <span>Gestion de Paciente</span>
+                <span class="menu-arrow"></span>
+              </a>
 							<ul style="display: none;">
 								<li><a href="listadoPacientes.html">Registro Expediente</a></li>
 								<li><a href="hclinico.html">Historia Clinica</a></li>
 								<li><a href="rutaTratamiento.html">Ruta de Tratamiento</a></li>
 							</ul>
 						</li>
-                        <li class="submenu">
+            <li class="submenu">
 							<a href="#"><i class="fa fa-cube"></i> <span> Gestion de Insumos</span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 								<li><a href="nuevoI.html">Nuevo Insumo</a></li>
 								<li><a href="nuevaC.html">Nueva Carga</a></li>
 							</ul>
 						</li>
-                        <li class="submenu">
+            <li class="submenu">
 							<a href="#"><i class="fa fa-money"></i> <span> Honorarios</span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 								<li><a href="ganancias.html">Ganancias</a></li>
@@ -247,10 +251,24 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><i class="fa fa-medkit"></i> <span> Gestion de Insumos</span> <span class="menu-arrow"></span></a>
+                    <a href="#">
+                      <i class="fa fa-medkit"></i>
+                      <span>Gestion de Insumos</span>
+                      <span class="menu-arrow"></span>
+                    </a>
                     <ul style="display: none;">
-                        <li><a href="{{asset('SolicitudI')}}">Solicitud Insumo</a></li>
-                        <li><a href="{{asset('NuevaC')}}">Insumo</a></li>
+                        <li>
+                          <a href="{{ route('insumos.index') }}">Listado de Insumos</a>
+                        </li>
+                        <li>
+                          <a href="{{ route('cargas.index') }}">Cargas de Insumos</a>
+                        </li>
+                        <li>
+                          <a href="{{ route('reservas.index') }}">Reservas de Equipos</a>
+                        </li>
+                        <li>
+                          <a href="{{ route('operaciones.index') }}">Historial de Inventario</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="submenu">

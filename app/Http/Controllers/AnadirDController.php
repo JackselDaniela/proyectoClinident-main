@@ -10,6 +10,7 @@ use App\Models\estado;
 use App\Models\municipio;
 use App\Models\ciudad;
 use App\Models\parroquia;
+use App\Models\nacionalidad;
 
 
 
@@ -25,13 +26,14 @@ class AnadirDController extends Controller
     public function index()
     {
         $especialidad = especialidad::all();
+        $nacionalidad = nacionalidad::all();
          $estado = estado::all();
          $municipio = municipio::all();
          $ciudad = ciudad::all();
          $parroquia = parroquia::all();
 
 
-        return view('AñadirD',compact('especialidad','estado', 'municipio', 'parroquia','ciudad'));
+        return view('AñadirD',compact('especialidad','estado', 'municipio', 'parroquia','ciudad','nacionalidad'));
     }
 
     /**
@@ -99,15 +101,15 @@ class AnadirDController extends Controller
             'dato_ubicacions_id' => $dato_ubicacion -> id ,
         ]);
 
-        $especialidad = especialidad::first();
-        
+        $esp = especialidad::where('id',$request->post('especialidad'))->first();
+        $especialidad = $esp->id;
         $doctor =  doctor::create([
 
             'universidad'          => $request-> post('universidad'),
             'experiencia'          => $request-> post('experiencia'),
             'bachillerato'          => $request-> post('bachillerato'),
             'destacado'          => $request-> post('destacado'),
-            'especialidads_id' => $especialidad -> id ,
+            'especialidads_id' => $especialidad,
             'personas_id' => $persona -> id ,
         ]);
         

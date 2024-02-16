@@ -37,9 +37,9 @@
                                     <label title="Ingrese su Nacionalidad">Origen<span class="text-danger">*</span>
                                         
                                     </label>
-                                    <select class="col-sm-2 select"  name="nacionalidad" id="nacionalidad"required>
+                                    <select class="col-sm-2 select"  name="nacionalidad" id="nacionalidad" required>
                                         @foreach ($nacionalidad as $nacionalidad)
-                                        <option value="{{$nacionalidad->nacionalidads_id}}"> {{$nacionalidad->nacionalidad}}</option>
+                                        <option value="{{$nacionalidad->id}}"> {{$nacionalidad->nacionalidad}}</option>
                                         @endforeach 
                                     </select> 
                                 </div>

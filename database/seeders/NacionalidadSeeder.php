@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\nacionaalidad;
+use App\Models\nacionalidad;
 
 class NacionalidadSeeder extends Seeder
 {
@@ -15,6 +15,11 @@ class NacionalidadSeeder extends Seeder
      */
     public function run()
     {
-        //
+        nacionalidad::create([
+            'nacionalidad'      => 'V'
+        ]);  
+        nacionalidad::create([
+            'nacionalidad'      => 'E'
+        ]);  
     }
 }

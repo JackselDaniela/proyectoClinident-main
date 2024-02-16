@@ -19,5 +19,8 @@ class paciente extends Model
         return $this->hasOne(paciente_diagnostico::class,'pacientes_id');
     }
     
+    public function cita(){
+        return $this->hasMany(cita::class,'pacientes_id');
+    }
 
 }

@@ -10,6 +10,7 @@ use App\Models\estado;
 use App\Models\municipio;
 use App\Models\ciudad;
 use App\Models\parroquia;
+use App\Models\nacionalidad;
 
 use Illuminate\Http\Request;
 
@@ -23,12 +24,13 @@ class AnadirPController extends Controller
     public function index()
     {
          $estado = estado::all();
+         $nacionalidad = nacionalidad::all();
          $municipio = municipio::all();
          $ciudad = ciudad::all();
          $parroquia = parroquia::all();
 
 
-        return view('AñadirP',compact('estado', 'municipio', 'parroquia','ciudad'));
+        return view('AñadirP',compact('estado', 'municipio', 'parroquia','ciudad','nacionalidad'));
         
     }
 

@@ -37,9 +37,9 @@
                                         
                                     </label>
                                     <select class="col-sm-2 select"  name="nacionalidad" id="nacionalidad"required>
-                                       
-                                        <option > V </option>
-                                        <option > E </option>
+                                        @foreach ($nacionalidad as $nacionalidad)
+                                        <option value="{{$nacionalidad->id}}"> {{$nacionalidad->nacionalidad}}</option>
+                                        @endforeach 
                                         
                                     </select> 
                                 </div>

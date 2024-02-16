@@ -15,4 +15,7 @@ class doctor extends Model
     public function especialidad(){
         return $this->belongsTo(especialidad::class,'especialidads_id');
     }
+    public function cita(){
+        return $this->hasMany(cita::class,'doctors_id');
+    }
 }

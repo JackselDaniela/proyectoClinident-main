@@ -30,13 +30,14 @@
             <ul class="nav user-menu float-right">
                 <li class="nav-item" style="color: aliceblue; padding-top:1rem;">
                     @php
-                        date_default_timezone_set('America/Caracas');
-                        $fechaActual = date("d-m-Y");
-                        $horaActual = date("h:i:s");
- 
-                        echo "Lun:$fechaActual Hora: $horaActual" ;
-                        
+                    use Illuminate\Support\Carbon;
+                        Carbon::setLocale('es_VE');
+                        setLocale(LC_TIME, 'es_VE')
                     @endphp
+                    {{now()->shortLocaleDayOfWeek }}
+
+
+                    {{ now()->format('d-m-Y')}}
 
                 </li>
                  <li class="nav-item dropdown d-none d-sm-block">

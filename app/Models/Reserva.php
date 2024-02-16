@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use App\Traits\Mutable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Reserva extends Model
 {
-    use HasFactory, Mutable;
+    use HasFactory;
 
     protected $guarded = [];
 
@@ -47,5 +46,10 @@ class Reserva extends Model
         }, 0);
 
         return abs($cantidad);
+    }
+
+    public function getMutableAttribute()
+    {
+        return now()->diffInMinutes($this->created_at) < 20 && $this->restitucion === null;
     }
 }

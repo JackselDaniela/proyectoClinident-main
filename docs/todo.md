@@ -1,8 +1,5 @@
 # ToDo
 
-### Reservas
-- Actualizar reserva de equipo (20 min)
-
 ### Consumos
 - Registrar consumos al momento de actualizar estado de tratamiento
 - Mostrar consumos del tratamiento

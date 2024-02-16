@@ -52,13 +52,13 @@
                       </button>
                     </form>
                   @endif
-                  <a class="btn btn-warning">
+                  <a href="{{ route('reservas.edit', $reserva) }}" class="btn btn-warning">
                     <i class="fa fa-edit"></i>
                     Actualizar
                   </a>
                   @if ($reserva->mutable)
                     <form method="POST" action="{{ route('reservas.destroy', $reserva) }}">
-                      @method('PATCH') @csrf
+                      @method('DELETE') @csrf
                       <button type="submit" class="btn btn-danger">
                         <i class="fa fa-trash"></i>
                         Eliminar

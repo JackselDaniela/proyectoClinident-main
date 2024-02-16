@@ -90,7 +90,7 @@ class ReservaController extends Controller
 
             Validator::make($data, [
                 'cantidad' => ['numeric', 'integer', 'min:1', 'max:'.$insumo->existencia],
-            ], ["La cantidad del insumo \"{$insumo->nombre}\" no debe ser menor a {$insumo->existencia}"])->validate();
+            ], ["La cantidad del insumo \"{$insumo->nombre}\" no debe ser mayor a {$insumo->existencia}"])->validate();
         });
 
         $reserva = Reserva::create([
@@ -138,7 +138,11 @@ class ReservaController extends Controller
      */
     public function edit(Reserva $reserva)
     {
-        //
+        return view('reservas.edit', [
+            'reserva' => $reserva->load([
+                'items.operacion.insumo',
+            ]),
+        ]);
     }
 
     /**
@@ -150,7 +154,36 @@ class ReservaController extends Controller
      */
     public function update(Request $request, Reserva $reserva)
     {
-        //
+        $request->validate([
+            'descripcion' => ['required', 'string', 'min:10', 'max:80'],
+            'operaciones' => ['required', 'array', 'size:'.$reserva->items->count()],
+            'operaciones.*' => ['array:id,cantidad'],
+            'operaciones.*.id' => ['numeric', 'integer'],
+        ]);
+        
+        $operaciones = collect($request->input('operaciones'));
+
+        $operaciones->each(function ($data) {
+            $operacion = Operacion::find($data['id']);
+            $insumo = $operacion->insumo;
+            $max = $insumo->existencia + abs($operacion->cantidad);
+
+            Validator::make($data, [
+                'cantidad' => ['numeric', 'integer', 'min:1', 'max:'.$max],
+            ], [
+                "La cantidad del insumo \"{$insumo->nombre}\" no debe ser mayor a {$max}"
+                ])->validate();
+
+            $operacion->update([
+                'cantidad' => -$data['cantidad'],
+            ]);
+        });
+
+        $reserva->update([
+            'descripcion' => $request->input('descripcion'),
+        ]);
+
+        return redirect()->route('reservas.show', $reserva);
     }
 
     /**

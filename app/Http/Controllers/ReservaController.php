@@ -121,7 +121,13 @@ class ReservaController extends Controller
      */
     public function show(Reserva $reserva)
     {
-        //
+        return view('reservas.show', [
+            'reserva' => $reserva->load([
+                'items.operacion.insumo',
+                'paciente_diagnostico.registrar_tratamiento',
+                'paciente_diagnostico.paciente.persona',
+            ]),
+        ]);
     }
 
     /**

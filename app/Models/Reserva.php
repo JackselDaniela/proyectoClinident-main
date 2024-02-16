@@ -26,6 +26,20 @@ class Reserva extends Model
         return $this->belongsTo(paciente_diagnostico::class);
     }
 
+    public function getTratamientoAttribute()
+    {
+        $tratamiento = $this->paciente_diagnostico->registrar_tratamiento->nom_tratamiento;
+        $persona = $this->paciente_diagnostico->paciente->persona->nombre;
+        return "{$persona} - {$tratamiento}";
+    }
+
+    public function getEstatusAttribute()
+    {
+        return $this->restitucion !== null 
+            ? 'Los equipos de esta reserva fueron restituidos al inventario.'
+            : 'Los equipos de esta reserva aún no han sido restituidos al inventario.';
+    }
+
     public function getCantidadAttribute()
     {
         $cantidad = $this->items->reduce(function ($sum, $item) {

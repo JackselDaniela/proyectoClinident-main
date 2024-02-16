@@ -5,6 +5,7 @@ use App\Http\Controllers\CargaController;
 use App\Http\Controllers\InsumoController;
 use App\Http\Controllers\OperacionController;
 use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\ReservaRestitucionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -110,6 +111,9 @@ Route::resource('/cargas', CargaController::class)
     ->except('show');
 
 Route::resource('/reservas', ReservaController::class);
+
+Route::patch('/reservas/{reserva}/restitucion', ReservaRestitucionController::class)
+    ->name('reservas.restitucion');
 
 Route::get('/operaciones', OperacionController::class)
     ->name('operaciones.index');

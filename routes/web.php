@@ -91,16 +91,15 @@ Route::get('/Odontograma/buscar/{idp}/{id} ', [App\Http\Controllers\OdontogramaC
 Route::put('/update-AnadirT/{slug?}', [App\Http\Controllers\AnadirTController::class, 'update'])->name('AnadirT.update');
 
 
-/* Ruta Tratamientoa*/ 
+/* Ruta Tratamiento */
 Route::get('/RutaT/{id}', [App\Http\Controllers\RutaTController::class, 'buscar'])->name('RutaT.buscar');
-
-Route::get('/RutaT /{id}', [App\Http\Controllers\RutaTController::class, 'eliminarT'])->name('RutaT.eliminarT');
-
-Route::get('/RutaT/Mostrar/{id}', [App\Http\Controllers\RutaTController::class, 'store'])->name('RutaT.store');
 
 Route::get('/RutaT/editar/{id}', [App\Http\Controllers\RutaTController::class, 'editar'])->name('RutaT.editar');
 
-Route::put('/update-RutaT/{id}', [App\Http\Controllers\RutaTController::class, 'update'])->name('RutaT.update');
+Route::patch(
+    '/update-RutaT/{paciente_diagnostico}',
+    [App\Http\Controllers\RutaTController::class, 'update']
+)->name('RutaT.update');
 
 
 /* Gestión de Insumos */

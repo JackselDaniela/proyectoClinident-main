@@ -1,6 +1,6 @@
 @props(['title'])
 
-<div class="row">
+<div class="row text-left">
   <div class="col-sm-12">
     <div class="card-box border" style="border-color: #eee">
       <div class="card-block" x-data="insumos" x-modelable="insumos" @addinsumo.window="addInsumo" {{ $attributes }}>
@@ -35,7 +35,7 @@
             </button>
           </div>
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive text-center">
           <table class="table table-stripped">
             <thead>
               <tr>

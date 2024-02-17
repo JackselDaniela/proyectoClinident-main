@@ -52,4 +52,27 @@ class paciente_diagnostico extends Model
             ->get()
             ->map($map);
     }
+
+    public function getSiguienteAttribute()
+    {
+        $estatus = $this->estatus_tratamiento->estatus;
+
+        if ($estatus === 'Terminado') {
+            return null;
+        }
+
+        $siguiente = match ($estatus) {
+            'En Espera' => 'En Proceso',
+            'En Proceso' => 'Terminado',
+        };
+
+        return estatus_tratamiento::firstWhere('estatus', $siguiente);
+    }
+
+    public function getTituloAttribute()
+    {
+        $nombre = $this->paciente->persona->nombre;
+        $tratamiento = $this->registrar_tratamiento->nom_tratamiento;
+        return "$nombre $tratamiento";
+    }
 }

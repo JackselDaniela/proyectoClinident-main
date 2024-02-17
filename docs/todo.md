@@ -1,7 +1,6 @@
 # ToDo
 
 ### Consumos
-- Registrar consumos al momento de actualizar estado de tratamiento
 - Mostrar consumos del tratamiento
 - Editar consumos del tratamiento (20 min)
 

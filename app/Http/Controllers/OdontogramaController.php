@@ -56,40 +56,15 @@ class OdontogramaController extends Controller
         $request->validate([
             'diagnosticos_id' => ['required', 'numeric', 'integer'],
             'registrar_tratamientos_id' => ['required', 'numeric', 'integer'],
-            // 'insumos' => ['required', 'array', 'min:1'],
-            // 'insumos.*' => ['array:id,cantidad'],
-            // 'insumos.*.id' => ['numeric', 'integer'],
         ]);
 
-        // $insumos = collect($request->input('insumos'));
-
-        // $insumos->each(function ($data) {
-        //     $insumo = Insumo::find($data['id']);
-
-        //     Validator::make($data, [
-        //         'cantidad' => ['numeric', 'integer', 'min:1', 'max:'.$insumo->existencia],
-        //     ], ["La cantidad del insumo \"{$insumo->nombre}\" no debe ser mayor a {$insumo->existencia}"])->validate();
-        // });
-
-         $paciente_diagnostico = paciente_diagnostico::create([
-             'pacientes_id' => $id ,
-             'piezas_id'=> $piezas_id,
-             'diagnosticos_id'=> $request->post('diagnosticos_id'),
-             'registrar_tratamientos_id'=> $request->post('registrar_tratamientos_id'),
-             'estatus_tratamientos_id'=> 1
+         paciente_diagnostico::create([
+            'pacientes_id' => $id ,
+            'piezas_id'=> $piezas_id,
+            'diagnosticos_id'=> $request->post('diagnosticos_id'),
+            'registrar_tratamientos_id'=> $request->post('registrar_tratamientos_id'),
+            'estatus_tratamientos_id'=> 1
         ]);
-
-        // $insumos->each(function ($insumo) use ($paciente_diagnostico) {
-        //     $operacion = Operacion::create([
-        //         'insumo_id' => $insumo['id'],
-        //         'cantidad' => $insumo['cantidad'],
-        //     ]);
-
-        //     Consumo::create([
-        //         'paciente_diagnostico_id' => $paciente_diagnostico->id,
-        //         'operacion_id' => $operacion->id,
-        //     ]);
-        // });
 
         return redirect()->route('EditarP.buscar',$id);
     }

@@ -27,9 +27,7 @@ class Reserva extends Model
 
     public function getTratamientoAttribute()
     {
-        $tratamiento = $this->paciente_diagnostico->registrar_tratamiento->nom_tratamiento;
-        $persona = $this->paciente_diagnostico->paciente->persona->nombre;
-        return "{$persona} - {$tratamiento}";
+        return $this->paciente_diagnostico->titulo;
     }
 
     public function getEstatusAttribute()

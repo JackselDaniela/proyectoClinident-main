@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             DoctorSeeder::class,
             DiagnosticoSeeder::class,
             EstatusTratamientoSeeder::class,
+            PacienteDiagnosticoSeeder::class,
             InsumoSeeder::class,
             CargaSeeder::class,
             ConsumoSeeder::class,

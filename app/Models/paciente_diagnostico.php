@@ -35,4 +35,21 @@ class paciente_diagnostico extends Model
     {
         return $this->hasMany(Reserva::class);
     }
+
+    public static function options(estatus_tratamiento $estatus)
+    {
+        $with = ['paciente.persona', 'registrar_tratamiento'];
+
+        $map = fn ($diagnostico) => [
+            'id' => $diagnostico->id,
+            'title' => $diagnostico->paciente->persona->nombre,
+            'subtitle' => $diagnostico->registrar_tratamiento->nom_tratamiento,
+        ];
+
+        return self::with($with)
+            ->where('estatus_tratamientos_id', $estatus->id)
+            ->latest()
+            ->get()
+            ->map($map);
+    }
 }

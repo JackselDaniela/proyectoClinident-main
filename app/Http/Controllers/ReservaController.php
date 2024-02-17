@@ -37,29 +37,9 @@ class ReservaController extends Controller
     {
         $proceso = estatus_tratamiento::firstWhere('estatus', 'En Proceso');
 
-        $diagnosticos = paciente_diagnostico::with([
-            'paciente.persona',
-            'registrar_tratamiento'
-        ])
-            ->where('estatus_tratamientos_id', $proceso->id)
-            ->latest()->get()->map(function ($diagnostico) {
-                return [
-                    'id' => $diagnostico->id,
-                    'title' => $diagnostico->paciente->persona->nombre,
-                    'subtitle' => $diagnostico->registrar_tratamiento->nom_tratamiento,
-                ];
-            });
+        $diagnosticos = paciente_diagnostico::options($proceso);
 
-        $insumos = Insumo::where('tipo', 'Equipo Médico')
-            ->latest()->get()->map(function ($insumo) {
-                return [
-                    'id' => $insumo->id,
-                    'codigo' => $insumo->codigo,
-                    'title' => $insumo->nombre,
-                    'subtitle' => $insumo->codigo,
-                    'max' => $insumo->existencia,
-                ];
-            });
+        $insumos = Insumo::options('Equipo Médico');
 
         return view('reservas.create', [
             'insumos' => $insumos,

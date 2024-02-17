@@ -25,4 +25,19 @@ class Insumo extends Model
             return $suma;
         }, 0);
     }
+
+    public static function options(string $tipo)
+    {
+        $map = fn($insumo) => [
+            'id' => $insumo->id,
+            'title' => $insumo->nombre,
+            'subtitle' => $insumo->codigo,
+            'max' => $insumo->existencia,
+        ];
+
+        return self::where('tipo', $tipo)
+            ->latest()
+            ->get()
+            ->map($map);
+    }
 }

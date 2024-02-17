@@ -2,7 +2,7 @@
 
 <div class="position-relative" x-data="select(window.{{ $key }})" @click.outside="closeDropdown" x-modelable="selected" {{ $attributes }}>
   <span
-    class="form-control"
+    class="form-control text-truncate pr-4"
     :class="selected === null && 'text-muted font-italic'"
     x-text="display"
     tabindex="0"

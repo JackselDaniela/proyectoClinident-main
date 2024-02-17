@@ -3,7 +3,7 @@
 ### Consumos
 - Registrar consumos al momento de actualizar estado de tratamiento
 - Mostrar consumos del tratamiento
-- Editar consumo del tratamiento (20 min)
+- Editar consumos del tratamiento (20 min)
 
 ### Misc
 - Añadir filtros y búsquedas en los listados

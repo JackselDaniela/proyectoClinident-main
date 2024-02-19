@@ -104,12 +104,15 @@
                                    
                                 </td>
                                 <td class="text-right">
-                                    <a title="Editar Estado Tratamiento" href="{{route('RutaT.editar',['id'=>$paciente_diagnostico->id])}}"><li class="fa fa-edit" style="width: 1rem"></li></a>
+                                    <a href="{{ route('diagnosticos.show', $paciente_diagnostico) }}">
+                                      <i class="fa fa-eye" style="width: 1rem"></i>
+                                    </a>
+
+                                    @if ($paciente_diagnostico->siguiente !== null)
+                                      <a title="Editar Estado Tratamiento" href="{{route('RutaT.editar',['id'=>$paciente_diagnostico->id])}}"><li class="fa fa-edit" style="width: 1rem"></li></a>
+                                    @endif
                                       
                                     <a title="Eliminar Tratamiento" href="#"><li class="fa fa-trash-o" style="width: 1rem"></li></a>
-                                        
-                                        
-                                    </div>
                                 </td>
                             </tr>
                             @endforeach

@@ -46,24 +46,6 @@ class RutaTController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  paciente_diagnostico $paciente_diagnostico
-     * @return \Illuminate\Http\Response
-     */
-    public function show(paciente_diagnostico $paciente_diagnostico)
-    {
-        $paciente_diagnostico->load([
-            'pieza', 'diagnostico', 'paciente.persona', 'registrar_tratamiento',
-            'estatus_tratamiento', 'consumos', 'reservas',
-        ]);
-
-        return view('diagnosticos.show', [
-            'paciente_diagnostico' => $paciente_diagnostico,
-        ]);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -87,10 +69,10 @@ class RutaTController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  paciente_diagnostico $paciente_diagnostico
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, paciente_diagnostico $paciente_diagnostico)
+    public function update(paciente_diagnostico $paciente_diagnostico)
     {
         $siguiente = $paciente_diagnostico->siguiente;
         $estatus = $siguiente->estatus;
@@ -109,9 +91,6 @@ class RutaTController extends Controller
             'estatus_tratamientos_id' => $siguiente->id,
         ]);
 
-        $paciente = paciente::with('persona', 'expediente', 'persona.dato_ubicacion')
-            ->get();
-
-        return view('RegistroE', compact('paciente', 'paciente_diagnostico'));
+        return redirect()->route('RutaT.buscar', $paciente_diagnostico->paciente->id);
     }
 }

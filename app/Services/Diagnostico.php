@@ -47,6 +47,10 @@ class Diagnostico
 
     public function restituirReservas()
     {
-        
+        $this->diagnostico->reservas()
+            ->whereNull('restitucion')
+            ->update([
+                'restitucion' => now(),
+            ]);
     }
 }

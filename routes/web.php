@@ -2,6 +2,7 @@
 //use App\Http\Controllers\;
 
 use App\Http\Controllers\CargaController;
+use App\Http\Controllers\DiagnosticoController;
 use App\Http\Controllers\InsumoController;
 use App\Http\Controllers\OperacionController;
 use App\Http\Controllers\ReservaController;
@@ -116,6 +117,9 @@ Route::patch('/reservas/{reserva}/restitucion', ReservaRestitucionController::cl
 
 Route::get('/operaciones', OperacionController::class)
     ->name('operaciones.index');
+
+Route::get('/diagnosticos/{paciente_diagnostico}', [DiagnosticoController::class, 'show'])
+    ->name('diagnosticos.show');
 
 /* Ganancias Acumuladas */ 
 Route::get('/GananciasA', [App\Http\Controllers\GananciasAController::class, 'index'])->name('GananciasA');

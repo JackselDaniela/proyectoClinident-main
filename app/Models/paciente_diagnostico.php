@@ -73,6 +73,15 @@ class paciente_diagnostico extends Model
     {
         $nombre = $this->paciente->persona->nombre;
         $tratamiento = $this->registrar_tratamiento->nom_tratamiento;
-        return "$nombre $tratamiento";
+        return "$nombre - $tratamiento";
+    }
+
+    public function getInsumosCountAttribute()
+    {
+        $cantidad = $this->consumos->reduce(function ($sum, $consumo) {
+            return $sum + $consumo->operacion->cantidad;
+        }, 0);
+
+        return abs($cantidad);
     }
 }

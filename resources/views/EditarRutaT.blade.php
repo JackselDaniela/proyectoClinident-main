@@ -82,18 +82,7 @@
                       {{ $paciente_diagnostico->estatus_tratamiento->estatus }}
                     </td>
                     <td>
-                      @if ($siguiente?->estatus === 'Terminado')
-                        <form method="POST" action="{{ route('RutaT.update', $paciente_diagnostico)}}">
-                          @method('PATCH') @csrf
-                          <button type="submit" class="btn btn-primary btn-rounded btn-press btn-add">
-                            Finalizar Tratamiento
-                          </button>
-                        </form>
-                      @elseif ($siguiente?->estatus === 'En Proceso')
-                        <button type="button" class="btn btn-primary btn-rounded btn-press btn-add" data-toggle="modal" data-target="#insumosModal">
-                          Iniciar Tratamiento
-                        </button>
-                      @endif
+                      <x-estado-tratamiento.boton :diagnostico="$paciente_diagnostico" />
                     </td>
                   </tr>
                 </tbody>
@@ -104,29 +93,7 @@
       </section>
     </div>
   </div>
-  <div class="modal" tabindex="-1" role="dialog" id="insumosModal">
-    <div class="modal-dialog" style="max-width: 800px" role="document">
-      <div class="modal-content" style="width: 800px">
-        <div class="modal-header">
-          <h4 class="modal-title">Iniciar Tratamiento</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form class="container-fluid" method="POST" action="{{ route('RutaT.update', $paciente_diagnostico)}}">
-          <div class="modal-body" x-data="{ seleccionados: [] }">
-            @method('PATCH') @csrf
-            <p>Para iniciar el tratamiento, debe seleccionar los insumos médicos a utilizar.</p>
-            <x-carrito-insumos title="Insumo" x-model="seleccionados" />
-            <button type="submit" class="btn btn-primary submit-btn btn-press" :disabled="seleccionados.length < 1">
-              Iniciar Tratamiento
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <form name="add-insumo" id="add-insumo"></form>
+  <x-estado-tratamiento.modal :diagnostico="$paciente_diagnostico" />
 @endsection
 
 @section('js-externo')

@@ -50,6 +50,7 @@ class InsumoController extends Controller
             'nombre' => ['required', 'string', 'min:5', 'max:30', Rule::unique('insumos')],
             'descripcion' => ['required', 'string', 'min:10', 'max:80'],
             'tipo' => ['required', 'string', 'in:Consumible,Equipo Médico'],
+            'minimo' => ['required', 'numeric', 'integer', 'min:1', 'max:100'],
             'carga' => 'sometimes',
             'cantidad' => ['required_with:carga', 'numeric', 'integer', 'min:1', 'max:1000'],
             'elaboracion' => ['required_with:carga', 'date', 'before:today'],
@@ -57,7 +58,7 @@ class InsumoController extends Controller
         ]);
 
         $insumo = Insumo::create([
-            ...$request->only(['nombre', 'descripcion']),
+            ...$request->only(['nombre', 'descripcion', 'minimo', 'tipo']),
             'codigo' => Codigo::generar('insumo'),
         ]);
 
@@ -109,6 +110,7 @@ class InsumoController extends Controller
         $data = $request->validate([
             'nombre' => ['required', 'string', 'min:5', 'max:30', Rule::unique('insumos')->ignoreModel($insumo)],
             'descripcion' => ['required', 'string', 'min:10', 'max:80'],
+            'minimo' => ['required', 'numeric', 'integer', 'min:1', 'max:100'],
         ]);
 
         $insumo->update($data);

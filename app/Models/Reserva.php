@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Filterable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Reserva extends Model
 {
-    use HasFactory;
+    use HasFactory, Filterable;
 
     protected $guarded = [];
 
@@ -49,5 +51,18 @@ class Reserva extends Model
     public function getMutableAttribute()
     {
         return now()->diffInMinutes($this->created_at) < 20 && $this->restitucion === null;
+    }
+
+    public function scopeFilter(Builder $query)
+    {
+        $restitucion = request()->query('restitucion');
+
+        if ($restitucion === 'Restituidos') {
+            $query->whereNotNull('restitucion');
+        } else if ($restitucion === 'No restituidos') {
+            $query->whereNull('restitucion');
+        }
+        
+        return $query;
     }
 }

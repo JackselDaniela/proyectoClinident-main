@@ -26,6 +26,7 @@
           </li>
         </ol>
       </nav>
+      <x-filtros filtro="restitucion" :opciones="['Restituidos', 'No restituidos']" />
       <section>
         <div class="row">
           <div class="col-sm-12">

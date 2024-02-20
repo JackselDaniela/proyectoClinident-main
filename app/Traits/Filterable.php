@@ -10,7 +10,7 @@ trait Filterable
     {
         $input = request()->query($column);
 
-        if ($input !== null && $input !== '') {
+        if ($input !== null) {
             $query->where($column, $input);
         }
 
@@ -21,7 +21,7 @@ trait Filterable
     {
         $search = request()->query('search');
 
-        if ($search !== null && $search !== '') {
+        if ($search !== null) {
             $query->where($column, 'like', "%$search%");
         }
 

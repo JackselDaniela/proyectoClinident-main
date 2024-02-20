@@ -24,7 +24,10 @@ class ReservaController extends Controller
         return view('reservas.index', [
             'reservas' => Reserva::with([
                 'items', 'items.operacion', 'items.operacion.insumo',
-            ])->latest()->get(),
+            ])->search('codigo')
+                ->filter()
+                ->latest()
+                ->get(),
         ]);
     }
 

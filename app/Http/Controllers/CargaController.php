@@ -20,7 +20,9 @@ class CargaController extends Controller
     {
         return view('cargas.index', [
             'cargas' => Carga::with('user', 'operacion', 'operacion.insumo')
-                ->latest()->get(),
+                ->search('codigo')
+                ->latest()
+                ->get(),
         ]);
     }
 

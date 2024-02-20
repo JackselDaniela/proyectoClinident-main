@@ -26,7 +26,7 @@
           </li>
         </ol>
       </nav>
-      <x-filter-form filtro="tipo" :opciones="['Consumible', 'Equipo Médico']" />
+      <x-filtros filtro="tipo" :opciones="['Consumible', 'Equipo Médico']" />
       <section>
         <div class="row">
           <div class="col-sm-12">

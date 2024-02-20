@@ -1,12 +1,8 @@
-@props(['filtro', 'opciones', 'name' => null])
+@props(['filtro' => null, 'opciones' => null, 'name' => null])
 
 @php
   $search = request()->query('search');
   $hasSearch = $search !== null && $search !== '';
-
-  if ($name === null) {
-    $name = $filtro;
-  }
 @endphp
 
 <form id="filter-form">
@@ -22,19 +18,24 @@
         <i class="fa fa-search"></i>
       </button>
     </div>
-    <div class="col-sm-5 d-flex align-items-center">
-      <label class="mb-0 mr-3" style="flex-shrink: 0">Filtrar por {{ $filtro }}: </label>
-      <select class="form-control" name="{{ $name }}" id="{{ $name }}">
-        <option value="">Todos</option>
-        @foreach ($opciones as $opcion)
-          <option 
-            {{ request()->query($name) === $opcion ? 'selected' : '' }}
-            value="{{ $opcion }}"
-          >
-            {{ $opcion }}
-          </option>
-        @endforeach
-      </select>
-    </div>
+    @if ($filtro !== null)
+      @php
+        $name ??= $filtro;
+      @endphp
+      <div class="col-sm-5 d-flex align-items-center">
+        <label class="mb-0 mr-3" style="flex-shrink: 0">Filtrar por {{ $filtro }}: </label>
+        <select class="form-control" name="{{ $name }}" id="{{ $name }}">
+          <option value="">Todos</option>
+          @foreach ($opciones as $opcion)
+            <option 
+              {{ request()->query($name) === $opcion ? 'selected' : '' }}
+              value="{{ $opcion }}"
+            >
+              {{ $opcion }}
+            </option>
+          @endforeach
+        </select>
+      </div>
+    @endif
   </div>
 </form>

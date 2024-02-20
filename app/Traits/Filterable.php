@@ -6,18 +6,23 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait Filterable
 {
-    public function scopeFilter(Builder $query, string $filter, string $search)
+    public function scopeFilter(Builder $query, string $column)
     {
-        $input = request()->query($filter);
+        $input = request()->query($column);
 
         if ($input !== null && $input !== '') {
-            $query->where($filter, $input);
+            $query->where($column, $input);
         }
 
-        $searchStr = request()->query('search');
+        return $query;
+    }
 
-        if ($searchStr !== null && $searchStr !== '') {
-            $query->where($search, 'like', "%$searchStr%");
+    public function scopeSearch(Builder $query, string $column)
+    {
+        $search = request()->query('search');
+
+        if ($search !== null && $search !== '') {
+            $query->where($column, 'like', "%$search%");
         }
 
         return $query;

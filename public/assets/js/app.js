@@ -269,6 +269,9 @@ $(document).ready(function($) {
 
   // CUSTOM -> filter-form
   const form = document.querySelector('#filter-form')
+  
+  if (form === null) return
+
   const filters = Array.from(form.elements).filter(elem => elem.id !== 'search')
   const search = document.querySelector('#search')
   
@@ -282,4 +285,5 @@ $(document).ready(function($) {
     search.value = null
     send()
   })
+
 });

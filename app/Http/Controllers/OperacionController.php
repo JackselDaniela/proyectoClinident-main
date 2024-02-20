@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Operacion;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class OperacionController extends Controller
 {
@@ -12,34 +14,32 @@ class OperacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke()
+    public function __invoke(Request $request)
     {
-        $operaciones = collect();
+        $search = $request->query('search');
+        $filtro = $request->query('operacion');
 
-        Operacion::with([
-            'consumo', 'insumo', 'item', 'carga', 'item.reserva'
-        ])->get()->each(function ($operacion) use ($operaciones) {
-            $restituido = $operacion->item === null
-                || $operacion->item->reserva->restitucion === null;
+        $operaciones = Operacion::historial()
+            ->filter(function ($op) use ($search, $filtro) {
+                $passes = true;
 
-            if ($restituido) {
-                $operaciones->push($operacion);
-                return;
-            }
+                if ($search !== null) {
+                    $passes = Str::of($op->codigo)
+                        ->lower()
+                        ->contains(Str::lower($search));
+                }
 
-            $operaciones->push($operacion);
+                if ($filtro === 'Entradas') {
+                    $passes = $op->cantidad > 0;
+                } else if ($filtro === 'Salidas') {
+                    $passes = $op->cantidad < 0;
+                }
 
-            $restitucion = $operacion->replicate();
-
-            $restitucion->created_at = $operacion->item->reserva->restitucion;
-            $restitucion->cantidad = abs($operacion->cantidad);
-            $restitucion->replicado = true;
-
-            $operaciones->push($restitucion);
-        });
+                return $passes;
+            });
 
         return view('operaciones.index', [
-            'operaciones' => $operaciones->sortByDesc('created_at'),
+            'operaciones' => $operaciones,
         ]);
     }
 }

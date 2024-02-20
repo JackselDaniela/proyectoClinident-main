@@ -52,8 +52,8 @@ class InsumoController extends Controller
             'tipo' => ['required', 'string', 'in:Consumible,Equipo Médico'],
             'carga' => 'sometimes',
             'cantidad' => ['required_with:carga', 'numeric', 'integer', 'min:1', 'max:1000'],
-            'elaboracion' => ['required_with:carga', 'date', 'before:today'],
-            'vencimiento' => ['sometimes', 'required_if:carga,on', 'required_if:tipo,Consumible', 'date', 'before:today', 'after:elaboracion'],
+            'elaboracion' => ['required_with:carga', 'date', 'before_or_equal:today'],
+            'vencimiento' => ['sometimes', 'required_if:carga,on', 'required_if:tipo,Consumible', 'date', 'after:today', 'after:elaboracion'],
         ]);
 
         $insumo = Insumo::create([

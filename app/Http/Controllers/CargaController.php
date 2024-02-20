@@ -60,8 +60,8 @@ class CargaController extends Controller
     {
         $request->validate([
             'cantidad' => ['required', 'numeric', 'integer', 'min:1', 'max:1000'],
-            'elaboracion' => ['required', 'date', 'before:today'],
-            'vencimiento' => ['sometimes', 'date', 'before:today', 'after:elaboracion'],
+            'elaboracion' => ['required', 'date', 'before_or_equal:today'],
+            'vencimiento' => ['sometimes', 'date', 'after:today', 'after:elaboracion'],
             'insumo_id' => ['required', 'string', 'numeric', 'integer'],
         ]);
 

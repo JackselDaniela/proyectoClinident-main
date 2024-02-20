@@ -266,4 +266,20 @@ $(document).ready(function($) {
 			}
 		});
 	}
+
+  // CUSTOM -> filter-form
+  const form = document.querySelector('#filter-form')
+  const filters = Array.from(form.elements).filter(elem => elem.id !== 'search')
+  const search = document.querySelector('#search')
+  
+  const send = () => form.submit()
+  
+  filters.forEach(filter => {
+    filter.addEventListener('input', send)
+  })
+
+  document.querySelector('#reset-search')?.addEventListener('click', () => {
+    search.value = null
+    send()
+  })
 });

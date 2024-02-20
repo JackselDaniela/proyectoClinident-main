@@ -21,7 +21,9 @@ class InsumoController extends Controller
     {
         return view('insumos.index', [
             'insumos' => Insumo::with('operaciones')
-                ->latest()->get(),
+                ->filter('tipo', 'nombre')
+                ->latest()
+                ->get(),
         ]);
     }
 

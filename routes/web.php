@@ -121,6 +121,12 @@ Route::get('/operaciones', OperacionController::class)
 Route::get('/diagnosticos/{paciente_diagnostico}', [DiagnosticoController::class, 'show'])
     ->name('diagnosticos.show');
 
+Route::get('/diagnosticos/{paciente_diagnostico}/edit', [DiagnosticoController::class, 'edit'])
+    ->name('diagnosticos.edit');
+
+Route::patch('/diagnosticos/{paciente_diagnostico}', [DiagnosticoController::class, 'update'])
+    ->name('diagnosticos.update');
+
 /* Ganancias Acumuladas */ 
 Route::get('/GananciasA', [App\Http\Controllers\GananciasAController::class, 'index'])->name('GananciasA');
 

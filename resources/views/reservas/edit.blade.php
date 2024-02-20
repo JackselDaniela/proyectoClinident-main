@@ -4,10 +4,6 @@
   <title>Clinident / Gestion de Insumos</title>
 @endsection
 
-@section('css-externo')
-  <link rel="stylesheet" href="{{ asset('css/select-tratamiento.css') }}">
-@endsection
-
 @section('contenido')
   <div class="page-wrapper">
     <div class="content">

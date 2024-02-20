@@ -74,7 +74,13 @@
           <div class="col-sm-6">
             <div class="card-box border border-gray">
               <div class="card-block">
-                <h4 class="text-center">Insumos Utilizados</h4>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <h4 class="text-center mb-0">Insumos Utilizados</h4>
+                  <a href="{{ route('diagnosticos.edit', $paciente_diagnostico) }}" class="btn btn-sm btn-warning">
+                    <i class="fa fa-edit"></i>
+                    Actualizar
+                  </a>
+                </div>
                 <ul class="list-group">
                   @forelse ($consumos as $consumo)
                     <li class="list-group-item d-flex justify-content-between">

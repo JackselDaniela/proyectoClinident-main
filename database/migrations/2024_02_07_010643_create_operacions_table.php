@@ -15,6 +15,7 @@ class CreateOperacionsTable extends Migration
     {
         Schema::create('operacions', function (Blueprint $table) {
             $table->id();
+            $table->string('codigo')->unique();
             $table->integer('cantidad');
             $table->foreignId('insumo_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

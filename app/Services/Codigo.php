@@ -16,6 +16,7 @@ class Codigo
                 'carga' => 'CRG',
                 'insumo' => 'INS',
                 'reserva' => 'RES',
+                'operacion' => 'OPR',
             };
 
             $codigo = "{$prefijo}-{$random}";

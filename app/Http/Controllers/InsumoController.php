@@ -70,6 +70,7 @@ class InsumoController extends Controller
         $operacion = Operacion::create([
             'cantidad' => $request->input('cantidad'),
             'insumo_id' => $insumo->id,
+            'codigo' => Codigo::generar('operacion'),
         ]);
 
         Carga::create([

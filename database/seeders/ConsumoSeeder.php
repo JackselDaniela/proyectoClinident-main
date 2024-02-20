@@ -11,6 +11,7 @@ use App\Models\paciente_diagnostico;
 use App\Models\pieza;
 use App\Models\registrar_tratamiento;
 use App\Models\Insumo;
+use App\Services\Codigo;
 use Illuminate\Database\Seeder;
 
 class ConsumoSeeder extends Seeder
@@ -62,6 +63,7 @@ class ConsumoSeeder extends Seeder
             $operacion = Operacion::create([
                 'cantidad' => -3,
                 'insumo_id' => $insumo->id,
+                'codigo' => Codigo::generar('operacion'),
             ]);
 
             Consumo::create([

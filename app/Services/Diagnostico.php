@@ -36,6 +36,7 @@ class Diagnostico
             $operacion = Operacion::create([
                 'insumo_id' => $insumo['id'],
                 'cantidad' => -$insumo['cantidad'],
+                'codigo' => Codigo::generar('operacion'),
             ]);
 
             Consumo::create([

@@ -2,14 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consumo;
 use App\Models\Insumo;
 use App\Models\Operacion;
 use App\Models\paciente_diagnostico;
+use App\Services\Codigo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class DiagnosticoController extends Controller
 {
+    public function create(paciente_diagnostico $paciente_diagnostico)
+    {
+        $paciente_diagnostico->load([
+            'consumos.operacion.insumo',
+        ]);
+
+        if (!$paciente_diagnostico->añadible) {
+            abort(404);
+        }
+
+        $insumos = $paciente_diagnostico->insumos_añadibles;
+
+        return view('consumos.create', [
+            'paciente_diagnostico' => $paciente_diagnostico,
+            'insumos' => Insumo::mapToSelect($insumos),
+        ]);
+    }
+
+    public function store(Request $request, paciente_diagnostico $paciente_diagnostico)
+    {
+        $ids = $paciente_diagnostico->insumos_añadibles->map(fn($ins) => $ins->id);
+
+        $data = $request->validate([
+            'insumo_id' => ['required', 'numeric', 'integer', Rule::in($ids)],
+            'cantidad' => ['required', 'numeric', 'integer', 'min:1'],
+        ]);
+
+        $max = Insumo::find($data['insumo_id'])->existencia;
+
+        $request->validate([
+            'cantidad' => 'max:'.$max,
+        ]);
+
+        $operacion = Operacion::create([
+            'insumo_id' => $data['insumo_id'],
+            'cantidad' => -$data['cantidad'],
+            'codigo' => Codigo::generar('operacion'),
+        ]);
+
+        Consumo::create([
+            'operacion_id' => $operacion->id,
+            'paciente_diagnostico_id' => $paciente_diagnostico->id,
+        ]);
+
+        return redirect()->route('diagnosticos.show', $paciente_diagnostico);
+    }
+
     /**
      * Display the specified resource.
      *

@@ -84,7 +84,7 @@ class ReservaController extends Controller
         $insumos->each(function ($insumo) use ($reserva) {
             $operacion = Operacion::create([
                 'insumo_id' => $insumo['id'],
-                'cantidad' => $insumo['cantidad'],
+                'cantidad' => -$insumo['cantidad'],
                 'codigo' => Codigo::generar('operacion'),
             ]);
 

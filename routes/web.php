@@ -127,6 +127,16 @@ Route::get('/diagnosticos/{paciente_diagnostico}/edit', [DiagnosticoController::
 Route::patch('/diagnosticos/{paciente_diagnostico}', [DiagnosticoController::class, 'update'])
     ->name('diagnosticos.update');
 
+Route::get(
+    '/diagnosticos/{paciente_diagnostico}/consumos',
+    [DiagnosticoController::class, 'create']
+)->name('diagnosticos.consumos.create');
+
+Route::post(
+    '/diagnosticos/{paciente_diagnostico}/consumos',
+    [DiagnosticoController::class, 'store']
+)->name('diagnosticos.consumos.store');
+
 /* Ganancias Acumuladas */ 
 Route::get('/GananciasA', [App\Http\Controllers\GananciasAController::class, 'index'])->name('GananciasA');
 

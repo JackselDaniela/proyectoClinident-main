@@ -36,6 +36,21 @@ class paciente_diagnostico extends Model
         return $this->hasMany(Reserva::class);
     }
 
+    public function getAñadibleAttribute()
+    {
+        return $this->insumos_añadibles->count();
+    }
+
+    public function getInsumosAñadiblesAttribute()
+    {
+        $ids = $ids = $this->consumos->map(fn($con) => $con->operacion->insumo->id);
+
+        return Insumo::whereNotIn('id', $ids)
+            ->where('tipo', 'Consumible')
+            ->latest()
+            ->get();
+    }
+
     public static function options(estatus_tratamiento $estatus)
     {
         $with = ['paciente.persona', 'registrar_tratamiento'];

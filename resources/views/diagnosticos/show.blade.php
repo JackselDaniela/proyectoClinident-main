@@ -76,10 +76,16 @@
               <div class="card-block">
                 <div class="d-flex align-items-center justify-content-between mb-3">
                   <h4 class="text-center mb-0">Insumos Utilizados</h4>
-                  <a href="{{ route('diagnosticos.edit', $paciente_diagnostico) }}" class="btn btn-sm btn-warning">
-                    <i class="fa fa-edit"></i>
-                    Actualizar
-                  </a>
+                  <div class="d-flex align-items-center">
+                    @if ($paciente_diagnostico->añadible)
+                      <a href="{{ route('diagnosticos.consumos.create', $paciente_diagnostico) }}" class="btn btn-sm btn-success mr-1">
+                        <i class="fa fa-plus"></i>
+                      </a>
+                    @endif
+                    <a href="{{ route('diagnosticos.edit', $paciente_diagnostico) }}" class="btn btn-sm btn-warning">
+                      <i class="fa fa-edit"></i>
+                    </a>
+                  </div>
                 </div>
                 <ul class="list-group">
                   @forelse ($consumos as $consumo)

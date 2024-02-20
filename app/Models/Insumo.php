@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Filterable;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,6 +30,14 @@ class Insumo extends Model
 
     public static function options(string $tipo)
     {
+        $insumos = self::where('tipo', $tipo)
+            ->latest()
+            ->get();
+
+        return self::mapToSelect($insumos);
+    }
+
+    public static function mapToSelect(Collection $insumos) {
         $map = fn($insumo) => [
             'id' => $insumo->id,
             'title' => $insumo->nombre,
@@ -36,9 +45,6 @@ class Insumo extends Model
             'max' => $insumo->existencia,
         ];
 
-        return self::where('tipo', $tipo)
-            ->latest()
-            ->get()
-            ->map($map);
+        return $insumos->map($map);
     }
 }

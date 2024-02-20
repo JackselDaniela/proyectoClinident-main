@@ -7,6 +7,7 @@ use App\Http\Controllers\InsumoController;
 use App\Http\Controllers\OperacionController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\ReservaRestitucionController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -282,3 +283,12 @@ Route::put('/update-AnadirP/{slug?}', [App\Http\Controllers\AnadirPController::c
 
 //
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Leer notificaciones
+
+Route::post('/notifications/read', function () {
+    // TODO -> poner usuario autenticado
+    User::first()->unreadNotifications->markAsRead();
+
+    return back();
+})->name('notifications.read');

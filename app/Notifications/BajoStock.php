@@ -9,7 +9,7 @@ class BajoStock extends Notification
 {
     use Queueable;
 
-    public function __construct(protected int $insumoId) {}
+    public function __construct(protected string $insumo) {}
 
     public function via()
     {
@@ -19,7 +19,7 @@ class BajoStock extends Notification
     public function toArray()
     {
         return [
-            'insumo_id' => $this->insumoId,
+            'nombre' => $this->insumo,
         ];
     }
 }

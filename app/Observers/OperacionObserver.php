@@ -27,6 +27,6 @@ class OperacionObserver
         }
 
         // TODO -> aqui va el usuario admin o lo que sea, el que gestione los insumos
-        User::first()->notify(new BajoStock($insumo->id));
+        User::first()->notify(new BajoStock($insumo->nombre));
     }
 }

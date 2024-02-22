@@ -140,7 +140,7 @@
                     Fecha de Vencimiento
                     <span class="text-danger">*</span>
                   </label>
-                  <input class="form-control" max="{{ today()->format('Y-m-d') }}" value="{{ old('vencimiento') }}" name="vencimiento" id="vencimiento" type="date" required />
+                  <input class="form-control" min="{{ today()->addDay()->format('Y-m-d') }}" value="{{ old('vencimiento') }}" name="vencimiento" id="vencimiento" type="date" required />
                   @error('vencimiento')
                     <p class="text-danger">
                       {{ $message }}

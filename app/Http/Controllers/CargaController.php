@@ -105,8 +105,8 @@ class CargaController extends Controller
     {
         $data = $request->validate([
             'cantidad' => ['sometimes', 'numeric', 'integer', 'min:1', 'max:1000', 'exclude'],
-            'elaboracion' => ['required', 'date', 'before:today'],
-            'vencimiento' => ['sometimes', 'date', 'before:today', 'after:elaboracion'],
+            'elaboracion' => ['required', 'date', 'before_or_equal:today'],
+            'vencimiento' => ['sometimes', 'date', 'after:today', 'after:elaboracion'],
         ]);
 
         if ($request->has('cantidad') && $carga->mutable) {

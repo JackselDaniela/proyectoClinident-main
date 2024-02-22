@@ -99,4 +99,9 @@ class paciente_diagnostico extends Model
 
         return abs($cantidad);
     }
+
+    public function getEnProcesoAttribute()
+    {
+        return $this->estatus_tratamiento->estatus === 'En Proceso';
+    }
 }

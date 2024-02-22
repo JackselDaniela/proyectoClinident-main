@@ -85,8 +85,7 @@ class Operacion extends Model
             $restitucion->created_at = $operacion->item->reserva->restitucion;
             $restitucion->cantidad = abs($operacion->cantidad);
             $restitucion->replicado = true;
-            // el codigo de las operaciones replicadas siempre va a ser distinto cada vez XD, lo cual no es que sea un problema pero si es raro, nadie se va a dar cuenta pero, hay que arreglarlo, Jacksel si ves esto tqm no te arreches.
-            $restitucion->codigo = Codigo::generar('operacion');
+            $restitucion->codigo = $operacion->codigo_rest;
 
             $operaciones->push($restitucion);
         });

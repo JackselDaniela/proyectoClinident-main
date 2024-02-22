@@ -31,10 +31,17 @@ class Codigo
 
     public static function unico($codigo, $tipo)
     {
+        if ($tipo === 'operacion') {
+            $operacion = Operacion::where('codigo', $codigo)
+                ->orWhere('codigo_rest', $codigo)
+                ->first();
+
+            return $operacion === null;
+        }
+
         $clase = match ($tipo) {
             'carga' => Carga::class,
             'reserva' => Reserva::class,
-            'operacion' => Operacion::class,
             'insumo' => Insumo::class,
         };
 

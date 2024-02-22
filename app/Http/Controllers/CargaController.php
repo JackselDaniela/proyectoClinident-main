@@ -68,6 +68,7 @@ class CargaController extends Controller
         $operacion = Operacion::create([
             ...$request->only(['cantidad', 'insumo_id']),
             'codigo' => Codigo::generar('operacion'),
+            'codigo_rest' => Codigo::generar('operacion'),
         ]);
 
         Carga::create([

@@ -72,6 +72,7 @@ class InsumoController extends Controller
             'cantidad' => $request->input('cantidad'),
             'insumo_id' => $insumo->id,
             'codigo' => Codigo::generar('operacion'),
+            'codigo_rest' => Codigo::generar('operacion'),
         ]);
 
         Carga::create([

@@ -57,7 +57,7 @@ class OdontogramaController extends Controller
             'diagnosticos_id' => ['required', 'numeric', 'integer'],
             'registrar_tratamientos_id' => ['required', 'numeric', 'integer'],
         ]);
-
+        
          paciente_diagnostico::create([
             'pacientes_id' => $id ,
             'piezas_id'=> $piezas_id,

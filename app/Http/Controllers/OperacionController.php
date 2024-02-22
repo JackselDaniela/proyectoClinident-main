@@ -21,21 +21,22 @@ class OperacionController extends Controller
 
         $operaciones = Operacion::historial()
             ->filter(function ($op) use ($search, $filtro) {
-                $passes = true;
+                $searched = true;
+                $filtered = true;
 
                 if ($search !== null) {
-                    $passes = Str::of($op->codigo)
+                    $searched = Str::of($op->codigo)
                         ->lower()
                         ->contains(Str::lower($search));
                 }
 
                 if ($filtro === 'Entradas') {
-                    $passes = $op->cantidad > 0;
+                    $filtered = $op->cantidad > 0;
                 } else if ($filtro === 'Salidas') {
-                    $passes = $op->cantidad < 0;
+                    $filtered = $op->cantidad < 0;
                 }
 
-                return $passes;
+                return $searched && $filtered;
             });
 
         return view('operaciones.index', [

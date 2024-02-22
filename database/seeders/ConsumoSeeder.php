@@ -70,6 +70,7 @@ class ConsumoSeeder extends Seeder
             'cantidad' => -3,
             'insumo_id' => $insumo->id,
             'codigo' => Codigo::generar('operacion'),
+            'codigo_rest' => Codigo::generar('operacion'),
         ]);
 
         Consumo::create([

@@ -50,6 +50,7 @@ class DiagnosticoController extends Controller
             'insumo_id' => $data['insumo_id'],
             'cantidad' => -$data['cantidad'],
             'codigo' => Codigo::generar('operacion'),
+            'codigo_rest' => Codigo::generar('operacion'),
         ]);
 
         Consumo::create([

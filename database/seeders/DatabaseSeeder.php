@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             DatoUbicacionSeeder::class,
             NacionalidadSeeder::class,
             PersonaSeeder::class,
+            TipoConsultaSeeder::class,
             PacienteSeeder::class,
             ExpedienteSeeder::class,
             DoctorSeeder::class,

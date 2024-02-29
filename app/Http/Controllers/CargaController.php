@@ -20,7 +20,9 @@ class CargaController extends Controller
     {
         return view('cargas.index', [
             'cargas' => Carga::with('user', 'operacion', 'operacion.insumo')
-                ->latest()->get(),
+                ->search('codigo')
+                ->latest()
+                ->get(),
         ]);
     }
 
@@ -58,12 +60,16 @@ class CargaController extends Controller
     {
         $request->validate([
             'cantidad' => ['required', 'numeric', 'integer', 'min:1', 'max:1000'],
-            'elaboracion' => ['required', 'date', 'before:today'],
-            'vencimiento' => ['sometimes', 'date', 'before:today', 'after:elaboracion'],
+            'elaboracion' => ['required', 'date', 'before_or_equal:today'],
+            'vencimiento' => ['sometimes', 'date', 'after:today', 'after:elaboracion'],
             'insumo_id' => ['required', 'string', 'numeric', 'integer'],
         ]);
 
-        $operacion = Operacion::create($request->only(['cantidad', 'insumo_id']));
+        $operacion = Operacion::create([
+            ...$request->only(['cantidad', 'insumo_id']),
+            'codigo' => Codigo::generar('operacion'),
+            'codigo_rest' => Codigo::generar('operacion'),
+        ]);
 
         Carga::create([
             ...$request->only(['elaboracion', 'vencimiento']),
@@ -100,8 +106,8 @@ class CargaController extends Controller
     {
         $data = $request->validate([
             'cantidad' => ['sometimes', 'numeric', 'integer', 'min:1', 'max:1000', 'exclude'],
-            'elaboracion' => ['required', 'date', 'before:today'],
-            'vencimiento' => ['sometimes', 'date', 'before:today', 'after:elaboracion'],
+            'elaboracion' => ['required', 'date', 'before_or_equal:today'],
+            'vencimiento' => ['sometimes', 'date', 'after:today', 'after:elaboracion'],
         ]);
 
         if ($request->has('cantidad') && $carga->mutable) {

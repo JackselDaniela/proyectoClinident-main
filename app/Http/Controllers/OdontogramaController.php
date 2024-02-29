@@ -3,17 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Role;
 use App\Models\paciente;
-use App\Models\persona;
-use App\Models\expediente;
 use App\Models\pieza;
-use App\Models\estatus_tratamiento;
 use App\Models\registrar_tratamiento;
 use App\Models\diagnostico;
 use App\Models\paciente_diagnostico;
-
 
 class OdontogramaController extends Controller
 {
@@ -59,34 +53,20 @@ class OdontogramaController extends Controller
      */
     public function store(Request $request, $id, $piezas_id)
     {
-        
-         $paciente_diagnostico = paciente_diagnostico::create([
-             'pacientes_id' => $id ,
-             'piezas_id'=> $piezas_id,
-             'diagnosticos_id'=> $request->post('diagnostico'),
-             'registrar_tratamientos_id'=> $request->post('nom_tratamiento'),
-             'estatus_tratamientos_id'=> 1
-             
-
+        $request->validate([
+            'diagnosticos_id' => ['required', 'numeric', 'integer'],
+            'registrar_tratamientos_id' => ['required', 'numeric', 'integer'],
         ]);
-      
-        // $diagnostico = diagnostico::create([
-        //     'diagnostico'    => $request->post('diagnostico'),
-            
-            
-        // ]);
-        // $registrar_tratamiento = registrar_tratamiento::create([
-        //     'nom_tratamiento'    => $request->post('nom_tratamiento'),
-            
-            
-        // ]);
-      
-       if ($paciente_diagnostico != null) {
-                return redirect()->route('EditarP.buscar',$id);
-            }else{
-                return redirect()->route('EditarP.buscar',$id);
-            }
         
+         paciente_diagnostico::create([
+            'pacientes_id' => $id ,
+            'piezas_id'=> $piezas_id,
+            'diagnosticos_id'=> $request->post('diagnosticos_id'),
+            'registrar_tratamientos_id'=> $request->post('registrar_tratamientos_id'),
+            'estatus_tratamientos_id'=> 1
+        ]);
+
+        return redirect()->route('EditarP.buscar',$id);
     }
 
     /**

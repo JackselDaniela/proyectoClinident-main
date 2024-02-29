@@ -2,9 +2,12 @@
 //use App\Http\Controllers\;
 
 use App\Http\Controllers\CargaController;
+use App\Http\Controllers\DiagnosticoController;
 use App\Http\Controllers\InsumoController;
 use App\Http\Controllers\OperacionController;
 use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\ReservaRestitucionController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -90,16 +93,15 @@ Route::get('/Odontograma/buscar/{idp}/{id} ', [App\Http\Controllers\OdontogramaC
 Route::put('/update-AnadirT/{slug?}', [App\Http\Controllers\AnadirTController::class, 'update'])->name('AnadirT.update');
 
 
-/* Ruta Tratamientoa*/ 
+/* Ruta Tratamiento */
 Route::get('/RutaT/{id}', [App\Http\Controllers\RutaTController::class, 'buscar'])->name('RutaT.buscar');
-
-Route::get('/RutaT /{id}', [App\Http\Controllers\RutaTController::class, 'eliminarT'])->name('RutaT.eliminarT');
-
-Route::get('/RutaT/Mostrar/{id}', [App\Http\Controllers\RutaTController::class, 'store'])->name('RutaT.store');
 
 Route::get('/RutaT/editar/{id}', [App\Http\Controllers\RutaTController::class, 'editar'])->name('RutaT.editar');
 
-Route::put('/update-RutaT/{id}', [App\Http\Controllers\RutaTController::class, 'update'])->name('RutaT.update');
+Route::patch(
+    '/update-RutaT/{paciente_diagnostico}',
+    [App\Http\Controllers\RutaTController::class, 'update']
+)->name('RutaT.update');
 
 
 /* Gestión de Insumos */
@@ -111,8 +113,30 @@ Route::resource('/cargas', CargaController::class)
 
 Route::resource('/reservas', ReservaController::class);
 
+Route::patch('/reservas/{reserva}/restitucion', ReservaRestitucionController::class)
+    ->name('reservas.restitucion');
+
 Route::get('/operaciones', OperacionController::class)
     ->name('operaciones.index');
+
+Route::get('/diagnosticos/{paciente_diagnostico}', [DiagnosticoController::class, 'show'])
+    ->name('diagnosticos.show');
+
+Route::get('/diagnosticos/{paciente_diagnostico}/edit', [DiagnosticoController::class, 'edit'])
+    ->name('diagnosticos.edit');
+
+Route::patch('/diagnosticos/{paciente_diagnostico}', [DiagnosticoController::class, 'update'])
+    ->name('diagnosticos.update');
+
+Route::get(
+    '/diagnosticos/{paciente_diagnostico}/consumos',
+    [DiagnosticoController::class, 'create']
+)->name('diagnosticos.consumos.create');
+
+Route::post(
+    '/diagnosticos/{paciente_diagnostico}/consumos',
+    [DiagnosticoController::class, 'store']
+)->name('diagnosticos.consumos.store');
 
 /* Ganancias Acumuladas */ 
 Route::get('/GananciasA', [App\Http\Controllers\GananciasAController::class, 'index'])->name('GananciasA');
@@ -259,3 +283,12 @@ Route::put('/update-AnadirP/{slug?}', [App\Http\Controllers\AnadirPController::c
 
 //
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Leer notificaciones
+
+Route::post('/notifications/read', function () {
+    // TODO -> poner usuario autenticado
+    User::first()->unreadNotifications->markAsRead();
+
+    return back();
+})->name('notifications.read');

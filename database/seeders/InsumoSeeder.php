@@ -21,6 +21,7 @@ class InsumoSeeder extends Seeder
             'descripcion' => 'Kit de 13 piezas para cirugía odontológica de acero inoxidable.',
             'codigo' => Codigo::generar('insumo'),
             'tipo' => 'Equipo Médico',
+            'minimo' => 3,
         ]);
 
         Insumo::create([
@@ -28,6 +29,7 @@ class InsumoSeeder extends Seeder
             'descripcion' => 'Guantes médicos esterilizados usados en cirugías y procedimientos.',
             'codigo' => Codigo::generar('insumo'),
             'tipo' => 'Consumible',
+            'minimo' => 3,
         ]);
 
         Insumo::create([
@@ -35,6 +37,7 @@ class InsumoSeeder extends Seeder
             'descripcion' => 'Espejo dental de acero inoxidable con mango de 6 pulgadas.',
             'codigo' => Codigo::generar('insumo'),
             'tipo' => 'Equipo Médico',
+            'minimo' => 3,
         ]);
 
         Insumo::create([
@@ -42,6 +45,7 @@ class InsumoSeeder extends Seeder
             'descripcion' => 'Paquete de 5 jeringas dentales de riego con punta curvada para cuidado dental.',
             'codigo' => Codigo::generar('insumo'),
             'tipo' => 'Consumible',
+            'minimo' => 3,
         ]);
     }
 }

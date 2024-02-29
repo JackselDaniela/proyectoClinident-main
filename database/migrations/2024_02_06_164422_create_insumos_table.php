@@ -18,6 +18,7 @@ class CreateInsumosTable extends Migration
             $table->string('nombre')->unique();
             $table->string('descripcion');
             $table->string('codigo')->unique();
+            $table->unsignedInteger('minimo');
             $table->enum('tipo', ['Consumible', 'Equipo Médico']);
             $table->timestamps();
         });

@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Filterable;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Insumo extends Model
 {
-    use HasFactory;
+    use HasFactory, Filterable;
 
     protected $guarded = [];
 
@@ -24,5 +26,25 @@ class Insumo extends Model
 
             return $suma;
         }, 0);
+    }
+
+    public static function options(string $tipo)
+    {
+        $insumos = self::where('tipo', $tipo)
+            ->latest()
+            ->get();
+
+        return self::mapToSelect($insumos);
+    }
+
+    public static function mapToSelect(Collection $insumos) {
+        $map = fn($insumo) => [
+            'id' => $insumo->id,
+            'title' => $insumo->nombre,
+            'subtitle' => $insumo->codigo,
+            'max' => $insumo->existencia,
+        ];
+
+        return $insumos->map($map);
     }
 }

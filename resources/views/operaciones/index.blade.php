@@ -20,6 +20,7 @@
           </li>
         </ol>
       </nav>
+      <x-filtros filtro="operacion" :opciones="['Entradas', 'Salidas']" />
       <section>
         <div class="row">
           <div class="col-sm-12">
@@ -29,11 +30,12 @@
                   <table class="datatable table table-stripped" style="overflow: hidden;!important">
                     <thead>
                       <tr>
-                        <th>Fecha</th>
+                        <th>Código</th>
                         <th>Insumo</th>
                         <th>Tipo</th>
                         <th>Operacion</th>
                         <th>Motivo</th>
+                        <th>Fecha</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -42,7 +44,7 @@
                           $positivo = $operacion->cantidad > 0;
                         @endphp
                         <tr>
-                          <td>{{ $operacion->created_at->format('d-m-Y') }}</td> 
+                          <td>{{ $operacion->codigo }}</td>
                           <td>{{ $operacion->insumo->nombre }}</td>
                           <td>{{ $operacion->insumo->tipo }}</td>
                           <td @class([
@@ -51,6 +53,7 @@
                             'text-danger' => !$positivo,
                             ])>{{ $operacion->movimiento }}</td>
                           <td>{{ $operacion->motivo }}</td>
+                          <td>{{ $operacion->created_at->format('d-m-Y') }}</td> 
                         </tr>
                       @endforeach
                     </tbody>

@@ -4,20 +4,22 @@ const section = document.querySelector('#carga-section')
 const inputs = document.querySelectorAll('#carga-section input')
 const vencimiento = document.querySelector('#vencimiento')
 
-check.addEventListener('input', () => {
+const toggleInputs = () => {
   const { checked } = check
   section.hidden = !checked
   
   inputs.forEach(input => {
+    if (input.id === 'vencimiento') return
     input.disabled = !checked
     input.required = checked
   })
-})
 
-$('#tipo').on('change', () => {
   const equipo = select.value === 'Equipo Médico'
   const container = vencimiento.parentElement.parentElement
   container.style.display = equipo ? 'none' : null
-  vencimiento.disabled = equipo
-  vencimiento.required = !equipo
-})
+  vencimiento.disabled = equipo || !checked
+  vencimiento.required = !equipo && checked
+}
+
+check.addEventListener('input', toggleInputs)
+$('#tipo').on('change', toggleInputs)

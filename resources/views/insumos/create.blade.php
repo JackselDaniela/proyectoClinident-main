@@ -29,17 +29,17 @@
         <form class="container" action="{{ route('insumos.store') }}" method="POST">
           @csrf
           <h3 class="text-center mb-4">Datos del Insumo</h3>
-          <div class="row">
-            @if ($errors->any())
+          @if ($errors->any())
+            <div class="row">
               <ul>
                 @foreach ($errors->all() as $error)
                   <li class="text-danger">{{ $error  }}</li>
                 @endforeach
               </ul>
-            @endif
-          </div>
+            </div>
+          @endif
           <div class="row px-5 mx-2">
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <div class="form-group">
                 <label for="nombre">
                   Nombre del Insumo
@@ -53,20 +53,20 @@
                   </p>
                 @enderror
               </div>
-              <div class="form-check">
+              <div class="form-check mt-n2">
                 <input class="form-check-input" type="checkbox" name="carga" id="carga" checked>
                 <label class="form-check-label" for="carga">
                   Registrar carga inicial del insumo
                 </label>
               </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <div class="form-group">
                 <label for="descripcion">
                   Descripción
                   <span class="text-danger">*</span>
                 </label>
-                <textarea class="form-control" minlength="10" maxlength="80" placeholder="Ej. Insumo usado en procedimientos dentales."
+                <textarea class="form-control" minlength="10" maxlength="80" placeholder="Ej. Insumo usado en procedimientos dentales." rows="3"
                   name="descripcion" id="descripcion" required>{{ old('descripcion') }}</textarea>
                 @error('descripcion')
                   <p class="text-danger">
@@ -75,7 +75,7 @@
                 @enderror
               </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <div class="form-group">
                 <label for="tipo">
                   Tipo de Insumo
@@ -86,7 +86,21 @@
                     <option value="{{ $opcion }}">{{ $opcion }}</option>
                   @endforeach
                 </select> 
+              </div>
             </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="minimo">
+                  Stock mínimo
+                  <span class="text-danger">*</span>
+                </label>
+                <input class="form-control" value="{{ old('minimo') }}" min="1" max="100" placeholder="Ej. 10" name="minimo" id="minimo" type="number" required />
+                @error('minimo')
+                  <p class="text-danger">
+                    {{ $message }}
+                  </p>
+                @enderror
+              </div>
             </div>
           </div>
           <div class="mt-4" id="carga-section">
@@ -126,7 +140,7 @@
                     Fecha de Vencimiento
                     <span class="text-danger">*</span>
                   </label>
-                  <input class="form-control" max="{{ today()->format('Y-m-d') }}" value="{{ old('vencimiento') }}" name="vencimiento" id="vencimiento" type="date" required />
+                  <input class="form-control" min="{{ today()->addDay()->format('Y-m-d') }}" value="{{ old('vencimiento') }}" name="vencimiento" id="vencimiento" type="date" required />
                   @error('vencimiento')
                     <p class="text-danger">
                       {{ $message }}

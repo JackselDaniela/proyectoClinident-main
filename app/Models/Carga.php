@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Filterable;
 use App\Traits\Mutable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Carga extends Model
 {
-    use HasFactory, Mutable;
+    use HasFactory, Mutable, Filterable;
 
     protected $guarded = [];
 

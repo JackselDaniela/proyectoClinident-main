@@ -26,6 +26,7 @@
           </li>
         </ol>
       </nav>
+      <x-filtros filtro="restitucion" :opciones="['Restituidos', 'No restituidos']" />
       <section>
         <div class="row">
           <div class="col-sm-12">
@@ -51,7 +52,15 @@
                           <td>{{ $reserva->created_at->format('d-m-Y') }}</td>
                           <td>{{ $reserva->cantidad }} equipos</td>
                           <td>{{ $reserva->restitucion?->format('d-m-Y') ?? 'N/A' }}</td>
-                          <td style="min-width: 7.5rem">
+                          <td class="text-center" style="min-width: 9rem">
+                            @if ($reserva->restitucion === null)
+                              <form class="d-inline" method="POST" action="{{ route('reservas.restitucion', $reserva) }}">
+                                @method('PATCH') @csrf
+                                <button class="btn btn-sm btn-success" type="submit">
+                                  <i class="fa fa-rotate-left"></i>
+                                </button>
+                              </form>
+                            @endif
                             <a class="btn btn-sm btn-primary" href="{{ route('reservas.show', $reserva) }}">
                               <i class="fa fa-eye"></i>
                             </a>

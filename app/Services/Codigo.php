@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\Carga;
 use App\Models\Insumo;
+use App\Models\Operacion;
+use App\Models\Reserva;
 
 class Codigo
 {
@@ -16,6 +18,7 @@ class Codigo
                 'carga' => 'CRG',
                 'insumo' => 'INS',
                 'reserva' => 'RES',
+                'operacion' => 'OPR',
             };
 
             $codigo = "{$prefijo}-{$random}";
@@ -28,10 +31,20 @@ class Codigo
 
     public static function unico($codigo, $tipo)
     {
-        if ($tipo === 'carga') {
-            return Carga::firstWhere('codigo', $codigo) === null;
+        if ($tipo === 'operacion') {
+            $operacion = Operacion::where('codigo', $codigo)
+                ->orWhere('codigo_rest', $codigo)
+                ->first();
+
+            return $operacion === null;
         }
 
-        return Insumo::firstWhere('codigo', $codigo) === null;
+        $clase = match ($tipo) {
+            'carga' => Carga::class,
+            'reserva' => Reserva::class,
+            'insumo' => Insumo::class,
+        };
+
+        return $clase::firstWhere('codigo', $codigo) === null;
     }
 }

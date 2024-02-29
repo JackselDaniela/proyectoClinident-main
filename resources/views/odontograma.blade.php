@@ -67,11 +67,17 @@
                         <h4 class="card-title" style="padding-bottom: 2rem">Diagnostico y Tratamiento de la Pieza</h4>
                         <form action="{{route('Odontograma.store',['id'=>$id,'piezas_id'=>$piezas_id])}}" method="POST">
                             @csrf
-                            
+                            @if ($errors->any())
+                            <ul>
+                              @foreach ($errors->all() as $error)
+                                <li class="text-danger">{{ $error }}</li>
+                              @endforeach
+                            </ul>
+                            @endif
                             <div class="form-group row">
                                 <label class=" col-sm-2">Diagnóstico</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" name="diagnostico">
+                                    <select class="form-control" name="diagnosticos_id">
                                         @foreach ($diagnostico as $diagnostico)
                                         <option value="{{$diagnostico->id}}"> {{$diagnostico->diagnostico}} </option>
                                         @endforeach
@@ -82,12 +88,10 @@
                             <div class="form-group row">
                                 <label class=" col-sm-2">Tratamiento</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" name="nom_tratamiento">
+                                    <select class="form-control" name="registrar_tratamientos_id">
                                         @foreach ($registrar_tratamiento as $registrar_tratamiento)
                                         <option value="{{$registrar_tratamiento->id}}"> {{$registrar_tratamiento->nom_tratamiento}} </option>
                                         @endforeach
-                                        
-                                        
                                     </select>
                                 </div>
                             </div>

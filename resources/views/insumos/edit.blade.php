@@ -30,7 +30,7 @@
           @csrf @method('PUT')
           <h4 class="text-center mb-4">Datos del Insumo</h4>
           <div class="row justify-content-center">
-            <div class="col-sm-5">
+            <div class="col-sm-4">
               <div class="form-group">
                 <label for="nombre">
                   Nombre del Insumo
@@ -45,7 +45,7 @@
                 @enderror
               </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
               <div class="form-group">
                 <label for="descripcion">
                   Descripción
@@ -54,6 +54,20 @@
                 <textarea class="form-control" minlength="10" maxlength="80" placeholder="Ej. Insumo usado en procedimientos dentales."
                   name="descripcion" id="descripcion" required>{{ old('descripcion', $insumo->descripcion) }}</textarea>
                 @error('descripcion')
+                  <p class="text-danger">
+                    {{ $message }}
+                  </p>
+                @enderror
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="minimo">
+                  Stock mínimo
+                  <span class="text-danger">*</span>
+                </label>
+                <input class="form-control" value="{{ old('minimo', $insumo->minimo) }}" min="1" max="100" placeholder="Ej. 10" name="minimo" id="minimo" type="number" required />
+                @error('minimo')
                   <p class="text-danger">
                     {{ $message }}
                   </p>

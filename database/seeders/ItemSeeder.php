@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Operacion;
 use App\Models\Reserva;
 use App\Models\Insumo;
+use App\Services\Codigo;
 use Illuminate\Database\Seeder;
 
 class ItemSeeder extends Seeder
@@ -30,6 +31,8 @@ class ItemSeeder extends Seeder
                 $operacion = Operacion::create([
                     'cantidad' => -3,
                     'insumo_id' => $insumo->id,
+                    'codigo' => Codigo::generar('operacion'),
+                    'codigo_rest' => Codigo::generar('operacion'),
                     'created_at' => now()->subDay(),
                     'updated_at' => now()->subDay(),
                 ]);

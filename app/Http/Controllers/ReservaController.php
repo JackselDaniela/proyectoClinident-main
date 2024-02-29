@@ -24,7 +24,10 @@ class ReservaController extends Controller
         return view('reservas.index', [
             'reservas' => Reserva::with([
                 'items', 'items.operacion', 'items.operacion.insumo',
-            ])->latest()->get(),
+            ])->search('codigo')
+                ->filter()
+                ->latest()
+                ->get(),
         ]);
     }
 
@@ -37,29 +40,9 @@ class ReservaController extends Controller
     {
         $proceso = estatus_tratamiento::firstWhere('estatus', 'En Proceso');
 
-        $diagnosticos = paciente_diagnostico::with([
-            'paciente.persona',
-            'registrar_tratamiento'
-        ])
-            ->where('estatus_tratamientos_id', $proceso->id)
-            ->latest()->get()->map(function ($diagnostico) {
-                return [
-                    'id' => $diagnostico->id,
-                    'title' => $diagnostico->paciente->persona->nombre,
-                    'subtitle' => $diagnostico->registrar_tratamiento->nom_tratamiento,
-                ];
-            });
+        $diagnosticos = paciente_diagnostico::options($proceso);
 
-        $insumos = Insumo::where('tipo', 'Equipo Médico')
-            ->latest()->get()->map(function ($insumo) {
-                return [
-                    'id' => $insumo->id,
-                    'codigo' => $insumo->codigo,
-                    'title' => $insumo->nombre,
-                    'subtitle' => $insumo->codigo,
-                    'max' => $insumo->existencia,
-                ];
-            });
+        $insumos = Insumo::options('Equipo Médico');
 
         return view('reservas.create', [
             'insumos' => $insumos,
@@ -90,7 +73,7 @@ class ReservaController extends Controller
 
             Validator::make($data, [
                 'cantidad' => ['numeric', 'integer', 'min:1', 'max:'.$insumo->existencia],
-            ], ["La cantidad del insumo \"{$insumo->nombre}\" no debe ser menor a {$insumo->existencia}"])->validate();
+            ], ["La cantidad del insumo \"{$insumo->nombre}\" no debe ser mayor a {$insumo->existencia}"])->validate();
         });
 
         $reserva = Reserva::create([
@@ -101,7 +84,9 @@ class ReservaController extends Controller
         $insumos->each(function ($insumo) use ($reserva) {
             $operacion = Operacion::create([
                 'insumo_id' => $insumo['id'],
-                'cantidad' => $insumo['cantidad'],
+                'cantidad' => -$insumo['cantidad'],
+                'codigo' => Codigo::generar('operacion'),
+                'codigo_rest' => Codigo::generar('operacion'),
             ]);
 
             Item::create([
@@ -121,7 +106,13 @@ class ReservaController extends Controller
      */
     public function show(Reserva $reserva)
     {
-        //
+        return view('reservas.show', [
+            'reserva' => $reserva->load([
+                'items.operacion.insumo',
+                'paciente_diagnostico.registrar_tratamiento',
+                'paciente_diagnostico.paciente.persona',
+            ]),
+        ]);
     }
 
     /**
@@ -132,7 +123,11 @@ class ReservaController extends Controller
      */
     public function edit(Reserva $reserva)
     {
-        //
+        return view('reservas.edit', [
+            'reserva' => $reserva->load([
+                'items.operacion.insumo',
+            ]),
+        ]);
     }
 
     /**
@@ -144,7 +139,38 @@ class ReservaController extends Controller
      */
     public function update(Request $request, Reserva $reserva)
     {
-        //
+        $request->validate([
+            'descripcion' => ['required', 'string', 'min:10', 'max:80'],
+            'operaciones' => ['sometimes', 'array', 'size:'.$reserva->items->count()],
+            'operaciones.*' => ['array:id,cantidad'],
+            'operaciones.*.id' => ['numeric', 'integer'],
+        ]);
+        
+        $operaciones = collect($request->input('operaciones'));
+
+        if ($operaciones->isNotEmpty()) {
+            $operaciones->each(function ($data) {
+                $operacion = Operacion::find($data['id']);
+                $insumo = $operacion->insumo;
+                $max = $insumo->existencia + abs($operacion->cantidad);
+    
+                Validator::make($data, [
+                    'cantidad' => ['numeric', 'integer', 'min:1', 'max:'.$max],
+                ], [
+                    "La cantidad del insumo \"{$insumo->nombre}\" no debe ser mayor a {$max}"
+                    ])->validate();
+    
+                $operacion->update([
+                    'cantidad' => -$data['cantidad'],
+                ]);
+            });
+        }
+
+        $reserva->update([
+            'descripcion' => $request->input('descripcion'),
+        ]);
+
+        return redirect()->route('reservas.show', $reserva);
     }
 
     /**

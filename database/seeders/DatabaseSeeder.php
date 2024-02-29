@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             TipoPersonasSeeder::class,
+            TipoConsultaSeeder::class,
             PiezaSeeder::class,
             EspecialidadSeeder::class,
             TratamientoSeeder::class,
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
             DoctorSeeder::class,
             DiagnosticoSeeder::class,
             EstatusTratamientoSeeder::class,
+            PacienteDiagnosticoSeeder::class,
             InsumoSeeder::class,
             CargaSeeder::class,
             ConsumoSeeder::class,

@@ -11,6 +11,7 @@ use App\Models\paciente_diagnostico;
 use App\Models\pieza;
 use App\Models\registrar_tratamiento;
 use App\Models\Insumo;
+use App\Services\Codigo;
 use Illuminate\Database\Seeder;
 
 class ConsumoSeeder extends Seeder
@@ -42,7 +43,7 @@ class ConsumoSeeder extends Seeder
         });
         
         $terminado = $this->crearDiagnostico('Terminado', paciente::first()->id);
-        $this->crearConsumos($terminado);
+        $this->crearConsumo($this->insumos[0], $terminado);
     }
 
     public function crearDiagnostico(string $estatus, int $pacienteId): paciente_diagnostico
@@ -58,16 +59,23 @@ class ConsumoSeeder extends Seeder
 
     public function crearConsumos(paciente_diagnostico $diagnostico): void
     {
-        $this->insumos->map(function ($insumo) use ($diagnostico) {
-            $operacion = Operacion::create([
-                'cantidad' => -3,
-                'insumo_id' => $insumo->id,
-            ]);
-
-            Consumo::create([
-                'paciente_diagnostico_id' => $diagnostico->id,
-                'operacion_id' => $operacion->id,
-            ]);
+        $this->insumos->each(function ($insumo) use ($diagnostico) {
+            $this->crearConsumo($insumo, $diagnostico);
         });
+    }
+
+    public function crearConsumo(Insumo $insumo, paciente_diagnostico $diagnostico): void
+    {
+        $operacion = Operacion::create([
+            'cantidad' => -3,
+            'insumo_id' => $insumo->id,
+            'codigo' => Codigo::generar('operacion'),
+            'codigo_rest' => Codigo::generar('operacion'),
+        ]);
+
+        Consumo::create([
+            'paciente_diagnostico_id' => $diagnostico->id,
+            'operacion_id' => $operacion->id,
+        ]);
     }
 }

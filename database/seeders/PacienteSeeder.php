@@ -21,19 +21,15 @@ class PacienteSeeder extends Seeder
     {
         paciente::create([
             'ocupacion'      => 'Albañil',
-            'personas_id'    => '1',
+            'personas_id'    => '4',
 
         ]);
         paciente::create([
             'ocupacion'      => 'Contador',
-            'personas_id'    => '2',
+            'personas_id'    => '5',
 
         ]);
-        paciente::create([
-            'ocupacion'      => 'Ingeniero',
-            'personas_id'    => '3',
-
-        ]);
+        
        
     }
 }

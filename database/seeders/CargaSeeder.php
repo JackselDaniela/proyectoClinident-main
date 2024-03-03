@@ -19,8 +19,7 @@ class CargaSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        User::factory(1)->create();
-
+       
         $user = User::first();
 
         $cantidades = [10, 20, 15, 30];

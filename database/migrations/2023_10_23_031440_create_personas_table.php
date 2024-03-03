@@ -17,6 +17,8 @@ class CreatePersonasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('nacionalidads_id');
             $table->foreign('nacionalidads_id')->references('id')->on('nacionalidads')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('doc_identidad',255);
             $table->string('nombre',255);

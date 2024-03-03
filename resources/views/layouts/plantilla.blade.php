@@ -1,4 +1,13 @@
+@php
+Auth::user();
+$user = Auth::user();
+$persona = $user->persona;
+
+
+@endphp
 <!DOCTYPE html>
+
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -56,31 +65,25 @@
 							<img class="rounded-circle" src="{{asset('assets/img/user.jpg')}}" width="24" alt="Admin">
 							<span class="status online"></span>
 						</span>
-						<span>Dr.Andrea Donato</span>
+						<span>
+                            {{$persona->nombre}}
+                        </span>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{asset('Perfil')}}">Mi Perfil</a>
                             <a class="dropdown-item" href="{{asset('EditarP')}}">Editar Perfil</a>
-                            <a class="dropdown-item" href="{{asset('#')}}">Cerrar Sesion</a>
+                            <form action="{{route('login.cerrarSesion')}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="dropdown-item" type="submit">Cerrar Sesion</button>
+
+                            </form>
                             
                         </div>
                     </a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="profile.html">My Profile</a>
-						<a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
-						<a class="dropdown-item" href="settings.html">Settings</a>
-						<a class="dropdown-item" href="login.html">Logout</a>
-					</div>
+					
                 </li>
             </ul>
-            <div class="dropdown mobile-user-menu float-right">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="profile.html">My Profile</a>
-                    <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
-                    <a class="dropdown-item" href="settings.html">Settings</a>
-                    <a class="dropdown-item" href="login.html">Logout</a>
-                </div>
-            </div>
+           
         </nav>
         <div class="sidebar" id="sidebar">
             <div class="sidebar-inner slimscroll">

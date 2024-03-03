@@ -30,7 +30,7 @@ class DatoUbicacionSeeder extends Seeder
             'parroquias_id'        => parroquia::firstWhere('parroquia', 'Santos Michelena')->id_parroquia,
             'direccion'        => 'Calle 5 Avenida 3, Sector la guayaba',
             'telefono'         => '555-2335-2222',
-            'correo'           => 'hola@example.com',
+            
         ]);
 
         dato_ubicacion::create([
@@ -40,7 +40,6 @@ class DatoUbicacionSeeder extends Seeder
             'parroquias_id'        => parroquia::firstWhere('parroquia', 'José Rafael Revenga')->id_parroquia,
             'direccion'        => 'El Consejo',
             'telefono'         => '555-2335-2222',
-            'correo'           => 'hola2@example.com',
         ]);
 
         dato_ubicacion::create([
@@ -50,7 +49,6 @@ class DatoUbicacionSeeder extends Seeder
             'parroquias_id'        => $castor->id_parroquia,
             'direccion'        => 'Urb Las Mercedes, sector 2',
             'telefono'         => '222-2456-6566',
-            'correo'           => 'hola3@example.com',
         ]);
 
         dato_ubicacion::create([
@@ -60,7 +58,6 @@ class DatoUbicacionSeeder extends Seeder
             'parroquias_id'        => $castor->id_parroquia,
             'direccion'        => 'Urb Las Mercedes, sector 1',
             'telefono'         => '999-5689-2563',
-            'correo'           => 'hola4@example.com',
         ]);
 
         dato_ubicacion::create([
@@ -70,7 +67,6 @@ class DatoUbicacionSeeder extends Seeder
             'parroquias_id'        => $castor->id_parroquia,
             'direccion'        => 'Urb Las Mercedes, sector 6',
             'telefono'         => '345-2044-5555',
-            'correo'           => 'hola5@example.com',
         ]);
     }
 }

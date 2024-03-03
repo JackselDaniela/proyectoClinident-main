@@ -26,5 +26,8 @@ class persona extends Model
     public function tipo_persona(){
         return $this->belongsTo(tipo_persona::class);
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     
 }

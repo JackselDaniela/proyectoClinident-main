@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class LandingController extends Controller
 {
@@ -21,10 +24,31 @@ class LandingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function autenticar(Request $request)
     {
-        //
+        $credencial = $request->validate([
+            'email' => [
+                'required', 'email'
+            ],
+            'password' => [
+                'required','string'
+            ]
+
+        ]);
+        $ingresa = Auth::attempt($credencial);
+        if ($ingresa){
+            $request->session()->regenerate();
+            return redirect()->route('Index');
+
+        }
+        return back()->withErrors([
+            'email' => 'Los Datos ingresados no estan registrados, verifique e intente de nuevo'
+        ]);
+
+
+
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -32,9 +56,13 @@ class LandingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function cerrarSesion(Request $request)
     {
-        //
+        Auth::logout();
+        $request ->session()->invalidate();
+        $request ->session()->regenerateToken();
+    
+            return redirect()->route('landing');
     }
 
     /**

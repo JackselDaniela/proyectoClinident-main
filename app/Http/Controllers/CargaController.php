@@ -33,20 +33,16 @@ class CargaController extends Controller
      */
     public function create(Request $request)
     {
-        $insumoId = $request->query('insumo_id');
-        $codigo = $request->query('codigo');
-        $insumo = Insumo::find($insumoId);
+        $id = $request->query('insumo_id');
+        $insumo = Insumo::find($id);
 
-        if ($insumo === null && $insumoId !== null) {
+        if ($id !== null && $insumo === null) {
             abort(404);
-        } else if ($codigo !== null) {
-            $insumo = Insumo::firstWhere('codigo', "INS-$codigo");
         }
 
         return view('cargas.create', [
             'insumo' => $insumo,
-            'codigo' => $codigo,
-            'insumoId' => $insumoId,
+            'insumos' => Insumo::options(),
         ]);
     }
 

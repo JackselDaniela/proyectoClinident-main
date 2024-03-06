@@ -1,3 +1,4 @@
 # ToDo
 
-- Ta listo :D
+- Cambiar color de botones.
+- Poner el usuario autenticado en los sitios correspondientes.

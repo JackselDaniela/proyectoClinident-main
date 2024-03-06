@@ -17,7 +17,7 @@ class CargaSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
         User::factory(1)->create();
 

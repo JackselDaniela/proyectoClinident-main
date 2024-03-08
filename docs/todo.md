@@ -1,4 +1,4 @@
 # ToDo
 
-- Cambiar color de botones.
-- Poner el usuario autenticado en los sitios correspondientes.
+- Ver a quien se le mandan las notificaciones.
+- Bug de HistoriaCController.

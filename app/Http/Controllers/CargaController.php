@@ -8,6 +8,7 @@ use App\Models\Operacion;
 use App\Models\User;
 use App\Services\Codigo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CargaController extends Controller
 {
@@ -71,8 +72,7 @@ class CargaController extends Controller
             ...$request->only(['elaboracion', 'vencimiento']),
             'codigo' => Codigo::generar('carga'),
             'operacion_id' => $operacion->id,
-            // TODO -> poner el usuario actual cuando haya auth
-            'user_id' => User::first()->id,
+            'user_id' => Auth::user()->id,
         ]);
 
         return redirect()->route('cargas.index');

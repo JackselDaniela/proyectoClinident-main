@@ -3,8 +3,8 @@
 namespace App\Observers;
 
 use App\Models\Operacion;
-use App\Models\User;
 use App\Notifications\BajoStock;
+use Illuminate\Support\Facades\Auth;
 
 class OperacionObserver
 {
@@ -27,6 +27,6 @@ class OperacionObserver
         }
 
         // TODO -> aqui va el usuario admin o lo que sea, el que gestione los insumos
-        User::first()->notify(new BajoStock($insumo->nombre));
+        Auth::user()->notify(new BajoStock($insumo->nombre));
     }
 }

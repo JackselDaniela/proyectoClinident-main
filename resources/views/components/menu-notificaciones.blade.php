@@ -1,8 +1,5 @@
-
 @php
-  use App\Models\User;
-  // TODO -> aqui va el usuario autenticado
-  $notificaciones = User::first()->unreadNotifications;
+  $notificaciones = auth()->user()->unreadNotifications;
 @endphp
 
 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">

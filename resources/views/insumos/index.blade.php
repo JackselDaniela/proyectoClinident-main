@@ -52,18 +52,16 @@
                           <td>{{ $insumo->tipo }}</td>
                           <td style="max-width: 15rem">{{ $insumo->descripcion }}</td>
                           <td>{{ $insumo->existencia }}</td>
-                          <td style="min-width: 7rem">
-                            {{-- {{ route('cargas.create') }} --}}
-                            <a href="{{ route('cargas.create', ['insumo_id' => $insumo->id]) }}" class="btn btn-sm btn-success">
+                          <td class="actions-td">
+                            <a href="{{ route('cargas.create', ['insumo_id' => $insumo->id]) }}">
                               <i class="fa fa-plus"></i>
-                              <span class="fs-sm"></span>
                             </a>
-                            <a class="btn btn-sm btn-warning" href="{{ route('insumos.edit', $insumo) }}">
+                            <a href="{{ route('insumos.edit', $insumo) }}">
                               <i class="fa fa-edit"></i>
                             </a>
                             <form class="d-inline" method="POST" action="{{ route('insumos.destroy', $insumo) }}">
                               @csrf @method('DELETE')
-                              <button type="submit" class="btn btn-sm btn-danger">
+                              <button class="btn-icon" type="submit">
                                 <i class="fa fa-trash-o"></i>
                               </button>
                             </form>

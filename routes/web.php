@@ -23,10 +23,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('Landing');
-});
+})->name('landing');
 
 /*Index*/
 Route::get('/Index', [App\Http\Controllers\IndexController::class, 'index'])->name('Index');
+
+Route::post('/login', [App\Http\Controllers\LandingController::class, 'autenticar'])->name('login.autenticar');
+Route::delete('/logout', [App\Http\Controllers\LandingController::class, 'cerrarSesion'])->middleware('auth')->name('login.cerrarSesion');
 
 
 /* Registrar tratamiento*/ 

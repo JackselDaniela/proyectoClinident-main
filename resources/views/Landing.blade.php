@@ -79,7 +79,48 @@
             <div class="limiter">
               <div class="container-login100">
                 <div class="wrap-login100">
-  
+                  <form method="POST" action="{{ route('login.autenticar') }}">
+                    @csrf
+
+                    <div class="row mb-3">
+                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    
+
+                    <div class="container-login100-form-btn">
+                      <button type="submit" style="border:none" class="appointment-btn scrollto">
+                       Ingresar
+                      </button>
+                    </div>
+
+                </form>
+{{--   
                   <form class="login100-form validate-form">
           
                     <div class="form-group">
@@ -100,7 +141,7 @@
                         <a href="{{asset('Index')}}" style=" color:aliceblue;!important; ">Ingresar</a>
                       </button>
                     </div>
-          
+           --}}
                     
                   </form>
                 </div>

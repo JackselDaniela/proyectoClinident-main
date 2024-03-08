@@ -21,16 +21,8 @@ class DoctorSeeder extends Seeder
             'bachillerato'         => 'Secundaria 1',
             'destacado'            => 'Certificacion en Endodoncia Pleural',
             'especialidads_id'     => '1',
-            'personas_id'          => '1',
+            'personas_id'          => '3',
         ]);
-        doctor::create([
-            
-            'universidad'          => 'Universidad de los Andes',
-            'experiencia'          => '10 Años',
-            'bachillerato'         => 'Secundaria 2',
-            'destacado'            => 'Certificacion en Ortodoncia',
-            'especialidads_id'     => '2',
-            'personas_id'          => '5',
-        ]);
+       
     }
 }

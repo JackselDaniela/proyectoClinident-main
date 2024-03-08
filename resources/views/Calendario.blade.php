@@ -29,7 +29,7 @@
                             <div class="col-md-12">
                                 <div class="contenedor">
                                     <div  id='calendar-container'>
-                                        <div class="col-lg-12" style="justify-content:center; position: relative; margin:1rem 0rem">
+                                        <div class="col-lg-12" style="justify-content:center; position: relative; margin:1rem 1rem">
                                             <div class="input-group col-sm-10">
                                                 <div class="col-sm-8">
                                                     <input class="form-control" type="text">
@@ -45,6 +45,7 @@
                                         <div id='calendar'>
                                             
                                         </div>
+                                        
                                     </div>
 
                                 </div>

@@ -14,6 +14,7 @@ class TipoPersonasSeeder extends Seeder
      */
     public function run()
     {
+       
        tipo_persona::create([
         'tipo_persona'=>'Doctor',
        ]);
@@ -23,6 +24,9 @@ class TipoPersonasSeeder extends Seeder
        
        tipo_persona::create([
         'tipo_persona'=>'Asistente',
+       ]);
+       tipo_persona::create([
+        'tipo_persona'=>'Administrador',
        ]);
     }
 }

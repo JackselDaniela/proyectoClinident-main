@@ -8,6 +8,7 @@ use App\Models\Operacion;
 use App\Models\User;
 use App\Services\Codigo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CargaController extends Controller
 {
@@ -33,20 +34,16 @@ class CargaController extends Controller
      */
     public function create(Request $request)
     {
-        $insumoId = $request->query('insumo_id');
-        $codigo = $request->query('codigo');
-        $insumo = Insumo::find($insumoId);
+        $id = $request->query('insumo_id');
+        $insumo = Insumo::find($id);
 
-        if ($insumo === null && $insumoId !== null) {
+        if ($id !== null && $insumo === null) {
             abort(404);
-        } else if ($codigo !== null) {
-            $insumo = Insumo::firstWhere('codigo', "INS-$codigo");
         }
 
         return view('cargas.create', [
             'insumo' => $insumo,
-            'codigo' => $codigo,
-            'insumoId' => $insumoId,
+            'insumos' => Insumo::options(),
         ]);
     }
 
@@ -75,8 +72,7 @@ class CargaController extends Controller
             ...$request->only(['elaboracion', 'vencimiento']),
             'codigo' => Codigo::generar('carga'),
             'operacion_id' => $operacion->id,
-            // TODO -> poner el usuario actual cuando haya auth
-            'user_id' => User::first()->id,
+            'user_id' => Auth::user()->id,
         ]);
 
         return redirect()->route('cargas.index');

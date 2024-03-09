@@ -52,25 +52,25 @@
                           <td>{{ $reserva->created_at->format('d-m-Y') }}</td>
                           <td>{{ $reserva->cantidad }} equipos</td>
                           <td>{{ $reserva->restitucion?->format('d-m-Y') ?? 'N/A' }}</td>
-                          <td class="text-center" style="min-width: 9rem">
+                          <td class="actions-td">
                             @if ($reserva->restitucion === null)
                               <form class="d-inline" method="POST" action="{{ route('reservas.restitucion', $reserva) }}">
                                 @method('PATCH') @csrf
-                                <button class="btn btn-sm btn-success" type="submit">
+                                <button class="btn-icon" type="submit">
                                   <i class="fa fa-rotate-left"></i>
                                 </button>
                               </form>
                             @endif
-                            <a class="btn btn-sm btn-primary" href="{{ route('reservas.show', $reserva) }}">
+                            <a href="{{ route('reservas.show', $reserva) }}">
                               <i class="fa fa-eye"></i>
                             </a>
-                            <a class="btn btn-sm btn-warning" href="{{ route('reservas.edit', $reserva) }}">
+                            <a href="{{ route('reservas.edit', $reserva) }}">
                               <i class="fa fa-edit"></i>
                             </a>
                             @if ($reserva->mutable)
                               <form class="d-inline" method="POST" action="{{ route('reservas.destroy', $reserva) }}">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">
+                                <button class="btn-icon" type="submit">
                                   <i class="fa fa-trash-o"></i>
                                 </button>
                               </form>

@@ -59,14 +59,14 @@
                           <td>{{ $carga->vencimiento?->format('d-m-Y') ?? 'N/A' }}</td>
                           <td>{{ $carga->user->name }}</td>
                           <td>{{ $carga->created_at->format('d-m-Y') }}</td>
-                          <td class="text-center" style="min-width: 7rem">
-                            <a class="btn btn-sm btn-warning" href="{{ route('cargas.edit', $carga) }}">
+                          <td class="actions-td">
+                            <a href="{{ route('cargas.edit', $carga) }}">
                               <i class="fa fa-edit"></i>
                             </a>
                             @if ($carga->mutable)
                               <form class="d-inline" method="POST" action="{{ route('cargas.destroy', $carga) }}">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">
+                                <button class="btn-icon" type="submit">
                                   <i class="fa fa-trash-o"></i>
                                 </button>
                               </form>

@@ -87,6 +87,6 @@
   <script>
     window.insumos = {{ Js::from($insumos) }}
   </script>
-  <script type="module" src="{{ asset('js/crear-consumo.js') }}"></script>
+  <script type="module" src="{{ asset('js/select-insumo.js') }}"></script>
   <script defer src="{{ asset('assets/js/alpine.js') }}"></script>
 @endsection

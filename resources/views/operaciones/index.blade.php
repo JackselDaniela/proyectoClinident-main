@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('title')
-  <title>Clinident / Gestion de Insumos</title>
+  <title>Clinident / Gestión de Insumos</title>
 @endsection
 
 @section('contenido')
@@ -14,7 +14,7 @@
       </div>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{ asset('Index') }}">Gestion de Insumos</a></li>
+          <li class="breadcrumb-item"><a href="{{ asset('Index') }}">Gestión de Insumos</a></li>
           <li class="breadcrumb-item">
             <a href="{{ route('operaciones.index') }}">Historial de Inventario</a>
           </li>
@@ -33,7 +33,7 @@
                         <th>Código</th>
                         <th>Insumo</th>
                         <th>Tipo</th>
-                        <th>Operacion</th>
+                        <th>Operación</th>
                         <th>Motivo</th>
                         <th>Fecha</th>
                       </tr>

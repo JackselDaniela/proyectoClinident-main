@@ -89,7 +89,7 @@
                                     <th>Paciente</th>
                                     <th>ID Paciente</th>
                                     <th>Costo</th>
-                                    <th class="text-right">Accion</th>
+                                    <th class="text-right">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>

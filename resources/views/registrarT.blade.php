@@ -25,7 +25,7 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-4 col-3">
-                <h4 class="page-title">Procedimientos de la Clinica</h4>
+                <h4 class="page-title">Procedimientos de la Clínica</h4>
             </div>
             
 
@@ -71,7 +71,7 @@
                                 <th>Costo</th>
                                 <th>Fecha añadido</th>
                                 <th>Especialidad</th>
-                                <th>Accion</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -157,7 +157,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>Costo
+                                                <label>Costo<span class="text-danger">*</span>
                                                     @if($errors->first('costo_tratamiento'))
                                                     <p class="text-danger">
                                                         {{$errors->first('costo_tratamiento')}}
@@ -169,7 +169,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>Codigo 
+                                                <label>Código 
                                                     @if($errors->first('codigo_tratamiento'))
                                                     <p class="text-danger">
                                                         {{$errors->first('codigo_tratamiento')}}

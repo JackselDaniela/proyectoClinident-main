@@ -108,7 +108,7 @@ $persona = $user->persona;
             <li class="submenu">
 							<a href="#">
                 <i class="fa fa-wheelchair"></i>
-                <span>Gestion de Paciente</span>
+                <span>Gestión de Paciente</span>
                 <span class="menu-arrow"></span>
               </a>
 							<ul style="display: none;">
@@ -118,7 +118,7 @@ $persona = $user->persona;
 							</ul>
 						</li>
             <li class="submenu">
-							<a href="#"><i class="fa fa-cube"></i> <span> Gestion de Insumos</span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fa fa-cube"></i> <span> Gestión de Insumos</span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 								<li><a href="nuevoI.html">Nuevo Insumo</a></li>
 								<li><a href="nuevaC.html">Nueva Carga</a></li>
@@ -132,7 +132,7 @@ $persona = $user->persona;
 							</ul>
 						</li>
                         <li class="submenu">
-							<a href="#"><i class="fa fa-cog"></i> <span> Configuracion</span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fa fa-cog"></i> <span> Configuración</span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
 								<li><a href="configuracion.html">Gestion de Usuario</a></li>
 								
@@ -177,7 +177,7 @@ $persona = $user->persona;
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><i class="fa fa-user"></i> <span> Gestion de Paciente</span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="fa fa-user"></i> <span> Gestión de Paciente</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{asset('RegistroE')}}">Registro Expediente</a></li>
                     </ul>
@@ -185,7 +185,7 @@ $persona = $user->persona;
                 <li class="submenu">
                     <a href="#">
                       <i class="fa fa-medkit"></i>
-                      <span>Gestion de Insumos</span>
+                      <span>Gestión de Insumos</span>
                       <span class="menu-arrow"></span>
                     </a>
                     <ul style="display: none;">
@@ -217,14 +217,14 @@ $persona = $user->persona;
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><i class="fa fa-cog"></i> <span> Configuracion</span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="fa fa-cog"></i> <span> Configuración</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{asset('GestionU')}}">Gestion de Usuario</a></li>
                         
                         <li class="submenu">
                             <a href="#"></i> <span> Mantenimiento</span> <span class="menu-arrow"></span></a>
                             <ul style="display: none;">
-                                <li><a href="{{asset('Bitacora')}}">Bitacora</a></li>
+                                <li><a href="{{asset('Bitacora')}}">Bitácora</a></li>
                                 <li><a href="{{asset('RespaldoB')}}">Respaldo BD</a></li>
                             </ul>
                         </li>

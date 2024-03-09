@@ -71,7 +71,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label title="Ingrese su Apellido">Apellido
+                                    <label title="Ingrese su Apellido">Apellido<span class="text-danger">*</span>
                                         @if($errors->first('apellido'))
                                         <p class="text-danger">
                                             {{$errors->first('apellido')}}
@@ -82,7 +82,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label title="Ingrese su Fecha de Nacimiento">Fecha de nacimiento
+                                    <label title="Ingrese su Fecha de Nacimiento">Fecha de nacimiento<span class="text-danger">*</span>
                                         @if($errors->first('fecha_nacimiento'))
                                         <p class="text-danger">
                                             {{$errors->first('fecha_nacimiento')}}
@@ -106,7 +106,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label title="Seleccione una foto donde se distinga su rostro">Foto</label>
+                                    <label title="Seleccione una foto donde se distinga su rostro">Foto</label><span class="text-danger">*</span>
                                     <div class="profile-upload">
                                         <div class="upload-img">
                                             <img alt="" src="assets/img/user.jpg">
@@ -124,7 +124,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6 col-lg-3">
                                         <div class="form-group">
-                                            <label title="Seleccione su Estado">Estado
+                                            <label title="Seleccione su Estado">Estado<span class="text-danger">*</span>
                                                 @if($errors->first('estado'))
                                         <p class="text-danger">
                                             {{$errors->first('estado')}}
@@ -141,7 +141,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6 col-lg-3">
                                         <div class="form-group">
-                                            <label title="Seleccione su Municipio">Municipio
+                                            <label title="Seleccione su Municipio">Municipio<span class="text-danger">*</span>
                                                 @if($errors->first('municipio'))
                                         <p class="text-danger">
                                             {{$errors->first('municipio')}}
@@ -156,7 +156,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6 col-lg-3">
                                         <div class="form-group">
-                                            <label title="Seleccione su Ciudad">Ciudad
+                                            <label title="Seleccione su Ciudad">Ciudad<span class="text-danger">*</span>
                                                 @if($errors->first('ciudad'))
                                         <p class="text-danger">
                                             {{$errors->first('ciudad')}}
@@ -170,7 +170,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6 col-lg-3">
                                         <div class="form-group">
-                                            <label title="Seleccione su Parroquia">Parroquia
+                                            <label title="Seleccione su Parroquia">Parroquia<span class="text-danger">*</span>
                                                 @if($errors->first('parroquia'))
                                         <p class="text-danger">
                                             {{$errors->first('parroquia')}}
@@ -185,7 +185,7 @@
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label>Dirección
+                                            <label>Dirección<span class="text-danger">*</span>
                                                 </label>
                                             <input type="text"  maxlength="50" value="{{old('direccion')}}" name="direccion" id="direccion" placeholder="¿Cúal es su Dirección?" class="form-control ">
                                         </div>
@@ -193,7 +193,7 @@
                                     
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Telefono
+                                            <label>Teléfono<span class="text-danger">*</span>
                                                 </label> 
                                             <input type="number" maxlength="11" name="telefono" value="{{old('telefono')}}"  id="telefono" placeholder="Indique su Numero Principal" class="form-control" required>
                                         </div>
@@ -236,9 +236,9 @@
                                                     <table class="table table-striped custom-table">
                                                         <thead>
                                                             <tr>
-                                                                <th> Condicion </th>
+                                                                <th> Condición </th>
                                                                 <th>  </th>
-                                                                <th> Descripcion </th>
+                                                                <th> Descripción </th>
                                                                 
                                                             </tr>
                                                         </thead>
@@ -260,7 +260,7 @@
                                                                             </label>
                                                                         </div>
                                                                 </td>
-                                                                <td><input placeholder="Indique metodo alternativo usado" maxlength="100" value="Descripcion" type="text" name="desc_alergia_p"style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Indique metodo alternativo usado" maxlength="100" value="Descripción" type="text" name="desc_alergia_p"style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                 
                                                                 
@@ -282,7 +282,7 @@
                                                                             </label>
                                                                         </div>
                                                                 </td>
-                                                                <td><input placeholder="Indique medicamento y/o componentes" maxlength="100" value="Descripcion" type="text" name="desc_alergia_m" style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Indique medicamento y/o componentes" maxlength="100" value="Descripción" type="text" name="desc_alergia_m" style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                 
                                                             </tr>
@@ -303,7 +303,7 @@
                                                                             </label>
                                                                         </div>
                                                                 </td>
-                                                                <td><input placeholder="Indique tipo de tratamiento y medicamentos" maxlength="100"  value="Descripcion" type="text" name="desc_trat_actual" style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Indique tipo de tratamiento y medicamentos" maxlength="100"  value="Descripción" type="text" name="desc_trat_actual" style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                 
                                                             </tr>
@@ -324,7 +324,7 @@
                                                                             </label>
                                                                         </div>
                                                                 </td>
-                                                                <td><input placeholder="Indique etapa de Gravidez" type="text" maxlength="100" value="Descripcion" name="desc_gravidez" style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Indique etapa de Gravidez" type="text" maxlength="100" value="Descripción" name="desc_gravidez" style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                 
                                                             </tr>
@@ -345,7 +345,7 @@
                                                                             </label>
                                                                         </div>
                                                                 </td>
-                                                                <td><input placeholder="Indique motivos" type="text" maxlength="100" value="Descripcion" name="desc_hemorragia" style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Indique motivos" type="text" maxlength="100" value="Descripción" name="desc_hemorragia" style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                 
                                                             </tr>
@@ -366,7 +366,7 @@
                                                                             </label>
                                                                         </div>
                                                                 </td>
-                                                                <td><input placeholder="Indique contexto que provoca desmayos" maxlength="100" value="Descripcion" type="text" name="desc_desmayos" style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Indique contexto que provoca desmayos" maxlength="100" value="Descripción" type="text" name="desc_desmayos" style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                 
                                                             </tr>
@@ -387,7 +387,7 @@
                                                                             </label>
                                                                         </div>
                                                                 </td>
-                                                                <td><input placeholder="Indique serveridad" type="text" maxlength="100" name="desc_asma"  value="Descripcion" style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Indique serveridad" type="text" maxlength="100" name="desc_asma"  value="Descripción" style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                 
                                                             </tr>
@@ -408,7 +408,7 @@
                                                                             </label>
                                                                         </div>
                                                                 </td>
-                                                                <td><input placeholder="Indique Tipo"type="text"  maxlength="100" name="desc_diabetes"  value="Descripcion" style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Indique Tipo"type="text"  maxlength="100" name="desc_diabetes"  value="Descripción" style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                 
                                                             </tr>
@@ -429,7 +429,7 @@
                                                                             </label>
                                                                         </div>
                                                                 </td>
-                                                                <td><input placeholder="Ultimo registro de tension"  maxlength="100" type="text"  value="Descripcion" name="desc_hipertension" style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Ultimo registro de tension"  maxlength="100" type="text"  value="Descripción" name="desc_hipertension" style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                 
                                                             </tr>
@@ -451,7 +451,7 @@
                                                                             </label>
                                                                         </div>
                                                                 </td>
-                                                                <td><input placeholder="Indique motivos y frecuencia"  maxlength="100" type="text"  value="Descripcion" name="desc_epilepsia" style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Indique motivos y frecuencia"  maxlength="100" type="text"  value="Descripción" name="desc_epilepsia" style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                 
                                                             </tr>
@@ -472,7 +472,7 @@
                                                                             </label>
                                                                         </div>
                                                                 </td>
-                                                                <td><input placeholder="Indique Tipo de Cancer"type="text"  maxlength="100"  value="Descripcion" name="desc_cancer_actual" style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Indique Tipo de Cancer"type="text"  maxlength="100"  value="Descripción" name="desc_cancer_actual" style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                 
                                                             </tr>
@@ -494,7 +494,7 @@
                                                                         </div>
 
                                                                 </td>
-                                                                <td><input placeholder="Indique Tipo de Cancer"type="text"  maxlength="100"  value="Descripcion" name="desc_cancer_pasado" style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Indique Tipo de Cancer"type="text"  maxlength="100"  value="Descripción" name="desc_cancer_pasado" style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                
                                                                 
@@ -516,7 +516,7 @@
                                                                             </label>
                                                                         </div>
                                                                 </td>
-                                                                <td><input placeholder="Fecha de prueba  positiva"  maxlength="100"  value="Descripcion" type="text" name="desc_vih" style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Fecha de prueba  positiva"  maxlength="100"  value="Descripción" type="text" name="desc_vih" style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                 
                                                             </tr>
@@ -537,7 +537,7 @@
                                                                             </label>
                                                                         </div>
                                                                 </td>
-                                                                <td><input placeholder="Nombre de la condicion"type="text"  maxlength="100"  value="Descripcion" name="desc_inmunodeficiente" style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Nombre de la condicion"type="text"  maxlength="100"  value="Descripción" name="desc_inmunodeficiente" style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                 
                                                             </tr>
@@ -558,7 +558,7 @@
                                                                             </label>
                                                                         </div>
                                                                 </td>
-                                                                <td><input placeholder="Desde Hace Cuanto?"type="text"  maxlength="100"  value="Descripcion" name="desc_fumador" style="border-style: hidden; text-align: center;"></td>
+                                                                <td><input placeholder="Desde Hace Cuanto?"type="text"  maxlength="100"  value="Descripción" name="desc_fumador" style="border-style: hidden; text-align: center;"></td>
                                                                 
                                                                 
                                                             </tr>
@@ -569,13 +569,13 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label>Contraseña</label>
+                                                        <label>Contraseña</label><span class="text-danger">*</span>
                                                         <input class="form-control" placeholder="Introduzca Contraseña " type="password">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label>Confirmar Contraseña</label>
+                                                        <label>Confirmar Contraseña</label><span class="text-danger">*</span>
                                                         <input class="form-control" placeholder="Confirme su contraseña"  type="password">
                                                     </div>
                                                 </div>

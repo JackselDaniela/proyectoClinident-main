@@ -47,10 +47,10 @@
                                         <th>Doc. Identidad</th>
                                         <th>Nombre Completo</th>
                                         <th>Edad</th>
-                                        <th>Direccion</th>
-                                        <th>Telefono</th>
+                                        <th>Dirección</th>
+                                        <th>Teléfono</th>
                                         <th>Correo</th>
-                                        <th >Accion</th>
+                                        <th >Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>

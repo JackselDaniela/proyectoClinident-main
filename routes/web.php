@@ -9,6 +9,7 @@ use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\ReservaRestitucionController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -295,3 +296,8 @@ Route::post('/notifications/read', function () {
 
     return back();
 })->name('notifications.read');
+
+//Salida PdfPacientes
+
+Route::get('/get-all-paciente', [PDFController::class, 'getAllpaciente']);
+Route::get('/download-pdf', [PDFController::class, 'downloadPDF'])->name('descargarPDF');

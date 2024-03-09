@@ -85,4 +85,5 @@
     <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('/assets/js/app.js') }}"></script>
     <script src="{{ asset('/assets/js/modal.js') }}"></script>
+    <script src="{{ asset('js/tabla.js') }}"></script>
 @endsection

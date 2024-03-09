@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('title')
-<title>Clinident / Gestion de Pacientes </title>
+<title>Clinident / Gestión de Pacientes </title>
 @endsection
 @section('css-externo')
 
@@ -23,7 +23,7 @@
             </div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#"> Gestion de Paciente</a></li>
+                    <li class="breadcrumb-item"><a href="#"> Gestión de Paciente</a></li>
                     <li class="breadcrumb-item"><a href="#">Registro Expediente</a></li>
                     
                 </ol>
@@ -69,10 +69,10 @@
                                         <td>{{$persona->dato_ubicacion->telefono;}}</td>
                                         <td>{{$persona->dato_ubicacion->correo;}}</td>
                                         <td>
-                                            <a title="Añadir Tratamiento" href="{{route('EditarP.buscar',['id'=>$paciente->id])}}"><li class="fa fa-plus" style="width: 1rem"></li></a>
-                                            <a title="Ruta de Tratamiento" href="{{route('RutaT.buscar',['id'=>$paciente->id])}}"><li class="fa fa-list-ol" style="width: 1rem"></li></a>
-                                            <a title="Editar Paciente" href="{{route('EditarP.edit',['id'=>$paciente->id])}}"><li class="fa fa-edit" style="width: 1rem"></li></a>
-                                            <a title="Eliminar Paciente" href="{{route('eliminarE',['id'=>$paciente->id]) }}"><li class="fa fa-trash-o" style="width: 1rem"></li></a>
+                                            <a title="Añadir Tratamiento" href="{{route('EditarP.buscar',['id'=>$paciente->id])}}"><li class="fa fa-plus" style="width: 1rem; color:#1ABC9C;"></li></a>
+                                            <a title="Ruta de Tratamiento" href="{{route('RutaT.buscar',['id'=>$paciente->id])}}"><li class="fa fa-list-ol" style="width: 1rem;"></li></a>
+                                            <a title="Editar Paciente" href="{{route('EditarP.edit',['id'=>$paciente->id])}}"><li class="fa fa-edit" style="width: 1rem; color:#9B59B6 ;"></li></a>
+                                            <a title="Eliminar Paciente" href="{{route('eliminarE',['id'=>$paciente->id]) }}"><li class="fa fa-trash-o" style="width: 1rem; color:red;"></li></a>
                                         
                                         </td>
                                         </tr>

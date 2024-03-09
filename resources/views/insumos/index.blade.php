@@ -54,15 +54,15 @@
                           <td>{{ $insumo->existencia }}</td>
                           <td class="actions-td">
                             <a href="{{ route('cargas.create', ['insumo_id' => $insumo->id]) }}">
-                              <i class="fa fa-plus"></i>
+                              <i class="fa fa-plus" style="width: 1rem; color:#1ABC9C;"></i>
                             </a>
                             <a href="{{ route('insumos.edit', $insumo) }}">
-                              <i class="fa fa-edit"></i>
+                              <i class="fa fa-edit" style="width: 1rem; color:#9B59B6;"></i>
                             </a>
                             <form class="d-inline" method="POST" action="{{ route('insumos.destroy', $insumo) }}">
                               @csrf @method('DELETE')
                               <button class="btn-icon" type="submit">
-                                <i class="fa fa-trash-o"></i>
+                                <i class="fa fa-trash-o" style="width: 1rem; color:red;"></i>
                               </button>
                             </form>
                           </td>

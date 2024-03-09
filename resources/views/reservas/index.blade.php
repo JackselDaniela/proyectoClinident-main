@@ -57,21 +57,21 @@
                               <form class="d-inline" method="POST" action="{{ route('reservas.restitucion', $reserva) }}">
                                 @method('PATCH') @csrf
                                 <button class="btn-icon" type="submit">
-                                  <i class="fa fa-rotate-left"></i>
+                                  <i class="fa fa-rotate-left" style="width: 1rem; color:#1ABC9C;"></i>
                                 </button>
                               </form>
                             @endif
                             <a href="{{ route('reservas.show', $reserva) }}">
-                              <i class="fa fa-eye"></i>
+                              <i class="fa fa-eye" style="width: 1rem; color:#1F618D;"></i>
                             </a>
                             <a href="{{ route('reservas.edit', $reserva) }}">
-                              <i class="fa fa-edit"></i>
+                              <i class="fa fa-edit" style="width: 1rem; color:#9B59B6;"></i>
                             </a>
                             @if ($reserva->mutable)
                               <form class="d-inline" method="POST" action="{{ route('reservas.destroy', $reserva) }}">
                                 @csrf @method('DELETE')
                                 <button class="btn-icon" type="submit">
-                                  <i class="fa fa-trash-o"></i>
+                                  <i class="fa fa-trash-o" style="width: 1rem; color:red;"></i>
                                 </button>
                               </form>
                             @endif

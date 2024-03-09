@@ -50,7 +50,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             
-                            <input class="form-control" placeholder="Codigo de Tratamiento" type="text">
+                            <input class="form-control" placeholder="Código de Tratamiento" type="text">
                             <div class="input-group-append">
                                     <button class="btn btn-primary" type="button" style="border-radius: .8rem"><i class="fa fa-search"></i></button>
                             </div>
@@ -87,10 +87,10 @@
                                 
                                 <td >
                                     <a href="{{route('editarT',['id'=>$tratamiento->id])}}">
-                                        <li class="fa fa-edit" style="width: 2rem"></li>
+                                        <li class="fa fa-edit" style="width: 2rem; color:#9B59B6 ;"></li>
                                     </a>
                                     <a href="{{route('eliminarT',['id'=>$tratamiento->id]) }}">
-                                        <li class="fa fa-trash-o" style="width: 2rem"></li>
+                                        <li class="fa fa-trash-o" style="width: 2rem; color:red;"></li>
                                     </a>
                                     
                                 </td>

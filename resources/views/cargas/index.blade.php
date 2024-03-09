@@ -61,13 +61,13 @@
                           <td>{{ $carga->created_at->format('d-m-Y') }}</td>
                           <td class="actions-td">
                             <a href="{{ route('cargas.edit', $carga) }}">
-                              <i class="fa fa-edit"></i>
+                              <i class="fa fa-edit" style="width: 1rem; color:#9B59B6;"></i>
                             </a>
                             @if ($carga->mutable)
                               <form class="d-inline" method="POST" action="{{ route('cargas.destroy', $carga) }}">
                                 @csrf @method('DELETE')
                                 <button class="btn-icon" type="submit">
-                                  <i class="fa fa-trash-o"></i>
+                                  <i class="fa fa-trash-o" style="width: 1rem; color:red;"></i>
                                 </button>
                               </form>
                             @endif

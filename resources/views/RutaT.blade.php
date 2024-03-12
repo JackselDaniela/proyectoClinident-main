@@ -15,7 +15,7 @@
             </div>
             <div class="col-sm-2 col-2">
                 <div class="btn-group btn-group-sm">
-                    <a href="{{ route('descargarRutaPDF') }}" class="btn btn-white"><img src="{{asset('assets/img/pdf.png')}}" style="width: 30px"></a>
+                    <a class="btn btn-white"><img src="{{asset('assets/img/pdf.png')}}" style="width: 30px"></a>
                     <button class="btn btn-white"><i class="fa fa-print fa-lg"></i></button>
                 </div>
             </div>

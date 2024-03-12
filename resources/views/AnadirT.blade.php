@@ -22,8 +22,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{asset('Index')}}">Gestion de Pacientes</a></li>
-                <li class="breadcrumb-item"><a href="{{asset('HistoriaC')}}">Historia Clinica</a></li>
-                <li class="breadcrumb-item"><a href="{{asset('AnadirT')}}">Añadir Tratameinto</a></li>
+                <li class="breadcrumb-item"><a href="{{asset('AnadirT')}}">Añadir Tratamiento</a></li>
             </ol>
         </nav>
         <a href="{{route('HistoriaC.buscar',$paciente->id)}}"><button style="font-size: 1.3rem" class="btn btn-primary float-right btn-rounded btn-press btn-add" >Ver Expediente</button></a>

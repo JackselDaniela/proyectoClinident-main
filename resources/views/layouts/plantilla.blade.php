@@ -53,9 +53,7 @@ $persona = $user->persona;
                     <x-menu-notificaciones />
                 </li>
                 
-                <li class="nav-item dropdown d-none d-sm-block">
-                    <a href="javascript:void(0);" id="open_msg_box" class="hasnotifications nav-link"><i class="fa fa-comment-o"></i> <span class="badge badge-pill bg-danger float-right">8</span></a>
-                </li>
+                
                 <li class="nav-item dropdown d-none d-sm-block">
                     <a href="{{asset('Ayuda')}}"  class="nav-link"><i class="fa fa-question-circle"></i></a>
                 </li> 

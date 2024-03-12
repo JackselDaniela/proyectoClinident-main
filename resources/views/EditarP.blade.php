@@ -86,7 +86,12 @@
                         <div class="col-md-6">
                             <div class="form-group form-focus">
                                 <label class="focus-label">Estado</label>
-                                <input name="estado" type="text" class="form-control floating" value="{{$paciente->persona->dato_ubicacion->estado}}">
+                                {{-- <input name="estado" type="text" class="form-control floating" value="{{$paciente->persona->dato_ubicacion->estados_id}}"> --}}
+                                <select class="select"  name="estado" id="estado"  required>
+                                     @foreach ($estado as $estado)
+                                    <option value="{{$paciente->persona->dato_ubicacion->estados_id}}"> {{$estado->estado}}</option>
+                                    @endforeach 
+                                </select>
                             </div>
                         </div>
                       

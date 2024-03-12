@@ -8,6 +8,7 @@ use App\Models\paciente;
 use App\Models\paciente_diagnostico;
 use App\Models\expediente;
 use App\Models\pieza;
+use App\Models\estado;
 
 
 use Illuminate\Http\Request;
@@ -63,10 +64,11 @@ class EditarPController extends Controller
      */
     public function edit($id)
     {
+        $estado = estado::all();
        $paciente = paciente::with('persona','expediente','persona.dato_ubicacion')
         ->join('expedientes','expedientes.pacientes_id','=','expedientes.id')
         ->find($id);
-    return view('EditarP', compact('paciente'));
+    return view('EditarP', compact('paciente','estado'));
     }
     public function buscar($id)
     {

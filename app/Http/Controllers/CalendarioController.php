@@ -21,21 +21,21 @@ class CalendarioController extends Controller
     {
         $tipo_consulta = tipo_consulta::get();
         $citas= cita::with('paciente','tipo_consulta','doctor')->get();
-        // return $citas;
-         $evento = array();
-         $format = 'Y-m-d H:i:s';
-         foreach ($citas as $citas){
-            $inicioStr="{$citas->fecha}{$citas->inicio}";
-            // dd($inicioStr); 
-            $finStr="{$citas->fecha}{$citas->fin}"; 
-             $evento[] = [
-                
-                 'start'=>Carbon::createFromFormat($format, $inicioStr),
-                 'end'=>Carbon::createFromFormat($format, $finStr),
-                 'title'=>$citas->descripcion,
-             ];
-            //  dd($citas);
-         }  
+        $evento = array();
+        $format = 'Y-m-d H:i:s';
+        
+        foreach ($citas as $cita) {
+            $inicioStr = "{$cita->fecha}{$cita->inicio}";
+            $finStr = "{$cita->fecha}{$cita->fin}"; 
+            
+            $evento[] = [
+                'id' => $cita->id,
+                'start' => Carbon::createFromFormat($format, $inicioStr),
+                'end' => Carbon::createFromFormat($format, $finStr),
+                'title' => $cita->descripcion,
+                'tipo_consultas_id'=> $cita->tipo_consultas_id,
+            ];
+        }  
          
         return view('Calendario', compact('evento','tipo_consulta'));
     }

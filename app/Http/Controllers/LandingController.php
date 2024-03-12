@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LandingController extends Controller
 {
@@ -24,24 +25,36 @@ class LandingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private function volver($validator){
+      
+        return redirect()->route('landing',['modal'=>'true'])->withErrors($validator)->withInput();
+        
+
+    }
+
     public function autenticar(Request $request)
     {
-        $credencial = $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => [
-                'required', 'email'
-            ],
-            'password' => [
-                'required','string'
-            ]
-
+            'required', 'email'
+        ],
+        'password' => [
+            'required','string'
+        ]
         ]);
+ 
+        if ($validator->fails()) {
+            return $this->volver($validator);
+        }
+//-----------------------------------------------------------------------------------
+       $credencial = $validator->validated();
         $ingresa = Auth::attempt($credencial);
         if ($ingresa){
             $request->session()->regenerate();
             return redirect()->route('Index');
 
         }
-        return back()->withErrors([
+        return $this->volver($validator)->withErrors([
             'email' => 'Los Datos ingresados no estan registrados, verifique e intente de nuevo'
         ]);
 

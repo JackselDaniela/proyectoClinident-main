@@ -40,6 +40,7 @@ class Operacion extends Model
 
     public function getTipoAttribute()
     {
+        // TODO BUG ENCONTRADO ALERTA ALERTA ALERTA ALERTA!!!!!  
         return match (true) {
             $this->consumo !== null => 'consumo',
             $this->carga !== null => 'carga',

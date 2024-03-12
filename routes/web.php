@@ -49,9 +49,10 @@ Route::get('/Calendario', [App\Http\Controllers\CalendarioController::class, 'in
 
 Route::post('/Calendario', [App\Http\Controllers\CalendarioController::class, 'store'])->name('Calendario.store');
 
-Route::get('/Calendario/{slug?}/edit', [App\Http\Controllers\CalendarioController::class, 'edit'])->name('marca.edit');
+Route::put('/Calendario/{cita}', [App\Http\Controllers\CalendarioController::class, 'update'])->name('Calendario.update');
 
-Route::put('/update-Calendario/{slug?}', [App\Http\Controllers\CalendarioController::class, 'update'])->name('marca.update');
+Route::delete('/Calendario/{cita}', [App\Http\Controllers\CalendarioController::class, 'destroy'])->name('Calendario.destroy');
+
 
 
 /* Citas Confirmadas*/ 

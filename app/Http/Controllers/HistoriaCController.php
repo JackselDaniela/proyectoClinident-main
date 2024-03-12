@@ -17,8 +17,7 @@ class HistoriaCController extends Controller
      */
     public function index()
     {
-        // TODO -> esto esta bugueado, la vista pide variable $paciente y no está xd
-        return view('HistoriaC');
+        
     }
 
     /**

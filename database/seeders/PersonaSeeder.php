@@ -33,7 +33,7 @@ class PersonaSeeder extends Seeder
         ]);
 
         persona::create([
-            'doc_identidad'      => '111111111',
+            'doc_identidad'      => '25000000',
             'user_id'            => $user1 ->id,
             'nombre'             => 'Persona1',
             'apellido'           => 'Persona1',
@@ -51,7 +51,7 @@ class PersonaSeeder extends Seeder
         ]);
 
         persona::create([
-            'doc_identidad'      => '22222222',
+            'doc_identidad'      => '26000000',
             'user_id'            => $user2 ->id,
             'nombre'             => 'Persona2',
             'apellido'           =>  'Persona2',
@@ -69,7 +69,7 @@ class PersonaSeeder extends Seeder
         ]);
 
         persona::create([
-            'doc_identidad'      => '3333333333',
+            'doc_identidad'      => '27000000',
             'user_id'            => $user3 ->id,
             'nombre'             => 'Persona3',
             'apellido'           =>  'Persona3',
@@ -87,7 +87,7 @@ class PersonaSeeder extends Seeder
         ]);
 
         persona::create([
-            'doc_identidad'      => '444444444',
+            'doc_identidad'      => '28000000',
             'user_id'            => $user4 ->id,
             'nombre'             => 'Persona4',
             'apellido'           =>  'Persona4',
@@ -104,7 +104,7 @@ class PersonaSeeder extends Seeder
             'password' => bcrypt('paciente2'),
         ]);
         persona::create([
-            'doc_identidad'      => '555555555',
+            'doc_identidad'      => '29000000',
             'user_id'            => $user5 ->id,
             'nombre'             => 'Persona5',
             'apellido'           =>  'Persona5',

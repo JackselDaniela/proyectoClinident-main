@@ -286,4 +286,13 @@ $(document).ready(function($) {
     send()
   })
 
+
 });
+	$(document).ready(function(){
+		const url = new URL(window.location); // Metodo que crea objeto de la url del navegador
+		const abierto = url.searchParams.get('modal');
+		if(abierto){
+			$('.modal').modal('show');
+		}
+
+	});

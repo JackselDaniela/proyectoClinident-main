@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>RegistroPacientes.pdf</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
     <style>
         @page {
             margin: 3cm 0cm 2cm 0cm;
@@ -128,6 +128,10 @@
     </main>
     <footer>
         <p><strong>Derechos Reservados - UPTA Aragua</strong></p>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+        <script src="assets/js/jquery.dataTables.min.js"></script>
+        @yield('js-externo')
     </footer>
 </body>
 </html>

@@ -298,3 +298,4 @@ Route::post('/notifications/read', function () {
 
 Route::get('/get-all-paciente', [PDFController::class, 'getAllpaciente']);
 Route::get('/download-pdf', [PDFController::class, 'downloadPDF'])->name('descargarPDF');
+

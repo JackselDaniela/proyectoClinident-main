@@ -15,7 +15,7 @@
             </div>
             <div class="col-sm-2 col-2">
                 <div class="btn-group btn-group-sm">
-                    <button class="btn btn-white"><img src="{{asset('assets/img/pdf.png')}}" style="width: 30px"></button>
+                    <a href="{{ route('descargarRutaPDF') }}" class="btn btn-white"><img src="{{asset('assets/img/pdf.png')}}" style="width: 30px"></a>
                     <button class="btn btn-white"><i class="fa fa-print fa-lg"></i></button>
                 </div>
             </div>
@@ -105,14 +105,14 @@
                                 </td>
                                 <td class="text-right">
                                     <a href="{{ route('diagnosticos.show', $paciente_diagnostico) }}">
-                                      <i class="fa fa-eye" style="width: 1rem"></i>
+                                      <i class="fa fa-eye" style="width: 1rem ; color:#1F618D;"></i>
                                     </a>
 
                                     @if ($paciente_diagnostico->siguiente !== null)
-                                      <a title="Editar Estado Tratamiento" href="{{route('RutaT.editar',['id'=>$paciente_diagnostico->id])}}"><li class="fa fa-edit" style="width: 1rem"></li></a>
+                                      <a title="Editar Estado Tratamiento" href="{{route('RutaT.editar',['id'=>$paciente_diagnostico->id])}}"><li class="fa fa-edit" style="width: 1rem; color:#9B59B6;"></li></a>
                                     @endif
                                       
-                                    <a title="Eliminar Tratamiento" href="#"><li class="fa fa-trash-o" style="width: 1rem"></li></a>
+                                    <a title="Eliminar Tratamiento" href="#"><li class="fa fa-trash-o" style="width: 1rem; color:red;"></li></a>
                                 </td>
                             </tr>
                             @endforeach

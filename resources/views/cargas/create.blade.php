@@ -4,6 +4,10 @@
   <title>Clinident / Gestion de Insumos</title>
 @endsection
 
+@section('css-externo')
+  <link rel="stylesheet" href="{{ asset('css/select-tratamiento.css') }}">
+@endsection
+
 @section('contenido')
   <div class="page-wrapper">
     <div class="content">
@@ -36,35 +40,22 @@
             </div>
         @endif
           @if ($insumo === null)
-            @if ($codigo !== null)
-            <div class="alert alert-danger alert-dismissible fade show">
-              No se encontró ningún insumo con el código: <b>INS-{{ $codigo }}</b>
-              <button type="button" class="close" data-dismiss="alert">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            @endif
             <h3 class="text-center mb-4">Insumo a Cargar</h3>
-            <form method="GET">
+            <form method="GET" x-data="form">
               <div class="row justify-content-center">
                 <div class="col-sm-4">
                   <div class="form-group">
                     <label for="codigo">
-                      Ingrese el código del Insumo
+                      Seleccione el insumo a cargar
                       <span class="text-danger">*</span>
                     </label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">INS-</span>
-                      </div>
-                      <input name="codigo" type="text" class="form-control" id="codigo" minlength="5" maxlength="5" value="{{ $codigo }}" data-mask="number" required />
-                    </div>
+                    <x-select key="insumos" name="insumo_id" x-model="insumo" />
                   </div>
                 </div>
               </div>
               <div class="row justify-content-center mt-4">
-                <button type="submit" class="btn btn-primary submit-btn">
-                  Buscar Insumo
+                <button type="submit" class="btn btn-primary submit-btn" :disabled="!selected">
+                  Realizar Carga
                 </button>
               </div>
             </form>
@@ -143,5 +134,9 @@
   <script src="{{ asset('assets/js/jquery.fullcalendar.js') }}"></script>
   <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
   <script src="{{ asset('/assets/js/app.js') }}"></script>
-  <script src="{{ asset('js/mask-number.js') }}"></script>
+  <script>
+    window.insumos = {{ Js::from($insumos) }}
+  </script>
+  <script type="module" src="{{ asset('js/select-insumo.js') }}"></script>
+  <script defer src="{{ asset('assets/js/alpine.js') }}"></script>
 @endsection

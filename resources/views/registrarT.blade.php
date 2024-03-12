@@ -25,7 +25,7 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-4 col-3">
-                <h4 class="page-title">Procedimientos de la Clinica</h4>
+                <h4 class="page-title">Procedimientos de la Clínica</h4>
             </div>
             
 
@@ -50,7 +50,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             
-                            <input class="form-control" placeholder="Codigo de Tratamiento" type="text">
+                            <input class="form-control" placeholder="Código de Tratamiento" type="text">
                             <div class="input-group-append">
                                     <button class="btn btn-primary" type="button" style="border-radius: .8rem"><i class="fa fa-search"></i></button>
                             </div>
@@ -71,7 +71,7 @@
                                 <th>Costo</th>
                                 <th>Fecha añadido</th>
                                 <th>Especialidad</th>
-                                <th>Accion</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -87,10 +87,10 @@
                                 
                                 <td >
                                     <a href="{{route('editarT',['id'=>$tratamiento->id])}}">
-                                        <li class="fa fa-edit" style="width: 2rem"></li>
+                                        <li class="fa fa-edit" style="width: 2rem; color:#9B59B6 ;"></li>
                                     </a>
                                     <a href="{{route('eliminarT',['id'=>$tratamiento->id]) }}">
-                                        <li class="fa fa-trash-o" style="width: 2rem"></li>
+                                        <li class="fa fa-trash-o" style="width: 2rem; color:red;"></li>
                                     </a>
                                     
                                 </td>
@@ -157,7 +157,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>Costo
+                                                <label>Costo<span class="text-danger">*</span>
                                                     @if($errors->first('costo_tratamiento'))
                                                     <p class="text-danger">
                                                         {{$errors->first('costo_tratamiento')}}
@@ -169,7 +169,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>Codigo 
+                                                <label>Código 
                                                     @if($errors->first('codigo_tratamiento'))
                                                     <p class="text-danger">
                                                         {{$errors->first('codigo_tratamiento')}}

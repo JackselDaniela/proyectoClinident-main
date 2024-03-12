@@ -48,5 +48,6 @@ export const select = (options) => ({
     const { id } = this.$el.dataset
     this.selected = Number(id)
     this.open = false
+    this.search = ''
   }
 })

@@ -8,7 +8,9 @@ use App\Http\Controllers\OperacionController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\ReservaRestitucionController;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -284,15 +286,17 @@ Route::get('/Ayuda/{slug?}/edit', [App\Http\Controllers\AyudaController::class, 
 Route::put('/update-AnadirP/{slug?}', [App\Http\Controllers\AnadirPController::class, 'update'])->name('AnadirP.update');
 
 
-
-//
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Leer notificaciones
 
+/* Leer notificaciones */
 Route::post('/notifications/read', function () {
-    // TODO -> poner usuario autenticado
-    User::first()->unreadNotifications->markAsRead();
-
+    Auth::user()->unreadNotifications->markAsRead();
     return back();
 })->name('notifications.read');
+
+//Salida PdfPacientes
+
+Route::get('/get-all-paciente', [PDFController::class, 'getAllpaciente']);
+Route::get('/download-pdf', [PDFController::class, 'downloadPDF'])->name('descargarPDF');
+

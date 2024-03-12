@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('title')
-  <title>Clinident / Gestion de Insumos</title>
+  <title>Clinident / Gestión de Insumos</title>
 @endsection
 
 @section('contenido')
@@ -20,7 +20,7 @@
       </div>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{ asset('Index') }}">Gestion de Insumos</a></li>
+          <li class="breadcrumb-item"><a href="{{ asset('Index') }}">Gestión de Insumos</a></li>
           <li class="breadcrumb-item">
             <a href="{{ route('insumos.index') }}">Listado de Insumos</a>
           </li>
@@ -36,12 +36,12 @@
                   <table class="datatable table table-stripped" style="overflow: hidden;!important">
                     <thead>
                       <tr>
-                        <th>Codigo</th>
+                        <th>Código</th>
                         <th>Nombre</th>
                         <th>Tipo</th>
-                        <th>Descripcion</th>
+                        <th>Descripción</th>
                         <th>Existencia</th>
-                        <th>Acciones</th>
+                        <th>Acción</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -52,19 +52,17 @@
                           <td>{{ $insumo->tipo }}</td>
                           <td style="max-width: 15rem">{{ $insumo->descripcion }}</td>
                           <td>{{ $insumo->existencia }}</td>
-                          <td style="min-width: 7rem">
-                            {{-- {{ route('cargas.create') }} --}}
-                            <a href="{{ route('cargas.create', ['insumo_id' => $insumo->id]) }}" class="btn btn-sm btn-success">
-                              <i class="fa fa-plus"></i>
-                              <span class="fs-sm"></span>
+                          <td class="actions-td">
+                            <a href="{{ route('cargas.create', ['insumo_id' => $insumo->id]) }}">
+                              <i class="fa fa-plus" style="width: 1rem; color:#1ABC9C;"></i>
                             </a>
-                            <a class="btn btn-sm btn-warning" href="{{ route('insumos.edit', $insumo) }}">
-                              <i class="fa fa-edit"></i>
+                            <a href="{{ route('insumos.edit', $insumo) }}">
+                              <i class="fa fa-edit" style="width: 1rem; color:#9B59B6;"></i>
                             </a>
                             <form class="d-inline" method="POST" action="{{ route('insumos.destroy', $insumo) }}">
                               @csrf @method('DELETE')
-                              <button type="submit" class="btn btn-sm btn-danger">
-                                <i class="fa fa-trash-o"></i>
+                              <button class="btn-icon" type="submit">
+                                <i class="fa fa-trash-o" style="width: 1rem; color:red;"></i>
                               </button>
                             </form>
                           </td>
@@ -87,4 +85,5 @@
   <script src="{{ asset('assets/js/jquery.fullcalendar.js') }}"></script>
   <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
   <script src="{{ asset('/assets/js/app.js') }}"></script>
+  <script src="{{ asset('js/tabla.js') }}"></script>
 @endsection

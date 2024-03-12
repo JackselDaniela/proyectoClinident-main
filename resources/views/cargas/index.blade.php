@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('title')
-  <title>Clinident / Gestion de Insumos</title>
+  <title>Clinident / Gestión de Insumos</title>
 @endsection
 
 @section('contenido')
@@ -20,7 +20,7 @@
       </div>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{ route('Index') }}">Gestion de Insumos</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('Index') }}">Gestión de Insumos</a></li>
           <li class="breadcrumb-item">
             <a href="{{ route('cargas.index') }}">Cargas de Insumos</a>
           </li>
@@ -36,14 +36,14 @@
                   <table class="datatable table table-stripped" style="overflow: hidden;!important">
                     <thead>
                       <tr>
-                        <th>Codigo</th>
+                        <th>Código</th>
                         <th>Insumo</th>
                         <th>Cantidad</th>
-                        <th>Elaboracion</th>
+                        <th>Elaboración</th>
                         <th>Vencimiento</th>
                         <th>Responsable</th>
                         <th>Fecha</th>
-                        <th>Acciones</th>
+                        <th>Acción</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -59,15 +59,15 @@
                           <td>{{ $carga->vencimiento?->format('d-m-Y') ?? 'N/A' }}</td>
                           <td>{{ $carga->user->name }}</td>
                           <td>{{ $carga->created_at->format('d-m-Y') }}</td>
-                          <td class="text-center" style="min-width: 7rem">
-                            <a class="btn btn-sm btn-warning" href="{{ route('cargas.edit', $carga) }}">
-                              <i class="fa fa-edit"></i>
+                          <td class="actions-td">
+                            <a href="{{ route('cargas.edit', $carga) }}">
+                              <i class="fa fa-edit" style="width: 1rem; color:#9B59B6;"></i>
                             </a>
                             @if ($carga->mutable)
                               <form class="d-inline" method="POST" action="{{ route('cargas.destroy', $carga) }}">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">
-                                  <i class="fa fa-trash-o"></i>
+                                <button class="btn-icon" type="submit">
+                                  <i class="fa fa-trash-o" style="width: 1rem; color:red;"></i>
                                 </button>
                               </form>
                             @endif
@@ -91,4 +91,5 @@
   <script src="{{ asset('assets/js/jquery.fullcalendar.js') }}"></script>
   <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
   <script src="{{ asset('/assets/js/app.js') }}"></script>
+  <script src="{{ asset('js/tabla.js') }}"></script>
 @endsection

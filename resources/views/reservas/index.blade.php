@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('title')
-  <title>Clinident / Gestion de Insumos</title>
+  <title>Clinident / Gestión de Insumos</title>
 @endsection
 
 @section('contenido')
@@ -20,7 +20,7 @@
       </div>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{ asset('Index') }}">Gestion de Insumos</a></li>
+          <li class="breadcrumb-item"><a href="{{ asset('Index') }}">Gestión de Insumos</a></li>
           <li class="breadcrumb-item">
             <a href="{{ route('reservas.index') }}">Reservas de Equipos</a>
           </li>
@@ -36,12 +36,12 @@
                   <table class="datatable table table-stripped" style="overflow: hidden;!important">
                     <thead>
                       <tr>
-                        <th>Codigo</th>
+                        <th>Código</th>
                         <th>Descripción</th>
                         <th>Fecha</th>
                         <th>Cant. Equpos</th>
                         <th>Restitución</th>
-                        <th>Acciones</th>
+                        <th>Acción</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -52,26 +52,26 @@
                           <td>{{ $reserva->created_at->format('d-m-Y') }}</td>
                           <td>{{ $reserva->cantidad }} equipos</td>
                           <td>{{ $reserva->restitucion?->format('d-m-Y') ?? 'N/A' }}</td>
-                          <td class="text-center" style="min-width: 9rem">
+                          <td class="actions-td">
                             @if ($reserva->restitucion === null)
                               <form class="d-inline" method="POST" action="{{ route('reservas.restitucion', $reserva) }}">
                                 @method('PATCH') @csrf
-                                <button class="btn btn-sm btn-success" type="submit">
-                                  <i class="fa fa-rotate-left"></i>
+                                <button class="btn-icon" type="submit">
+                                  <i class="fa fa-rotate-left" style="width: 1rem; color:#1ABC9C;"></i>
                                 </button>
                               </form>
                             @endif
-                            <a class="btn btn-sm btn-primary" href="{{ route('reservas.show', $reserva) }}">
-                              <i class="fa fa-eye"></i>
+                            <a href="{{ route('reservas.show', $reserva) }}">
+                              <i class="fa fa-eye" style="width: 1rem; color:#1F618D;"></i>
                             </a>
-                            <a class="btn btn-sm btn-warning" href="{{ route('reservas.edit', $reserva) }}">
-                              <i class="fa fa-edit"></i>
+                            <a href="{{ route('reservas.edit', $reserva) }}">
+                              <i class="fa fa-edit" style="width: 1rem; color:#9B59B6;"></i>
                             </a>
                             @if ($reserva->mutable)
                               <form class="d-inline" method="POST" action="{{ route('reservas.destroy', $reserva) }}">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">
-                                  <i class="fa fa-trash-o"></i>
+                                <button class="btn-icon" type="submit">
+                                  <i class="fa fa-trash-o" style="width: 1rem; color:red;"></i>
                                 </button>
                               </form>
                             @endif
@@ -95,4 +95,5 @@
   <script src="{{ asset('assets/js/jquery.fullcalendar.js') }}"></script>
   <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
   <script src="{{ asset('/assets/js/app.js') }}"></script>
+  <script src="{{ asset('js/tabla.js') }}"></script>
 @endsection

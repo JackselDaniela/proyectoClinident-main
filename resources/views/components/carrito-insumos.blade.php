@@ -51,9 +51,9 @@
                   <td x-text="current.subtitle"></td>
                   <td x-text="current.title"></td>
                   <td x-text="cantidad"></td>
-                  <td>
-                    <button @click="removeInsumo" :data-id="id" type="button" class="btn btn-danger btn-sm">
-                      <i class="fa fa-trash"></i>
+                  <td class="actions-td">
+                    <button class="btn-icon" @click="removeInsumo" :data-id="id" type="button">
+                      <i class="fa fa-trash-o" style="width: 2rem; color:red;></i>
                     </button>
                     <input type="hidden" :name="`insumos[${index}][id]`" :value="id">
                     <input type="hidden" :name="`insumos[${index}][cantidad]`" :value="cantidad">

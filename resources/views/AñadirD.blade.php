@@ -71,7 +71,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label title="Ingrese su Apellido">Apellido
+                                    <label title="Ingrese su Apellido">Apellido<span class="text-danger">*</span>
                                         @if($errors->first('apellido'))
                                         <p class="text-danger">
                                             {{$errors->first('apellido')}}
@@ -82,7 +82,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label title="Ingrese su Fecha de Nacimiento">Fecha de nacimiento
+                                    <label title="Ingrese su Fecha de Nacimiento">Fecha de nacimiento<span class="text-danger">*</span>
                                         @if($errors->first('fecha_nacimiento'))
                                         <p class="text-danger">
                                             {{$errors->first('fecha_nacimiento')}}
@@ -95,7 +95,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label title="Seleccione su Genero">Genero <span class="text-danger">*</span></label>
+                                    <label title="Seleccione su Genero">Género<span class="text-danger">*</span></label>
                                     <select class="select" name="genero" id="genero" required>
                                         <option value="masculino"> Masculino</option>
                                         <option value="femenino"> Femenino</option>
@@ -124,7 +124,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6 col-lg-3">
                                         <div class="form-group">
-                                            <label title="Seleccione su Estado">Estado
+                                            <label title="Seleccione su Estado">Estado<span class="text-danger">*</span>
                                                 @if($errors->first('estado'))
                                         <p class="text-danger">
                                             {{$errors->first('estado')}}
@@ -141,7 +141,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6 col-lg-3">
                                         <div class="form-group">
-                                            <label title="Seleccione su Municipio">Municipio
+                                            <label title="Seleccione su Municipio">Municipio<span class="text-danger">*</span>
                                                 @if($errors->first('municipio'))
                                         <p class="text-danger">
                                             {{$errors->first('municipio')}}
@@ -156,7 +156,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6 col-lg-3">
                                         <div class="form-group">
-                                            <label title="Seleccione su Ciudad">Ciudad
+                                            <label title="Seleccione su Ciudad">Ciudad<span class="text-danger">*</span>
                                                 @if($errors->first('ciudad'))
                                         <p class="text-danger">
                                             {{$errors->first('ciudad')}}
@@ -170,7 +170,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-6 col-lg-3">
                                         <div class="form-group">
-                                            <label title="Seleccione su Parroquia">Parroquia
+                                            <label title="Seleccione su Parroquia">Parroquia<span class="text-danger">*</span>
                                                 @if($errors->first('parroquia'))
                                         <p class="text-danger">
                                             {{$errors->first('parroquia')}}
@@ -185,7 +185,7 @@
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label>Dirección
+                                            <label>Dirección<span class="text-danger">*</span>
                                                 </label>
                                             <input type="text"  maxlength="50" value="{{old('direccion')}}" name="direccion" id="direccion" placeholder="¿Cúal es su Dirección?" class="form-control ">
                                         </div>
@@ -193,7 +193,7 @@
                                     
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Telefono
+                                            <label>Télefono<span class="text-danger">*</span>
                                                 </label> 
                                             <input type="number" maxlength="11" name="telefono" value="{{old('telefono')}}"  id="telefono" placeholder="Indique su Numero Principal" class="form-control" required>
                                         </div>
@@ -215,7 +215,7 @@
                             {{--/ Datos Ubicacion --}}
     
                             {{-- <div class="form-group row">
-                                <label class=" col-sm-2">Especialidad</label>
+                                <label class=" col-sm-2">Especialidad</label><span class="text-danger">*</span>
                                 <div class="col-md-8">
                                     <select class="form-control">
                                         <option value="No Especifica">-- Seleccione --</option>
@@ -233,7 +233,7 @@
                             
                             <div class="col-sm-6">
                                 <div class="form-group gender-select">
-                                    <label class="gen-label">Especialidad</label>
+                                    <label class="gen-label">Especialidad</label><span class="text-danger">*</span>
                                     <select class="select" name="especialidad" id="especialidad" >
                                         <option value=""> Seleccione </option>
                                         @foreach ($especialidad as $especialidad)
@@ -256,7 +256,7 @@
                             
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Universidad
+                                    <label>Universidad<span class="text-danger">*</span>
                                         @if($errors->first('universidad'))
                                         <p class="text-danger">
                                             {{$errors->first('universidad')}}
@@ -267,7 +267,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Experiencia
+                                    <label>Experiencia<span class="text-danger">*</span>
                                         @if($errors->first('experiencia'))
                                         <p class="text-danger">
                                             {{$errors->first('experiencia')}}
@@ -279,7 +279,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Bachillerato
+                                    <label>Bachillerato<span class="text-danger">*</span>
                                         @if($errors->first('bachillerato'))
                                         <p class="text-danger">
                                             {{$errors->first('bachillerato')}}
@@ -290,7 +290,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Destacado
+                                    <label>Destacado<span class="text-danger">*</span>
                                         @if($errors->first('destacado'))
                                         <p class="text-danger">
                                             {{$errors->first('destacado')}}
@@ -301,13 +301,13 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Contraseña</label>
+                                    <label>Contraseña</label><span class="text-danger">*</span>
                                     <input class="form-control" placeholder="Introduzca Contraseña " type="password">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Confirmar Contraseña</label>
+                                    <label>Confirmar Contraseña</label><span class="text-danger">*</span>
                                     <input class="form-control" placeholder="Confirme su contraseña"  type="password">
                                 </div>
                             </div>

@@ -8,6 +8,7 @@ use App\Models\Insumo;
 use App\Models\User;
 use App\Services\Codigo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class InsumoController extends Controller
@@ -79,8 +80,7 @@ class InsumoController extends Controller
             ...$request->only(['elaboracion', 'vencimiento']),
             'codigo' => Codigo::generar('carga'),
             'operacion_id' => $operacion->id,
-            // TODO -> poner el usuario actual cuando haya auth
-            'user_id' => User::first()->id,
+            'user_id' => Auth::user()->id,
         ]);
 
         return $redirect;

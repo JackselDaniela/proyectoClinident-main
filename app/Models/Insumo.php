@@ -28,9 +28,9 @@ class Insumo extends Model
         }, 0);
     }
 
-    public static function options(string $tipo)
+    public static function options(string $tipo = null)
     {
-        $insumos = self::where('tipo', $tipo)
+        $insumos = self::when($tipo, fn($query) => $query->where('tipo', $tipo))
             ->latest()
             ->get();
 

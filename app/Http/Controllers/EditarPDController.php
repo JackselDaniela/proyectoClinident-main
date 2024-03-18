@@ -9,6 +9,7 @@ use App\Models\doctor;
 use App\Models\estado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Str;
 
 class EditarPDController extends Controller
@@ -68,7 +69,8 @@ class EditarPDController extends Controller
 
         return view('EditarPD', [
             'doctor' => $doctor,
-            'estados' => $estados
+            'estados' => $estados,
+            'id' => $id
         ]);
     }
 
@@ -96,13 +98,17 @@ class EditarPDController extends Controller
         $doctor = doctor::with('persona')
             ->findOrFail($id);
 
+        $foto_anterior = $doctor->persona->foto;
+        $path = $request->file('foto')->storeAs('imagenes', \Carbon\Carbon::now()->timestamp . '.jpg', 'public');
+        Storage::delete('public/imagenes/' . $foto_anterior);
+
         $doctor = DB::table('personas')->where('id', $doctor->personas_id)
             ->update([
                 'nombre' => $request->nombre,
                 'apellido' => $request->apellido,
                 'fecha_nacimiento' => $request->fecha_nacimiento,
                 'genero' => $request->genero,
-
+                'foto' => substr($path, 9)
             ]);
         $doctor = DB::table('dato_ubicacions')
             ->update([

@@ -29,15 +29,18 @@
 
                 <div class="row">
                     {{-- @foreach ($doctor as $doctor)  --}}
-                    <form action="{{ route('EditarPD.update', $doctor->id) }}" method="POST">
+                    <form action="{{ route('EditarPD.update', $id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="col-md-12">
                             <div class="profile-img-wrap">
-                                <img class="inline-block" src="{{ asset('assets/img/user.jpg') }}" alt="user">
+                                <img id="mostrarImagen" class="inline-block"
+                                    src="{{ $doctor->persona->foto == null ? asset('assets/img/user.jpg') : asset('storage/imagenes/' . $doctor->persona->foto) }}"
+                                    alt="user">
                                 <div class="fileupload btn">
                                     <span class="btn-text">editar</span>
-                                    <input name="foto" class="upload" type="file">
+                                    <input class="upload" type="file" name="foto"
+                                        accept="image/png, image/jpeg, image/jpg" onchange="loadImage(event)">
                                 </div>
                             </div>
                             <div class="profile-basic">
@@ -174,4 +177,5 @@
     <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('/assets/js/app.js') }}"></script>
     <script src="{{ asset('/assets/js/modal.js') }}"></script>
+    <script src="{{ asset('/assets/js/imagePreview.js') }}"></script>
 @endsection

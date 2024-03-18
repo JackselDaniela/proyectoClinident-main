@@ -11,6 +11,7 @@ use App\Models\municipio;
 use App\Models\ciudad;
 use App\Models\parroquia;
 use App\Models\nacionalidad;
+use App\Models\User;
 
 
 
@@ -72,25 +73,34 @@ class AnadirDController extends Controller
   
     public function store(Request $request)
     {
-        
-        
-       
+        // dd($request->all());
+        $estado = estado::where('id_estado','=',$request->estado )->first();
+        $municipio = municipio::where('id_municipio','=',$request->municipio )->first();
+        $ciudad = ciudad::where('id_ciudad','=',$request->ciudad )->first();
+        $parroquia = parroquia::where('id_parroquia','=',$request->parroquia )->first();
+    // dd($estado->id_estado);
+
         $dato_ubicacion = dato_ubicacion::create([
             
-            'estados_id'     => $request->post('estado'),
-            'municipios_id'   => $request->post('municipio'),
-            'ciudads_id'     => $request->post('ciudad'),
-            'parroquias_id'   => $request->post('parroquia'),
+            'estados_id'     =>  $estado->id_estado,
+            'municipios_id'   =>  $municipio->id_municipio,
+            'ciudades_id'     =>  $ciudad->id_ciudad,
+            'parroquias_id'   =>  $parroquia->id_parroquia,
             'direccion'  => $request-> post('direccion'),
             'telefono'   => $request-> post('telefono'),
-            'correo'     => $request-> post('correo'),
-            
         ]);
+        $user = User::create([
+            'email' => $request-> post('correo'),
+            'password' => $request-> post('contraseña'),
+
+         ]);
         $tipo = tipo_persona::where('tipo_persona','Doctor')->first();
         $nacionalidad = nacionalidad::get();
+       
 
         $persona = persona::create([
-            'nacionalidads_id'  => $request->post('nacionalidad') ,
+            'nacionalidads_id' => $request->post('nacionalidad') ,
+            'user_id'          => $user -> id,
             'doc_identidad'    => $request->post('doc_identidad'),
             'nombre'           => $request->post('nombre'),
             'apellido'         => $request->post('apellido'),

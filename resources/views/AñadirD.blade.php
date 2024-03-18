@@ -164,7 +164,7 @@
                                         @endif</label>
                                         <select class="select"  name="ciudad" id="ciudad" required>
                                             <option > Seleccione </option>
-                                            
+                                           
                                         </select>
                                     </div>
                                     </div>
@@ -302,15 +302,15 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Contraseña</label><span class="text-danger">*</span>
-                                    <input class="form-control" placeholder="Introduzca Contraseña " type="password">
+                                    <input class="form-control" name="contraseña" placeholder="Introduzca Contraseña " type="password" required>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            {{-- <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Confirmar Contraseña</label><span class="text-danger">*</span>
                                     <input class="form-control" placeholder="Confirme su contraseña"  type="password">
                                 </div>
-                            </div>
+                            </div> --}}
 
                          </div>
                         

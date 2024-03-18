@@ -14,6 +14,7 @@ use App\Models\estado;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Str;
 
 class EditarPController extends Controller
@@ -69,7 +70,7 @@ class EditarPController extends Controller
         $paciente = paciente::with('persona', 'expediente', 'persona.dato_ubicacion')
             ->join('expedientes', 'expedientes.pacientes_id', '=', 'expedientes.id')
             ->find($id);
-        return view('EditarP', compact('paciente', 'estado'));
+        return view('EditarP', compact('id', 'paciente', 'estado'));
     }
     public function buscar($id)
     {
@@ -99,12 +100,17 @@ class EditarPController extends Controller
         $paciente = paciente::with('persona')
             ->findOrFail($id);
 
+        $foto_anterior = $paciente->persona->foto;
+        $path = $request->file('foto')->storeAs('imagenes', \Carbon\Carbon::now()->timestamp . '.jpg', 'public');
+        Storage::delete('public/imagenes/' . $foto_anterior);
+
         $paciente = DB::table('personas')->where('id', $paciente->personas_id)
             ->update([
                 'nombre' => $request->nombre,
                 'apellido' => $request->apellido,
                 'fecha_nacimiento' => $request->fecha_nacimiento,
                 'genero' => $request->genero,
+                'foto' => substr($path, 9)
 
             ]);
         $paciente = DB::table('dato_ubicacions')

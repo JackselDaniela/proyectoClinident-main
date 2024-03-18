@@ -32,7 +32,7 @@ class CreatePersonasTable extends Migration
 
             $table->unsignedBigInteger('tipo_personas_id');
             $table->foreign('tipo_personas_id')->references('id')->on('tipo_personas')->onDelete('cascade');
-            
+            $table->softdeletes();
             $table->timestamps();
         });
     }

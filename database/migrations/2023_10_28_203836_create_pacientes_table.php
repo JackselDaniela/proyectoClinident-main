@@ -20,8 +20,7 @@ class CreatePacientesTable extends Migration
             $table->foreign('personas_id')->references('id')->on('personas')->onDelete('cascade');
 
             $table->string('ocupacion',255);
-            
-
+            $table->softdeletes();
             $table->timestamps();
         });
     }

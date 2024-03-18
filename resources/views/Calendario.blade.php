@@ -158,9 +158,9 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary submit-btn save-event" id="actualizarCita">Actualizar</button>
-                        <button type="submit" class="btn btn-danger submit-btn save-event" form="eliminar">Eliminar</button>
+                        <button type="submit" class="btn btn-danger submit-btn save-event" form="formEliminar">Eliminar</button>
                     </form>
-                    <form action='{{ url('/') }}' name="eliminar" method="POST" id="formEliminar">
+                    <form action='{{ url('/') }}' method="POST" id="formEliminar">
                         @csrf
                         @method( 'DELETE')
                     </form>

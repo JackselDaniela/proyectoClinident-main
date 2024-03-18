@@ -91,7 +91,7 @@ class AnadirDController extends Controller
         ]);
         $user = User::create([
             'email' => $request-> post('correo'),
-            'password' => $request-> post('contraseña'),
+            'password' => bcrypt($request->post('contraseña')),
 
          ]);
         $tipo = tipo_persona::where('tipo_persona','Doctor')->first();

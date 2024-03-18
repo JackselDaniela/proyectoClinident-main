@@ -12,11 +12,7 @@ use App\Models\persona;
 
 class CalendarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         $tipo_consulta = tipo_consulta::get();
@@ -26,36 +22,28 @@ class CalendarioController extends Controller
         
         foreach ($citas as $cita) {
             $inicioStr = "{$cita->fecha}{$cita->inicio}";
-            $finStr = "{$cita->fecha}{$cita->fin}"; 
+            $finStr = "{$cita->fecha}{$cita->fin}";
+            $inicio = Carbon::createFromFormat($format, $inicioStr);
+            $fin = Carbon::createFromFormat($format, $finStr);
             
             $evento[] = [
                 'id' => $cita->id,
-                'start' => Carbon::createFromFormat($format, $inicioStr),
-                'end' => Carbon::createFromFormat($format, $finStr),
+                'start' => $inicio,
+                'end' => $fin,
+                'formateado' => [
+                    'fecha'  => $cita->fecha,
+                    'inicio' => $inicio->format('H:i'),
+                    'fin' => $fin->format('H:i'),
+                ],
                 'title' => $cita->descripcion,
                 'tipo_consultas_id'=> $cita->tipo_consultas_id,
             ];
-        }  
-         
+        } 
+
         return view('Calendario', compact('evento','tipo_consulta'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $tipo = tipo_consulta::get();
@@ -64,7 +52,7 @@ class CalendarioController extends Controller
        $request->validate([
         'paciente'=>['required', 'integer', 'numeric', 'digits_between:6,8',],
         'doctor'=>['required', 'integer', 'numeric', 'digits_between:6,8',],
-        'descripcion'=>['required', 'string', 'alpha_num', 'min:10', 'max:250'],
+        'descripcion'=>['required', 'string', 'min:10', 'max:250'],
         'inicio'=>['required', 'date_format:H:i', 'before_or_equal:17:00', 'after_or_equal:07:30'],
         'fin'=>['required','date_format:H:i', 'before_or_equal:18:00', 'after_or_equal:08:00', 'after:inicio'],
         'fecha'=>['required','date','after_or_equal:today','before_or_equal:+60days'],
@@ -95,38 +83,31 @@ class CalendarioController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+   
+    public function update(Request $request, cita $cita)
     {
-        //
-    }
+        
+        $tipo = tipo_consulta::get();
+        $regla = 'in:' . $tipo->implode('id',',');
+       
+        $request->validate([
+       
+        'descripcion'=>['required', 'string', 'min:10', 'max:250'],
+        'inicio'=>['required', 'date_format:H:i', 'before_or_equal:17:00', 'after_or_equal:07:30'],
+        'fin'=>['required','date_format:H:i', 'before_or_equal:18:00', 'after_or_equal:08:00', 'after:inicio'],
+        'fecha'=>['required','date','after_or_equal:today','before_or_equal:+60days'],
+        'tipo_cita' =>['required', $regla]
+       ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $cita->update([
+             'tipo_consultas_id'     => $request->post('tipo_cita'),
+             'inicio'   =>$request->post('inicio'),
+             'fin'  =>$request->post('fin'),
+             'fecha'=>$request->post('fecha'),
+             'descripcion'   => $request-> post('descripcion'),
+         ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return redirect()->route("Calendario");
     }
 
     /**
@@ -135,8 +116,9 @@ class CalendarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(cita $cita)
     {
-        //
+        $cita->delete();
+        return redirect()->route("Calendario");
     }
 }

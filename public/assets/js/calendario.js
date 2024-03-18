@@ -39,24 +39,25 @@ document.addEventListener('DOMContentLoaded', function() {
         let inputInicio = document.getElementById('inicio_')
         let inputFin = document.getElementById('fin_')
         let inputDescripcion = document.getElementById('descripcion_')
-        let selectTipoConsulta = document.getElementById('tipo_consulta')
-        let ruta = `/Calendario/${info.event.id}`
+        let selectTipoConsulta = $('#tipo_consulta')
+        let ruta = `Calendario/${info.event.id}`
         let formEditar = document.getElementById('formEditar')
         let formEliminar = document.getElementById('formEliminar')
 
-
-        inputFechaa.value = info.event.startStr
-        inputInicio.value = `${info.event.start.getHours()}:${info.event.start.getMinutes()}`
-        inputFin.value = `${info.event.end.getHours()}:${info.event.end.getMinutes()}`
+        const { formateado, tipo_consultas_id } = info.event._def.extendedProps
+        const { inicio, fin, fecha } = formateado
+        inputFechaa.value = fecha
+        inputInicio.value = inicio
+        inputFin.value = fin
+        selectTipoConsulta.val(tipo_consultas_id).trigger('change') 
         inputDescripcion.value = info.event.title
-        selectTipoConsulta.value = info.event.tipo_consultas_id
 
         formEditar.action += ruta
         formEliminar.action += ruta
 
+        $('#editarCita').modal({backdrop:'static', keyboard:true})
 
-
-
+        console.log(tipo_consultas_id, selectTipoConsulta.value)
 
        }
 

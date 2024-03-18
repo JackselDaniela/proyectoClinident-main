@@ -30,6 +30,7 @@ class CreateDoctorsTable extends Migration
             $table->string('experiencia',255);
             $table->string('bachillerato',255);
             $table->string('destacado',255);
+            $table->softdeletes();
 
             $table->timestamps();
         });

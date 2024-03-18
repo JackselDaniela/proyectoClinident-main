@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\persona;
 use App\Models\dato_ubicacion;
 use App\Models\especialidad;
 use App\Models\doctor;
-
-
+use App\Models\estado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Str;
@@ -53,7 +53,6 @@ class EditarPDController extends Controller
      */
     public function show($id)
     {
-       
     }
     /**
      * Show the form for editing the specified resource.
@@ -63,11 +62,13 @@ class EditarPDController extends Controller
      */
     public function edit($id)
     {
-        $doctor = doctor::with('persona','especialidad','persona.dato_ubicacion')
+        $doctor = doctor::with('persona', 'especialidad', 'persona.dato_ubicacion')
             ->find($id);
-        
+        $estados = estado::all();
+
         return view('EditarPD', [
             'doctor' => $doctor,
+            'estados' => $estados
         ]);
     }
 
@@ -80,40 +81,38 @@ class EditarPDController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         $doctor = DB::table('especialidads')
-         -> update([
-            'especialidad'=>$request->especialidad,
-            
-         ]);
-
-         $doctor = DB::table('doctors')->where('id', $id)
-         -> update([
-            'universidad'=>$request ->universidad,
-            'destacado'=>$request -> destacado,
-         ]);
-
-         $doctor = doctor::with('persona')
-            ->findOrFail($id);
-         
-         $doctor = DB::table('personas')->where('id', $doctor->personas_id)
             ->update([
-            'nombre'=>$request -> nombre,
-            'apellido'=>$request -> apellido,
-            'fecha_nacimiento'=>$request -> fecha_nacimiento,
-            'genero'=>$request -> genero,
-            
-        ]);
-         $doctor = DB::table('dato_ubicacions')
-         -> update([
-            'direccion'=>$request -> direccion,
-            'estado'=>$request -> estado,
-            'telefono'=>$request -> telefono,
-            
-         ]);
-         
-        return redirect()->route("Doctores");
+                'especialidad' => $request->especialidad,
 
+            ]);
+
+        $doctor = DB::table('doctors')->where('id', $id)
+            ->update([
+                'universidad' => $request->universidad,
+                'destacado' => $request->destacado,
+            ]);
+
+        $doctor = doctor::with('persona')
+            ->findOrFail($id);
+
+        $doctor = DB::table('personas')->where('id', $doctor->personas_id)
+            ->update([
+                'nombre' => $request->nombre,
+                'apellido' => $request->apellido,
+                'fecha_nacimiento' => $request->fecha_nacimiento,
+                'genero' => $request->genero,
+
+            ]);
+        $doctor = DB::table('dato_ubicacions')
+            ->update([
+                'direccion' => $request->direccion,
+                'estados_id' => $request->estado,
+                'telefono' => $request->telefono,
+
+            ]);
+
+        return redirect()->route("Doctores");
     }
 
     /**

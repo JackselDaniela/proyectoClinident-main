@@ -15,17 +15,18 @@ class CreateCitasTable extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pacientes_id')->nullable();
+            $table->unsignedBigInteger('pacientes_id');
             $table->foreign('pacientes_id')->references('id')->on('pacientes')->onDelete('cascade');
-            $table->unsignedBigInteger('doctors_id')->nullable();
+            $table->unsignedBigInteger('doctors_id');
             $table->foreign('doctors_id')->references('id')->on('doctors')->onDelete('cascade');
-            $table->unsignedBigInteger('tipo_consultas_id')->nullable();
+            $table->unsignedBigInteger('tipo_consultas_id');
             $table->foreign('tipo_consultas_id')->references('id')->on('tipo_consultas')->onDelete('cascade');
             
             $table->time('inicio');
             $table->time('fin');
             $table->date('fecha');
             $table->string('descripcion');
+            $table->timestamp('confirmacion')->nullable();
             $table->softdeletes();
             $table->timestamps();
         });

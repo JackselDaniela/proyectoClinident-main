@@ -22,6 +22,7 @@ use App\Http\Controllers\PDFController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::view('/correo','emails.confirmacion');
 
 Route::get('/', function () {
     return view('Landing');

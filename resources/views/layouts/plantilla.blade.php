@@ -462,7 +462,7 @@ $persona = $user->persona;
         }
         
     </style> 
- <p class="m-0 py-2">
+ <p class="m-0 py-2 pl-5">
     <img  style="width: 0.8cm" src="{{asset('assets/img/logou.png')}}" alt="">
     <strong>Derechos Reservados - UPTA Aragua</strong>
 </p>

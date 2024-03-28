@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,25 +18,26 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     @yield('css-externo')
 </head>
+
 <body>
-<div class="main-wrapper">
-<div class="header">
-			<div class="header-left">
-				<a href="{{asset('Index')}}" class="logo">
-					<img src="assets/img/logoc.png" width="35" height="35" alt=""> <span>Clinident</span>
-				</a>
-			</div>
-			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+    <div class="main-wrapper">
+        <div class="header">
+            <div class="header-left">
+                <a href="{{ asset('Index') }}" class="logo">
+                    <img src="assets/img/logoc.png" width="35" height="35" alt=""> <span>Clinident</span>
+                </a>
+            </div>
+            <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
             <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
             <ul class="nav user-menu float-right">
                 <li class="nav-item" style="color: aliceblue; padding-top:1rem;">
                     @php
                         date_default_timezone_set('America/Caracas');
-                        $fechaActual = date("d-m-Y");
-                        $horaActual = date("h:i:s");
- 
-                        echo "Fecha:$fechaActual Hora: $horaActual" ;
-                        
+                        $fechaActual = date('d-m-Y');
+                        $horaActual = date('h:i:s');
+
+                        echo "Fecha:$fechaActual Hora: $horaActual";
+
                     @endphp
 
                 </li>
@@ -117,20 +119,21 @@
                 <li class="nav-item dropdown has-arrow">
                     <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                         <span class="user-img">
-							<img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
-							<span class="status online"></span>
-						</span>
-						<span>Administrador</span>
+                            <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
+                            <span class="status online"></span>
+                        </span>
+                        <span>{{ auth()->user()->persona->nombre }}</span>
                     </a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="{{asset('Perfil')}}">Mi Perfil</a>
-						<a class="dropdown-item" href="{{asset('EditarP')}}">Editar Perfil</a>
-						<a class="dropdown-item" href="login.html">Cerrar Sesión</a>
-					</div>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ asset('Perfil') }}">Mi Perfil</a>
+                        <a class="dropdown-item" href="{{ asset('EditarP') }}">Editar Perfil</a>
+                        <a class="dropdown-item" href="login.html">Cerrar Sesión</a>
+                    </div>
                 </li>
             </ul>
             <div class="dropdown mobile-user-menu float-right">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+                        class="fa fa-ellipsis-v"></i></a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="profile.html">My Profile</a>
                     <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
@@ -146,106 +149,117 @@
                         <li class="active">
                             <a href=""><i class="fa fa-dashboard"></i> <span>Inicio</span></a>
                         </li>
-                        
-                        <li class="submenu">
-							<a href="#"><i class="fa fa-hospital-o"></i> <span> Tratamiento</span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="">Registrar</a></li>
-							</ul>
-						</li>
 
                         <li class="submenu">
-							<a href="#"><i class="fa fa-calendar"></i> <span> Agendar Citas </span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="">Calendario de Citas</a></li>
-								<li><a href="citasConfirmadas.html">Citas Confirmadas</a></li>
-							</ul>
-						</li>
+                            <a href="#"><i class="fa fa-hospital-o"></i> <span> Tratamiento</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a href="">Registrar</a></li>
+                            </ul>
+                        </li>
+
                         <li class="submenu">
-							<a href="#"><i class="fa fa-wheelchair"></i> <span> Gestion de Paciente</span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="listadoPacientes.html">Registro Expediente</a></li>
-								<li><a href="hclinico.html">Historia Clinica</a></li>
-								<li><a href="rutaTratamiento.html">Ruta de Tratamiento</a></li>
-							</ul>
-						</li>
+                            <a href="#"><i class="fa fa-calendar"></i> <span> Agendar Citas </span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a href="">Calendario de Citas</a></li>
+                                <li><a href="citasConfirmadas.html">Citas Confirmadas</a></li>
+                            </ul>
+                        </li>
                         <li class="submenu">
-							<a href="#"><i class="fa fa-cube"></i> <span> Gestion de Insumos</span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="nuevoI.html">Nuevo Insumo</a></li>
-								<li><a href="nuevaC.html">Nueva Carga</a></li>
-							</ul>
-						</li>
+                            <a href="#"><i class="fa fa-wheelchair"></i> <span> Gestion de Paciente</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a href="listadoPacientes.html">Registro Expediente</a></li>
+                                <li><a href="hclinico.html">Historia Clinica</a></li>
+                                <li><a href="rutaTratamiento.html">Ruta de Tratamiento</a></li>
+                            </ul>
+                        </li>
                         <li class="submenu">
-							<a href="#"><i class="fa fa-money"></i> <span> Honorarios</span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="ganancias.html">Ganancias</a></li>
-								<li><a href="tRealizados.html">Tratamientos Realizados</a></li>
-							</ul>
-						</li>
+                            <a href="#"><i class="fa fa-cube"></i> <span> Gestion de Insumos</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a href="nuevoI.html">Nuevo Insumo</a></li>
+                                <li><a href="nuevaC.html">Nueva Carga</a></li>
+                            </ul>
+                        </li>
                         <li class="submenu">
-							<a href="#"><i class="fa fa-cog"></i> <span> Configuracion</span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="configuracion.html">Gestion de Usuario</a></li>
-								
+                            <a href="#"><i class="fa fa-money"></i> <span> Honorarios</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a href="ganancias.html">Ganancias</a></li>
+                                <li><a href="tRealizados.html">Tratamientos Realizados</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fa fa-cog"></i> <span> Configuracion</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a href="configuracion.html">Gestion de Usuario</a></li>
+
                                 <li class="submenu">
-                                    <a href="#"></i> <span> Mantenimiento</span> <span class="menu-arrow"></span></a>
+                                    <a href="#"></i> <span> Mantenimiento</span> <span
+                                            class="menu-arrow"></span></a>
                                     <ul style="display: none;">
                                         <li><a href="bitacora.html">Bitacora</a></li>
                                         <li><a href="blank-page.html">Respaldo BD</a></li>
                                     </ul>
                                 </li>
-							</ul>
-						</li>
+                            </ul>
+                        </li>
 
 
 
                     </ul>
                 </div>
             </div>
-           
-        </div>
-</div>
-<div class="sidebar" id="sidebar">
-    <div class="sidebar-inner slimscroll">
-        <div class="sidebar-menu">
-            <ul>
-                <li>
-                    <a href="{{asset('Index')}}"><i class="fa fa-home back-icon"></i> <span>Inicio</span></a>
-                </li>
-                <li class="menu-title">Gestion de Usuario</li>
-                <li>
-                    <a href="{{asset('GestionU')}}"><i class="fa fa-building"></i> <span>Contacto</span></a>
-                </li>
-                <li>
-                    <a href="{{asset('Localizacion')}}"><i class="fa fa-clock-o"></i> <span>Localización</span></a>
-                </li>
-                <li>
-                    <a href="{{asset('Personalizar')}}"><i class="fa fa-picture-o"></i> <span>Personalizar</span></a>
-                </li>
-                <li>
-                    <a href="{{asset('RolesP')}}"><i class="fa fa-key"></i> <span>Roles y Permisos</span></a>
-                </li>
-                <li>
-                    <a href="{{asset('Correo')}}"><i class="fa fa-envelope-o"></i> <span>Correo</span></a>
-                </li>
-                
-                <li>
-                    <a href="{{asset('Porcentajes')}}"><i class="fa fa-money"></i> <span> Ajuste de Porcentajes </span></a>
-                </li>
-                
-                <li>
-                    <a href="{{asset('CambioC')}}"><i class="fa fa-lock"></i> <span>Cambio de Contraseña</span></a>
-                </li>
-                
-            </ul>
+
         </div>
     </div>
-</div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="{{ asset('Index') }}"><i class="fa fa-home back-icon"></i> <span>Inicio</span></a>
+                    </li>
+                    <li class="menu-title">Gestion de Usuario</li>
+                    <li>
+                        <a href="{{ asset('GestionU') }}"><i class="fa fa-building"></i> <span>Contacto</span></a>
+                    </li>
+                    <li>
+                        <a href="{{ asset('Localizacion') }}"><i class="fa fa-clock-o"></i>
+                            <span>Localización</span></a>
+                    </li>
+                    <li>
+                        <a href="{{ asset('Personalizar') }}"><i class="fa fa-picture-o"></i>
+                            <span>Personalizar</span></a>
+                    </li>
+                    <li>
+                        <a href="{{ asset('RolesP') }}"><i class="fa fa-key"></i> <span>Roles y Permisos</span></a>
+                    </li>
+                    <li>
+                        <a href="{{ asset('Correo') }}"><i class="fa fa-envelope-o"></i> <span>Correo</span></a>
+                    </li>
 
-@yield('contenido')  
+                    <li>
+                        <a href="{{ asset('Porcentajes') }}"><i class="fa fa-money"></i> <span> Ajuste de Porcentajes
+                            </span></a>
+                    </li>
 
-{{-- <div class="notification-box">
+                    <li>
+                        <a href="{{ asset('CambioC') }}"><i class="fa fa-lock"></i> <span>Cambio de
+                                Contraseña</span></a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    @yield('contenido')
+
+    {{-- <div class="notification-box">
     <div class="msg-sidebar notifications msg-noti">
         <div class="topnav-dropdown-header">
             <span>Messages</span>
@@ -457,7 +471,7 @@
 
 </body>
 <footer>
-<div class="sidebar-overlay" data-reff=""></div>
+    <div class="sidebar-overlay" data-reff=""></div>
     <script src="{{ asset('/assets/js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('/assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('/assets/js/bootstrap.min.js') }}"></script>
@@ -469,7 +483,8 @@
     <script src="{{ asset('/assets/js/select2.min.js') }}"></script>
     <script src="{{ asset('/assets/js/moment.min.js') }}"></script>
     <script src="{{ asset('/assets/js/bootstrap-datetimepicker.min.js') }}"></script>
-    
-@yield('js-externo')
+
+    @yield('js-externo')
 </footer>
+
 </html>

@@ -40,7 +40,12 @@ class Handler extends ExceptionHandler
         });
     }
 
-    // Redirige hacia atras si la peticion no esta autorizada (usuario no posee permisos de spatie)
+    /**
+     * Redireccion
+     * 
+     * Cualquier usuario que intente acceder a una ruta que tenga un rol o permiso para ser accedido
+     * trata de ingresar a esa vista, automáticamente será redireccionado hacia la ruta anterior
+     */
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof UnauthorizedException) {

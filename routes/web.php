@@ -34,7 +34,7 @@ Route::post('/login', [App\Http\Controllers\LandingController::class, 'autentica
 Route::delete('/logout', [App\Http\Controllers\LandingController::class, 'cerrarSesion'])->middleware('auth')->name('login.cerrarSesion');
 
 
-/* Registrar tratamiento*/ 
+/* Registrar tratamiento*/
 Route::get('/RegistrarT', [App\Http\Controllers\RegistrarTController::class, 'index'])->name('RegistrarT');
 
 Route::post('/RegistrarT', [App\Http\Controllers\RegistrarTController::class, 'store'])->name('RegistrarT.store');
@@ -46,7 +46,7 @@ Route::get('/editarT /{id}', [App\Http\Controllers\RegistrarTController::class, 
 Route::put('/update-RegistrarT/{id}', [App\Http\Controllers\RegistrarTController::class, 'update'])->name('RegistrarT.update');
 
 
-/* Calendario*/ 
+/* Calendario*/
 Route::get('/Calendario', [App\Http\Controllers\CalendarioController::class, 'index'])->name('Calendario');
 
 Route::post('/Calendario', [App\Http\Controllers\CalendarioController::class, 'store'])->name('Calendario.store');
@@ -57,7 +57,7 @@ Route::delete('/Calendario/{cita}', [App\Http\Controllers\CalendarioController::
 
 
 
-/* Citas Confirmadas*/ 
+/* Citas Confirmadas*/
 Route::get('/CitasC', [App\Http\Controllers\CitasCController::class, 'index'])->name('CitasC');
 
 
@@ -73,7 +73,7 @@ Route::get('/HistoriaC', [App\Http\Controllers\HistoriaCController::class, 'inde
 Route::get('/HistoriaC/buscar/{id}', [App\Http\Controllers\HistoriaCController::class, 'buscar'])->name('HistoriaC.buscar');
 
 
-/* añadir tratamiento paciente*/ 
+/* añadir tratamiento paciente*/
 Route::get('/AnadirT', [App\Http\Controllers\AnadirTController::class, 'index'])->name('AnadirT');
 
 Route::post('/AnadirT', [App\Http\Controllers\AnadirTController::class, 'store'])->name('AnadirT.store');
@@ -85,7 +85,7 @@ Route::get('/AnadirT/buscar/{id}', [App\Http\Controllers\AnadirTController::clas
 Route::put('/update-AnadirT/{slug?}', [App\Http\Controllers\AnadirTController::class, 'update'])->name('AnadirT.update');
 
 
-/* Odontograma*/ 
+/* Odontograma*/
 Route::get('/Odontograma', [App\Http\Controllers\OdontogramaController::class, 'index'])->name('Odontograma');
 
 Route::post('/Odontograma/{id}/{piezas_id}', [App\Http\Controllers\OdontogramaController::class, 'store'])->name('Odontograma.store');
@@ -144,11 +144,12 @@ Route::post(
     [DiagnosticoController::class, 'store']
 )->name('diagnosticos.consumos.store');
 
-/* Ganancias Acumuladas */ 
+/* Ganancias Acumuladas */
 Route::get('/GananciasA', [App\Http\Controllers\GananciasAController::class, 'index'])->name('GananciasA');
+Route::post('/GananciasA/mostrar', [App\Http\Controllers\GananciasAController::class, 'mostrar'])->name('GananciasA.mostrar');
 
 
-/* Tratamientos Realizados */ 
+/* Tratamientos Realizados */
 Route::get('/TratamientoR', [App\Http\Controllers\TratamientoRController::class, 'index'])->name('TratamientoR');
 
 
@@ -158,59 +159,59 @@ Route::get('/GestionU', [App\Http\Controllers\GestionUController::class, 'index'
 Route::post('/GestionU', [App\Http\Controllers\GestionUController::class, 'store'])->name('GestionU.store');
 
 
-/* Localización*/ 
+/* Localización*/
 Route::get('/Localizacion', [App\Http\Controllers\LocalizacionController::class, 'index'])->name('Localizacion');
 
 Route::post('/Localizacion', [App\Http\Controllers\LocalizacionController::class, 'store'])->name('Localizacion.store');
 
 
-/* Personalizar*/ 
+/* Personalizar*/
 Route::get('/Personalizar', [App\Http\Controllers\PersonalizarController::class, 'index'])->name('Personalizar');
 
 Route::post('/Personalizar', [App\Http\Controllers\PersonalizarController::class, 'store'])->name('Personalizar.store');
 
 
-/* Roles Y Permisos*/ 
+/* Roles Y Permisos*/
 Route::get('/RolesP', [App\Http\Controllers\RolesPController::class, 'index'])->name('RolesP');
 
 
-/* Correo*/ 
+/* Correo*/
 Route::get('/Correo', [App\Http\Controllers\CorreoController::class, 'index'])->name('Correo');
 
 Route::post('/Correo', [App\Http\Controllers\CorreoController::class, 'store'])->name('Correo.store');
 
 
-/* Porcentajes*/ 
+/* Porcentajes*/
 Route::get('/Porcentajes', [App\Http\Controllers\PorcentajesController::class, 'index'])->name('Porcentajes');
 
 Route::post('/Porcentajes', [App\Http\Controllers\PorcentajesController::class, 'store'])->name('Porcentajes.store');
 
 
-/* Cambiar Contraseña*/ 
+/* Cambiar Contraseña*/
 Route::get('/CambioC', [App\Http\Controllers\CambioCController::class, 'index'])->name('CambioC');
 
 Route::post('/CambioC', [App\Http\Controllers\CambioCController::class, 'store'])->name('CambioC.store');
 
 
-/* Bitacora*/ 
+/* Bitacora*/
 Route::get('/Bitacora', [App\Http\Controllers\BitacoraController::class, 'index'])->name('Bitacora');
 
 
-/* RespaldoB*/ 
+/* RespaldoB*/
 Route::get('/RespaldoB', [App\Http\Controllers\RespaldoBController::class, 'index'])->name('RespaldoB');
 
 
-/* Perfil*/ 
+/* Perfil*/
 Route::get('/Perfil', [App\Http\Controllers\PerfilController::class, 'index'])->name('Perfil');
 
 Route::post('/Perfil/{id}', [App\Http\Controllers\PerfilController::class, 'show'])->name('Perfil.show');
 
 
-/* Editar Perfil*/ 
+/* Editar Perfil*/
 // Route::get('/EditarP', [App\Http\Controllers\EditarPController::class, 'index'])->name('EditarP');
-// 
+//
 // Route::post('/EditarP', [App\Http\Controllers\EditarPController::class, 'store'])->name('EditarP.store');
-// 
+//
 
 Route::get('/EditarP/{id}', [App\Http\Controllers\EditarPController::class, 'edit'])->name('EditarP.edit');
 
@@ -219,7 +220,7 @@ Route::get('/AnadirT/{id}', [App\Http\Controllers\EditarPController::class, 'bus
 Route::put('/update-EditarP/{id}', [App\Http\Controllers\EditarPController::class, 'update'])->name('EditarP.update');
 
 
-/* Editar Perfil doctor*/ 
+/* Editar Perfil doctor*/
 // Route::get('/EditarPD', [App\Http\Controllers\EditarPDController::class, 'index'])->name('EditarPD');
 
 Route::post('/EditarPD', [App\Http\Controllers\EditarPDController::class, 'store'])->name('EditarPD.store');
@@ -232,21 +233,21 @@ Route::put('/update-EditarPD/{id}', [App\Http\Controllers\EditarPDController::cl
 
 
 
-/* Contraseña Perfil*/ 
+/* Contraseña Perfil*/
 Route::get('/ContraseñaP', [App\Http\Controllers\ContraseñaPController::class, 'index'])->name('ContraseñaP');
 
 
-/* Landing*/ 
+/* Landing*/
 Route::get('/Landing', [App\Http\Controllers\LandingController::class, 'index'])->name('Landing');
 
 
-/* Doctores*/ 
+/* Doctores*/
 Route::get('/Doctores', [App\Http\Controllers\DoctoresController::class, 'index'])->name('Doctores');
 
 Route::get('/eliminarD /{id}', [App\Http\Controllers\DoctoresController::class, 'eliminarD'])->name('eliminarD');
 
 
-/* añadir Doctores*/ 
+/* añadir Doctores*/
 Route::get('/AnadirD', [App\Http\Controllers\AnadirDController::class, 'index'])->name('AnadirD');
 
 Route::post('/AnadirD', [App\Http\Controllers\AnadirDController::class, 'store'])->name('AnadirD.store');
@@ -256,7 +257,7 @@ Route::get('/AnadirD/{slug?}/edit', [App\Http\Controllers\AnadirDController::cla
 Route::put('/update-AnadirD/{slug?}', [App\Http\Controllers\AnadirDController::class, 'update'])->name('AnadirD.update');
 
 
-/* añadir Pacientes*/ 
+/* añadir Pacientes*/
 Route::get('/AnadirP', [App\Http\Controllers\AnadirPController::class, 'index'])->name('AnadirP');
 
 
@@ -267,7 +268,7 @@ Route::get('/AnadirP/{slug?}/edit', [App\Http\Controllers\AnadirPController::cla
 Route::put('/update-AnadirP/{slug?}', [App\Http\Controllers\AnadirPController::class, 'update'])->name('AnadirP.update');
 
 
-/* Ayuda*/ 
+/* Ayuda*/
 Route::get('/Ayuda', [App\Http\Controllers\AyudaController::class, 'index'])->name('Ayuda');
 
 Route::post('/Ayuda', [App\Http\Controllers\AyudaController::class, 'store'])->name('Ayuda.store');
@@ -276,7 +277,7 @@ Route::get('/Ayuda/{slug?}/edit', [App\Http\Controllers\AyudaController::class, 
 
 Route::put('/update-AnadirP/{slug?}', [App\Http\Controllers\AnadirPController::class, 'update'])->name('AnadirP.update');
 
-/* Ayuda*/ 
+/* Ayuda*/
 Route::get('/blogAyuda', [App\Http\Controllers\blogAyudaController::class, 'index'])->name('blogAyuda');
 
 Route::post('/blogAyuda', [App\Http\Controllers\blogAyudaController::class, 'store'])->name('blogAyuda.store');
@@ -299,4 +300,5 @@ Route::post('/notifications/read', function () {
 
 Route::get('/get-all-paciente', [PDFController::class, 'getAllpaciente']);
 Route::get('/download-pdf', [PDFController::class, 'downloadPDF'])->name('descargarPDF');
+Route::get('/ruta-pdf', [PDFController::class, 'rutaPDF'])->name('rutaPDF');
 

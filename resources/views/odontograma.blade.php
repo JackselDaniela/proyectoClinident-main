@@ -16,7 +16,7 @@
                 <h4 class="page-title">Procedimiento en Pieza Nº {{$nom_pieza}} </h4>
             </div>
 
-            
+
 
         </div>
         <nav aria-label="breadcrumb">
@@ -30,19 +30,18 @@
             <div class="col-sm-5 col-md-5">
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <div class="input-group"> 
-                            <input class="form-control" style="padding: 2rem;font-size:1.4rem"  placeholder="Ex:25976000" type="text" disabled>
-                            
+                        <div class="input-group">
+                            <input class="form-control" style="padding: 2rem;font-size:1.4rem"  value="Paciente : {{$paciente->persona->nombre." ".$paciente->persona->apellido}}" placeholder="Ex:25976000" type="text" disabled>
+
                         </div>
                     </div>
                 </div>
             </div>
-            {{-- value="Paciente : {{$paciente->persona->nombre." ".$paciente->persona->apellido}}" --}}
             <div class="col-sm-5 col-md-5">
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="input-group">
-                            <input class="form-control" style="padding: 2rem;font-size:1.4rem" placeholder="Dr.Andrea Donato" value="Dr.Andrea Donato" type="text" disabled>
+                            <input class="form-control" style="padding: 2rem;font-size:1.4rem" id="doctors" value="" type="text" placeholder="Doc. Identidad Doctor">
                         </div>
                     </div>
                 </div>
@@ -50,17 +49,15 @@
             <div class="col-sm-2 col-md-2">
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <div class="input-group"> 
+                        <div class="input-group">
                             <input class="form-control" type="hidden" style="padding: 2rem;font-size:1.4rem"  placeholder="Ex:25976000" type="text" disabled>
-                            
+
                         </div>
                     </div>
                 </div>
             </div>
-           
-            {{-- value=" {{$paciente->persona->id}}" --}}
-            
-            
+
+
             <section  style="justify-content: center; margin-left:20%;margin-right:20%">
                 <div class="modal-content " style="justify-content: center">
                     <div class="card-box">
@@ -95,8 +92,11 @@
                                     </select>
                                 </div>
                             </div>
-                           
-                            
+
+                            @if (count($doctores) > 0)
+                                <input type="hidden" name="doctor_cedula" id="doctor_cedula" value="{{ $doctores[0]->id }}">
+                            @endif
+
                             <button type="submit" class="btn btn-primary submit-btn" maxlength="100" style="list-style: none; color: aliceblue;">Guardar</button>
 
                         </form>
@@ -104,14 +104,14 @@
                 </div>
 
             </section>
-         
+
 
 
         </div>
-        
+
 
     </div>
-    
+
 </div>
 
 <div id="delete_approve" class="modal fade delete-modal" role="dialog">
@@ -136,4 +136,13 @@
 <script src="{{ asset('/assets/js/app.js') }}"></script>
 <script src="{{ asset('/assets/js/modal.js') }}"></script>
 <script type="module" src="{{ asset('/resources/js/dienticos/piezas.js') }}"></script>
+<script>
+const selectDoctors = document.getElementById('doctors')
+const doctor_cedula = document.getElementById('doctor_cedula')
+
+selectDoctors.addEventListener('keyup', (e) => {
+    doctor_cedula.value = e.target.value
+    console.log(doctor_cedula)
+})
+</script>
 @endsection

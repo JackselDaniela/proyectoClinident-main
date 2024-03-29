@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\doctor;
 use App\Models\persona;
 use App\Models\dato_ubicacion;
 use App\Models\especialidad;
@@ -22,7 +23,7 @@ class EditarPController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   
+
 
     /**
      * Show the form for creating a new resource.
@@ -73,13 +74,19 @@ class EditarPController extends Controller
     public function buscar($id)
     {
         $pieza = pieza::all();
-        $diagnosticos = paciente_diagnostico::where('pacientes_id',$id)->get(); 
+        $diagnosticos = paciente_diagnostico::where('pacientes_id',$id)->get();
         // dd($diagnosticos);
        $paciente = paciente::with('persona','expediente','persona.dato_ubicacion')
         ->join('expedientes','expedientes.pacientes_id','=','expedientes.id')
         ->find($id);
 
-        return view('AnadirT', compact('paciente','pieza','id','diagnosticos'));
+        $doctores = doctor::all();
+
+        foreach ($doctores as $doctor) {
+            $doctor->personas_id = persona::where('id', '=', $doctor->personas_id)->first();
+        }
+
+        return view('AnadirT', compact('paciente','pieza','id','diagnosticos', 'doctores'));
 
     }
     /**
@@ -98,21 +105,21 @@ class EditarPController extends Controller
 
         $paciente = paciente::with('persona')
            ->findOrFail($id);
-        
+
         $paciente = DB::table('personas')->where('id', $paciente->personas_id)
            ->update([
            'nombre'=>$request -> nombre,
            'apellido'=>$request -> apellido,
            'fecha_nacimiento'=>$request -> fecha_nacimiento,
            'genero'=>$request -> genero,
-           
+
        ]);
         $paciente = DB::table('dato_ubicacions')
         -> update([
            'direccion'=>$request -> direccion,
            'estado'=>$request -> estado,
            'telefono'=>$request -> telefono,
-           
+
         ]);
 
 
@@ -148,11 +155,11 @@ class EditarPController extends Controller
         'desc_inmunodeficiente'    => $request->desc_inmunodeficiente,
         'fumador'                  => $request->fumador,
         'desc_fumador'             => $request->desc_fumador,
-            
+
          ]);
 
-         
-         
+
+
         return redirect()->route("RegistroE");
     }
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\registro_tratamiento;
 use App\Models\especialidad_tratamiento;
-use App\Models\porcentaje;
+use App\Models\Porcentaje;
 use Illuminate\Http\Request;
 
 class PorcentajesController extends Controller
@@ -15,7 +15,8 @@ class PorcentajesController extends Controller
      */
     public function index()
     {
-        return view('Porcentajes');
+        $porcentaje = Porcentaje::where('status', 1)->first();
+        return view('Porcentajes', [ 'porcentaje' => $porcentaje ]);
     }
 
     /**
@@ -36,22 +37,26 @@ class PorcentajesController extends Controller
      */
     public function store(Request $request)
     {
-        $clinica = new registro_tratamiento();
-        $clinica->nom_tratamiento    =$request-> post('nom_tratamiento');
-        $clinica->save();
+        $porcentaje_clinica = (float)$request->post('porcentaje_clinica');
+        $porcentaje_doctor = (float)$request->post('porcentaje_doctor');
 
+        Porcentaje::where('status', 1)
+            ->update(['status' => 0]);
 
-        $clinica = new porcentaje();
-        $clinica-> porcentaje_clinica     = $request-> post('porcentaje_clinica');
-        $clinica->save();
+        if ($porcentaje_doctor <= 0) {
+            return redirect('/Porcentajes');
+        }
 
+        $porcentaje = new Porcentaje();
+        $porcentaje->porcentaje_clinica = $porcentaje_clinica;
+        $porcentaje->porcentaje_doctor = $porcentaje_doctor;
 
-        if ($clinica->save()) {
-                return redirect()->route("Porcentajes");
-            }else{
-                return redirect()->route("Porcentajes");
-            }
-           
+        $porcentaje->save();
+
+        return view('Porcentajes', [
+            'message' => 'Configuracion Exitosa',
+            'porcentaje' => $porcentaje
+        ]);
     }
 
     /**

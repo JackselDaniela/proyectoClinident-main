@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Consumo;
+use App\Models\doctor;
 use App\Models\Insumo;
 use App\Models\Operacion;
 use App\Models\paciente_diagnostico;
+use App\Models\persona;
 use App\Services\Codigo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -69,6 +71,9 @@ class DiagnosticoController extends Controller
      */
     public function show(paciente_diagnostico $paciente_diagnostico)
     {
+        $doctor = doctor::where('id', '=', $paciente_diagnostico->doctor_id)->first();
+        $doctor->personas_id = persona::where('id', '=', $doctor->personas_id)->first();
+
         $paciente_diagnostico->load([
             'pieza', 'diagnostico', 'paciente.persona', 'registrar_tratamiento',
             'estatus_tratamiento', 'consumos', 'reservas',
@@ -77,6 +82,7 @@ class DiagnosticoController extends Controller
         return view('diagnosticos.show', [
             'paciente_diagnostico' => $paciente_diagnostico,
             'insumos' => Insumo::options('Consumible'),
+            'doctor' => $doctor
         ]);
     }
 
@@ -98,7 +104,7 @@ class DiagnosticoController extends Controller
             'operaciones.*' => ['array:id,cantidad'],
             'operaciones.*.id' => ['numeric', 'integer'],
         ]);
-        
+
         $operaciones = collect($request->input('operaciones'));
 
         $operaciones->each(function ($data) {

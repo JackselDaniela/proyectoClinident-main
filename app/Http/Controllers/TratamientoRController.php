@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\paciente_diagnostico;
 use Illuminate\Http\Request;
 
 class TratamientoRController extends Controller
@@ -13,7 +13,14 @@ class TratamientoRController extends Controller
      */
     public function index()
     {
-        return view('TratamientoR');
+        $tratamientos_finalizados = paciente_diagnostico::where('estatus_tratamientos_id', '=', 3)
+            ->with('pieza')
+            ->with('diagnostico')
+            ->with('registrar_tratamiento')
+            ->with('doctor')
+            ->with('paciente')->get();
+
+        return view('TratamientoR', [ 'tratamientos_finalizados' => $tratamientos_finalizados ]);
     }
 
     /**

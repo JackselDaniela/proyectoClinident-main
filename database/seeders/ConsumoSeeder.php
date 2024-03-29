@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Consumo;
 use App\Models\diagnostico;
+use App\Models\doctor;
 use App\Models\estatus_tratamiento;
 use App\Models\Operacion;
 use App\Models\paciente;
@@ -25,6 +26,7 @@ class ConsumoSeeder extends Seeder
 
         $this->datos = [
             'diagnosticos_id' => diagnostico::first()->id,
+            'doctor_id' => doctor::first()->id,
             'piezas_id' => pieza::first()->id,
             'registrar_tratamientos_id' => registrar_tratamiento::first()->id,
         ];
@@ -41,7 +43,7 @@ class ConsumoSeeder extends Seeder
             $proceso = $this->crearDiagnostico('En Proceso', $paciente->id);
             $this->crearConsumos($proceso);
         });
-        
+
         $terminado = $this->crearDiagnostico('Terminado', paciente::first()->id);
         $this->crearConsumo($this->insumos[0], $terminado);
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\paciente;
+use App\Models\paciente_diagnostico;
 use PDF;
 
 class PDFController extends Controller
@@ -18,5 +19,12 @@ class PDFController extends Controller
        $paciente = paciente::all();
        $pdf = PDF::loadView('PDFpaciente', compact('paciente'));
        return $pdf->stream('paciente.pdf');
+    }
+    public function rutaPDF($id)
+    {
+       $paciente = paciente::all();
+       $paciente_diagnostico = paciente_diagnostico::all();
+       $pdf = PDF::loadView('PDFRutatratamiento', compact('paciente', 'paciente_diagnostico'));
+       return $pdf->stream('rutatratamiento.pdf');
     }
 }

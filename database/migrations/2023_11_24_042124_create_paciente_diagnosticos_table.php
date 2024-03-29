@@ -17,11 +17,13 @@ class CreatePacienteDiagnosticosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('pacientes_id')->nullable();
             $table->unsignedBigInteger('diagnosticos_id')->nullable();
+            $table->unsignedBigInteger('doctor_id')->nullable();
             $table->unsignedBigInteger('piezas_id')->nullable();
             $table->unsignedBigInteger('registrar_tratamientos_id')->nullable();
             $table->unsignedBigInteger('estatus_tratamientos_id')->nullable();
             $table->foreign('pacientes_id')->references('id')->on('pacientes')->onDelete('cascade');
             $table->foreign('diagnosticos_id')->references('id')->on('diagnosticos')->onDelete('cascade');
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
             $table->foreign('piezas_id')->references('id')->on('piezas')->onDelete('cascade');
             $table->foreign('registrar_tratamientos_id')->references('id')->on('registrar_tratamientos')->onDelete('cascade');
             $table->foreign('estatus_tratamientos_id')->references('id')->on('estatus_tratamientos')->onDelete('cascade');

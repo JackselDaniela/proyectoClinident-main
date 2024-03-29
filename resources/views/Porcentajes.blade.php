@@ -25,34 +25,26 @@
         <section>
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <form action="{{route('Porcentajes.store')}}" method="POST"> 
+                    <form action="{{route('Porcentajes.store')}}" method="POST">
                         @csrf
-                        <h3 class="page-title text-center" style="padding-bottom: 4rem">Ajuste de Porcentajes</h3>
-                        <div class="row">
-    
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Tratamiento </label>
-                                    <select class="form-control" id="" name="nom_tratamiento">
-                                        <option value="Extraccion"> Extracción</option>
-                                        <option value="Restauracion"> Restauración</option>
-                                        <option value="Protesis"> Protesis</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                        </div>
+                        <h3 class="page-title text-center" style="padding-bottom: 3rem">Ajuste de Porcentajes</h3>
+                        <p class="text-bold" id="message-container">{{ isset($message) ? $message : '' }}</p>
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Porcentaje de la clinica (%)</label>
-                                    <input type="text" class="form-control" name="porcentaje_clinica">
+                                    <input type="number" class="form-control" name="porcentaje_clinica" id="porcentaje_clinica" min="0" max="100" value="{{ isset($porcentaje->porcentaje_clinica) ? $porcentaje->porcentaje_clinica : '' }}">
                                 </div>
                             </div>
-                            
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Porcentaje Doctor (%)</label>
+                                    <input type="number" class="form-control bg-light" name="porcentaje_doctor" id="porcentaje_doctor" readonly value="{{ isset($porcentaje->porcentaje_doctor) ? $porcentaje->porcentaje_doctor : '' }}">
+                                </div>
+                            </div>
                         </div>
-                        
-                       
+
+
                         <div class="row">
                             <div class="col-sm-12 text-center m-t-20">
                                 <button type="submit" class="btn btn-primary submit-btn">Guardar</button>
@@ -63,7 +55,7 @@
             </div>
 
         </section>
-        
+
     </div>
 </div>
 @endsection
@@ -74,4 +66,53 @@
     <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('/assets/js/app.js') }}"></script>
     <script src="{{ asset('/assets/js/modal.js') }}"></script>
+    <script>
+        const inputPorcentajeClinica = document.getElementById('porcentaje_clinica')
+        const inputPorcentajeDoctor = document.getElementById('porcentaje_doctor')
+        const messageElement = document.getElementById('message-container')
+
+        const setMessage = (message) => {
+            messageElement.innerText = message
+        }
+
+        const GANANCIA_MAXIMA = 100
+
+        if (!inputPorcentajeClinica.value) {
+            setMessage('Configure los ajustes de porcentaje.')
+        }
+
+        const getGananciaDoctor = (porcentaje) => {
+            if (porcentaje > GANANCIA_MAXIMA) {
+                throw 'El porcentaje maximo debe ser menor a ' + GANANCIA_MAXIMA
+            }
+
+            if (porcentaje < 0) {
+                throw 'No ingresar numeros negativos'
+            }
+
+            if (porcentaje >= (GANANCIA_MAXIMA - 1)) {
+                throw 'Debe quedar al menos un porcentaje minimo para el doctor'
+            }
+
+            return GANANCIA_MAXIMA - porcentaje
+        }
+
+        inputPorcentajeClinica.onkeyup = (e) => {
+            try {
+                const porcentaje = Number(e.target.value)
+
+                if (porcentaje === 0) {
+                    e.target.value = 0
+                }
+
+                const porcentajeDoctor = getGananciaDoctor(porcentaje)
+                setMessage('')
+
+                inputPorcentajeDoctor.value = porcentajeDoctor
+            } catch (error) {
+                inputPorcentajeDoctor.value = ''
+                setMessage(error)
+            }
+        }
+    </script>
 @endsection

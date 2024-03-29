@@ -47,7 +47,7 @@
                         <h4 class="doctor-name text-ellipsis"><a href="{{asset('Perfil')}}"> {{$doctor->persona->nombre.' '.$doctor->persona->apellido;}} </a></h4>
                         <div class="doc-prof"> {{$doctor->especialidad->especialidad;}} </div>
                         <div class="user-country">
-                            <i class="fa fa-map-marker"></i> {{$doctor->persona->dato_ubicacion->direccion;}}
+                            {{$doctor->persona->nacionalidad->nacionalidad;}} {{$doctor->persona->doc_identidad;}}
                         </div>
                     </div>
                 </div>

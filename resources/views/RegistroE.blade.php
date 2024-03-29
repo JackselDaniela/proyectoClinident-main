@@ -16,8 +16,7 @@
                 </div>
                 <div class="col-sm-7 col-8 text-right m-b-30">
                     <div class="btn-group btn-group-sm">
-                        <a href="{{ route('descargarPDF') }}" class="btn btn-white"><img src="{{asset('assets/img/pdf.png')}}" style="width: 30px"></a>
-                        <button class="btn btn-white"><i class="fa fa-print fa-lg"></i></button>
+                        <a href="{{ route('descargarPDF') }}" target="_blank" class="btn btn-white"><img src="{{asset('assets/img/pdf.png')}}" style="width: 30px"></a>
                     </div>
                 </div>
             </div>
@@ -46,7 +45,7 @@
                                     <tr>
                                         <th>Doc. Identidad</th>
                                         <th>Nombre Completo</th>
-                                        <th>Edad</th>
+                                        <th>Fecha Nacimiento</th>
                                         <th>Dirección</th>
                                         <th>Teléfono</th>
                                         <th>Correo</th>
@@ -63,11 +62,11 @@
                                         @endphp
                                         <tr>
                                         <td>{{$persona->doc_identidad;}}</td>
-                                        <td> {{$persona->nombre.' '.$persona->apellido;}}</a></td>
-                                        <td>edad</td>
+                                        <td>{{$persona->nombre.' '.$persona->apellido;}}</a></td>
+                                        <td>{{$persona->fecha_nacimiento;}}</td>
                                         <td>{{$persona->dato_ubicacion->direccion;}}</td>
                                         <td>{{$persona->dato_ubicacion->telefono;}}</td>
-                                        <td>{{$persona->dato_ubicacion->correo;}}</td>
+                                        <td>{{$persona->user->email;}}</td>
                                         <td>
                                             <a title="Añadir Tratamiento" href="{{route('EditarP.buscar',['id'=>$paciente->id])}}"><li class="fa fa-plus" style="width: 1rem; color:#1ABC9C;"></li></a>
                                             <a title="Ruta de Tratamiento" href="{{route('RutaT.buscar',['id'=>$paciente->id])}}"><li class="fa fa-list-ol" style="width: 1rem;"></li></a>

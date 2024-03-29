@@ -56,7 +56,7 @@
                   {{ $pieza->nom_pieza }}
                 </p>
                 <p class="mb-1">
-                  <b>Diagnóstico:</b> 
+                  <b>Diagnóstico:</b>
                   {{ $diagnostico->diagnostico }}
                 </p>
                 <p class="mb-1">
@@ -72,6 +72,15 @@
             </div>
           </div>
           <div class="col-sm-6">
+          <div class="card-box border border-gray">
+              <div class="card-block">
+                <p class="mb-1">
+                  <b>Dr.</b>
+                  {{ $doctor->personas_id->nombre }} {{ $doctor->personas_id->apellido }}
+                </p>
+              </div>
+            </div>
+
             <div class="card-box border border-gray">
               <div class="card-block">
                 <div class="d-flex align-items-center justify-content-between mb-3">

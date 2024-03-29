@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\doctor;
+use App\Models\persona;
 use Illuminate\Http\Request;
 use App\Models\paciente;
 use App\Models\pieza;
@@ -30,19 +32,25 @@ class OdontogramaController extends Controller
     {
         // SELECT * FROM empleados INNER JOIN departamentos ON empleados.e_id = departamentos.d_id;
         $pieza = pieza::find($piezas_id);
-       
+
         $paciente = paciente::with('persona','expediente','persona.dato_ubicacion')
-        ->get();
-       
+        ->join('expedientes','expedientes.pacientes_id','=','expedientes.id')
+        ->find($id);
+
         $nom_pieza = $pieza->nom_pieza;
         $id_paciente = $id;
 
         $diagnostico           = diagnostico::all();
         $registrar_tratamiento = registrar_tratamiento::all();
-       
+
+        $doctores = doctor::all();
+
+        foreach ($doctores as $doctor) {
+            $doctor->personas_id = persona::where('id', '=', $doctor->personas_id)->first();
+        }
 
 
-        return view('odontograma',compact('id','id_paciente','paciente','piezas_id','nom_pieza','registrar_tratamiento','diagnostico'));
+        return view('odontograma',compact('id','id_paciente','paciente','piezas_id','nom_pieza','registrar_tratamiento','diagnostico','doctores'));
     }
 
     /**
@@ -56,11 +64,29 @@ class OdontogramaController extends Controller
         $request->validate([
             'diagnosticos_id' => ['required', 'numeric', 'integer'],
             'registrar_tratamientos_id' => ['required', 'numeric', 'integer'],
+            'doctor_cedula' => ['required', 'numeric', 'integer'],
         ]);
-        
+
+        $doctor_cedula = $request->post('doctor_cedula');
+
+        $persona = persona::where('doc_identidad', '=', $doctor_cedula)->first();
+
+        $errors_user = [ 'not_found' => 'Usuario no encontrado' ];
+
+        if (is_null($persona)) {
+            return back()->withInput();
+        }
+
+        $doctor = doctor::where('personas_id', '=', $persona->id)->first();
+
+        if (is_null($doctor)) {
+            return back()->withInput();
+        }
+
          paciente_diagnostico::create([
             'pacientes_id' => $id ,
             'piezas_id'=> $piezas_id,
+            'doctor_id' => $doctor->id,
             'diagnosticos_id'=> $request->post('diagnosticos_id'),
             'registrar_tratamientos_id'=> $request->post('registrar_tratamientos_id'),
             'estatus_tratamientos_id'=> 1
@@ -90,7 +116,7 @@ class OdontogramaController extends Controller
     {
         //
     }
-   
+
     /**
      * Update the specified resource in storage.
      *

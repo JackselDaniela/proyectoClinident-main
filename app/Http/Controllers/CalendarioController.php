@@ -8,7 +8,10 @@ use App\Models\cita;
 use App\Models\doctor;
 use App\Models\paciente;
 use App\Models\tipo_consulta;
+use App\Mail\ConfirmacionCita;
 use App\Models\persona;
+use Illuminate\Support\Facades\Mail;
+
 
 class CalendarioController extends Controller
 {
@@ -75,12 +78,14 @@ class CalendarioController extends Controller
              'descripcion'   => $request-> post('descripcion'),
             
          ]);
+         $cita->load('paciente.persona.user');
 
-         if ($cita != null) {
+         Mail::to($cita->paciente->persona->user)->send(new ConfirmacionCita($cita));
+
+
+         
             return redirect()->route("Calendario");
-        }else{
-            return alert('Error');
-        }
+        
     }
 
    

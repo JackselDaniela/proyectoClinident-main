@@ -450,6 +450,23 @@ $persona = $user->persona;
 
 </body>
 <footer>
+   <style>
+     footer {
+            position: fixed;
+            bottom: 0cm;
+            left: 0cm;
+            right: 0cm;
+            background-color: #8057B8;
+            color: white;
+            text-align: center;
+        }
+        
+    </style> 
+ <p class="m-0 py-2 pl-5">
+    <img  style="width: 0.8cm" src="{{asset('assets/img/logou.png')}}" alt="">
+    <strong>Derechos Reservados - UPTA Aragua</strong>
+</p>
+    
 <div class="sidebar-overlay" data-reff=""></div>
     <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>

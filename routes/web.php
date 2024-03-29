@@ -54,13 +54,8 @@ use App\Http\Controllers\RolesPController;
  *                                      NOTA - IMPORTANTE
  * -----------------------------------------------------------------------------------
  * 
- * 1. En el archivo hay varias rutas con un comentario arriba de estas "@PENDING", son rutas que aun no tienen un permiso o rol asignado,
- * se recomienda revisar. Adicionalmente, la representación de cada una es:
- * 
- *    1.1.  @PENDING - all: Todas las rutas en este bloque están pendientes por asignar rol o permiso.
- *    1.2.  @PENDING - many: Muchas o algunas de las rutas en este bloque están pendientes por asignar rol o permiso.
- *    1.3.  @PENDING - unique: Solo la siguiente ruta está pendiente por asignar rol o permiso.
- * 
+ * 1. Revisar todos los permisos ubicados en "RoleSeeder.php" si coinciden con los establecidos en las rutas,
+ * en caso de querer renombrar algún permiso se debe hacer en ambos archivos (RoleSeeder.php y web.php).
  * 2. Para facilitar la lectura del archivo mantener el órden y estructura ya establecido.
  */
 
@@ -138,9 +133,8 @@ Route::delete('/logout', [App\Http\Controllers\LandingController::class, 'cerrar
 /* Perfil*/
 Route::get('/Perfil', [App\Http\Controllers\PerfilController::class, 'index'])
     ->name('Perfil');
-Route::post('/Perfil/{id}', [App\Http\Controllers\PerfilController::class, 'show'])
-    ->name('Perfil.show')
-    ->middleware('role_or_permission:doctores.ver');
+Route::put('/Perfil', [App\Http\Controllers\PerfilController::class, 'update'])
+    ->name('Perfil.update');
 Route::get('/EditarP/{id}', [App\Http\Controllers\EditarPController::class, 'edit'])
     ->name('EditarP.edit')
     ->middleware('role_or_permission:pacientes.editar');
@@ -482,7 +476,6 @@ Route::group(['middleware' => ['role:Admin']], function () {
  * -----------------------------------------------------------------------------------
  */
 
-// @PENDING - all
 Route::get('/Ayuda', [App\Http\Controllers\AyudaController::class, 'index'])
     ->name('Ayuda');
 Route::post('/Ayuda', [App\Http\Controllers\AyudaController::class, 'store'])

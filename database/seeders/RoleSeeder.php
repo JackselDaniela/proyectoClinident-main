@@ -16,120 +16,6 @@ class RoleSeeder extends Seeder
     public function run()
     {
         /**
-         * Permisos y rutas definidas
-         */
-        // $permisos = [
-        //     // procedimientos-odontologicos
-        //     ['procedimientos-odontologicos.ver', 'RegistrarT'],
-        //     ['procedimientos-odontologicos.registrar', 'RegistrarT.store'],
-        //     ['procedimientos-odontologicos.editar', 'editarT'],
-        //     ['procedimientos-odontologicos.eliminar', 'eliminarT'],
-        //     // pacientes
-        //     ['pacientes.agregar', 'AnadirP.store'],
-        //     ['pacientes.ver', 'AnadirP'],
-        //     ['pacientes.eliminar', 'eliminarE'],
-        //     ['pacientes.editar', 'EditarP.edit'],
-        //     // doctores
-        //     ['doctores.ver', 'Doctores'],
-        //     ['doctores.agregar', 'AnadirD'],
-        //     ['doctores.editar', 'EditarPD.edit'],
-        //     ['doctores.eliminar', 'eliminarD'],
-        //     // citas
-        //     ['citas.ver', 'calendario'],
-        //     ['citas.agender', 'js- fullcalendar'],
-        //     ['citas.editar', 'js- fullcalendar'],
-        //     ['citas.eliminar', 'js- fullcalendar'],
-        //     ['citas.confirmar', ''],
-        //     // tratamientos
-        //     ['tratamientos.insertar', 'AnadirT'],
-        //     ['rutatratamientos.actualizar', 'diagnosticos.show'],
-        //     // insumos
-        //     ['insumos.agregar', ''],
-        //     ['insumos.editar', ''],
-        //     ['insumos.eliminar', ''],
-        //     ['insumos.reservar', ''],
-        //     // honorarios
-        //     ['honorarios.consultar', ''],
-        //     ['honorarios.tratamientos', ''],
-        // ];
-
-        /**
-         * Permisos pendientes por asignar a rutas
-         */
-        $permisosPendientes = [
-            // insumos
-            ['insumos.agregar', ''],
-            ['insumos.editar', ''],
-            ['insumos.eliminar', ''],
-            ['insumos.reservar', ''],
-            // honorarios
-            ['honorarios.consultar', ''],
-            ['honorarios.tratamientos', ''],
-        ];
-
-        /**
-         * Rutas pendientes, sin rol o permiso
-         */
-        $rutasPendientes = [
-            '/correo',
-            'notifications.read',
-            '/get-all-paciente',
-            'descargarPDF',
-            'landing',
-            'Landing',
-            'Index',
-            'home',
-            'login.autenticar',
-            'login.cerrarSesion',
-            'Perfil',
-            'Perfil.show',
-            'EditarP.buscar',
-            'EditarP.update',
-            'EditarP.store',
-            'EditarPD.update',
-            'ContraseñaP',
-            'RegistrarT.update',
-            'AnadirP.update',
-            'RegistroE',
-            'HistoriaC',
-            'HistoriaC.buscar',
-            'AnadirT.store',
-            'AnadirT.edit',
-            'AnadirT.buscar',
-            'AnadirT.update',
-            'Odontograma',
-            'Odontograma.store',
-            'Odontograma.create',
-            'Odontograma.edit',
-            'Odontograma.buscar',
-            'Odontograma.update',
-            'RutaT.buscar',
-            'RutaT.editar',
-            'RutaT.update',
-            'insumos (resource - less: show)',
-            'cargas (resource - less: show)',
-            'reservas (resource)',
-            'reservas.restitucion',
-            'operaciones.index',
-            'diagnosticos.edit',
-            'diagnosticos.update',
-            'diagnosticos.consumos.create',
-            'diagnosticos.consumos.store',
-            'AnadirD.store',
-            'AnadirD.edit',
-            'AnadirD.update',
-            'GananciasA',
-            'TratamientoR',
-            'Ayuda',
-            'Ayuda.store',
-            'Ayuda.edit',
-            'AyudaP.update',
-            'blogAyuda',
-            'blogAyuda.store',
-            'Ayuda',
-        ];
-
-        /**
          * PERMISOS
          * 
          * Registra todos los permisos a los roles especificados de la siguiente manera:
@@ -147,21 +33,53 @@ class RoleSeeder extends Seeder
          */
 
         $permisos = [
+            // Varios
+            ['correo', ['Admin', 'Paciente']],
+            ['notificaciones.read', ['Admin', 'Secretaria', 'Doctor']],
+            ['pacientes', ['Admin', 'Secretaria', 'Doctor']],
+            ['pdf.descargar', ['Admin', 'Secretaria', 'Doctor']],
+            ['Ayuda.store', ['Admin', 'Secretaria']],
+            ['Ayuda.edit', ['Admin', 'Secretaria']],
+            ['AyudaP.update', ['Admin', 'Secretaria']],
+            ['blogAyuda.store', ['Admin', 'Secretaria']],
+            ['operaciones', ['Admin', 'Secretaria', 'Doctor']],
+            // diagnosticos
+            ['diagnosticos.show', ['Admin', 'Secretaria', 'Doctor']],
+            ['diagnosticos.edit', ['Admin', 'Secretaria']],
+            ['diagnosticos.update', ['Admin', 'Secretaria']],
+            ['diagnosticos.consumos.create', ['Admin', 'Secretaria']],
+            ['diagnosticos.consumos.store', ['Admin', 'Secretaria']],
             // procedimientos-odontologicos
             ['procedimientos-odontologicos.ver', ['Admin', 'Secretaria', 'Doctor']],
             ['procedimientos-odontologicos.registrar', ['Admin', 'Secretaria']],
             ['procedimientos-odontologicos.editar', ['Admin', 'Secretaria']],
             ['procedimientos-odontologicos.eliminar', ['Admin', 'Secretaria']],
+            ['Odontograma', ['Admin', 'Secretaria', 'Doctor']],
+            ['Odontograma.store', ['Admin', 'Secretaria', 'Doctor']],
+            ['Odontograma.create', ['Admin', 'Secretaria', 'Doctor']],
+            ['Odontograma.edit', ['Admin', 'Secretaria', 'Doctor']],
+            ['Odontograma.buscar', ['Admin', 'Secretaria', 'Doctor']],
+            ['Odontograma.update', ['Admin', 'Secretaria', 'Doctor']],
             // pacientes
+            ['EditarP.buscar', ['Admin', 'Secretaria']],
+            ['EditarP.update', ['Admin', 'Secretaria']],
+            ['EditarPD.store', ['Admin', 'Secretaria']],
+            ['EditarPD.update', ['Admin', 'Secretaria']],
+            ['AnadirP.edit', ['Admin', 'Secretaria']],
+            ['AnadirP.update', ['Admin', 'Secretaria']],
             ['pacientes.agregar', ['Admin', 'Secretaria', 'Doctor']],
             ['pacientes.ver', ['Admin', 'Secretaria', 'Doctor']],
             ['pacientes.eliminar', ['Admin', 'Secretaria', 'Doctor']],
             ['pacientes.editar', ['Admin', 'Secretaria', 'Doctor']],
+            ['RegistroE', ['Admin', 'Secretaria']],
+            ['HistoriaC', ['Admin', 'Secretaria']],
+            ['HistoriaC.buscar', ['Admin', 'Secretaria']],
             // doctores
             ['doctores.ver', ['Admin', 'Secretaria']],
             ['doctores.agregar', ['Admin', 'Secretaria']],
             ['doctores.editar', ['Admin', 'Secretaria']],
             ['doctores.eliminar', ['Admin', 'Secretaria']],
+            ['doctores.actualizar', ['Admin', 'Secretaria']],
             // citas
             ['citas.ver', ['Admin', 'Secretaria', 'Doctor']],
             ['citas.agender', ['Admin', 'Secretaria', 'Doctor']],
@@ -169,16 +87,30 @@ class RoleSeeder extends Seeder
             ['citas.eliminar', ['Admin', 'Secretaria', 'Doctor']],
             ['citas.confirmar', ['Paciente']],
             // tratamientos
+            ['RegistrarT.update', ['Admin', 'Secretaria', 'Doctor']],
             ['tratamientos.insertar', ['Admin', 'Secretaria', 'Doctor']],
             ['tratamientos.actualizar', ['Admin', 'Secretaria', 'Doctor']],
+            ['TratamientoR', ['Admin', 'Doctor']],
+            ['RutaT.buscar', ['Admin', 'Doctor']],
+            ['RutaT.editar', ['Admin', 'Doctor']],
+            ['RutaT.update', ['Admin', 'Doctor']],
+            ['AnadirT.store', ['Admin', 'Secretaria', 'Doctor']],
+            ['AnadirT.edit', ['Admin', 'Secretaria', 'Doctor']],
+            ['AnadirT.buscar', ['Admin', 'Secretaria', 'Doctor']],
+            ['AnadirT.upadte', ['Admin', 'Secretaria', 'Doctor']],
             // insumos
-            ['insumos.agregar', ['Admin', 'Secretaria', 'Doctor']],
-            ['insumos.editar', ['Admin', 'Secretaria', 'Doctor']],
-            ['insumos.eliminar', ['Admin', 'Secretaria', 'Doctor']],
-            ['insumos.reservar', ['Admin', 'Secretaria', 'Doctor']],
+            // ['insumos.agregar', ['Admin', 'Secretaria']],
+            // ['insumos.editar', ['Admin', 'Secretaria']],
+            // ['insumos.eliminar', ['Admin', 'Secretaria']],
+            // ['insumos.reservar', ['Admin', 'Secretaria']],
+            ['insumos', ['Admin', 'Secretaria']],
+            ['cargas', ['Admin', 'Secretaria']],
+            ['reservas', ['Admin', 'Secretaria']],
+            ['reservas.restitucion', ['Admin', 'Secretaria']],
             // honorarios
-            ['honorarios.consultar', ['Admin', 'Doctor']],
-            ['honorarios.tratamientos', ['Admin', 'Doctor']],
+            ['GananciasA', ['Admin', 'Secretaria', 'Doctor']],
+            // ['honorarios.consultar', ['Admin', 'Doctor']],
+            // ['honorarios.tratamientos', ['Admin', 'Doctor']],
             // configuracion
             ['configuracion', ['Admin']],
             // mantenimiento

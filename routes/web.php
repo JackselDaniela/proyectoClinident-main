@@ -23,24 +23,6 @@ use App\Http\Controllers\RolesPController;
 |
 */
 
-<<<<<<< HEAD
-Route::get('/', function () {
-    return view('Landing');
-})->name('landing');
-
-/*Index*/
-Route::get('/Index', [App\Http\Controllers\IndexController::class, 'index'])->name('Index');
-
-Route::post('/login', [App\Http\Controllers\LandingController::class, 'autenticar'])->name('login.autenticar');
-Route::delete('/logout', [App\Http\Controllers\LandingController::class, 'cerrarSesion'])->middleware('auth')->name('login.cerrarSesion');
-
-
-/* Registrar tratamiento*/
-Route::get('/RegistrarT', [App\Http\Controllers\RegistrarTController::class, 'index'])->name('RegistrarT');
-
-Route::post('/RegistrarT', [App\Http\Controllers\RegistrarTController::class, 'store'])->name('RegistrarT.store');
-=======
->>>>>>> 78aed06773fdca6e3a539eda20d1226bfee7482b
 
 /**
  * -----------------------------------------------------------------------------------

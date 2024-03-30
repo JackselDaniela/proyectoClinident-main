@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             ParroquiaSeeder::class,
             DatoUbicacionSeeder::class,
             NacionalidadSeeder::class,
+            RoleSeeder::class,
             PersonaSeeder::class,
             TipoConsultaSeeder::class,
             PacienteSeeder::class,
@@ -40,7 +41,7 @@ class DatabaseSeeder extends Seeder
             ItemSeeder::class,
             EventoSeeder::class,
         ]);
-        
+
         // \App\Models\User::factory(10)->create();
     }
 }

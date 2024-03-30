@@ -75,9 +75,10 @@
                                                 value='{{ $doctor->persona->genero }}'>
 
 
-                                                <option value="male">Masculino</option>
-                                                <option value="female ">Femenino</option>
-                                                <option value="female ">Prefiero no decirlo</option>
+                                                <option value="masculino">Masculino</option>
+                                                <option value="femenino">Femenino</option>
+                                                <option value="no_binario">No Binario</option>
+                                                <option value="otros"> Prefiero no decirlo</option>
 
 
                                             </select>

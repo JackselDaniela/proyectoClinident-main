@@ -7,25 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+<<<<<<< HEAD
 //use Spatie\Permission\Traits\HasRoles;
 //use Spatie\Permission\Models\Role;
 //use Spatie\Permission\Models\Permission;
+=======
+use Spatie\Permission\Traits\HasRoles;
+>>>>>>> 78aed06773fdca6e3a539eda20d1226bfee7482b
 
-// $role= Role::create([
-//     'name' => 'Administrador',
-    
-// ]);
-// $role= Role::create([
-//     'name' => 'Secretaria',
-// ]);
-// $role= Role::create([
-//     'name' => ' Doctor',
-
-// ]);
-// $role= Role::create([
-//     'name' => ' Paciente',
-
-// ]);
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable; //HasRoles quite

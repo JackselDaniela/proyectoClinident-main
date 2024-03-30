@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\persona;
-use App\Models\dato_ubicacion;
-use App\Models\especialidad;
-use App\Models\doctor;
 
+use App\Models\especialidad;
+use App\Models\estado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PerfilController extends Controller
 {
@@ -17,67 +16,15 @@ class PerfilController extends Controller
      */
     public function index()
     {
-        $especialidad = especialidad::All();
-        $doctor = persona::select('*')
-        ->join("especialidads", "personas.id", "=", "especialidads.id")
-        ->join("dato_ubicacions", "personas.id", "=", "dato_ubicacions.id")
-        
-        
-        ->get();
+        $usuario = auth()->user()->persona;
+        $estados = estado::select('id_estado', 'estado')->get();
 
-        return view ('Perfil',compact('doctor'));
-    }
+        if (isset($usuario->doctor)) {
+            $especialidades = especialidad::select('id', 'especialidad')->get();
+            return view('Perfil', compact('usuario', 'estados', 'especialidades'));
+        }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $especialidad = especialidad::All();
-        $doctor = persona::select('*')
-        ->join("especialidads", "personas.id", "=", "especialidads.id")
-        ->join("dato_ubicacions", "personas.id", "=", "dato_ubicacions.id")
-        
-        
-        ->get();
-
-        return view ('Perfil',compact('doctor'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        
-       
+        return view('Perfil', compact('usuario', 'estados'));
     }
 
     /**
@@ -87,19 +34,50 @@ class PerfilController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
-    }
+        // Busca el usuario conectado, la relación user - persona
+        $usuario = auth()->user()->persona;
+        // Selecciona el campo "foto"
+        $path = $usuario->foto;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        // Si el usuario manda una foto entonces se actualiza
+        if (isset($request->foto)) {
+            // Selecciona la foto anterior
+            $foto_anterior = $path;
+            // Guarda la foto en la carpeta /storage/app/public/imagenes
+            $path = $request->file('foto')->storeAs('imagenes', \Carbon\Carbon::now()->timestamp . '.jpg', 'public');
+            // Borra la foto anterior
+            Storage::delete('public/imagenes/' . $foto_anterior);
+            $path = substr($path, 9);
+        }
+
+        // Actualiza los datos del usuario en la tabla "persona"
+        $usuario->update([
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
+            'genero' => $request->genero,
+            'foto' => $path
+        ]);
+
+        // Actualiza los datos del usuario en la tabla "dato_ubicacion"
+        $usuario->dato_ubicacion->update([
+            'direccion' => $request->direccion,
+            'estados_id' => $request->estado,
+            'telefono' => $request->telefono,
+        ]);
+
+        if (isset($usuario->doctor)) {
+            $usuario->doctor->update([
+                'destacado' => $request->destacado,
+                'universidad' => $request->universidad,
+                'bachillerato' => $request->bachillerato,
+                'experiencia' => $request->experiencia,
+                'especialidads_id' => $request->especialidad,
+            ]);
+        }
+
+        return redirect()->back();
     }
 }

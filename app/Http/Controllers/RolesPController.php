@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RolesPController extends Controller
 {
@@ -13,7 +15,8 @@ class RolesPController extends Controller
      */
     public function index()
     {
-        return view('RolesP');
+        $roles = Role::where('name', '!=', 'Admin')->get();
+        return view('RolesP', compact('roles'));
     }
 
     /**
@@ -23,7 +26,7 @@ class RolesPController extends Controller
      */
     public function create()
     {
-        //
+        return view('RolesC');
     }
 
     /**
@@ -34,7 +37,8 @@ class RolesPController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Role::create(['name' => $request->nombre]);
+        return redirect('RolesP');
     }
 
     /**
@@ -43,9 +47,12 @@ class RolesPController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $rolSeleccionado)
     {
-        //
+        $roles = Role::where('id', '!=', $rolSeleccionado->id)->where('name', '!=', 'Admin')->get();
+        $permisos = Permission::all();
+
+        return view('RolesP', compact('rolSeleccionado', 'roles', 'permisos'));
     }
 
     /**
@@ -66,9 +73,17 @@ class RolesPController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $rolSeleccionado)
     {
-        //
+        if ($rolSeleccionado->id === 1) {
+            return redirect()->back();
+        }
+
+        $permisos = $request->permisos;
+        $permisos = Permission::whereIn('id', $permisos)->pluck('name');
+
+        $rolSeleccionado->syncPermissions($permisos);
+        return redirect()->back();
     }
 
     /**

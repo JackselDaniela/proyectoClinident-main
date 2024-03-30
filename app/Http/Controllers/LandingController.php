@@ -17,7 +17,7 @@ class LandingController extends Controller
      */
     public function index()
     {
-        return view ('Landing');
+        return view('Landing');
     }
 
     /**
@@ -25,43 +25,38 @@ class LandingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private function volver($validator){
-      
-        return redirect()->route('landing',['modal'=>'true'])->withErrors($validator)->withInput();
-        
+    private function volver($validator)
+    {
 
+        return redirect()->route('landing', ['modal' => 'true'])->withErrors($validator)->withInput();
     }
 
     public function autenticar(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => [
-            'required', 'email'
-        ],
-        'password' => [
-            'required','string'
-        ]
+                'required', 'email'
+            ],
+            'password' => [
+                'required', 'string'
+            ]
         ]);
- 
+
         if ($validator->fails()) {
             return $this->volver($validator);
         }
-//-----------------------------------------------------------------------------------
-       $credencial = $validator->validated();
+        //-----------------------------------------------------------------------------------
+        $credencial = $validator->validated();
         $ingresa = Auth::attempt($credencial);
-        if ($ingresa){
+        if ($ingresa) {
             $request->session()->regenerate();
             return redirect()->route('Index');
-
         }
         return $this->volver($validator)->withErrors([
             'email' => 'Los Datos ingresados no estan registrados, verifique e intente de nuevo'
         ]);
-
-
-
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -72,10 +67,10 @@ class LandingController extends Controller
     public function cerrarSesion(Request $request)
     {
         Auth::logout();
-        $request ->session()->invalidate();
-        $request ->session()->regenerateToken();
-    
-            return redirect()->route('landing');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('Landing');
     }
 
     /**

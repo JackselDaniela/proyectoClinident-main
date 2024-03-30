@@ -69,8 +69,10 @@
                                                 <label class="focus-label">Genero</label>
                                                 <select name="genero" class="select form-control floating"
                                                     value='{{ $paciente->persona->genero }}'>
-                                                    <option value="male">Masculino</option>
-                                                    <option value="female " selected>Femenino</option>
+                                                    <option value="masculino">Masculino</option>
+                                                    <option value="femenino">Femenino</option>
+                                                    <option value="no_binario">No Binario</option>
+                                                    <option value="otros"> Prefiero no decirlo</option>
                                                 </select>
                                             </div>
                                         </div>

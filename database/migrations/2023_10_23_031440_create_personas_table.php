@@ -25,7 +25,7 @@ class CreatePersonasTable extends Migration
             $table->string('apellido',255);
             $table->string('fecha_nacimiento',255);
             $table->string('genero',255);
-            $table->string('foto',255);
+            $table->string('foto',255)->nullable();
 
             $table->unsignedBigInteger('dato_ubicacions_id');
             $table->foreign('dato_ubicacions_id')->references('id')->on('dato_ubicacions')->onDelete('cascade');

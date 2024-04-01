@@ -387,6 +387,7 @@ Route::put('/update-AnadirD/{slug?}', [App\Http\Controllers\AnadirDController::c
 Route::get('/GananciasA', [App\Http\Controllers\GananciasAController::class, 'index'])
     ->name('GananciasA')
     ->middleware('role_or_permission:GananciasA');
+Route::post('/GananciasA/mostrar', [App\Http\Controllers\GananciasAController::class, 'mostrar'])->name('GananciasA.mostrar');
 Route::get('/TratamientoR', [App\Http\Controllers\TratamientoRController::class, 'index'])
     ->name('TratamientoR')
     ->middleware('role_or_permission:TratamientoR');

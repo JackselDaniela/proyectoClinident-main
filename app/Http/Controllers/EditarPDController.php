@@ -84,10 +84,10 @@ class EditarPDController extends Controller
     public function update(Request $request, $id)
     {
         $doctor = DB::table('especialidads')
-            ->update([
-                'especialidad' => $request->especialidad,
+        ->update([
+            'especialidad' => $request->especialidad,
 
-            ]);
+        ]);
 
         $doctor = DB::table('doctors')->where('id', $id)
             ->update([
@@ -99,8 +99,12 @@ class EditarPDController extends Controller
             ->findOrFail($id);
 
         $foto_anterior = $doctor->persona->foto;
-        $path = $request->file('foto')->storeAs('imagenes', \Carbon\Carbon::now()->timestamp . '.jpg', 'public');
-        Storage::delete('public/imagenes/' . $foto_anterior);
+        $path = $foto_anterior;
+        if (isset($foto_anterior)) {
+            $path = $request->file('foto')->storeAs('imagenes', \Carbon\Carbon::now()->timestamp . '.jpg', 'public');
+            $path = substr($path, 9);
+            Storage::delete('public/imagenes/' . $foto_anterior);
+        }
 
         $doctor = DB::table('personas')->where('id', $doctor->personas_id)
             ->update([
@@ -108,15 +112,15 @@ class EditarPDController extends Controller
                 'apellido' => $request->apellido,
                 'fecha_nacimiento' => $request->fecha_nacimiento,
                 'genero' => $request->genero,
-                'foto' => substr($path, 9)
+                'foto' => $path
             ]);
         $doctor = DB::table('dato_ubicacions')
-            ->update([
-                'direccion' => $request->direccion,
-                'estados_id' => $request->estado,
-                'telefono' => $request->telefono,
+        ->update([
+            'direccion' => $request->direccion,
+            'estados_id' => $request->estado,
+            'telefono' => $request->telefono,
 
-            ]);
+        ]);
 
         return redirect()->route("Doctores");
     }

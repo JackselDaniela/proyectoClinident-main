@@ -10,7 +10,7 @@ class persona extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
-    protected $fillable = ['nombre', 'apellido', 'fecha_nacimiento', 'genero', 'foto'];
+    protected $fillable = ['nombre', 'apellido', 'fecha_nacimiento', 'genero', 'foto','dato_ubicacions_id','nacionalidads_id','personas_id','user_id','doc_identidad', 'tipo_personas_id'];
 
     public function dato_ubicacion()
     {
@@ -32,10 +32,10 @@ class persona extends Model
     }
     public function tipo_persona()
     {
-        return $this->belongsTo(tipo_persona::class);
+        return $this->belongsTo(tipo_persona::class, 'tipo_personas_id');
     }
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

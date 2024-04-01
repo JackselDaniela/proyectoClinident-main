@@ -246,20 +246,6 @@
                                 </div>
                                 {{-- / Datos Ubicacion --}}
 
-                                {{-- <div class="form-group row">
-                                <label class=" col-sm-2">Especialidad</label><span class="text-danger">*</span>
-                                <div class="col-md-8">
-                                    <select class="form-control">
-                                        <option value="No Especifica">-- Seleccione --</option>
-                                        <option value="Endodoncia" >Endodoncia</option>
-                                        <option value="Ortodoncia" >Ortodoncia</option>
-                                        <option value="Maxilo Facial" >Maxilo Facial</option>
-                                        <option value="Periodoncia">Periodoncia</option>
-                                        <option value="Prostodoncia">Prostodoncia</option>
-                                        
-                                    </select>
-                                </div>
-                            </div> --}}
 
                                 {{-- Especialidad --}}
 

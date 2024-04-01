@@ -456,16 +456,26 @@ $persona = $user->persona;
             bottom: 0cm;
             left: 0cm;
             right: 0cm;
-            background-color: #8057B8;
+            background-color: #7c01be;
             color: white;
             text-align: center;
+            z-index: 1039;
+            height: 30px;
+             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+        .imgFooter{
+            float: right;
+            width: 0.8cm;
+            height: 0.8cm;
+            padding-top: 1px;
         }
         
     </style> 
- <p class="m-0 py-2 pl-5">
-    <img  style="width: 0.8cm" src="{{asset('assets/img/logou.png')}}" alt="">
-    <strong>Derechos Reservados - UPTA Aragua</strong>
+ <p>
+    <img class="imgFooter" src="{{asset('assets/img/logou.png')}}" alt=""
+    <b>Derechos Reservados - UPTA Aragua</b>
 </p>
+
     
 <div class="sidebar-overlay" data-reff=""></div>
     <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>

@@ -131,35 +131,6 @@
 
                                 @endforeach
                             </div>
-                            <div  style="justify-content: center">
-                                <div class="card-box">
-                                    <h4 class="card-title">Prótesis</h4>
-                                    <form action="#">
-
-                                        <div class="form-group row">
-                                            <label class=" col-sm-4" style="font-size: 1.3rem">Tipo de Prótesis</label>
-                                            <div class="col-md-8">
-                                                <select class="form-control">
-                                                    <option value="No Especifica">-- Seleccione --</option>
-                                                    <option value="Protesis-Total Acrilica" >Protesis-Total Acrilica</option>
-                                                    <option value="Protesis-Removible Acrilica" >Protesis-Removible Acrilica</option>
-
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-sm-4">Piezas Involucradas</label>
-                                            <div class="col-md-8">
-                                                <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here"></textarea>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary  btn-rounded btn-press btn-add" maxlength="100" style="list-style: none; color: aliceblue;">Guardar</button>
-
-                                    </form>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>

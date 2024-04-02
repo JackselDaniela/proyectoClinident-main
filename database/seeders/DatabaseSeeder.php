@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
             ConsumoSeeder::class,
             ReservaSeeder::class,
             ItemSeeder::class,
-            EventoSeeder::class,
+            //EventoSeeder::class,
         ]);
 
         // \App\Models\User::factory(10)->create();

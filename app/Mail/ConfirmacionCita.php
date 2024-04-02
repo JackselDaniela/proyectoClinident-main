@@ -19,9 +19,11 @@ class ConfirmacionCita extends Mailable
      */
     
     public $cita;
-    public function __construct(cita $cita)
+    public $token;
+    public function __construct(cita $cita, string $token)
     {
      $this->cita = $cita;
+     $this->token = $token;
     }
 
     /**

@@ -11,6 +11,7 @@ use App\Models\tipo_consulta;
 use App\Mail\ConfirmacionCita;
 use App\Models\persona;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 
 class CalendarioController extends Controller
@@ -66,7 +67,7 @@ class CalendarioController extends Controller
        $paciente = $identidad->paciente->id;
        $identificacion = persona::with('doctor')->where('doc_identidad',$request->post('doctor'))->first();
        $doctor = $identificacion->doctor->id;
-// dd($cita);
+        $token = Str::random(64);
        $cita = cita::create([
            
              'pacientes_id'     => $paciente,
@@ -76,11 +77,12 @@ class CalendarioController extends Controller
              'fin'  =>$request->post('fin'),
              'fecha'=>$request->post('fecha'),
              'descripcion'   => $request-> post('descripcion'),
+             'token' => $token,
             
          ]);
          $cita->load('paciente.persona.user');
 
-         Mail::to($cita->paciente->persona->user)->send(new ConfirmacionCita($cita));
+         Mail::to($cita->paciente->persona->user)->send(new ConfirmacionCita($cita, $token));
 
 
          

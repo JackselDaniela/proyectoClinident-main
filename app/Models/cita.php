@@ -10,6 +10,7 @@ class cita extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = []; 
+    protected $fillable = ['pacientes_id','doctors_id','tipo_consultas_id','inicio','fin', 'fecha','confirmacion','descripcion','token']; 
     public function doctor(){
         return $this->belongsTo(doctor::class,'doctors_id');
     }

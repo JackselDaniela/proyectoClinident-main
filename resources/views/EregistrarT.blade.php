@@ -101,7 +101,7 @@
                                                                 </p>
                                                                 @endif
                                                                 <span class="text-danger">*</span></label>
-                                                            <input class="form-control" maxlength="10" value="000" value='{{$tratamiento->codigo_tratamiento}}' name="codigo_tratamiento" id="codigo_tratamiento" type="text" required>
+                                                            <input class="form-control" maxlength="10" value='{{$tratamiento->codigo_tratamiento}}' name="codigo_tratamiento" id="codigo_tratamiento" type="text" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">

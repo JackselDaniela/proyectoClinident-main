@@ -111,7 +111,6 @@ class RegistrarTController extends Controller
     {
         $especialidad = especialidad::first();
         $tratamiento = DB::table('registrar_tratamientos')
-        ->with('especialidad')
         ->where('id', $id)
         -> update([
            'nom_tratamiento'=>$request ->nom_tratamiento,

@@ -18,7 +18,8 @@
 
 
         </p>
-        <a class="btn btn-primary" href="#">Confirmar Cita</a> 
+        <a class="btn btn-primary" href="{{ url($token) }}">Confirmar Cita</a>
+        <p>{{ url($token) }}</p>
         <p>
 
             Su confirmación nos ayudará a garantizar una atención oportuna y de calidad para usted. Si por alguna razón

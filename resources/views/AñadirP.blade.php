@@ -151,7 +151,7 @@
                                                 </label>
                                                 <select class="select" name="estado" id="estado"
                                                     onchange="CargarMunicipiosCiudades(this)" required>
-                                                    <option> Seleccione </option>
+                                                    <option value="" selected disabled> Seleccione </option>
                                                     @foreach ($estado as $estado)
                                                         <option value="{{ $estado->id_estado }}"> {{ $estado->estado }}
                                                         </option>
@@ -172,7 +172,7 @@
                                                 </label>
                                                 <select class="select" name="municipio" id="municipio"
                                                     onchange="CargarParroquia(this)" required>
-                                                    <option> Seleccione </option>
+                                                    <option value="" selected disabled> Seleccione </option>
 
                                                 </select>
                                             </div>
@@ -188,7 +188,7 @@
                                                     @endif
                                                 </label>
                                                 <select class="select" name="ciudad" id="ciudad" required>
-                                                    <option> Seleccione </option>
+                                                    <option value="" selected disabled> Seleccione </option>
 
                                                 </select>
                                             </div>
@@ -203,8 +203,8 @@
                                                         </p>
                                                     @endif
                                                 </label>
-                                                <select class="select" name="parroquia" id="parroquia"required>
-                                                    <option> Seleccione </option>
+                                                <select class="select" name="parroquia" id="parroquia" required>
+                                                    <option value="" selected disabled> Seleccione </option>
 
                                                 </select>
                                             </div>
@@ -288,7 +288,7 @@
                                                             <div class="form-check-inline">
                                                                 <label class="form-check-label">
                                                                     <input type="radio" name="alergia_penicilina"
-                                                                        value="Si" class="form-check-input"
+                                                                        value="Si" @checked($value==='Si') class="form-check-input"
                                                                         required>Si
                                                                 </label>
                                                             </div>

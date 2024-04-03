@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Carga;
 use App\Models\Insumo;
 use App\Models\Operacion;
@@ -75,6 +76,12 @@ class CargaController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Registrar',
+            'file' => 'Carga'
+        ]);
+
         return redirect()->route('cargas.index');
     }
 
@@ -114,6 +121,12 @@ class CargaController extends Controller
 
         $carga->update($data);
 
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Actualizar',
+            'file' => 'Carga'
+        ]);
+
         return redirect()->route('cargas.index');
     }
 
@@ -130,6 +143,12 @@ class CargaController extends Controller
         }
 
         $carga->delete();
+
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Borrar',
+            'file' => 'Carga'
+        ]);
 
         return redirect()->route('cargas.index');
     }

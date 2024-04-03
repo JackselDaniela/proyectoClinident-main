@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\persona;
 use App\Models\dato_ubicacion;
 use App\Models\especialidad;
@@ -84,10 +85,10 @@ class EditarPDController extends Controller
     public function update(Request $request, $id)
     {
         $doctor = DB::table('especialidads')
-        ->update([
-            'especialidad' => $request->especialidad,
+            ->update([
+                'especialidad' => $request->especialidad,
 
-        ]);
+            ]);
 
         $doctor = DB::table('doctors')->where('id', $id)
             ->update([
@@ -115,11 +116,17 @@ class EditarPDController extends Controller
                 'foto' => $path
             ]);
         $doctor = DB::table('dato_ubicacions')
-        ->update([
-            'direccion' => $request->direccion,
-            'estados_id' => $request->estado,
-            'telefono' => $request->telefono,
+            ->update([
+                'direccion' => $request->direccion,
+                'estados_id' => $request->estado,
+                'telefono' => $request->telefono,
 
+            ]);
+
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Actualizar',
+            'file' => 'Doctores'
         ]);
 
         return redirect()->route("Doctores");

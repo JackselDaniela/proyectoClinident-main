@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use Illuminate\Http\Request;
 use App\Models\paciente;
 use App\Models\estatus_tratamiento;
@@ -86,6 +87,12 @@ class RutaTController extends Controller
         } else {
             abort(404);
         }
+
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Registrar',
+            'file' => 'Diagnóstico paciente'
+        ]);
 
         $paciente_diagnostico->update([
             'estatus_tratamientos_id' => $siguiente->id,

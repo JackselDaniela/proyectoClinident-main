@@ -9,6 +9,7 @@ use App\Models\doctor;
 use App\Models\paciente;
 use App\Models\tipo_consulta;
 use App\Mail\ConfirmacionCita;
+use App\Models\Bitacora;
 use App\Models\persona;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -93,6 +94,11 @@ class CalendarioController extends Controller
         Mail::to($cita->paciente->persona->user)->send(new ConfirmacionCita($cita, $paciente, $token));
 
 
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Registrar',
+            'file' => 'Cita'
+        ]);
 
         return redirect()->route("Calendario");
     }
@@ -121,6 +127,12 @@ class CalendarioController extends Controller
             'descripcion'   => $request->post('descripcion'),
         ]);
 
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Actualizar',
+            'file' => 'Cita'
+        ]);
+
         return redirect()->route("Calendario");
     }
 
@@ -133,6 +145,12 @@ class CalendarioController extends Controller
     public function destroy(cita $cita)
     {
         $cita->delete();
+
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Borrar',
+            'file' => 'Cita'
+        ]);
         return redirect()->route("Calendario");
     }
 }

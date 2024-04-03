@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\persona;
 use App\Models\dato_ubicacion;
 use App\Models\paciente;
@@ -149,6 +150,11 @@ class AnadirPController extends Controller
         ]);
 
 
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Registrar',
+            'file' => 'Paciente'
+        ]);
 
 
         if ($paciente != null) {

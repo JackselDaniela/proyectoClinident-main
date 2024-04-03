@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\cita;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -29,9 +30,20 @@ class CitasCController extends Controller
                 'confirmacion' => Carbon::now()
             ]);
 
+            Bitacora::create([
+                'user_id' => auth()->user()->id,
+                'file' => 'Cita',
+                'action' => 'Confirmar',
+            ]);
+
             return back()->with('success', 'La cita ha sido confirmada con éxito');
         } else {
             $cita->delete();
+            Bitacora::create([
+                'user_id' => auth()->user()->id,
+                'file' => 'Cita',
+                'action' => 'Rechazar',
+            ]);
             return back()->with('danger', 'La cita ha sido eliminada con éxito');
         }
     }

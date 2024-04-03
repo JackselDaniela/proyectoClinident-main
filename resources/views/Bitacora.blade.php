@@ -55,6 +55,7 @@
                                                     </td>
                                                     <td>{{ \Carbon\Carbon::parse($registro->created_at)->format('Y/m/d') }}
                                                     </td>
+                                                    <td>{{ $registro->file }}</td>
                                                     <td>{{ $registro->action }}</td>
                                                 </tr>
                                             @endforeach

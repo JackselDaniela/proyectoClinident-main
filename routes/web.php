@@ -208,8 +208,8 @@ Route::delete('/Calendario/{cita}', [App\Http\Controllers\CalendarioController::
 
 /* Citas Confirmadas*/
 Route::get('/CitasC', [App\Http\Controllers\CitasCController::class, 'index'])
-    ->name('CitasC')
-    ->middleware('role_or_permission:citas.confirmar');
+    ->name('CitasC');
+// ->middleware('role_or_permission:citas.confirmar');
 
 Route::get('/CitasC/{token}', [App\Http\Controllers\CitasCController::class, 'cita'])
     ->name('CitasC.cita');

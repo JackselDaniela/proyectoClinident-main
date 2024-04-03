@@ -37,15 +37,15 @@ class RoleSeeder extends Seeder
             ['correo', ['Admin', 'Paciente']],
             ['notificaciones.read', ['Admin', 'Secretaria', 'Doctor']],
             ['pacientes', ['Admin', 'Secretaria', 'Doctor']],
-            ['pdf.descargar', ['Admin', 'Secretaria','Doctor']],
-            ['Ayuda', ['Admin', 'Secretaria','Doctor']],
+            ['pdf.descargar', ['Admin', 'Secretaria', 'Doctor']],
+            ['Ayuda', ['Admin', 'Secretaria', 'Doctor']],
             ['operaciones', ['Admin', 'Secretaria', 'Doctor']],
             // diagnosticos
             ['diagnosticos.show', ['Admin', 'Secretaria', 'Doctor']],
             ['diagnosticos.edit', ['Admin', 'Secretaria']],
             ['diagnosticos.update', ['Admin', 'Secretaria']],
-            ['diagnosticos.consumos.create', ['Admin', 'Secretaria','Doctor']],
-            ['diagnosticos.consumos.store', ['Admin', 'Secretaria','Doctor']],
+            ['diagnosticos.consumos.create', ['Admin', 'Secretaria', 'Doctor']],
+            ['diagnosticos.consumos.store', ['Admin', 'Secretaria', 'Doctor']],
             // procedimientos-odontologicos
             ['procedimientos-odontologicos.ver', ['Admin', 'Secretaria', 'Doctor']],
             ['procedimientos-odontologicos.registrar', ['Admin', 'Secretaria']],
@@ -79,7 +79,7 @@ class RoleSeeder extends Seeder
             ['citas.agendar', ['Admin', 'Secretaria', 'Doctor']],
             ['citas.editar', ['Admin', 'Secretaria', 'Doctor']],
             ['citas.eliminar', ['Admin', 'Secretaria', 'Doctor']],
-            ['citas.confirmar', ['Paciente']],
+            ['citas.confirmar', ['Admin', 'Doctor', 'Paciente']],
             // tratamientos
             ['RegistrarT.update', ['Admin', 'Secretaria', 'Doctor']],
             ['tratamientos.insertar', ['Admin', 'Secretaria', 'Doctor']],

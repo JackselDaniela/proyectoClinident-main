@@ -15,7 +15,8 @@ class CitasCController extends Controller
      */
     public function index()
     {
-        return view('CitasC');
+        $citas = cita::where('confirmacion', '!=', null)->get();
+        return view('CitasC', compact('citas'));
     }
 
     public function validar(string $token, Request $request)

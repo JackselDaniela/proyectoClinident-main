@@ -5,12 +5,19 @@
 @section('content')
     <main>
         <div class="container">
-        <h3 class="normal" style="text-align: center;">Presupuesto</h3>
-            <table style="padding-top: 1cm;" class="table table-striped text-center">
+            <h3 class="normal" style="text-align: center;">Presupuesto</h3>
+            <table style="padding-top: 1cm;" class="table table-striped text-left">
+                <tbody>
+                    <tr>
+                        <td><h5  class="regular">Nombre del Paciente: {{$paciente->persona->nombre.' '.$paciente->persona->apellido}} </h5></td>
+                    </tr>
+                </tbody>
+            </table>   
+            <table style="padding-top: 0.5cm;" class="table table-striped text-center">
                 <thead>
                     <tr>
                         <th scope="col"># Pieza</th>
-                        <th scope="col">Diagnostico</th>
+                        <th scope="col">Diagnóstico</th>
                         <th scope="col">Procedimiento</th>
                         <th scope="col">Costo</th>
                     </tr>
@@ -27,6 +34,13 @@
                     </tr>
                 @endforeach
                 
+                </tbody>
+            </table>   
+            <table style="padding-top: 0.5cm;" class="table table-striped text-right">
+                <tbody>
+                    <tr>
+                        <td><h5 class="regular text-right">Presupuesto Total: {{$presupuestoT}}$</h5></td>
+                    </tr>
                 </tbody>
             </table>   
         </div>

@@ -225,31 +225,16 @@
                     </li>
                     <li class="menu-title">Gestion de Usuario</li>
                     <li>
-                        <a href="{{ asset('GestionU') }}"><i class="fa fa-building"></i> <span>Contacto</span></a>
-                    </li>
-                    <li>
-                        <a href="{{ asset('Localizacion') }}"><i class="fa fa-clock-o"></i>
-                            <span>Localización</span></a>
-                    </li>
-                    <li>
                         <a href="{{ asset('Personalizar') }}"><i class="fa fa-picture-o"></i>
                             <span>Personalizar</span></a>
                     </li>
                     <li>
                         <a href="{{ asset('RolesP') }}"><i class="fa fa-key"></i> <span>Roles y Permisos</span></a>
                     </li>
-                    <li>
-                        <a href="{{ asset('Correo') }}"><i class="fa fa-envelope-o"></i> <span>Correo</span></a>
-                    </li>
 
                     <li>
                         <a href="{{ asset('Porcentajes') }}"><i class="fa fa-money"></i> <span> Ajuste de Porcentajes
                             </span></a>
-                    </li>
-
-                    <li>
-                        <a href="{{ asset('CambioC') }}"><i class="fa fa-lock"></i> <span>Cambio de
-                                Contraseña</span></a>
                     </li>
 
                 </ul>

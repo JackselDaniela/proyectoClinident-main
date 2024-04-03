@@ -76,11 +76,18 @@ Route::post('/notifications/read', function () {
 })->name('notifications.read')
     ->middleware('role_or_permission:notificaciones.read');
 
-//Salida PdfPacientes
-Route::get('/get-all-paciente', [PDFController::class, 'getAllpaciente'])->middleware('role_or_permission:pacientes');
-Route::get('/download-pdf', [PDFController::class, 'downloadPDF'])
-    ->name('descargarPDF')
+//Salidas PDF
+
+Route::get('/download-pdf', [PDFController::class, 'pacientesPDF'])
+    ->name('pacientesPDF')
     ->middleware('role_or_permission:pdf.descargar');
+Route::get('/ruta-pdf/{id}', [PDFController::class, 'rutaPDF'])
+    ->name('rutaPDF')
+    ->middleware('role_or_permission:pdf.descargar');
+Route::get('/tratamientos-pdf', [PDFController::class, 'tratamientosPDF'])
+    ->name('tratamientosPDF')
+    ->middleware('role_or_permission:pdf.descargar');
+
 
 /**
  * -----------------------------------------------------------------------------------
@@ -387,7 +394,8 @@ Route::put('/update-AnadirD/{slug?}', [App\Http\Controllers\AnadirDController::c
 Route::get('/GananciasA', [App\Http\Controllers\GananciasAController::class, 'index'])
     ->name('GananciasA')
     ->middleware('role_or_permission:GananciasA');
-Route::post('/GananciasA/mostrar', [App\Http\Controllers\GananciasAController::class, 'mostrar'])->name('GananciasA.mostrar');
+Route::post('/GananciasA/mostrar', [App\Http\Controllers\GananciasAController::class, 'mostrar'])
+    ->name('GananciasA.mostrar');
 Route::get('/TratamientoR', [App\Http\Controllers\TratamientoRController::class, 'index'])
     ->name('TratamientoR')
     ->middleware('role_or_permission:TratamientoR');

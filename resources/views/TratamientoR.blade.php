@@ -15,7 +15,7 @@
             </div>
             <div class="col-sm-7 col-8 text-right m-b-30">
                 <div class="btn-group btn-group-sm">
-                    <button class="btn btn-white"><img src="{{asset('assets/img/pdf.png')}}" style="width: 30px"></button>
+                    <a href="{{route('tratamientosPDF')}}" target="_blank" class="btn btn-white"><img src="{{asset('assets/img/pdf.png')}}" style="width: 30px"></a>
                 </div>
             </div>
         </div>

@@ -49,7 +49,7 @@
                                         <tbody>
                                             @foreach ($bitacora as $registro)
                                                 <tr>
-                                                    <td>{{ $registro->user->persona->nombre . ' ' . $registro->user->persona->apellido }}
+                                                    <td>{{ $registro->usuario->persona->nombre . ' ' . $registro->usuario->persona->apellido }}
                                                     </td>
                                                     <td>{{ \Carbon\Carbon::parse($registro->created_at)->format('h:i a') }}
                                                     </td>

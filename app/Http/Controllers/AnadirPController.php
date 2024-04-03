@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\persona;
 use App\Models\dato_ubicacion;
 use App\Models\paciente;
@@ -24,15 +25,14 @@ class AnadirPController extends Controller
      */
     public function index()
     {
-         $estado = estado::all();
-         $nacionalidad = nacionalidad::all();
-         $municipio = municipio::all();
-         $ciudad = ciudad::all();
-         $parroquia = parroquia::all();
+        $estado = estado::all();
+        $nacionalidad = nacionalidad::all();
+        $municipio = municipio::all();
+        $ciudad = ciudad::all();
+        $parroquia = parroquia::all();
 
 
-        return view('AñadirP',compact('estado', 'municipio', 'parroquia','ciudad','nacionalidad'));
-        
+        return view('AñadirP', compact('estado', 'municipio', 'parroquia', 'ciudad', 'nacionalidad'));
     }
 
     /**
@@ -63,95 +63,99 @@ class AnadirPController extends Controller
         //     'direccion' => 'required|alpha|max:100',
         //     'telefono' => 'required|integer|between:11,11',
         //     'ocupacion' => 'required|alpha|max:30',
-           
-     
-                 
+
+
+
         //     ]);
-        $estado = estado::where('id_estado','=',$request->estado )->first();
-        $municipio = municipio::where('id_municipio','=',$request->municipio )->first();
-        $ciudad = ciudad::where('id_ciudad','=',$request->ciudad )->first();
-        $parroquia = parroquia::where('id_parroquia','=',$request->parroquia )->first();
+        $estado = estado::where('id_estado', '=', $request->estado)->first();
+        $municipio = municipio::where('id_municipio', '=', $request->municipio)->first();
+        $ciudad = ciudad::where('id_ciudad', '=', $request->ciudad)->first();
+        $parroquia = parroquia::where('id_parroquia', '=', $request->parroquia)->first();
 
         $dato_ubicacion = dato_ubicacion::create([
-            
+
             'estados_id'     =>  $estado->id_estado,
             'municipios_id'   =>  $municipio->id_municipio,
             'ciudades_id'     =>  $ciudad->id_ciudad,
             'parroquias_id'   =>  $parroquia->id_parroquia,
-            'direccion'  => $request-> post('direccion'),
-            'telefono'   => $request-> post('telefono'),
+            'direccion'  => $request->post('direccion'),
+            'telefono'   => $request->post('telefono'),
         ]);
         $user = User::create([
-            'email' => $request-> post('correo'),
+            'email' => $request->post('correo'),
             'password' => bcrypt($request->post('contraseña')),
 
-         ]);
-        $tipo = tipo_persona::where('tipo_persona','Paciente')->first();
-        
+        ]);
+        $tipo = tipo_persona::where('tipo_persona', 'Paciente')->first();
+        if (isset($request->foto)) {
+            $path = $request->file('foto')->storeAs('imagenes', \Carbon\Carbon::now()->timestamp . '.jpg', 'public');
+            $path = substr($path, 9);
+        }
+
         $persona = persona::create([
-            'nacionalidads_id'  => $request->post('nacionalidad') ,
-            'user_id'          => $user -> id,
+            'nacionalidads_id'  => $request->post('nacionalidad'),
+            'user_id'          => $user->id,
             'doc_identidad'    => $request->post('doc_identidad'),
             'nombre'           => $request->post('nombre'),
             'apellido'         => $request->post('apellido'),
             'fecha_nacimiento' => $request->post('fecha_nacimiento'),
-            'genero'           => $request -> post('genero'),
-            'foto'             => $request->post('foto'),
-            'tipo_personas_id' => $tipo -> id ,
-            'dato_ubicacions_id' => $dato_ubicacion -> id ,
+            'genero'           => $request->post('genero'),
+            'foto'             => $path,
+            'tipo_personas_id' => $tipo->id,
+            'dato_ubicacions_id' => $dato_ubicacion->id,
         ]);
-        
+
 
 
         $paciente = paciente::create([
             'ocupacion'   => $request->post('ocupacion'),
             'personas_id' => $persona->id,
         ]);
-        
 
-        
+
+
         $expediente = expediente::create([
-        'alergia_penicilina'       => $request->post('alergia_penicilina'),
-        'desc_alergia_p'           => $request->post('desc_alergia_p'),
-        'alergia_medicamento'      => $request->post('alergia_medicamento'),
-        'desc_alergia_m'           => $request->post('desc_alergia_m'),
-        'trat_actual'              => $request->post('trat_actual'),
-        'desc_trat_actual'         => $request->post('desc_trat_actual'),
-        'gravidez'                 => $request->post('gravidez'),
-        'desc_gravidez'            => $request->post('desc_gravidez'),
-        'hemorragia'               => $request->post('hemorragia'),
-        'desc_hemorragia'          => $request->post('desc_hemorragia'),
-        'desmayos'                 => $request->post('desmayos'),
-        'desc_desmayos'            => $request->post('desc_desmayos'),
-        'asma'                     => $request->post('asma'),
-        'desc_asma'                => $request->post('desc_asma'),
-        'diabetes'                 => $request->post('diabetes'),
-        'desc_diabetes'            => $request->post('desc_diabetes'),
-        'hipertension'             => $request->post('hipertension'),
-        'desc_hipertension'        => $request->post('desc_hipertension'),
-        'epilepsia'                => $request->post('epilepsia'),
-        'desc_epilepsia'           => $request->post('desc_epilepsia'),
-        'cancer_actual'            => $request->post('cancer_actual'),
-        'desc_cancer_actual'       => $request->post('desc_cancer_actual'),
-        'cancer_pasado'            => $request->post('cancer_pasado'),
-        'desc_cancer_pasado'       => $request->post('desc_cancer_pasado'),
-        'vih'                      => $request->post('vih'),
-        'desc_vih'                 => $request->post('desc_vih'),
-        'inmunodeficiente'         => $request->post('inmunodeficiente'),
-        'desc_inmunodeficiente'    => $request->post('desc_inmunodeficiente'),
-        'fumador'                  => $request->post('fumador'),
-        'desc_fumador'             => $request->post('desc_fumador'),
-        'pacientes_id'             => $paciente->id,
+            'alergia_penicilina'       => $request->post('alergia_penicilina'),
+            'desc_alergia_p'           => $request->post('desc_alergia_p'),
+            'alergia_medicamento'      => $request->post('alergia_medicamento'),
+            'desc_alergia_m'           => $request->post('desc_alergia_m'),
+            'trat_actual'              => $request->post('trat_actual'),
+            'desc_trat_actual'         => $request->post('desc_trat_actual'),
+            'gravidez'                 => $request->post('gravidez'),
+            'desc_gravidez'            => $request->post('desc_gravidez'),
+            'hemorragia'               => $request->post('hemorragia'),
+            'desc_hemorragia'          => $request->post('desc_hemorragia'),
+            'desmayos'                 => $request->post('desmayos'),
+            'desc_desmayos'            => $request->post('desc_desmayos'),
+            'asma'                     => $request->post('asma'),
+            'desc_asma'                => $request->post('desc_asma'),
+            'diabetes'                 => $request->post('diabetes'),
+            'desc_diabetes'            => $request->post('desc_diabetes'),
+            'hipertension'             => $request->post('hipertension'),
+            'desc_hipertension'        => $request->post('desc_hipertension'),
+            'epilepsia'                => $request->post('epilepsia'),
+            'desc_epilepsia'           => $request->post('desc_epilepsia'),
+            'cancer_actual'            => $request->post('cancer_actual'),
+            'desc_cancer_actual'       => $request->post('desc_cancer_actual'),
+            'cancer_pasado'            => $request->post('cancer_pasado'),
+            'desc_cancer_pasado'       => $request->post('desc_cancer_pasado'),
+            'vih'                      => $request->post('vih'),
+            'desc_vih'                 => $request->post('desc_vih'),
+            'inmunodeficiente'         => $request->post('inmunodeficiente'),
+            'desc_inmunodeficiente'    => $request->post('desc_inmunodeficiente'),
+            'fumador'                  => $request->post('fumador'),
+            'desc_fumador'             => $request->post('desc_fumador'),
+            'pacientes_id'             => $paciente->id,
         ]);
-        
-        
-       
-      
-        if ($paciente!=null) {
-                return redirect()->route("RegistroE");
-            }else{
-                return redirect()->route("AnadirP");
-            }
+
+
+
+
+        if ($paciente != null) {
+            return redirect()->route("RegistroE");
+        } else {
+            return redirect()->route("AnadirP");
+        }
     }
 
     /**

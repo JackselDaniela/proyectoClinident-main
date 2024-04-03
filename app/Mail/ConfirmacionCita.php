@@ -17,13 +17,15 @@ class ConfirmacionCita extends Mailable
      *
      * @return void
      */
-    
+
     public $cita;
     public $token;
-    public function __construct(cita $cita, string $token)
+    public $paciente;
+    public function __construct(cita $cita, string $paciente, string $token)
     {
-     $this->cita = $cita;
-     $this->token = $token;
+        $this->cita = $cita;
+        $this->token = $token;
+        $this->paciente = $paciente;
     }
 
     /**
@@ -33,11 +35,9 @@ class ConfirmacionCita extends Mailable
      */
     public function build()
     {
-        
-        
+
+
         return $this->subject('Confirmacion de Cita Odontologica')
-        ->view('emails.confirmacion');
-
+            ->view('emails.confirmacion');
     }
-
 }

@@ -28,7 +28,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <form action="{{ route('AnadirP.store') }}" method="POST">
+                        <form action="{{ route('AnadirP.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
 
@@ -125,10 +125,11 @@
                                             class="text-danger">*</span>
                                         <div class="profile-upload">
                                             <div class="upload-img">
-                                                <img alt="" src="assets/img/user.jpg">
+                                                <img alt="" id="mostrarImagen" src="assets/img/user.jpg">
                                             </div>
                                             <div class="upload-input">
                                                 <input type="file" name="foto" id="foto" class="form-control"
+                                                    accept="image/png, image/jpeg, image/jpg" onchange="loadImage(event)"
                                                     required>
                                             </div>
                                         </div>
@@ -288,8 +289,8 @@
                                                             <div class="form-check-inline">
                                                                 <label class="form-check-label">
                                                                     <input type="radio" name="alergia_penicilina"
-                                                                        value="Si" @checked($value==='Si') class="form-check-input"
-                                                                        required>Si
+                                                                        value="Si" @checked($value === 'Si')
+                                                                        class="form-check-input" required>Si
                                                                 </label>
                                                             </div>
                                                             <br>
@@ -725,5 +726,6 @@
     <script src="{{ asset('/assets/js/app.js') }}"></script>
     <script src="{{ asset('/assets/js/modal.js') }}"></script>
     <script src="{{ asset('/assets/js/estadoMunicipioCiudadParroquia.js') }}"></script>
+    <script src="{{ asset('/assets/js/imagePreview.js') }}"></script>
     <script src="{{ asset('/assets/js/popper.min.js') }}"></script>
 @endsection

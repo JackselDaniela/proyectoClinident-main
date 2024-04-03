@@ -211,6 +211,15 @@ Route::get('/CitasC', [App\Http\Controllers\CitasCController::class, 'index'])
     ->name('CitasC')
     ->middleware('role_or_permission:citas.confirmar');
 
+Route::get('/CitasC/{token}', [App\Http\Controllers\CitasCController::class, 'cita'])
+    ->name('CitasC.cita');
+Route::put('/CitasC/{token}', [App\Http\Controllers\CitasCController::class, 'validar'])
+    ->name('CitasC.validar');
+// ->middleware('role_or_permission:citas.confirmar');
+
+Route::get('/ej', [App\Http\Controllers\CitasCController::class, 'ejemplo'])
+    ->name('ejemplo');
+
 /**
  * -----------------------------------------------------------------------------------
  *                                      Gestion de Paciente

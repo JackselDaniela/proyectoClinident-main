@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Bitacora;
 use App\Models\registrar_tratamiento;
 use App\Models\especialidad;
 use Illuminate\Http\Request;
@@ -18,10 +20,10 @@ class RegistrarTController extends Controller
     {
         $especialidad = especialidad::all();
         $tratamiento = registrar_tratamiento::with('especialidad')
-        
-        ->get();
-        
-        return view('registrarT',compact('tratamiento','especialidad'));
+
+            ->get();
+
+        return view('registrarT', compact('tratamiento', 'especialidad'));
     }
 
     /**
@@ -44,24 +46,28 @@ class RegistrarTController extends Controller
     {
         $especialidad = especialidad::first();
 
-        
-         $tratamiento = registrar_tratamiento::create([
+
+        $tratamiento = registrar_tratamiento::create([
             'nom_tratamiento'    => $request->post('nom_tratamiento'),
             'costo_tratamiento'  => $request->post('costo_tratamiento'),
             'codigo_tratamiento' => $request->post('codigo_tratamiento'),
             'fecha_añadido'      => $request->post('fecha_añadido'),
-            'especialidads_id'      => $especialidad -> id
-         ]);
-       
+            'especialidads_id'      => $especialidad->id
+        ]);
 
-        
-        if ($tratamiento!=null) {
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Registrar',
+            'file' => 'Tratamiento'
+        ]);
+
+
+
+        if ($tratamiento != null) {
             return redirect()->route("RegistrarT");
-        }else{
+        } else {
             return redirect()->route("RegistrarT");
         }
-
-
     }
 
     /**
@@ -85,10 +91,9 @@ class RegistrarTController extends Controller
     {
         $especialidad = especialidad::all();
         $tratamiento = registrar_tratamiento::with('especialidad')
-        ->find($id);
+            ->find($id);
         // dd($tratamiento);
-        return view('EregistrarT', compact('tratamiento','especialidad'));
-
+        return view('EregistrarT', compact('tratamiento', 'especialidad'));
     }
     public function eliminarT($id)
     {
@@ -111,19 +116,21 @@ class RegistrarTController extends Controller
     {
         $especialidad = especialidad::first();
         $tratamiento = DB::table('registrar_tratamientos')
-        ->with('especialidad')
-        ->where('id', $id)
-        -> update([
-           'nom_tratamiento'=>$request ->nom_tratamiento,
-           'costo_tratamiento'=>$request ->costo_tratamiento,
-           'codigo_tratamiento'=>$request ->codigo_tratamiento,
-           'fecha_añadido'=>$request ->fecha_añadido,
-           'especialidads_id'=> $request->especialidad
+            ->where('id', $id)
+            ->update([
+                'nom_tratamiento' => $request->nom_tratamiento,
+                'costo_tratamiento' => $request->costo_tratamiento,
+                'codigo_tratamiento' => $request->codigo_tratamiento,
+                'fecha_añadido' => $request->fecha_añadido,
+                'especialidads_id' => $request->especialidad
+            ]);
+
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Actualizar',
+            'file' => 'Tratamiento'
         ]);
-        return redirect()->route("RegistrarT", compact('tratamiento','especialidad'));
-
-
-
+        return redirect()->route("RegistrarT", compact('tratamiento', 'especialidad'));
     }
 
     /**

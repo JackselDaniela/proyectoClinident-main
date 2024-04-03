@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Bitacora;
 use App\Models\doctor;
 use App\Models\persona;
 use App\Models\dato_ubicacion;
@@ -75,11 +77,11 @@ class EditarPController extends Controller
     public function buscar($id)
     {
         $pieza = pieza::all();
-        $diagnosticos = paciente_diagnostico::where('pacientes_id',$id)->get();
+        $diagnosticos = paciente_diagnostico::where('pacientes_id', $id)->get();
         // dd($diagnosticos);
-       $paciente = paciente::with('persona','expediente','persona.dato_ubicacion')
-        ->join('expedientes','expedientes.pacientes_id','=','expedientes.id')
-        ->find($id);
+        $paciente = paciente::with('persona', 'expediente', 'persona.dato_ubicacion')
+            ->join('expedientes', 'expedientes.pacientes_id', '=', 'expedientes.id')
+            ->find($id);
 
         $doctores = doctor::all();
 
@@ -87,7 +89,7 @@ class EditarPController extends Controller
             $doctor->personas_id = persona::where('id', '=', $doctor->personas_id)->first();
         }
 
-        return view('AnadirT', compact('paciente','pieza','id','diagnosticos', 'doctores'));
+        return view('AnadirT', compact('paciente', 'pieza', 'id', 'diagnosticos', 'doctores'));
 
         return view('AnadirT', compact('paciente', 'pieza', 'id', 'diagnosticos'));
     }
@@ -168,6 +170,12 @@ class EditarPController extends Controller
                 'desc_fumador'             => $request->desc_fumador,
 
             ]);
+
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Actualizar',
+            'file' => 'Paciente'
+        ]);
 
 
 

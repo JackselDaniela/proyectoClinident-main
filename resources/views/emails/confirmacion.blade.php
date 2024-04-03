@@ -14,11 +14,12 @@
             Fecha:
             Hora:
 
-            Por favor, confirme su asistencia haciendo clic en el botón "Confirmar Cita" a continuación: 
+            Por favor, confirme su asistencia haciendo clic en el botón "Confirmar Cita" a continuación:
 
 
         </p>
-        <a class="btn btn-primary" href="#">Confirmar Cita</a> 
+        <a class="btn btn-primary" href="{{ url("/CitasC/$token") }}">Confirmar Cita</a>
+        <p>{{ url("/CitasC/$token") }}</p>
         <p>
 
             Su confirmación nos ayudará a garantizar una atención oportuna y de calidad para usted. Si por alguna razón

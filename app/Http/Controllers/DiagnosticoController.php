@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Consumo;
 use App\Models\doctor;
 use App\Models\Insumo;
@@ -35,7 +36,7 @@ class DiagnosticoController extends Controller
 
     public function store(Request $request, paciente_diagnostico $paciente_diagnostico)
     {
-        $ids = $paciente_diagnostico->insumos_añadibles->map(fn($ins) => $ins->id);
+        $ids = $paciente_diagnostico->insumos_añadibles->map(fn ($ins) => $ins->id);
 
         $data = $request->validate([
             'insumo_id' => ['required', 'numeric', 'integer', Rule::in($ids)],
@@ -45,7 +46,7 @@ class DiagnosticoController extends Controller
         $max = Insumo::find($data['insumo_id'])->existencia;
 
         $request->validate([
-            'cantidad' => 'max:'.$max,
+            'cantidad' => 'max:' . $max,
         ]);
 
         $operacion = Operacion::create([
@@ -58,6 +59,12 @@ class DiagnosticoController extends Controller
         Consumo::create([
             'operacion_id' => $operacion->id,
             'paciente_diagnostico_id' => $paciente_diagnostico->id,
+        ]);
+
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Registrar',
+            'file' => 'Diagnóstico consumos'
         ]);
 
         return redirect()->route('diagnosticos.show', $paciente_diagnostico);
@@ -100,7 +107,7 @@ class DiagnosticoController extends Controller
         $size = $paciente_diagnostico->consumos()->count();
 
         $request->validate([
-            'operaciones' => ['required', 'array', 'size:'.$size],
+            'operaciones' => ['required', 'array', 'size:' . $size],
             'operaciones.*' => ['array:id,cantidad'],
             'operaciones.*.id' => ['numeric', 'integer'],
         ]);
@@ -114,16 +121,22 @@ class DiagnosticoController extends Controller
             $max = $insumo->existencia + $cantidad;
 
             Validator::make($data, [
-                'cantidad' => ['numeric', 'integer', 'min:'.$cantidad, 'max:'.$max],
+                'cantidad' => ['numeric', 'integer', 'min:' . $cantidad, 'max:' . $max],
             ], [
                 'cantidad.max' => "La cantidad del insumo \"{$insumo->nombre}\" no debe ser mayor a {$max}",
                 'cantidad.min' => "La cantidad del insumo \"{$insumo->nombre}\" no debe ser menor a {$cantidad}",
-                ])->validate();
+            ])->validate();
 
             $operacion->update([
                 'cantidad' => -$data['cantidad'],
             ]);
         });
+
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Actualizar',
+            'file' => 'Diagnóstico consumos'
+        ]);
 
         return redirect()->route('diagnosticos.show', $paciente_diagnostico);
     }

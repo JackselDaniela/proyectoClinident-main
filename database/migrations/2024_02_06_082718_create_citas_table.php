@@ -26,6 +26,7 @@ class CreateCitasTable extends Migration
             $table->time('fin');
             $table->date('fecha');
             $table->string('descripcion');
+            $table->string('token');
             $table->timestamp('confirmacion')->nullable();
             $table->softdeletes();
             $table->timestamps();

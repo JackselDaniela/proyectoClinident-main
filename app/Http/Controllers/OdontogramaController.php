@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\doctor;
 use App\Models\persona;
 use Illuminate\Http\Request;
@@ -28,14 +29,14 @@ class OdontogramaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id,$piezas_id)
+    public function create($id, $piezas_id)
     {
         // SELECT * FROM empleados INNER JOIN departamentos ON empleados.e_id = departamentos.d_id;
         $pieza = pieza::find($piezas_id);
 
-        $paciente = paciente::with('persona','expediente','persona.dato_ubicacion')
-        ->join('expedientes','expedientes.pacientes_id','=','expedientes.id')
-        ->find($id);
+        $paciente = paciente::with('persona', 'expediente', 'persona.dato_ubicacion')
+            ->join('expedientes', 'expedientes.pacientes_id', '=', 'expedientes.id')
+            ->find($id);
 
         $nom_pieza = $pieza->nom_pieza;
         $id_paciente = $id;
@@ -50,7 +51,7 @@ class OdontogramaController extends Controller
         }
 
 
-        return view('odontograma',compact('id','id_paciente','paciente','piezas_id','nom_pieza','registrar_tratamiento','diagnostico','doctores'));
+        return view('odontograma', compact('id', 'id_paciente', 'paciente', 'piezas_id', 'nom_pieza', 'registrar_tratamiento', 'diagnostico', 'doctores'));
     }
 
     /**
@@ -71,7 +72,7 @@ class OdontogramaController extends Controller
 
         $persona = persona::where('doc_identidad', '=', $doctor_cedula)->first();
 
-        $errors_user = [ 'not_found' => 'Usuario no encontrado' ];
+        $errors_user = ['not_found' => 'Usuario no encontrado'];
 
         if (is_null($persona)) {
             return back()->withInput();
@@ -83,16 +84,22 @@ class OdontogramaController extends Controller
             return back()->withInput();
         }
 
-         paciente_diagnostico::create([
-            'pacientes_id' => $id ,
-            'piezas_id'=> $piezas_id,
+        paciente_diagnostico::create([
+            'pacientes_id' => $id,
+            'piezas_id' => $piezas_id,
             'doctor_id' => $doctor->id,
-            'diagnosticos_id'=> $request->post('diagnosticos_id'),
-            'registrar_tratamientos_id'=> $request->post('registrar_tratamientos_id'),
-            'estatus_tratamientos_id'=> 1
+            'diagnosticos_id' => $request->post('diagnosticos_id'),
+            'registrar_tratamientos_id' => $request->post('registrar_tratamientos_id'),
+            'estatus_tratamientos_id' => 1
         ]);
 
-        return redirect()->route('EditarP.buscar',$id);
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Registrar',
+            'file' => 'Odontograma'
+        ]);
+
+        return redirect()->route('EditarP.buscar', $id);
     }
 
     /**

@@ -203,7 +203,7 @@ Route::get('/Calendario', [App\Http\Controllers\CalendarioController::class, 'in
     ->middleware('role_or_permission:citas.ver');
 Route::post('/Calendario', [App\Http\Controllers\CalendarioController::class, 'store'])
     ->name('Calendario.store')
-    ->middleware('role_or_permission:citas.agender');
+    ->middleware('role_or_permission:citas.agendar');
 
 Route::put('/Calendario/{cita}', [App\Http\Controllers\CalendarioController::class, 'update'])
     ->name('Calendario.update')
@@ -215,8 +215,17 @@ Route::delete('/Calendario/{cita}', [App\Http\Controllers\CalendarioController::
 
 /* Citas Confirmadas*/
 Route::get('/CitasC', [App\Http\Controllers\CitasCController::class, 'index'])
-    ->name('CitasC')
-    ->middleware('role_or_permission:citas.confirmar');
+    ->name('CitasC');
+// ->middleware('role_or_permission:citas.confirmar');
+
+Route::get('/CitasC/{token}', [App\Http\Controllers\CitasCController::class, 'cita'])
+    ->name('CitasC.cita');
+Route::put('/CitasC/{token}', [App\Http\Controllers\CitasCController::class, 'validar'])
+    ->name('CitasC.validar');
+// ->middleware('role_or_permission:citas.confirmar');
+
+Route::get('/ej', [App\Http\Controllers\CitasCController::class, 'ejemplo'])
+    ->name('ejemplo');
 
 /**
  * -----------------------------------------------------------------------------------
@@ -234,12 +243,6 @@ Route::get('/AnadirP', [App\Http\Controllers\AnadirPController::class, 'index'])
 Route::post('/AnadirP', [App\Http\Controllers\AnadirPController::class, 'store'])
     ->name('AnadirP.store')
     ->middleware('role_or_permission:pacientes.agregar');
-Route::get('/AnadirP/{slug?}/edit', [App\Http\Controllers\AnadirPController::class, 'edit'])
-    ->name('AnadirP.edit')
-    ->middleware('role_or_permission:AnadirP.update');
-Route::put('/update-AnadirP/{slug?}', [App\Http\Controllers\AnadirPController::class, 'update'])
-    ->name('AnadirP.update')
-    ->middleware('role_or_permission:AnadirP.update');
 
 /* Registro Expediente*/
 Route::get('/RegistroE', [App\Http\Controllers\RegistroEController::class, 'index'])
@@ -486,18 +489,7 @@ Route::group(['middleware' => ['role:Admin']], function () {
  */
 
 Route::get('/Ayuda', [App\Http\Controllers\AyudaController::class, 'index'])
-    ->name('Ayuda');
-Route::post('/Ayuda', [App\Http\Controllers\AyudaController::class, 'store'])
-    ->name('Ayuda.store')
-    ->middleware('role_or_permission:Ayuda.store');
-Route::get('/Ayuda/{slug?}/edit', [App\Http\Controllers\AyudaController::class, 'edit'])
-    ->name('Ayuda.edit')
-    ->middleware('role_or_permission:Ayuda.edit');
-Route::put('/update-AnadirP/{slug?}', [App\Http\Controllers\AnadirPController::class, 'update'])
-    ->name('AnadirP.update')
-    ->middleware('role_or_permission:AyudaP.update');
+    ->name('Ayuda')
+    ->middleware('role_or_permission:Ayuda');
 Route::get('/blogAyuda', [App\Http\Controllers\blogAyudaController::class, 'index'])
     ->name('blogAyuda');
-Route::post('/blogAyuda', [App\Http\Controllers\blogAyudaController::class, 'store'])
-    ->name('blogAyuda.store')
-    ->middleware('role_or_permission:blogAyuda.store');

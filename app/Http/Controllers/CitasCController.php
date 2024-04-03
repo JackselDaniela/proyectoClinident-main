@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
+use App\Models\cita;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CitasCController extends Controller
@@ -13,72 +16,45 @@ class CitasCController extends Controller
      */
     public function index()
     {
-        return view('CitasC');
+        $citas = cita::where('confirmacion', '!=', null)->get();
+        return view('CitasC', compact('citas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function validar(string $token, Request $request)
     {
-        //
+        $cita = cita::where('token', '=', $token)->first();
+        $validacion = $request->validacion;
+
+        if ($validacion === 'confirmar') {
+            $cita->update([
+                'confirmacion' => Carbon::now()
+            ]);
+
+            Bitacora::create([
+                'user_id' => auth()->user()->id,
+                'file' => 'Cita',
+                'action' => 'Confirmar',
+            ]);
+
+            return back()->with('success', 'La cita ha sido confirmada con éxito');
+        } else {
+            $cita->delete();
+            Bitacora::create([
+                'user_id' => auth()->user()->id,
+                'file' => 'Cita',
+                'action' => 'Rechazar',
+            ]);
+            return back()->with('danger', 'La cita ha sido eliminada con éxito');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function cita(string $token)
     {
-        //
-    }
+        $cita = cita::where('token', '=', $token)->first();
+        if (isset($cita)) {
+            return view('ValidarCita', compact('cita'));
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return null;
     }
 }

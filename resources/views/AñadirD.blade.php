@@ -1,3 +1,4 @@
+AñadirD
 @extends('layouts.plantilla')
 
 @section('title')
@@ -28,7 +29,7 @@
 
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <form action="{{ route('AnadirD.store') }}" method="POST">
+                        <form action="{{ route('AnadirD.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-2">
@@ -123,10 +124,11 @@
                                         <label title="Seleccione una foto donde se distinga su rostro">Foto</label>
                                         <div class="profile-upload">
                                             <div class="upload-img">
-                                                <img alt="" src="assets/img/user.jpg">
+                                                <img alt="" src="assets/img/user.jpg" id="mostrarImagen">
                                             </div>
                                             <div class="upload-input">
                                                 <input type="file" name="foto" id="foto" class="form-control"
+                                                    accept="image/png, image/jpeg, image/jpg" onchange="loadImage(event)"
                                                     required>
                                             </div>
                                         </div>
@@ -246,6 +248,20 @@
                                 </div>
                                 {{-- / Datos Ubicacion --}}
 
+                                {{-- <div class="form-group row">
+                                <label class=" col-sm-2">Especialidad</label><span class="text-danger">*</span>
+                                <div class="col-md-8">
+                                    <select class="form-control">
+                                        <option value="No Especifica">-- Seleccione --</option>
+                                        <option value="Endodoncia" >Endodoncia</option>
+                                        <option value="Ortodoncia" >Ortodoncia</option>
+                                        <option value="Maxilo Facial" >Maxilo Facial</option>
+                                        <option value="Periodoncia">Periodoncia</option>
+                                        <option value="Prostodoncia">Prostodoncia</option>
+                                        
+                                    </select>
+                                </div>
+                            </div> --}}
 
                                 {{-- Especialidad --}}
 
@@ -607,4 +623,5 @@
     <script src="{{ asset('/assets/js/modal.js') }}"></script>
     <script src="{{ asset('/assets/js/estadoMunicipioCiudadParroquia.js') }}"></script>
     <script src="{{ asset('/assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/imagePreview.js') }}"></script>
 @endsection

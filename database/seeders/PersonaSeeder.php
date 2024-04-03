@@ -46,6 +46,7 @@ class PersonaSeeder extends Seeder
             'tipo_personas_id'   => '4',
             'dato_ubicacions_id' => '1',
             'nacionalidads_id' => $ve->id,
+            'foto' => ''
         ]);
 
         $user2 = User::create([
@@ -63,6 +64,7 @@ class PersonaSeeder extends Seeder
             'tipo_personas_id'   => '3',
             'dato_ubicacions_id' => '2',
             'nacionalidads_id' => $ve->id,
+            'foto' => ''
 
         ]);
 
@@ -81,6 +83,7 @@ class PersonaSeeder extends Seeder
             'tipo_personas_id'   => '1',
             'dato_ubicacions_id' => '3',
             'nacionalidads_id' => $ve->id,
+            'foto' => ''
 
         ]);
 
@@ -99,6 +102,7 @@ class PersonaSeeder extends Seeder
             'tipo_personas_id'   => '2',
             'dato_ubicacions_id' => '4',
             'nacionalidads_id' => $ve->id,
+            'foto' => ''
 
         ]);
 
@@ -117,6 +121,7 @@ class PersonaSeeder extends Seeder
             'tipo_personas_id'   => '2',
             'dato_ubicacions_id' => '5',
             'nacionalidads_id' => $ve->id,
+            'foto' => ''
 
         ]);
     }

@@ -9,26 +9,28 @@ use App\Models\doctor;
 use App\Models\paciente;
 use App\Models\tipo_consulta;
 use App\Mail\ConfirmacionCita;
+use App\Models\Bitacora;
 use App\Models\persona;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 
 class CalendarioController extends Controller
 {
-    
+
     public function index()
     {
         $tipo_consulta = tipo_consulta::get();
-        $citas= cita::with('paciente','tipo_consulta','doctor')->get();
+        $citas = cita::with('paciente', 'tipo_consulta', 'doctor')->get();
         $evento = array();
         $format = 'Y-m-d H:i:s';
-        
+
         foreach ($citas as $cita) {
             $inicioStr = "{$cita->fecha}{$cita->inicio}";
             $finStr = "{$cita->fecha}{$cita->fin}";
             $inicio = Carbon::createFromFormat($format, $inicioStr);
             $fin = Carbon::createFromFormat($format, $finStr);
-            
+
             $evento[] = [
                 'id' => $cita->id,
                 'start' => $inicio,
@@ -39,78 +41,97 @@ class CalendarioController extends Controller
                     'fin' => $fin->format('H:i'),
                 ],
                 'title' => $cita->descripcion,
-                'tipo_consultas_id'=> $cita->tipo_consultas_id,
+                'tipo_consultas_id' => $cita->tipo_consultas_id,
             ];
-        } 
+        }
 
-        return view('Calendario', compact('evento','tipo_consulta'));
+        return view('Calendario', compact('evento', 'tipo_consulta'));
     }
 
 
     public function store(Request $request)
     {
         $tipo = tipo_consulta::get();
-        $regla = 'in:' . $tipo->implode('id',',');
-       
-       $request->validate([
-        'paciente'=>['required', 'integer', 'numeric', 'digits_between:6,8',],
-        'doctor'=>['required', 'integer', 'numeric', 'digits_between:6,8',],
-        'descripcion'=>['required', 'string', 'min:10', 'max:250'],
-        'inicio'=>['required', 'date_format:H:i', 'before_or_equal:17:00', 'after_or_equal:07:30'],
-        'fin'=>['required','date_format:H:i', 'before_or_equal:18:00', 'after_or_equal:08:00', 'after:inicio'],
-        'fecha'=>['required','date','after_or_equal:today','before_or_equal:+60days'],
-        'tipo_cita' =>['required', $regla]
-       ]) ;
+        $regla = 'in:' . $tipo->implode('id', ',');
 
-       $identidad = persona::with('paciente')->where('doc_identidad',$request->post('paciente'))->first();
-       $paciente = $identidad->paciente->id;
-       $identificacion = persona::with('doctor')->where('doc_identidad',$request->post('doctor'))->first();
-       $doctor = $identificacion->doctor->id;
-// dd($cita);
-       $cita = cita::create([
-           
-             'pacientes_id'     => $paciente,
-             'doctors_id'   => $doctor,
-             'tipo_consultas_id'     => $request->post('tipo_cita'),
-             'inicio'   =>$request->post('inicio'),
-             'fin'  =>$request->post('fin'),
-             'fecha'=>$request->post('fecha'),
-             'descripcion'   => $request-> post('descripcion'),
-            
-         ]);
-         $cita->load('paciente.persona.user');
+        $request->validate([
+            'paciente' => ['required', 'integer', 'numeric', 'digits_between:6,8',],
+            'doctor' => ['required', 'integer', 'numeric', 'digits_between:6,8',],
+            'descripcion' => ['required', 'string', 'min:10', 'max:250'],
+            'inicio' => ['required', 'date_format:H:i', 'before_or_equal:17:00', 'after_or_equal:07:30'],
+            'fin' => ['required', 'date_format:H:i', 'before_or_equal:18:00', 'after_or_equal:08:00', 'after:inicio'],
+            'fecha' => ['required', 'date', 'after_or_equal:today', 'before_or_equal:+60days'],
+            'tipo_cita' => ['required', $regla]
+        ]);
 
-         Mail::to($cita->paciente->persona->user)->send(new ConfirmacionCita($cita));
+        //   "paciente" => "2000000"
+        //   "doctor" => "27000000"
+        //   "descripcion" => "lorem lorem"
+        //   "inicio" => "08:34"
+        //   "fin" => "10:34"
+        //   "fecha" => "2024-04-03"
+        //   "tipo_cita" => "1"
+
+        $identidad = persona::with('paciente')->where('doc_identidad', $request->post('paciente'))->first();
+        $paciente = $identidad->paciente->id;
+        $identificacion = persona::with('doctor')->where('doc_identidad', $request->post('doctor'))->first();
+        $doctor = $identificacion->doctor->id;
+        $token = Str::random(64);
+        $cita = cita::create([
+
+            'pacientes_id'     => $paciente,
+            'doctors_id'   => $doctor,
+            'tipo_consultas_id'     => $request->post('tipo_cita'),
+            'inicio'   => $request->post('inicio'),
+            'fin'  => $request->post('fin'),
+            'fecha' => $request->post('fecha'),
+            'descripcion'   => $request->post('descripcion'),
+            'token' => $token,
+
+        ]);
+        $cita->load('paciente.persona.user');
+
+        Mail::to($cita->paciente->persona->user)->send(new ConfirmacionCita($cita, $paciente, $token));
 
 
-         
-            return redirect()->route("Calendario");
-        
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Registrar',
+            'file' => 'Cita'
+        ]);
+
+        return redirect()->route("Calendario");
     }
 
-   
+
     public function update(Request $request, cita $cita)
     {
-        
+
         $tipo = tipo_consulta::get();
-        $regla = 'in:' . $tipo->implode('id',',');
-       
+        $regla = 'in:' . $tipo->implode('id', ',');
+
         $request->validate([
-       
-        'descripcion'=>['required', 'string', 'min:10', 'max:250'],
-        'inicio'=>['required', 'date_format:H:i', 'before_or_equal:17:00', 'after_or_equal:07:30'],
-        'fin'=>['required','date_format:H:i', 'before_or_equal:18:00', 'after_or_equal:08:00', 'after:inicio'],
-        'fecha'=>['required','date','after_or_equal:today','before_or_equal:+60days'],
-        'tipo_cita' =>['required', $regla]
-       ]);
+
+            'descripcion' => ['required', 'string', 'min:10', 'max:250'],
+            'inicio' => ['required', 'date_format:H:i', 'before_or_equal:17:00', 'after_or_equal:07:30'],
+            'fin' => ['required', 'date_format:H:i', 'before_or_equal:18:00', 'after_or_equal:08:00', 'after:inicio'],
+            'fecha' => ['required', 'date', 'after_or_equal:today', 'before_or_equal:+60days'],
+            'tipo_cita' => ['required', $regla]
+        ]);
 
         $cita->update([
-             'tipo_consultas_id'     => $request->post('tipo_cita'),
-             'inicio'   =>$request->post('inicio'),
-             'fin'  =>$request->post('fin'),
-             'fecha'=>$request->post('fecha'),
-             'descripcion'   => $request-> post('descripcion'),
-         ]);
+            'tipo_consultas_id'     => $request->post('tipo_cita'),
+            'inicio'   => $request->post('inicio'),
+            'fin'  => $request->post('fin'),
+            'fecha' => $request->post('fecha'),
+            'descripcion'   => $request->post('descripcion'),
+        ]);
+
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Actualizar',
+            'file' => 'Cita'
+        ]);
 
         return redirect()->route("Calendario");
     }
@@ -124,6 +145,12 @@ class CalendarioController extends Controller
     public function destroy(cita $cita)
     {
         $cita->delete();
+
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Borrar',
+            'file' => 'Cita'
+        ]);
         return redirect()->route("Calendario");
     }
 }

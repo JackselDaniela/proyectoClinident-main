@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Bitacora;
 use App\Models\persona;
 use App\Models\dato_ubicacion;
 use App\Models\paciente;
@@ -18,15 +20,15 @@ class RegistroEController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    
+
     {
-        
-        $paciente = paciente::with('persona','expediente','persona.dato_ubicacion')
-        ->get();
-       
+
+        $paciente = paciente::with('persona', 'expediente', 'persona.dato_ubicacion')
+            ->get();
 
 
-        return view('RegistroE',compact('paciente'));
+
+        return view('RegistroE', compact('paciente'));
     }
 
     /**
@@ -75,6 +77,12 @@ class RegistroEController extends Controller
     {
         $paciente = paciente::find($id);
         $paciente->delete();
+
+        Bitacora::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Borrar',
+            'file' => 'Paciente'
+        ]);
         return redirect()->route("RegistroE");
     }
 

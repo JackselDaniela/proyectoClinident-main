@@ -53,7 +53,7 @@
                   <td x-text="cantidad"></td>
                   <td class="actions-td">
                     <button class="btn-icon" @click="removeInsumo" :data-id="id" type="button">
-                      <i class="fa fa-trash-o" style="width: 2rem; color:red;></i>
+                      <i class="fa fa-trash-o" style="width: 2rem; color:red;"></i>
                     </button>
                     <input type="hidden" :name="`insumos[${index}][id]`" :value="id">
                     <input type="hidden" :name="`insumos[${index}][cantidad]`" :value="cantidad">

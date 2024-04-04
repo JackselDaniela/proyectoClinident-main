@@ -88,6 +88,10 @@ Route::get('/tratamientos-pdf', [PDFController::class, 'tratamientosPDF'])
     ->name('tratamientosPDF')
     ->middleware('role_or_permission:pdf.descargar');
 
+Route::get('/ganancias-pdf', [PDFController::class, 'gananciasPDF'])
+    ->name('gananciasPDF')
+    ->middleware('role_or_permission:pdf.descargar');
+
 
 /**
  * -----------------------------------------------------------------------------------
@@ -95,12 +99,8 @@ Route::get('/tratamientos-pdf', [PDFController::class, 'tratamientosPDF'])
  * -----------------------------------------------------------------------------------
  */
 
-Route::get('/', function () {
-    return view('Landing');
-})->name('landing');
-/* Landing*/
 Route::get('/', [App\Http\Controllers\LandingController::class, 'index'])
-    ->name('Landing');
+    ->name('landing');
 /*Index*/
 Route::get('/Index', [App\Http\Controllers\IndexController::class, 'index'])
     ->name('Index');

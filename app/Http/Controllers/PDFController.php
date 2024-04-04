@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\paciente;
 use App\Models\paciente_diagnostico;
-use App\Services\Diagnostico;
+use App\Services\Ganancias;
+use Illuminate\Http\Request;
 use PDF;
 
 class PDFController extends Controller
@@ -46,5 +46,14 @@ class PDFController extends Controller
             ->with('paciente')->get();
        $pdf = PDF::loadView('PDFtratamientosR', compact('tratamientos_finalizados'));
        return $pdf->stream('tratamientosR.pdf');
+    }
+
+    public function gananciasPDF(Request $request)
+    {
+        $data = Ganancias::get($request->all());
+
+        $pdf = PDF::loadView('PDFGanancias', $data);
+
+        return $pdf->stream('Ganancias del Doctor.pdf');
     }
 }

@@ -224,9 +224,6 @@ Route::put('/CitasC/{token}', [App\Http\Controllers\CitasCController::class, 'va
     ->name('CitasC.validar');
 // ->middleware('role_or_permission:citas.confirmar');
 
-Route::get('/ej', [App\Http\Controllers\CitasCController::class, 'ejemplo'])
-    ->name('ejemplo');
-
 /**
  * -----------------------------------------------------------------------------------
  *                                      Gestion de Paciente
@@ -477,9 +474,17 @@ Route::group(['middleware' => ['role:Admin']], function () {
      */
 
     Route::get('/Bitacora', [App\Http\Controllers\BitacoraController::class, 'index'])
-        ->name('Bitacora');
+        ->name('Bitacora')
+        ->middleware('role_or_permission:Admin');
     Route::get('/RespaldoB', [App\Http\Controllers\RespaldoBController::class, 'index'])
-        ->name('RespaldoB');
+        ->name('RespaldoB')
+        ->middleware('role_or_permission:Admin');
+    Route::get('/respaldo', [App\Http\Controllers\RespaldoBController::class, 'store'])
+        ->name('respaldo.store')
+        ->middleware('role_or_permission:Admin');
+    Route::get('/respaldo/download/{file}', [App\Http\Controllers\RespaldoBController::class, 'download'])
+        ->name('respaldo.download')
+        ->middleware('role_or_permission:Admin');
 });
 
 /**

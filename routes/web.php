@@ -1,6 +1,6 @@
 <?php
-//use App\Http\Controllers\;
 
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\CargaController;
 use App\Http\Controllers\DiagnosticoController;
 use App\Http\Controllers\InsumoController;
@@ -486,6 +486,21 @@ Route::group(['middleware' => ['role:Admin']], function () {
         ->name('respaldo.download')
         ->middleware('role_or_permission:Admin');
 });
+
+/**
+ * -----------------------------------------------------------------------------------
+ *                            Recuperación de contraseña
+ * -----------------------------------------------------------------------------------
+ */
+Route::get('/forgot-password', function () {
+    return view('auth.passwords.email');
+})->middleware('guest')->name('password.request');
+Route::post('/forgot-password', [ResetPasswordController::class, 'sendResetLink'])
+    ->name('password.email');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])
+    ->name('password.reset');
+Route::post('/reset-password/{token}', [ResetPasswordController::class, 'reset'])
+    ->name('password.confirmation');
 
 /**
  * -----------------------------------------------------------------------------------

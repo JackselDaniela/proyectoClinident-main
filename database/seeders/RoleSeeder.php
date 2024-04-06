@@ -42,48 +42,51 @@ class RoleSeeder extends Seeder
             ['operaciones', ['Admin', 'Secretaria', 'Doctor']],
             // diagnosticos
             ['diagnosticos.show', ['Admin', 'Secretaria', 'Doctor']],
-            ['diagnosticos.edit', ['Admin', 'Secretaria']],
-            ['diagnosticos.update', ['Admin', 'Secretaria']],
-            ['diagnosticos.consumos.create', ['Admin', 'Secretaria', 'Doctor']],
-            ['diagnosticos.consumos.store', ['Admin', 'Secretaria', 'Doctor']],
+            ['diagnosticos.edit', ['Admin', 'Secretaria','Doctor']],
+            ['diagnosticos.update', ['Admin', 'Secretaria','Doctor']],
+            ['diagnosticos.consumos.create', ['Admin', 'Secretaria','Doctor']],
+            ['diagnosticos.consumos.store', ['Admin', 'Secretaria','Doctor']],
             // procedimientos-odontologicos
-            ['procedimientos-odontologicos.ver', ['Admin', 'Secretaria', 'Doctor']],
-            ['procedimientos-odontologicos.registrar', ['Admin', 'Secretaria']],
-            ['procedimientos-odontologicos.editar', ['Admin', 'Secretaria']],
-            ['procedimientos-odontologicos.eliminar', ['Admin', 'Secretaria']],
+            ['RegistrarT', ['Admin', 'Secretaria','Doctor']],
+            ['RegistrarT.store', ['Admin','Secretaria']],
+            ['editarT', ['Admin','Secretaria']],
+            ['eliminarT', ['Admin','Secretaria']],
+            ['RegistrarT.update', ['Admin','Secretaria']],
+
+            //Odontograma
             ['Odontograma', ['Admin', 'Doctor']],
             ['Odontograma.store', ['Admin', 'Doctor']],
             ['Odontograma.create', ['Admin', 'Doctor']],
             ['Odontograma.edit', ['Admin', 'Doctor']],
             ['Odontograma.buscar', ['Admin', 'Doctor']],
             ['Odontograma.update', ['Admin', 'Doctor']],
+
             // pacientes
+            ['RegistroE', ['Admin', 'Secretaria','Doctor']],
+            ['AnadirP', ['Admin', 'Secretaria', 'Doctor']],
+            ['AnadirP.store', ['Admin', 'Secretaria', 'Doctor']],
             ['EditarP.buscar', ['Admin', 'Secretaria']],
             ['EditarP.update', ['Admin', 'Secretaria']],
-            ['EditarPD.store', ['Admin', 'Secretaria']],
-            ['EditarPD.update', ['Admin', 'Secretaria']],
-            ['pacientes.agregar', ['Admin', 'Secretaria', 'Doctor']],
-            ['pacientes.ver', ['Admin', 'Secretaria', 'Doctor']],
-            ['pacientes.eliminar', ['Admin', 'Secretaria', 'Doctor']],
-            ['pacientes.editar', ['Admin', 'Secretaria', 'Doctor']],
-            ['RegistroE', ['Admin', 'Secretaria']],
-            ['HistoriaC', ['Admin', 'Secretaria']],
-            ['HistoriaC.buscar', ['Admin', 'Secretaria']],
+
+            //HistoriaC
+            ['HistoriaC', ['Admin', 'Secretaria','Doctor']],
+            ['HistoriaC.buscar', ['Admin', 'Secretaria','Doctor']],
+
             // doctores
-            ['doctores.ver', ['Admin', 'Secretaria']],
-            ['doctores.agregar', ['Admin', 'Secretaria']],
-            ['doctores.editar', ['Admin', 'Secretaria']],
-            ['doctores.eliminar', ['Admin', 'Secretaria']],
+            ['Doctores', ['Admin', 'Secretaria']],
+            ['AnadirD.store', ['Admin', 'Secretaria']],
+            ['EditarPD.update', ['Admin', 'Secretaria']],
+            ['EditarPD.edit', ['Admin', 'Secretaria']],
+            ['eliminarD', ['Admin', 'Secretaria']],
+
             // citas
-            ['citas.ver', ['Admin', 'Secretaria', 'Doctor']],
-            ['citas.agendar', ['Admin', 'Secretaria', 'Doctor']],
-            ['citas.editar', ['Admin', 'Secretaria', 'Doctor']],
-            ['citas.eliminar', ['Admin', 'Secretaria', 'Doctor']],
-            ['citas.confirmar', ['Admin', 'Doctor', 'Paciente']],
+            ['Calendario', ['Admin','Secretaria','Doctor']],
+            ['Calendario.store', ['Admin','Secretaria','Doctor']],
+            ['Calendario.update', ['Admin','Secretaria','Doctor']],
+            ['Calendario.destroy', ['Admin','Secretaria','Doctor']],
+            ['citas.confirmar', ['Admin','Doctor','Paciente']],  ///////////////////////// JEEEEEEEEEEEEEESUUUUUUUUUUUUUUUU ARREGLA ETO
+           
             // tratamientos
-            ['RegistrarT.update', ['Admin', 'Secretaria', 'Doctor']],
-            ['tratamientos.insertar', ['Admin', 'Secretaria', 'Doctor']],
-            ['tratamientos.actualizar', ['Admin', 'Secretaria', 'Doctor']],
             ['TratamientoR', ['Admin', 'Doctor']],
             ['RutaT.buscar', ['Admin', 'Doctor']],
             ['RutaT.editar', ['Admin', 'Doctor']],
@@ -92,19 +95,25 @@ class RoleSeeder extends Seeder
             ['AnadirT.edit', ['Admin', 'Secretaria', 'Doctor']],
             ['AnadirT.buscar', ['Admin', 'Secretaria', 'Doctor']],
             ['AnadirT.update', ['Admin', 'Secretaria', 'Doctor']],
+
+
             // insumos
-            // ['insumos.agregar', ['Admin', 'Secretaria']],
-            // ['insumos.editar', ['Admin', 'Secretaria']],
-            // ['insumos.eliminar', ['Admin', 'Secretaria']],
-            // ['insumos.reservar', ['Admin', 'Secretaria']],
             ['insumos', ['Admin', 'Secretaria']],
+             ['insumos.create', ['Admin', 'Secretaria']],
+             ['insumos.store', ['Admin', 'Secretaria']],
+             ['insumos.edit', ['Admin', 'Secretaria']],
+             ['insumos.update', ['Admin', 'Secretaria']],
+             ['insumos.destroy', ['Admin', 'Secretaria']],
             ['cargas', ['Admin', 'Secretaria']],
-            ['reservas', ['Admin', 'Secretaria']],
-            ['reservas.restitucion', ['Admin', 'Secretaria']],
+            ['cargas.store', ['Admin', 'Secretaria']],
+            ['cargas.edit', ['Admin', 'Secretaria']],
+            ['cargas.update', ['Admin', 'Secretaria']],
+            ['cargas.destroy', ['Admin', 'Secretaria']],
+            ['reservas', ['Admin', 'Secretaria','Doctor']],
+            ['reservas.restitucion', ['Admin', 'Secretaria','Doctor']],
             // honorarios
             ['GananciasA', ['Admin', 'Secretaria', 'Doctor']],
-            // ['honorarios.consultar', ['Admin', 'Doctor']],
-            // ['honorarios.tratamientos', ['Admin', 'Doctor']],
+           
             // configuracion
             ['configuracion', ['Admin']],
             // mantenimiento

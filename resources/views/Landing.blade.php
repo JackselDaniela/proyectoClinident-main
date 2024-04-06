@@ -857,25 +857,20 @@
     <script src="{{ asset('landing/assets/js/main.js') }}"></script>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('landing/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-    <script src="{{ asset('landing/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('landing/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('landing/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('landing/assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{asset('landing/assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
+    <script src="{{asset('landing/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('landing/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+    <script src="{{asset('landing/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+    <script src="{{asset('landing/assets/vendor/php-email-form/validate.js')}}"></script>
+    <script src="{{asset('landing/js/jquery-3.6.0.min.js')}}"></script>
+  <script type="text/javascript">
 
-
-    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-        crossorigin="anonymous"></script>
-
-    <script type="text/javascript">
-        $('#add-register').click(function(event) {
-            event.preventDefault();
-            let fondo = '<div class="modal-backdrop fade show"></div>'
-            $('body').append(fondo).addClass('modal-open').css({
-                overflow: 'hidden'
-            });
-            $('#modal-data').addClass('show').css('display', 'block');
-        });
+    $('#add-register').click(function(event) {
+      event.preventDefault();
+      let fondo='<div class="modal-backdrop fade show"></div>'
+      $('body').append(fondo).addClass('modal-open').css({overflow: 'hidden'});
+      $('#modal-data').addClass('show').css('display', 'block');
+    });
 
         //cerrar modal cuando se precione la x
         $(document).on('click', '#btn-close', function(event) {

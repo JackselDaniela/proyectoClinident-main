@@ -87,7 +87,7 @@
                                 
                                 <td >
                                     <a href="{{route('editarT',['id'=>$tratamiento->id])}}">
-                                        <li class="fa fa-edit" style="width: 2rem; color:#9B59B6 ;"></li>
+                                        <li class="fa fa-edit" style="width: 2rem; color:#9B59B6;"></li>
                                     </a>
                                     <a href="{{route('eliminarT',['id'=>$tratamiento->id]) }}">
                                         <li class="fa fa-trash-o" style="width: 2rem; color:red;"></li>

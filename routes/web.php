@@ -92,6 +92,14 @@ Route::get('/ganancias-pdf', [PDFController::class, 'gananciasPDF'])
     ->name('gananciasPDF')
     ->middleware('role_or_permission:pdf.descargar');
 
+Route::get('/cargas-pdf', [PDFController::class, 'cargasPDF'])
+->name('cargasPDF')
+->middleware('role_or_permission:pdf.descargar');
+
+Route::get('/reservas-pdf', [PDFController::class, 'reservasPDF'])
+->name('reservasPDF')
+->middleware('role_or_permission:pdf.descargar');
+
 
 /**
  * -----------------------------------------------------------------------------------

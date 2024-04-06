@@ -26,6 +26,13 @@
           </li>
         </ol>
       </nav>
+      <div class="col-sm-2 col-12" style="float: right">
+        <div class="btn-group btn-group-sm">
+            
+          <a href="{{ route('cargasPDF') }}" target="_blank" class="btn btn-white"><img src="{{asset('assets/img/pdf.png')}}" style="width: 30px"></a>
+        
+        </div>
+      </div>
       <x-filtros />
       <section>
         <div class="row">

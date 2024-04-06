@@ -234,5 +234,13 @@ return [
         'username'                 => 'usuario',
         'year'                     => 'año',
     ],
+        // ...
+        'custom' => [
+            'doctor_cedula' => [
+                'required' => 'La cédula es obligatoria.',
+                'numeric' => 'La cédula debe ser un número.',
+            ],
+
+        ],
 
 ];

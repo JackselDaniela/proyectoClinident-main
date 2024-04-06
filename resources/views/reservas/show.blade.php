@@ -8,9 +8,16 @@
   <div class="page-wrapper">
     <div class="content">
       <div class="row">
-        <div class="col-12">
+        <div class="col-6">
           <h4 class="page-title">Reserva N° {{ $reserva->codigo }}</h4>
         </div>
+        <div class="col-sm-2 col-6" style="float: right">
+        <div class="btn-group btn-group-sm">
+            
+          <a href="{{ route('reservasPDF') }}" target="_blank" class="btn btn-white"><img src="{{asset('assets/img/pdf.png')}}" style="width: 30px"></a>
+        
+        </div>
+      </div>
       </div>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">

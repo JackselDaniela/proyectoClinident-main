@@ -6,6 +6,15 @@ use App\Models\paciente;
 use App\Models\paciente_diagnostico;
 use App\Services\Ganancias;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Bitacora;
+use App\Models\Carga;
+use App\Models\Insumo;
+use App\Models\Operacion;
+use App\Models\User;
+use App\Services\Codigo;
+use App\Models\Reserva;
+use App\Models\Item;
 use PDF;
 
 class PDFController extends Controller
@@ -56,4 +65,31 @@ class PDFController extends Controller
 
         return $pdf->stream('Ganancias del Doctor.pdf');
     }
+    
+    public function cargasPDF(Request $request)
+    {
+        $cargas = Carga::with('user', 'operacion', 'operacion.insumo')
+            ->search('codigo')->get();
+
+        $pdf = PDF::loadView('PDFCargas', compact('cargas'));
+
+        return $pdf->stream('Cargas.pdf');
+    }
+
+    public function reservasPDF(Request $request) 
+    { 
+        $reserva = Reserva::with(
+            'items', 'items.operacion', 'items.operacion.insumo','paciente_diagnostico.registrar_tratamiento',
+            'paciente_diagnostico.paciente.persona'
+        )->search('codigo')
+            ->filter()
+            ->latest()
+            ->get();
+    
+        
+        $pdf = PDF::loadView('PDFReservas', compact('reserva') );
+
+        return $pdf->stream('Reservas.pdf');
+    }
 }
+    

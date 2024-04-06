@@ -93,12 +93,12 @@ Route::get('/ganancias-pdf', [PDFController::class, 'gananciasPDF'])
     ->middleware('role_or_permission:pdf.descargar');
 
 Route::get('/cargas-pdf', [PDFController::class, 'cargasPDF'])
-->name('cargasPDF')
-->middleware('role_or_permission:pdf.descargar');
+    ->name('cargasPDF')
+    ->middleware('role_or_permission:pdf.descargar');
 
 Route::get('/reservas-pdf', [PDFController::class, 'reservasPDF'])
-->name('reservasPDF')
-->middleware('role_or_permission:pdf.descargar');
+    ->name('reservasPDF')
+    ->middleware('role_or_permission:pdf.descargar');
 
 
 /**
@@ -207,30 +207,28 @@ Route::put('/update-RegistrarT/{id}', [App\Http\Controllers\RegistrarTController
 
 /* Calendario*/
 Route::get('/Calendario', [App\Http\Controllers\CalendarioController::class, 'index'])
-    ->name('Calendario');
-// ->middleware('role_or_permission:citas.ver');
+    ->name('Calendario')
+    ->middleware('role_or_permission:Calendario');
 Route::post('/Calendario', [App\Http\Controllers\CalendarioController::class, 'store'])
     ->name('Calendario.store')
-    ->middleware('role_or_permission:citas.agendar');
-
+    ->middleware('role_or_permission:Calendario.store');
 Route::put('/Calendario/{cita}', [App\Http\Controllers\CalendarioController::class, 'update'])
     ->name('Calendario.update')
-    ->middleware('role_or_permission:citas.editar');
-
+    ->middleware('role_or_permission:Calendario.update');
 Route::delete('/Calendario/{cita}', [App\Http\Controllers\CalendarioController::class, 'destroy'])
     ->name('Calendario.destroy')
-    ->middleware('role_or_permission:citas.eliminar');
+    ->middleware('role_or_permission:Calendario.destroy');
 
 /* Citas Confirmadas*/
 Route::get('/CitasC', [App\Http\Controllers\CitasCController::class, 'index'])
-    ->name('CitasC');
-// ->middleware('role_or_permission:citas.confirmar');
-
+    ->name('CitasC')
+    ->middleware('role_or_permission:citas.confirmar');
 Route::get('/CitasC/{token}', [App\Http\Controllers\CitasCController::class, 'cita'])
-    ->name('CitasC.cita');
+    ->name('CitasC.cita')
+    ->middleware('role_or_permission:citas.confirmar');
 Route::put('/CitasC/{token}', [App\Http\Controllers\CitasCController::class, 'validar'])
-    ->name('CitasC.validar');
-// ->middleware('role_or_permission:citas.confirmar');
+    ->name('CitasC.validar')
+    ->middleware('role_or_permission:citas.confirmar');
 
 /**
  * -----------------------------------------------------------------------------------
@@ -264,7 +262,6 @@ Route::get('/HistoriaC', [App\Http\Controllers\HistoriaCController::class, 'inde
 Route::get('/HistoriaC/buscar/{id}', [App\Http\Controllers\HistoriaCController::class, 'buscar'])
     ->name('HistoriaC.buscar')
     ->middleware('role_or_permission:HistoriaC.buscar');
-
 
 /* añadir tratamiento paciente*/
 Route::get('/AnadirT', [App\Http\Controllers\AnadirTController::class, 'index'])
@@ -302,7 +299,6 @@ Route::get('/Odontograma/buscar/{idp}/{id} ', [App\Http\Controllers\OdontogramaC
 Route::put('/update-AnadirT/{slug?}', [App\Http\Controllers\AnadirTController::class, 'update'])
     ->name('AnadirT.update')
     ->middleware('role_or_permission:AnadirT.update');
-
 
 /* Ruta Tratamiento */
 Route::get('/RutaT/{id}', [App\Http\Controllers\RutaTController::class, 'buscar'])
@@ -416,13 +412,9 @@ Route::get('/TratamientoR', [App\Http\Controllers\TratamientoRController::class,
  * 
  * Lista:
  * - Gestion de Usuario
- *   - Contacto
- *   - Localizacion
  *   - Personalizar
  *   - Roles y Permisos
- *   - Correo
  *   - Ajsute de Porcentajes
- *   - Cambio de Contraseña
  * - Mantenimiento:
  *   - Bitácora
  *   - Respaldo BD
@@ -439,10 +431,6 @@ Route::group(['middleware' => ['role:Admin']], function () {
         ->name('GestionU');
     Route::post('/GestionU', [App\Http\Controllers\GestionUController::class, 'store'])
         ->name('GestionU.store');
-    Route::get('/Localizacion', [App\Http\Controllers\LocalizacionController::class, 'index'])
-        ->name('Localizacion');
-    Route::post('/Localizacion', [App\Http\Controllers\LocalizacionController::class, 'store'])
-        ->name('Localizacion.store');
     Route::get('/Personalizar', [App\Http\Controllers\PersonalizarController::class, 'index'])
         ->name('Personalizar');
     Route::post('/Personalizar', [App\Http\Controllers\PersonalizarController::class, 'store'])
@@ -462,18 +450,10 @@ Route::group(['middleware' => ['role:Admin']], function () {
             ->name('Roles.update');
     });
 
-    Route::get('/Correo', [App\Http\Controllers\CorreoController::class, 'index'])
-        ->name('Correo');
-    Route::post('/Correo', [App\Http\Controllers\CorreoController::class, 'store'])
-        ->name('Correo.store');
     Route::get('/Porcentajes', [App\Http\Controllers\PorcentajesController::class, 'index'])
         ->name('Porcentajes');
     Route::post('/Porcentajes', [App\Http\Controllers\PorcentajesController::class, 'store'])
         ->name('Porcentajes.store');
-    Route::get('/CambioC', [App\Http\Controllers\CambioCController::class, 'index'])
-        ->name('CambioC');
-    Route::post('/CambioC', [App\Http\Controllers\CambioCController::class, 'store'])
-        ->name('CambioC.store');
 
     /**
      * -----------------------------------------------------------------------------------

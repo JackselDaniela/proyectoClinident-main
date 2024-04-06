@@ -47,6 +47,7 @@ class RoleSeeder extends Seeder
             ['diagnosticos.consumos.create', ['Admin', 'Secretaria', 'Doctor']],
             ['diagnosticos.consumos.store', ['Admin', 'Secretaria', 'Doctor']],
             // procedimientos-odontologicos
+            
             ['RegistrarT', ['Admin', 'Secretaria', 'Doctor']],
             ['RegistrarT.store', ['Admin', 'Secretaria']],
             ['editarT', ['Admin', 'Secretaria']],

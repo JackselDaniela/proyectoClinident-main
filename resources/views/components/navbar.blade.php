@@ -1,4 +1,8 @@
-@props(['nombre'])
+@props(['user'])
+
+@php
+    $user = $user->persona;
+@endphp
 
 <nav class="header">
     <div class="header-left">
@@ -11,41 +15,32 @@
     <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
     <ul class="nav user-menu float-right">
         <li class="nav-item" style="color: aliceblue; padding-top:1rem;">
-            {{-- @php
-                use Illuminate\Support\Carbon;
-                Carbon::setLocale('es_VE');
-                setLocale(LC_TIME, 'es_VE');
-            @endphp --}}
             @php
                 date_default_timezone_set('America/Caracas');
                 $fechaActual = date('d-m-Y');
                 $horaActual = date('h:i:s');
 
                 echo "Fecha:$fechaActual Hora: $horaActual";
-
             @endphp
-            {{-- {{ now()->shortLocaleDayOfWeek }}
-
-
-            {{ now()->format('d-m-Y') }} --}}
-
         </li>
         <li class="nav-item dropdown d-none d-sm-block">
             <x-menu-notificaciones />
         </li>
 
-
         <li class="nav-item dropdown d-none d-sm-block">
             <a href="{{ asset('Ayuda') }}" class="nav-link"><i class="fa fa-question-circle"></i></a>
         </li>
+
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                 <span class="user-img">
-                    <img class="rounded-circle" src="{{ asset('assets/img/user.jpg') }}" width="24" alt="Admin">
+                    <img class="rounded-circle"
+                        src="{{ $user->foto == null ? asset('assets/img/user.jpg') : asset('storage/imagenes/' . $user->foto) }}"
+                        width="24" alt="Admin">
                     <span class="status online"></span>
                 </span>
                 <span>
-                    {{ $nombre }}
+                    {{ $user->nombre }}
                 </span>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ asset('Perfil') }}">Mi Perfil</a>

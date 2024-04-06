@@ -1,8 +1,5 @@
 @php
     $user = Auth::user();
-    if (!empty($user)) {
-        $persona = $user->persona;
-    }
 @endphp
 <!DOCTYPE html>
 <html lang="es">
@@ -27,7 +24,7 @@
     <div class="main-wrapper">
 
         @if (!empty($user))
-            <x-navbar :nombre="$persona->nombre" />
+            <x-navbar :user="$user" />
             <x-sidebar :user="$user" />
         @endif
 

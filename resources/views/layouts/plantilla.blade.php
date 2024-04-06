@@ -23,7 +23,7 @@
 <body>
     <div class="main-wrapper">
 
-        @if (!empty($user))
+        @if (!empty($user) && Route::currentRouteName() !== 'landing')
             <x-navbar :user="$user" />
             <x-sidebar :user="$user" />
         @endif

@@ -17,7 +17,7 @@ class GananciasAController extends Controller
         $data = $request->validate([
             'date_init' => ['required'],
             'date_fin' => ['required'],
-            'doctor_cedula' => ['required', 'numeric', 'integer'],
+            'doctor_cedula' => ['required', 'numeric', 'integer','exists:personas,doc_identidad'],
         ]);
 
         $ganacias = Ganancias::get($data);

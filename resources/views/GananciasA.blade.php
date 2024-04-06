@@ -14,7 +14,7 @@
         <div class="col-sm-7 col-8 text-right m-b-30">
           @if (isset($doctor))
             <div class="btn-group btn-group-sm">
-              <form method="GET" action="{{ route('gananciasPDF') }}">
+              <form method="GET" action="{{ route('gananciasPDF') }}" target="_blank">
                 <input type="hidden" name="doctor_cedula" value="{{ $doctor->persona->doc_identidad }}">
                 <input type="hidden" name="date_init" value="{{ $date_init }}">
                 <input type="hidden" name="date_fin" value="{{ $date_fin }}">
@@ -66,6 +66,9 @@
                   <div class="input-group">
                     <input class="form-control" placeholder="Doc. Identidad" name="doctor_cedula" type="text"
                       value="{{ isset($doctor) ? $doctor->persona->doc_identidad : '' }}" required>
+                      @error('doctor_cedula')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                      @enderror
                   </div>
                 </div>
               </div>
@@ -107,7 +110,7 @@
                         <tbody>
                           @foreach ($trabajos as $trabajo)
                             <tr>
-                              <td>{{ $trabajo->pacientes_id }}</td>
+                              <td>{{ $trabajo->paciente->persona->nombre .'  '. $trabajo->paciente->persona->apellido}}</td>
                               <td>{{ $trabajo->registrar_tratamientos_id->nom_tratamiento }}</td>
                               <td>{{ $trabajo->registrar_tratamientos_id->costo_tratamiento }}</td>
                               <td>{{ date('d-m-Y', strtotime($trabajo->updated_at)) }}</td>

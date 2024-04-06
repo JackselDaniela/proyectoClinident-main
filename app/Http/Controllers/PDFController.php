@@ -78,16 +78,14 @@ class PDFController extends Controller
 
     public function reservasPDF(Request $request) 
     { 
-        $reserva = Reserva::with(
-            'items', 'items.operacion', 'items.operacion.insumo','paciente_diagnostico.registrar_tratamiento',
-            'paciente_diagnostico.paciente.persona'
-        )->search('codigo')
+        $reservas = Reserva::with([
+            'items', 'items.operacion', 'items.operacion.insumo',
+        ])->search('codigo')
             ->filter()
             ->latest()
             ->get();
-    
-        
-        $pdf = PDF::loadView('PDFReservas', compact('reserva') );
+
+        $pdf = PDF::loadView('PDFReservas', compact('reservas') );
 
         return $pdf->stream('Reservas.pdf');
     }

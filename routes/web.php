@@ -1,6 +1,6 @@
 <?php
-//use App\Http\Controllers\;
 
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\CargaController;
 use App\Http\Controllers\DiagnosticoController;
 use App\Http\Controllers\InsumoController;
@@ -231,9 +231,6 @@ Route::get('/CitasC/{token}', [App\Http\Controllers\CitasCController::class, 'ci
 Route::put('/CitasC/{token}', [App\Http\Controllers\CitasCController::class, 'validar'])
     ->name('CitasC.validar');
 // ->middleware('role_or_permission:citas.confirmar');
-
-Route::get('/ej', [App\Http\Controllers\CitasCController::class, 'ejemplo'])
-    ->name('ejemplo');
 
 /**
  * -----------------------------------------------------------------------------------
@@ -485,10 +482,33 @@ Route::group(['middleware' => ['role:Admin']], function () {
      */
 
     Route::get('/Bitacora', [App\Http\Controllers\BitacoraController::class, 'index'])
-        ->name('Bitacora');
+        ->name('Bitacora')
+        ->middleware('role_or_permission:Admin');
     Route::get('/RespaldoB', [App\Http\Controllers\RespaldoBController::class, 'index'])
-        ->name('RespaldoB');
+        ->name('RespaldoB')
+        ->middleware('role_or_permission:Admin');
+    Route::get('/respaldo', [App\Http\Controllers\RespaldoBController::class, 'store'])
+        ->name('respaldo.store')
+        ->middleware('role_or_permission:Admin');
+    Route::get('/respaldo/download/{file}', [App\Http\Controllers\RespaldoBController::class, 'download'])
+        ->name('respaldo.download')
+        ->middleware('role_or_permission:Admin');
 });
+
+/**
+ * -----------------------------------------------------------------------------------
+ *                            Recuperación de contraseña
+ * -----------------------------------------------------------------------------------
+ */
+Route::get('/forgot-password', function () {
+    return view('auth.passwords.email');
+})->middleware('guest')->name('password.request');
+Route::post('/forgot-password', [ResetPasswordController::class, 'sendResetLink'])
+    ->name('password.email');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])
+    ->name('password.reset');
+Route::post('/reset-password/{token}', [ResetPasswordController::class, 'reset'])
+    ->name('password.confirmation');
 
 /**
  * -----------------------------------------------------------------------------------

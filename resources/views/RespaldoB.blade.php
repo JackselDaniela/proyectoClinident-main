@@ -12,12 +12,6 @@
                 <div class="col-sm-5 col-4">
                     <h4 class="page-title">Respaldo y Restauracion Base de Datos</h4>
                 </div>
-                <div class="col-sm-7 col-8 text-right m-b-30">
-                    <div class="btn-group btn-group-sm">
-                        <button class="btn btn-white"><img src="{{ asset('assets/img/pdf.png') }}"
-                                style="width: 30px"></button>
-                    </div>
-                </div>
             </div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -32,16 +26,12 @@
                         <div class="card-box">
                             <div class="card-block">
                                 <div class="col-sm-12 col-lg-12 text-right m-b-20" style="padding-bottom: 2rem">
-                                    <button title="Generar pdf" id="print"
-                                        class="btn btn-primary float-right btn-rounded btn-press btn-add"><i
-                                            class="fa fa-upload"></i> Importar</button>
                                     <a href="{{ route('respaldo.store') }}"
                                         class="btn btn-primary float-right btn-rounded btn-press btn-add">
                                         <i class="fa fa-plus"></i>
                                         <i class="fa fa-database"></i>
                                         Crear Respaldo
                                     </a>
-
                                 </div>
 
                                 <div class="table-responsive">

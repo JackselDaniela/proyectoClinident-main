@@ -199,8 +199,8 @@ Route::put('/update-RegistrarT/{id}', [App\Http\Controllers\RegistrarTController
 
 /* Calendario*/
 Route::get('/Calendario', [App\Http\Controllers\CalendarioController::class, 'index'])
-    ->name('Calendario')
-    ->middleware('role_or_permission:citas.ver');
+    ->name('Calendario');
+// ->middleware('role_or_permission:citas.ver');
 Route::post('/Calendario', [App\Http\Controllers\CalendarioController::class, 'store'])
     ->name('Calendario.store')
     ->middleware('role_or_permission:citas.agendar');
@@ -475,10 +475,10 @@ Route::group(['middleware' => ['role:Admin']], function () {
 
     Route::get('/Bitacora', [App\Http\Controllers\BitacoraController::class, 'index'])
         ->name('Bitacora')
-        ->middleware('role_or_permission:Admin');
+        ->middleware('role_or_permission:Secretaria');
     Route::get('/RespaldoB', [App\Http\Controllers\RespaldoBController::class, 'index'])
         ->name('RespaldoB')
-        ->middleware('role_or_permission:Admin');
+        ->middleware('role_or_permission:Secretaria');
     Route::get('/respaldo', [App\Http\Controllers\RespaldoBController::class, 'store'])
         ->name('respaldo.store')
         ->middleware('role_or_permission:Admin');

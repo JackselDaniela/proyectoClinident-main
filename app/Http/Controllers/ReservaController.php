@@ -72,7 +72,7 @@ class ReservaController extends Controller
             $insumo = Insumo::find($data['id']);
 
             Validator::make($data, [
-                'cantidad' => ['numeric', 'integer', 'min:1', 'max:'.$insumo->existencia],
+                'cantidad' => ['numeric', 'integer', 'min:1', 'max:' . $insumo->existencia],
             ], ["La cantidad del insumo \"{$insumo->nombre}\" no debe ser mayor a {$insumo->existencia}"])->validate();
         });
 
@@ -123,6 +123,7 @@ class ReservaController extends Controller
      */
     public function edit(Reserva $reserva)
     {
+
         return view('reservas.edit', [
             'reserva' => $reserva->load([
                 'items.operacion.insumo',
@@ -141,11 +142,11 @@ class ReservaController extends Controller
     {
         $request->validate([
             'descripcion' => ['required', 'string', 'min:10', 'max:80'],
-            'operaciones' => ['sometimes', 'array', 'size:'.$reserva->items->count()],
+            'operaciones' => ['sometimes', 'array', 'size:' . $reserva->items->count()],
             'operaciones.*' => ['array:id,cantidad'],
             'operaciones.*.id' => ['numeric', 'integer'],
         ]);
-        
+
         $operaciones = collect($request->input('operaciones'));
 
         if ($operaciones->isNotEmpty()) {
@@ -153,13 +154,13 @@ class ReservaController extends Controller
                 $operacion = Operacion::find($data['id']);
                 $insumo = $operacion->insumo;
                 $max = $insumo->existencia + abs($operacion->cantidad);
-    
+
                 Validator::make($data, [
-                    'cantidad' => ['numeric', 'integer', 'min:1', 'max:'.$max],
+                    'cantidad' => ['numeric', 'integer', 'min:1', 'max:' . $max],
                 ], [
                     "La cantidad del insumo \"{$insumo->nombre}\" no debe ser mayor a {$max}"
-                    ])->validate();
-    
+                ])->validate();
+
                 $operacion->update([
                     'cantidad' => -$data['cantidad'],
                 ]);

@@ -184,7 +184,7 @@ Route::put('/update-EditarPD/{id}', [App\Http\Controllers\EditarPDController::cl
 /* Registrar tratamiento*/
 Route::get('/RegistrarT', [App\Http\Controllers\RegistrarTController::class, 'index'])
     ->name('RegistrarT')
-    ->middleware('role_or_permission:procedimientos-odontologicos.ver');
+    ->middleware('role_or_permission:RegistrarT');
 Route::post('/RegistrarT', [App\Http\Controllers\RegistrarTController::class, 'store'])
     ->name('RegistrarT.store')
     ->middleware('role_or_permission:procedimientos-odontologicos.registrar');

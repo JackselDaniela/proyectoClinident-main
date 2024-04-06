@@ -68,6 +68,8 @@ class AnadirPController extends Controller
 
 
         //     ]);
+
+        // dd($request->all());
         $estado = estado::where('id_estado', '=', $request->estado)->first();
         $municipio = municipio::where('id_municipio', '=', $request->municipio)->first();
         $ciudad = ciudad::where('id_ciudad', '=', $request->ciudad)->first();
@@ -163,6 +165,4 @@ class AnadirPController extends Controller
             return redirect()->route("AnadirP");
         }
     }
-  
-    
 }

@@ -5,6 +5,31 @@
 @endsection
 @section('css-externo')
 @endsection
+
+@php
+    $alergias = [
+        ['key' => 'alergia_penicilina', 'name' => 'Alergia Penicilina', 'desc' => 'desc_alergia_p'],
+        ['key' => 'alergia_medicamento', 'name' => 'Alergia a Medicamento', 'desc' => 'desc_alergia_m'],
+        ['key' => 'trat_actual', 'name' => 'Tratamiento Medico Actual', 'desc' => 'desc_trat_actual'],
+        ['key' => 'gravidez', 'name' => 'Está en Estado Gravidez', 'desc' => 'desc_gravidez'],
+        ['key' => 'hemorragia', 'name' => 'Ha experimentado Hemorragias', 'desc' => 'desc_hemorragia'],
+        ['key' => 'desmayos', 'name' => 'Padece de Desmayos', 'desc' => 'desc_desmayos'],
+        ['key' => 'asma', 'name' => 'Padece de Asma', 'desc' => 'desc_asma'],
+        ['key' => 'diabetes', 'name' => 'Padece Diábetes', 'desc' => 'desc_diabetes'],
+        ['key' => 'hipertension', 'name' => 'Padece de Hipertension Arterial', 'desc' => 'desc_hipertension'],
+        ['key' => 'epilepsia', 'name' => 'Padece de Epilepsia', 'desc' => 'desc_epilepsia'],
+        ['key' => 'cancer_actual', 'name' => 'Padece de Cancer Actualmente', 'desc' => 'desc_cancer_actual'],
+        ['key' => 'cancer_pasado', 'name' => 'Ha padecido de Cancer', 'desc' => 'desc_cancer_pasado'],
+        ['key' => 'vih', 'name' => 'Padece VIH', 'desc' => 'desc_vih'],
+        [
+            'key' => 'inmunodeficiente',
+            'name' => 'Padece Enfermedad Inmunodeficiente',
+            'desc' => 'desc_inmunodeficiente',
+        ],
+        ['key' => 'fumador', 'name' => 'Fuma Actualmente', 'desc' => 'desc_fumador'],
+    ];
+@endphp
+
 @section('contenido')
     <div class="page-wrapper">
         <div class="content">
@@ -135,13 +160,42 @@
                         <thead>
                             <tr>
                                 <th> Condicion </th>
-                                <th> </th>
                                 <th> Descripcion </th>
-
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            @foreach ($alergias as $alergia)
+                                <tr>
+                                    <td>{{ $alergia['name'] }}</td>
+                                    <td>
+                                        <div class="form-group gender-select">
+                                            <label class="gen-label"></label>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" name="{{ $alergia['key'] }}" value="1"
+                                                        class="form-check-input"
+                                                        {{ $paciente[$alergia['key']] === 1 ? 'checked' : '' }}>Si
+                                                </label>
+                                            </div>
+                                            <br>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" name="{{ $alergia['key'] }}"
+                                                        {{ $paciente[$alergia['key']] === 0 ? 'checked' : '' }}
+                                                        value="0" class="form-check-input">No
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input placeholder="Indique metodo alternativo usado" maxlength="100"
+                                            type="text" name="{{ $alergia['desc'] }}"
+                                            value="{{ $paciente[$alergia['desc']] }}"
+                                            style="border-style: hidden; text-align: center;">
+                                    </td>
+                                </tr>
+                            @endforeach
+                            {{-- <tr>
                                 <td>Alergia Penicilina</td>
                                 <td>
                                     <div class="form-group gender-select">
@@ -548,7 +602,7 @@
                                         value={{ $paciente->desc_fumador }} name="desc_fumador"
                                         style="border-style: hidden; text-align: center;"></td>
 
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
 

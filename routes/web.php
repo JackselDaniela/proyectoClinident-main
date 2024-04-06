@@ -152,7 +152,7 @@ Route::put('/Perfil', [App\Http\Controllers\PerfilController::class, 'update'])
     ->name('Perfil.update');
 Route::get('/EditarP/{id}', [App\Http\Controllers\EditarPController::class, 'edit'])
     ->name('EditarP.edit')
-    ->middleware('role_or_permission:pacientes.editar');
+    ->middleware('role_or_permission:EditarP.buscar');
 Route::get('/AnadirT/{id}', [App\Http\Controllers\EditarPController::class, 'buscar'])
     ->name('EditarP.buscar')
     ->middleware('role_or_permission:EditarP.buscar');
@@ -242,10 +242,10 @@ Route::put('/CitasC/{token}', [App\Http\Controllers\CitasCController::class, 'va
 /* añadir Pacientes*/
 Route::get('/AnadirP', [App\Http\Controllers\AnadirPController::class, 'index'])
     ->name('AnadirP')
-    ->middleware('role_or_permission:pacientes.ver');
+    ->middleware('role_or_permission:AnadirP');
 Route::post('/AnadirP', [App\Http\Controllers\AnadirPController::class, 'store'])
     ->name('AnadirP.store')
-    ->middleware('role_or_permission:pacientes.agregar');
+    ->middleware('role_or_permission:AnadirP.store');
 
 /* Registro Expediente*/
 Route::get('/RegistroE', [App\Http\Controllers\RegistroEController::class, 'index'])

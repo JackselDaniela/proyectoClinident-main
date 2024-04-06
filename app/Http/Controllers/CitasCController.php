@@ -23,38 +23,44 @@ class CitasCController extends Controller
     public function validar(string $token, Request $request)
     {
         $cita = cita::where('token', '=', $token)->first();
-        $validacion = $request->validacion;
 
-        if ($validacion === 'confirmar') {
-            $cita->update([
-                'confirmacion' => Carbon::now()
-            ]);
+        if (Carbon::now()->diffInDays($cita->fecha) <= 3) {
+            $validacion = $request->validacion;
 
-            Bitacora::create([
-                'user_id' => auth()->user()->id,
-                'file' => 'Cita',
-                'action' => 'Confirmar',
-            ]);
+            if ($validacion === 'confirmar') {
+                $cita->update([
+                    'confirmacion' => Carbon::now()
+                ]);
 
-            return back()->with('success', 'La cita ha sido confirmada con éxito');
+                Bitacora::create([
+                    'user_id' => auth()->user()->id,
+                    'file' => 'Cita',
+                    'action' => 'Confirmar',
+                ]);
+
+                return back()->with('success', 'La cita ha sido confirmada con éxito');
+            } else {
+                $cita->delete();
+                Bitacora::create([
+                    'user_id' => auth()->user()->id,
+                    'file' => 'Cita',
+                    'action' => 'Rechazar',
+                ]);
+                return back()->with('danger', 'La cita ha sido eliminada con éxito');
+            }
         } else {
-            $cita->delete();
-            Bitacora::create([
-                'user_id' => auth()->user()->id,
-                'file' => 'Cita',
-                'action' => 'Rechazar',
-            ]);
-            return back()->with('danger', 'La cita ha sido eliminada con éxito');
+            return back()->with('warning', 'La cita se ha vencido');
         }
     }
 
     public function cita(string $token)
     {
         $cita = cita::where('token', '=', $token)->first();
-        if (isset($cita)) {
+        if (Carbon::now()->diffInDays($cita->fecha) <= 3 && isset($cita)) {
             return view('ValidarCita', compact('cita'));
+        } else {
+            $info = 'Esta cita se ha vencido, solicite una nueva';
+            return view('ValidarCita', compact('info'));
         }
-
-        return null;
     }
 }

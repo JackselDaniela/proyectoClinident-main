@@ -64,14 +64,6 @@ class CalendarioController extends Controller
             'tipo_cita' => ['required', $regla]
         ]);
 
-        //   "paciente" => "2000000"
-        //   "doctor" => "27000000"
-        //   "descripcion" => "lorem lorem"
-        //   "inicio" => "08:34"
-        //   "fin" => "10:34"
-        //   "fecha" => "2024-04-03"
-        //   "tipo_cita" => "1"
-
         $identidad = persona::with('paciente')->where('doc_identidad', $request->post('paciente'))->first();
         $paciente = $identidad->paciente->id;
         $identificacion = persona::with('doctor')->where('doc_identidad', $request->post('doctor'))->first();

@@ -100,6 +100,10 @@ Route::get('/reservas-pdf', [PDFController::class, 'reservasPDF'])
     ->name('reservasPDF')
     ->middleware('role_or_permission:pdf.descargar');
 
+Route::get('/reservas-pdf/{id}', [PDFController::class, 'reservasCodigoPDF'])
+    ->name('reservasCodigoPDF')
+    ->middleware('role_or_permission:pdf.descargar');
+
 
 /**
  * -----------------------------------------------------------------------------------

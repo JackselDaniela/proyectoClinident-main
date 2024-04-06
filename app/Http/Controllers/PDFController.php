@@ -21,29 +21,29 @@ class PDFController extends Controller
 {
     public function pacientesPDF()
     {
-       $paciente = paciente::all();
-       $pdf = PDF::loadView('PDFpaciente', compact('paciente'));
-       return $pdf->stream('paciente.pdf');
+        $paciente = paciente::all();
+        $pdf = PDF::loadView('PDFpaciente', compact('paciente'));
+        return $pdf->stream('paciente.pdf');
     }
     public function rutaPDF($id)
     {
         $paciente = paciente::with('persona', 'expediente', 'persona.dato_ubicacion')
-        ->join('expedientes', 'expedientes.pacientes_id', '=', 'expedientes.id')->where('pacientes_id', $id)
-        ->find($id);
+            ->join('expedientes', 'expedientes.pacientes_id', '=', 'expedientes.id')->where('pacientes_id', $id)
+            ->find($id);
 
-    $paciente_diagnostico = paciente_diagnostico::with('pieza', 'diagnostico', 'registrar_tratamiento', 'paciente')
-        ->where('pacientes_id', $id)
-        ->get();; //presupuesto de ruta de tratameinto
-    $presupuesto = paciente_diagnostico::with('registrar_tratamiento', 'paciente')
-        ->where('pacientes_id', $id)->get();
+        $paciente_diagnostico = paciente_diagnostico::with('pieza', 'diagnostico', 'registrar_tratamiento', 'paciente')
+            ->where('pacientes_id', $id)
+            ->get();; //presupuesto de ruta de tratameinto
+        $presupuesto = paciente_diagnostico::with('registrar_tratamiento', 'paciente')
+            ->where('pacientes_id', $id)->get();
 
-    $presupuestoT = 0;
-    foreach ($presupuesto as $presupuesto) {
-        $presupuestoT += (int)(rtrim($presupuesto->registrar_tratamiento->costo_tratamiento, '$'));
-    }
-    
-    $pdf = PDF::loadView('PDFRutatratamiento', compact('paciente_diagnostico','paciente', 'presupuesto', 'presupuestoT', 'id'));
-    return $pdf->stream('rutatratamiento.pdf');
+        $presupuestoT = 0;
+        foreach ($presupuesto as $presupuesto) {
+            $presupuestoT += (int)(rtrim($presupuesto->registrar_tratamiento->costo_tratamiento, '$'));
+        }
+
+        $pdf = PDF::loadView('PDFRutatratamiento', compact('paciente_diagnostico', 'paciente', 'presupuesto', 'presupuestoT', 'id'));
+        return $pdf->stream('rutatratamiento.pdf');
     }
     public function tratamientosPDF()
     {
@@ -53,8 +53,8 @@ class PDFController extends Controller
             ->with('registrar_tratamiento')
             ->with('doctor')
             ->with('paciente')->get();
-       $pdf = PDF::loadView('PDFtratamientosR', compact('tratamientos_finalizados'));
-       return $pdf->stream('tratamientosR.pdf');
+        $pdf = PDF::loadView('PDFtratamientosR', compact('tratamientos_finalizados'));
+        return $pdf->stream('tratamientosR.pdf');
     }
 
     public function gananciasPDF(Request $request)
@@ -65,7 +65,7 @@ class PDFController extends Controller
 
         return $pdf->stream('Ganancias del Doctor.pdf');
     }
-    
+
     public function cargasPDF(Request $request)
     {
         $cargas = Carga::with('user', 'operacion', 'operacion.insumo')
@@ -76,8 +76,8 @@ class PDFController extends Controller
         return $pdf->stream('Cargas.pdf');
     }
 
-    public function reservasPDF(Request $request) 
-    { 
+    public function reservasPDF(Request $request)
+    {
         $reservas = Reserva::with([
             'items', 'items.operacion', 'items.operacion.insumo',
         ])->search('codigo')
@@ -85,9 +85,19 @@ class PDFController extends Controller
             ->latest()
             ->get();
 
-        $pdf = PDF::loadView('PDFReservas', compact('reservas') );
+        $pdf = PDF::loadView('PDFReservas', compact('reservas'));
+
+        return $pdf->stream('Reservas.pdf');
+    }
+
+    public function reservasCodigoPDF($id)
+    {
+        $reserva = Reserva::with([
+            'items', 'items.operacion', 'items.operacion.insumo'
+        ])->find($id);
+
+        $pdf = PDF::loadView('PDFReserva', compact('reserva'));
 
         return $pdf->stream('Reservas.pdf');
     }
 }
-    

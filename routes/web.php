@@ -1,6 +1,6 @@
 <?php
-//use App\Http\Controllers\;
 
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\CargaController;
 use App\Http\Controllers\DiagnosticoController;
 use App\Http\Controllers\InsumoController;
@@ -76,11 +76,22 @@ Route::post('/notifications/read', function () {
 })->name('notifications.read')
     ->middleware('role_or_permission:notificaciones.read');
 
-//Salida PdfPacientes
-Route::get('/get-all-paciente', [PDFController::class, 'getAllpaciente'])->middleware('role_or_permission:pacientes');
-Route::get('/download-pdf', [PDFController::class, 'downloadPDF'])
-    ->name('descargarPDF')
+//Salidas PDF
+
+Route::get('/download-pdf', [PDFController::class, 'pacientesPDF'])
+    ->name('pacientesPDF')
     ->middleware('role_or_permission:pdf.descargar');
+Route::get('/ruta-pdf/{id}', [PDFController::class, 'rutaPDF'])
+    ->name('rutaPDF')
+    ->middleware('role_or_permission:pdf.descargar');
+Route::get('/tratamientos-pdf', [PDFController::class, 'tratamientosPDF'])
+    ->name('tratamientosPDF')
+    ->middleware('role_or_permission:pdf.descargar');
+
+Route::get('/ganancias-pdf', [PDFController::class, 'gananciasPDF'])
+    ->name('gananciasPDF')
+    ->middleware('role_or_permission:pdf.descargar');
+
 
 /**
  * -----------------------------------------------------------------------------------
@@ -88,12 +99,8 @@ Route::get('/download-pdf', [PDFController::class, 'downloadPDF'])
  * -----------------------------------------------------------------------------------
  */
 
-Route::get('/', function () {
-    return view('Landing');
-})->name('landing');
-/* Landing*/
 Route::get('/', [App\Http\Controllers\LandingController::class, 'index'])
-    ->name('Landing');
+    ->name('landing');
 /*Index*/
 Route::get('/Index', [App\Http\Controllers\IndexController::class, 'index'])
     ->name('Index');
@@ -216,9 +223,6 @@ Route::get('/CitasC/{token}', [App\Http\Controllers\CitasCController::class, 'ci
 Route::put('/CitasC/{token}', [App\Http\Controllers\CitasCController::class, 'validar'])
     ->name('CitasC.validar');
 // ->middleware('role_or_permission:citas.confirmar');
-
-Route::get('/ej', [App\Http\Controllers\CitasCController::class, 'ejemplo'])
-    ->name('ejemplo');
 
 /**
  * -----------------------------------------------------------------------------------
@@ -390,7 +394,8 @@ Route::put('/update-AnadirD/{slug?}', [App\Http\Controllers\AnadirDController::c
 Route::get('/GananciasA', [App\Http\Controllers\GananciasAController::class, 'index'])
     ->name('GananciasA')
     ->middleware('role_or_permission:GananciasA');
-Route::post('/GananciasA/mostrar', [App\Http\Controllers\GananciasAController::class, 'mostrar'])->name('GananciasA.mostrar');
+Route::post('/GananciasA/mostrar', [App\Http\Controllers\GananciasAController::class, 'mostrar'])
+    ->name('GananciasA.mostrar');
 Route::get('/TratamientoR', [App\Http\Controllers\TratamientoRController::class, 'index'])
     ->name('TratamientoR')
     ->middleware('role_or_permission:TratamientoR');
@@ -469,10 +474,33 @@ Route::group(['middleware' => ['role:Admin']], function () {
      */
 
     Route::get('/Bitacora', [App\Http\Controllers\BitacoraController::class, 'index'])
-        ->name('Bitacora');
+        ->name('Bitacora')
+        ->middleware('role_or_permission:Admin');
     Route::get('/RespaldoB', [App\Http\Controllers\RespaldoBController::class, 'index'])
-        ->name('RespaldoB');
+        ->name('RespaldoB')
+        ->middleware('role_or_permission:Admin');
+    Route::get('/respaldo', [App\Http\Controllers\RespaldoBController::class, 'store'])
+        ->name('respaldo.store')
+        ->middleware('role_or_permission:Admin');
+    Route::get('/respaldo/download/{file}', [App\Http\Controllers\RespaldoBController::class, 'download'])
+        ->name('respaldo.download')
+        ->middleware('role_or_permission:Admin');
 });
+
+/**
+ * -----------------------------------------------------------------------------------
+ *                            Recuperación de contraseña
+ * -----------------------------------------------------------------------------------
+ */
+Route::get('/forgot-password', function () {
+    return view('auth.passwords.email');
+})->middleware('guest')->name('password.request');
+Route::post('/forgot-password', [ResetPasswordController::class, 'sendResetLink'])
+    ->name('password.email');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])
+    ->name('password.reset');
+Route::post('/reset-password/{token}', [ResetPasswordController::class, 'reset'])
+    ->name('password.confirmation');
 
 /**
  * -----------------------------------------------------------------------------------

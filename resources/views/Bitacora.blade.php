@@ -10,13 +10,12 @@
         <div class="content">
             <div class="row">
                 <div class="col-sm-5 col-4">
-                    <h4 class="page-title">Bitacora</h4>
+                    <h4 class="page-title">Bitácora</h4>
                 </div>
                 <div class="col-sm-7 col-8 text-right m-b-30">
                     <div class="btn-group btn-group-sm">
                         <button class="btn btn-white"><img src="{{ asset('assets/img/pdf.png') }}"
                                 style="width: 30px"></button>
-                        <button class="btn btn-white"><i class="fa fa-print fa-lg"></i> Imprimir</button>
                     </div>
                 </div>
             </div>
@@ -24,7 +23,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ asset('Index') }}">Configuracion</a></li>
                     <li class="breadcrumb-item"><a href="{{ asset('Index') }}"> Mantenimiento</a></li>
-                    <li class="breadcrumb-item"><a href="{{ asset('Bitacora') }}"> Bitacora</a></li>
+                    <li class="breadcrumb-item"><a href="{{ asset('Bitacora') }}"> Bitácora</a></li>
                 </ol>
             </nav>
             <section>

@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-sm-7 col-8 text-right m-b-30">
                     <div class="btn-group btn-group-sm">
-                        <a href="{{ route('descargarPDF') }}" target="_blank" class="btn btn-white"><img src="{{asset('assets/img/pdf.png')}}" style="width: 30px"></a>
+                        <a href="{{ route('pacientesPDF') }}" target="_blank" class="btn btn-white"><img src="{{asset('assets/img/pdf.png')}}" style="width: 30px"></a>
                     </div>
                 </div>
             </div>

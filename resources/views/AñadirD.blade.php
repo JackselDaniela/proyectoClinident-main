@@ -267,7 +267,7 @@ AñadirD
 
                                 <div class="col-sm-6">
                                     <div class="form-group gender-select">
-                                        <label class="gen-label">Especialidad</label><span class="text-danger">*</span>
+                                        <label class="gen-label">Especialidad<span class="text-danger">*</span></label>
                                         <select class="select" name="especialidad" id="especialidad">
                                             <option value=""> Seleccione </option>
                                             @foreach ($especialidad as $especialidad)

@@ -3,8 +3,9 @@
 namespace App\Observers;
 
 use App\Models\Operacion;
+use App\Models\User;
 use App\Notifications\BajoStock;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class OperacionObserver
 {
@@ -26,7 +27,12 @@ class OperacionObserver
             return;
         }
 
-        // TODO -> aqui va el usuario admin o lo que sea, el que gestione los insumos
-        Auth::user()->notify(new BajoStock($insumo->nombre));
+        $admins = User::role('Admin')->get();
+        $secretarias = User::role('Secretaria')->get();
+
+        Notification::send(
+            [...$admins, ...$secretarias],
+            new BajoStock($insumo->nombre)
+        );
     }
 }

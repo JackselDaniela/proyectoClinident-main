@@ -54,13 +54,9 @@
                                     {{ $doctor->persona->nacionalidad->nacionalidad }} {{ $doctor->persona->doc_identidad }}
                                 </div>
                             </div>
-                            </div>
-     @endforeach
-
-
-
-
-
+                        </div>
+                    @endforeach
+                </div>
 
             </section>
 

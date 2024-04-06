@@ -25,7 +25,14 @@
             <a href="{{ route('reservas.index') }}">Reservas de Equipos</a>
           </li>
         </ol>
-      </nav>
+      </nav>   
+      <div class="col-sm-2 col-12" style="float: right">
+        <div class="btn-group btn-group-sm">
+            
+          <a href="{{ route('reservasPDF') }}" target="_blank" class="btn btn-white"><img src="{{asset('assets/img/pdf.png')}}" style="width: 30px"></a>
+        
+        </div>
+      </div>     
       <x-filtros filtro="restitucion" :opciones="['Restituidos', 'No restituidos']" />
       <section>
         <div class="row">
@@ -39,7 +46,7 @@
                         <th>Código</th>
                         <th>Descripción</th>
                         <th>Fecha</th>
-                        <th>Cant. Equpos</th>
+                        <th>Cant. Equipos</th>
                         <th>Restitución</th>
                         <th>Acción</th>
                       </tr>

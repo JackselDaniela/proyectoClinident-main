@@ -80,12 +80,12 @@ class RoleSeeder extends Seeder
             ['eliminarD', ['Admin', 'Secretaria']],
 
             // citas
-            ['Calendario', ['Admin', 'Secretaria', 'Doctor']],
-            ['Calendario.store', ['Admin', 'Secretaria', 'Doctor']],
-            ['Calendario.edit', ['Admin', 'Secretaria', 'Doctor']],
-            ['Calendario.update', ['Admin', 'Secretaria', 'Doctor']],
-            ['Calendario.destroy', ['Admin', 'Secretaria', 'Doctor']],
-            ['citas.confirmar', ['Admin', 'Doctor', 'Paciente']],  ///////////////////////// JEEEEEEEEEEEEEESUUUUUUUUUUUUUUUU ARREGLA ETO
+            ['Calendario', ['Admin','Secretaria','Doctor']],
+            ['Calendario.store', ['Admin','Secretaria','Doctor']],
+            ['Calendario.update', ['Admin','Secretaria','Doctor']],
+            ['Calendario.destroy', ['Admin','Secretaria','Doctor']],
+            ['citas.confirmar', ['Admin','Doctor','Paciente']],  ///////////////////////// JEEEEEEEEEEEEEESUUUUUUUUUUUUUUUU ARREGLA ETO
+           
             // tratamientos
             ['TratamientoR', ['Admin', 'Doctor']],
             ['RutaT.buscar', ['Admin', 'Doctor']],
@@ -95,6 +95,8 @@ class RoleSeeder extends Seeder
             ['AnadirT.edit', ['Admin', 'Secretaria', 'Doctor']],
             ['AnadirT.buscar', ['Admin', 'Secretaria', 'Doctor']],
             ['AnadirT.update', ['Admin', 'Secretaria', 'Doctor']],
+
+
             // insumos
             ['insumos', ['Admin', 'Secretaria']],
              ['insumos.create', ['Admin', 'Secretaria']],

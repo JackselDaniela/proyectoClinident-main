@@ -1,4 +1,4 @@
-@extends('layouts.plantilla2')
+@extends('layouts.plantilla')
 
 @section('title')
     <title>Clinident / Gestion de Usuario</title>

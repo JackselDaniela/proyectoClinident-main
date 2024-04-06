@@ -60,17 +60,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4">
-                        <div class="form-group form-focus select-focus">
-                            <label class="focus-label">Doctor</label>
-                            <select class="select floating">
-                                <option></option>
-                                <option>Doctor 1</option>
-                                <option>Doctor 2</option>
-                                <option>Doctor 3</option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">

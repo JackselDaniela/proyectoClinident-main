@@ -1,7 +1,15 @@
 @props(['user'])
 
 @php
-    $showAlternative = ['GestionU', 'Personalizar', 'RolesP', 'Porcentajes', 'Roles.create', 'Roles.show'];
+    $showAlternative = [
+        'GestionU',
+        'Personalizar',
+        'RolesP',
+        'Porcentajes',
+        'Porcentajes.store',
+        'Roles.create',
+        'Roles.show',
+    ];
     $userRoles = $user->getRoleNames();
     $hasRoles = function (array $roles) use ($userRoles) {
         return (bool) array_intersect($roles, $userRoles->toArray());

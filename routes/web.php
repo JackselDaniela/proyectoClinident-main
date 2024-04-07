@@ -248,7 +248,7 @@ Route::get('/RegistroE', [App\Http\Controllers\RegistroEController::class, 'inde
     ->middleware('role_or_permission:RegistroE');
 Route::get('/eliminarE /{id}', [App\Http\Controllers\RegistroEController::class, 'eliminarE'])
     ->name('eliminarE')
-    ->middleware('role_or_permission:pacientes.eliminarE');
+    ->middleware('role_or_permission:eliminarE');
 
 /* Historia Clinica*/
 Route::get('/HistoriaC', [App\Http\Controllers\HistoriaCController::class, 'index'])
@@ -368,8 +368,8 @@ Route::get('/eliminarD /{id}', [App\Http\Controllers\DoctoresController::class, 
 
 /* añadir Doctores*/
 Route::get('/AnadirD', [App\Http\Controllers\AnadirDController::class, 'index'])
-    ->name('AnadirD')
-    ->middleware('role_or_permission:AnadirD');
+    ->name('AñadirD')
+    ->middleware('role_or_permission:AñadirD');
 Route::post('/AnadirD', [App\Http\Controllers\AnadirDController::class, 'store'])
     ->name('AnadirD.store')
     ->middleware('role_or_permission:AnadirD.store');

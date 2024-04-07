@@ -26,7 +26,7 @@
                 <div class="dash-widget">
                     <span class="dash-widget-bg1"><i class="fa fa-user-md" aria-hidden="true"></i></span>
                     <div class="dash-widget-info text-right">
-                        <h3>98</h3>
+                        <h3>{{$totalDoctores}}</h3>
                         <span class="widget-title1">Doctores</span>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                 <div class="dash-widget">
                     <span class="dash-widget-bg2"><i class="fa fa-user-o"></i></span>
                     <div class="dash-widget-info text-right">
-                        <h3>1072</h3>
+                        <h3>{{$totalPaciente}}</h3>
                         <span class="widget-title2">Pacientes</i></span>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="dash-widget">
                     <span class="dash-widget-bg3"><i class="fa fa-medkit"></i></span>
                     <div class="dash-widget-info text-right">
-                        <h3>72</h3>
+                        <h3> {{$totalInsumos}} </h3>
                         <span class="widget-title3">Insumos</span>
                     </div>
                 </div>
@@ -53,8 +53,8 @@
                 <div class="dash-widget">
                     <span class="dash-widget-bg4"><i class="fa fa-list-alt" aria-hidden="true"></i></span>
                     <div class="dash-widget-info text-right">
-                        <h3>618</h3>
-                        <span class="widget-title4">Tratamientos</span>
+                        <h3>{{$totalCitas}}</h3>
+                        <span class="widget-title4">Citas Pendientes</span>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,9 @@
                             <h4>Total Pacientes</h4>
                             <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> </span>
                         </div>	
-                        <canvas id="linegraph"></canvas>
+                        <canvas id="linegraph">
+                           
+                        </canvas>
                     </div>
                 </div>
             </div>
@@ -94,6 +96,7 @@
 @endsection
 
 @section('js-externo')
+
 <div class="sidebar-overlay" data-reff=""></div>
 <script src="{{ asset('/assets/js/bootstrap-datetimepicker.min.js') }}"></script>
 <script src="{{ asset('/assets/js/jquery.fullcalendar.js') }}"></script>
@@ -102,6 +105,44 @@
 <script src="{{ asset('/assets/js/popper.min.js') }}"></script>
 <script src="assets/js/Chart.bundle.js"></script>
 <script src="assets/js/chart.js"></script>
+<script>
+  const pacientes= @json($pacientes);
+  var lineChartData = {
+		labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+		datasets: [{
+			label: "My First dataset",
+			backgroundColor: "rgba(0, 158, 251, 0.5)",
+			data: [100, 70, 20, 100, 120, 50, 70, 50, 50, 100, 50, 90]
+		}, {
+		label: "My Second dataset",
+		backgroundColor: "rgba(255, 188, 53, 0.5)",
+		fill: true,
+		data: [28, 48, 40, 19, 86, 27, 20, 90, 50, 20, 90, 20]
+		}]
+	};
+	
+  const linectx = document.getElementById('linegraph').getContext('2d');
+	console.log(pacientes);
+	new Chart(linectx, {
+		type: 'line',
+		data: [
+      {
+        label: 'Pacientes',
+        data: pacientes.map(p => p.total)
+      }
+    ],
+		options: {
+			responsive: true,
+			legend: {
+				display: false,
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			}
+		}
+	});
+</script>
 
 
 @endsection

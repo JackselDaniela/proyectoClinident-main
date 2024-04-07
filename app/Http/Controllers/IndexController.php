@@ -2,7 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\personalizar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use App\Models\paciente;
+use App\Models\doctor;
+use App\Models\Insumo;
+use App\Models\cita;
+
+
 
 class IndexController extends Controller
 {
@@ -13,7 +22,21 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $totalPaciente = paciente::all()->count();
+        $totalDoctores = doctor::all()->count();
+        $totalInsumos = Insumo::all()->count();
+        $totalCitas = cita::all()->count();
+        
+        $pacientes = DB::table('pacientes')
+        ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*)as total'))->groupBy('date')->get();
+        
+        $citas = DB::table('citas')
+        ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*)as total'))->groupBy('date')->get();
+        
+        //  dd($pacientes[0]->date,  $pacientes[0]->total);
+        return view('index',compact('pacientes','totalPaciente','totalDoctores','totalInsumos','totalCitas', 'citas'));
+        $personalizar = personalizar::latest()->first();
+        return view('index', compact('personalizar'));
     }
 
     /**

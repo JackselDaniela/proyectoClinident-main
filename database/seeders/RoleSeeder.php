@@ -36,7 +36,6 @@ class RoleSeeder extends Seeder
             // Varios
             ['correo', ['Admin', 'Paciente']],
             ['notificaciones.read', ['Admin', 'Secretaria', 'Doctor']],
-            ['pacientes', ['Admin', 'Secretaria', 'Doctor']],
             ['pdf.descargar', ['Admin', 'Secretaria', 'Doctor']],
             ['Ayuda', ['Admin', 'Secretaria', 'Doctor']],
             ['operaciones', ['Admin', 'Secretaria', 'Doctor']],
@@ -68,6 +67,7 @@ class RoleSeeder extends Seeder
             ['AnadirP.store', ['Admin', 'Secretaria', 'Doctor']],
             ['EditarP.buscar', ['Admin', 'Secretaria']],
             ['EditarP.update', ['Admin', 'Secretaria']],
+            ['eliminarE', ['Admin', 'Secretaria', 'Doctor']],
 
             //HistoriaC
             ['HistoriaC', ['Admin', 'Secretaria', 'Doctor']],
@@ -75,6 +75,7 @@ class RoleSeeder extends Seeder
 
             // doctores
             ['Doctores', ['Admin', 'Secretaria']],
+            ['AñadirD', ['Admin', 'Secretaria']],
             ['AnadirD.store', ['Admin', 'Secretaria']],
             ['EditarPD.update', ['Admin', 'Secretaria']],
             ['EditarPD.edit', ['Admin', 'Secretaria']],

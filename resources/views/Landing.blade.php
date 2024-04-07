@@ -17,10 +17,24 @@
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!--[if lt IE 9]>
-                              <script src="assets/js/html5shiv.min.js"></script>
-                              <script src="assets/js/respond.min.js"></script>
-                             <![endif]-->
+                                                                                  <script src="assets/js/html5shiv.min.js"></script>
+                                                                                  <script src="assets/js/respond.min.js"></script>
+                                                                                 <![endif]-->
 @endsection
+
+@php
+    $settings = app('settings');
+    $name = $settings['nom_website'] ?? 'Clinident';
+    $logo = asset(
+        empty($settings) ? 'assets/img/logoc.png' : 'storage/imagenes/' . $settings['logo'] ?? 'assets/img/logoc.png',
+    );
+    $landing_logo = asset(
+        empty($settings)
+            ? 'landing/assets/img/isotipo.png'
+            : 'storage/imagenes/' . $settings['logo'] ?? 'landing/assets/img/isotipo.png',
+    );
+@endphp
+
 @section('contenido')
 
     <body>
@@ -39,11 +53,10 @@
         <header id="header" class="fixed-top">
             <div class="container d-flex align-items-center">
 
-                <img width="50px" style="padding-right: 10px;" src="{{ asset('landing/assets/img/isotipo.png') }}"
-                    alt="Logo">
+                <img width="50px" style="padding-right: 10px;" src="{{ $landing_logo }}" alt="Logo">
                 <h1 class="logo me-auto"><a href="{{ 'Landing' }}"
                         style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight:800;">
-                        Clinident </a></h1>
+                        {{ $name }} </a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -75,7 +88,7 @@
                         style="padding-top: 1rem">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <img src="{{ asset('assets/img/logoc.png') }}" style="width: 5rem">
+                    <img src="{{ $logo }}" style="width: 5rem">
                     <div class="modal-header">
 
                         <h5 class="modal-title text-center" id="exampleModalLongTitle" style="font-size: 1rem">Inicio de
@@ -169,9 +182,6 @@
             </div>
         </div>
 
-
-
-
         <section id="start" class="d-flex align-items-center">
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
 
@@ -203,11 +213,8 @@
 
         </section>
 
-
-
         <!-- End Hero -->
-
-        <main id="main">
+        <main id="main" style="padding-bottom: 2rem;">
 
             <!-- ======= Why Us Section ======= -->
             <section id="why-us" class="why-us">
@@ -742,80 +749,10 @@
                 </div>
             </section><!-- End Gallery Section -->
 
-            <!-- ======= Contact Section ======= -->
-            <section id="contact" class="contact">
-                <div class="container">
-
-                    <div class="section-title">
-                        <h2>Contacto</h2>
-                        <p>Para mas información o dudas puedes contactarnos.</p>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="row mt-5">
-
-                        <div class="col-lg-4">
-                            <div class="info">
-                                <div class="email">
-                                    <i class="bi bi-envelope"></i>
-                                    <h4>Correo:</h4>
-                                    <p>clinident@contacto.com</p>
-                                </div>
-
-                                <div class="phone">
-                                    <i class="bi bi-phone"></i>
-                                    <h4>Teléfono:</h4>
-                                    <p>+56 5589 5548 55</p>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-8 mt-5 mt-lg-0">
-
-                            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <input type="text" name="name" class="form-control" id="name"
-                                            placeholder="Nombre y Apellido" required>
-                                    </div>
-                                    <div class="col-md-6 form-group mt-3 mt-md-0">
-                                        <input type="email" class="form-control" name="email" id="email"
-                                            placeholder="Correo" required>
-                                    </div>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <input type="text" class="form-control" name="subject" id="subject"
-                                        placeholder="Asunto" required>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <textarea class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
-                                </div>
-                                <div class="my-3">
-                                    <div class="loading">Loading</div>
-                                    <div class="error-message"></div>
-                                    <div class="sent-message">Your message has been sent. Thank you!</div>
-                                </div>
-                                <div class="text-center"><a class="appointment-btn scrollto"
-                                        style="color: #fff">Enviar</a></div>
-                            </form>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </section><!-- End Contact Section -->
-
         </main><!-- End #main -->
 
         <!-- ======= Footer ======= -->
         <footer id="footer">
-
-
-
             <div class="container d-md-flex py-4">
 
                 <div class="me-md-auto text-center text-md-start">
@@ -837,14 +774,9 @@
         </footer><!-- End Footer -->
 
         <div id="preloader"></div>
-        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-                class="bi bi-arrow-up-short"></i></a>
-
-
-
-
-
-
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center" style="bottom: 45px">
+            <i class="bi bi-arrow-up-short"></i>
+        </a>
 
     </body>
 @endsection
@@ -857,20 +789,21 @@
     <script src="{{ asset('landing/assets/js/main.js') }}"></script>
 
     <!-- Vendor JS Files -->
-    <script src="{{asset('landing/assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
-    <script src="{{asset('landing/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('landing/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
-    <script src="{{asset('landing/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
-    <script src="{{asset('landing/assets/vendor/php-email-form/validate.js')}}"></script>
-    <script src="{{asset('landing/js/jquery-3.6.0.min.js')}}"></script>
-  <script type="text/javascript">
-
-    $('#add-register').click(function(event) {
-      event.preventDefault();
-      let fondo='<div class="modal-backdrop fade show"></div>'
-      $('body').append(fondo).addClass('modal-open').css({overflow: 'hidden'});
-      $('#modal-data').addClass('show').css('display', 'block');
-    });
+    <script src="{{ asset('landing/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('landing/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('landing/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('landing/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('landing/assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('landing/js/jquery-3.6.0.min.js') }}"></script>
+    <script type="text/javascript">
+        $('#add-register').click(function(event) {
+            event.preventDefault();
+            let fondo = '<div class="modal-backdrop fade show"></div>'
+            $('body').append(fondo).addClass('modal-open').css({
+                overflow: 'hidden'
+            });
+            $('#modal-data').addClass('show').css('display', 'block');
+        });
 
         //cerrar modal cuando se precione la x
         $(document).on('click', '#btn-close', function(event) {

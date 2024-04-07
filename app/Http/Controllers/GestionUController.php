@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\gestion_u;
 use App\Models\dato_ubicacion;
-
+use App\Models\personalizar;
 use Illuminate\Http\Request;
 
 class GestionUController extends Controller
@@ -16,7 +16,8 @@ class GestionUController extends Controller
      */
     public function index()
     {
-        return view('Personalizar');
+        $personalizar = personalizar::latest('created_at')->first();
+        return view('Personalizar', compact('personalizar'));
     }
 
     /**

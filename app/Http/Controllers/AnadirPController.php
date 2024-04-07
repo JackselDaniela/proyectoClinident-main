@@ -90,7 +90,7 @@ class AnadirPController extends Controller
 
         ]);
         $tipo = tipo_persona::where('tipo_persona', 'Paciente')->first();
-        if (isset($request->foto)) {
+        if ($request->hasFile('foto')) {
             $path = $request->file('foto')->storeAs('imagenes', \Carbon\Carbon::now()->timestamp . '.jpg', 'public');
             $path = substr($path, 9);
         }

@@ -48,6 +48,7 @@ $(document).ready(function() {
 	};
 	
 	var linectx = document.getElementById('linegraph').getContext('2d');
+	
 	window.myLine = new Chart(linectx, {
 		type: 'line',
 		data: lineChartData,

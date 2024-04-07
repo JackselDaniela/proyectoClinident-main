@@ -44,7 +44,7 @@ class RegistrarTController extends Controller
      */
     public function store(Request $request)
     {
-        $especialidad = especialidad::first();
+        $especialidad = especialidas::get();
 
 
         $tratamiento = registrar_tratamiento::create([

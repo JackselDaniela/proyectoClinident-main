@@ -17,9 +17,9 @@
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!--[if lt IE 9]>
-                                                  <script src="assets/js/html5shiv.min.js"></script>
-                                                  <script src="assets/js/respond.min.js"></script>
-                                                 <![endif]-->
+                                                                                  <script src="assets/js/html5shiv.min.js"></script>
+                                                                                  <script src="assets/js/respond.min.js"></script>
+                                                                                 <![endif]-->
 @endsection
 
 @php
@@ -182,9 +182,6 @@
             </div>
         </div>
 
-
-
-
         <section id="start" class="d-flex align-items-center">
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
 
@@ -216,11 +213,8 @@
 
         </section>
 
-
-
         <!-- End Hero -->
-
-        <main id="main">
+        <main id="main" style="padding-bottom: 2rem;">
 
             <!-- ======= Why Us Section ======= -->
             <section id="why-us" class="why-us">
@@ -755,80 +749,10 @@
                 </div>
             </section><!-- End Gallery Section -->
 
-            <!-- ======= Contact Section ======= -->
-            <section id="contact" class="contact">
-                <div class="container">
-
-                    <div class="section-title">
-                        <h2>Contacto</h2>
-                        <p>Para mas información o dudas puedes contactarnos.</p>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="row mt-5">
-
-                        <div class="col-lg-4">
-                            <div class="info">
-                                <div class="email">
-                                    <i class="bi bi-envelope"></i>
-                                    <h4>Correo:</h4>
-                                    <p>clinident@contacto.com</p>
-                                </div>
-
-                                <div class="phone">
-                                    <i class="bi bi-phone"></i>
-                                    <h4>Teléfono:</h4>
-                                    <p>+56 5589 5548 55</p>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-8 mt-5 mt-lg-0">
-
-                            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <input type="text" name="name" class="form-control" id="name"
-                                            placeholder="Nombre y Apellido" required>
-                                    </div>
-                                    <div class="col-md-6 form-group mt-3 mt-md-0">
-                                        <input type="email" class="form-control" name="email" id="email"
-                                            placeholder="Correo" required>
-                                    </div>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <input type="text" class="form-control" name="subject" id="subject"
-                                        placeholder="Asunto" required>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <textarea class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
-                                </div>
-                                <div class="my-3">
-                                    <div class="loading">Loading</div>
-                                    <div class="error-message"></div>
-                                    <div class="sent-message">Your message has been sent. Thank you!</div>
-                                </div>
-                                <div class="text-center"><a class="appointment-btn scrollto"
-                                        style="color: #fff">Enviar</a></div>
-                            </form>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </section><!-- End Contact Section -->
-
         </main><!-- End #main -->
 
         <!-- ======= Footer ======= -->
         <footer id="footer">
-
-
-
             <div class="container d-md-flex py-4">
 
                 <div class="me-md-auto text-center text-md-start">
@@ -850,14 +774,9 @@
         </footer><!-- End Footer -->
 
         <div id="preloader"></div>
-        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-                class="bi bi-arrow-up-short"></i></a>
-
-
-
-
-
-
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center" style="bottom: 45px">
+            <i class="bi bi-arrow-up-short"></i>
+        </a>
 
     </body>
 @endsection

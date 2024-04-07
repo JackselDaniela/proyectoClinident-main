@@ -30,8 +30,11 @@ class IndexController extends Controller
         $pacientes = DB::table('pacientes')
         ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*)as total'))->groupBy('date')->get();
         
+        $citas = DB::table('citas')
+        ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*)as total'))->groupBy('date')->get();
+        
         //  dd($pacientes[0]->date,  $pacientes[0]->total);
-        return view('index',compact('pacientes','totalPaciente','totalDoctores','totalInsumos','totalCitas'));
+        return view('index',compact('pacientes','totalPaciente','totalDoctores','totalInsumos','totalCitas', 'citas'));
         $personalizar = personalizar::latest()->first();
         return view('index', compact('personalizar'));
     }

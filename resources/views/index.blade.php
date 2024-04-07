@@ -76,7 +76,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="chart-title">
-                                <h4>Insumos más utilizados</h4>
+                                <h4>Citas por Meses</h4>
                                 <div class="float-right">
                                     {{-- <ul class="chat-user-total">
                                     <li><i class="fa fa-circle current-users" aria-hidden="true"></i>ICU</li>
@@ -104,18 +104,19 @@
     <script src="assets/js/Chart.bundle.js"></script>
     <script>
         const pacientes = @json($pacientes);
-        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        const citas = @json($citas);
+        const months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
 
         new Chart(document.getElementById('bargraph').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: months,
                 datasets: [{
-                    label: 'Insumos',
+                    label: 'Citas',
                     backgroundColor: 'rgba(0, 158, 251, 0.5)',
                     borderColor: 'rgba(0, 158, 251, 1)',
                     borderWidth: 1,
-                    data: [35, 59, 80, 81, 56, 55, 40]
+                    data: citas.map(p => p.total)
                 }]
             },
             options: {

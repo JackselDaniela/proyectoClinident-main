@@ -65,7 +65,7 @@
                     <div class="card-body">
                         <div class="chart-title">
                             <h4>Total Pacientes</h4>
-                            <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> 15% más alto que el mes pasado</span>
+                            <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> </span>
                         </div>	
                         <canvas id="linegraph"></canvas>
                     </div>

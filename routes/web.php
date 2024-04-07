@@ -163,15 +163,6 @@ Route::get('/AnadirT/{id}', [App\Http\Controllers\EditarPController::class, 'bus
 Route::put('/update-EditarP/{id}', [App\Http\Controllers\EditarPController::class, 'update'])
     ->name('EditarP.update')
     ->middleware('role_or_permission:EditarP.update');
-Route::post('/EditarPD', [App\Http\Controllers\EditarPDController::class, 'store'])
-    ->name('EditarPD.store')
-    ->middleware('role_or_permission:EditarPD.store');
-Route::get('/EditarPD/{id}', [App\Http\Controllers\EditarPDController::class, 'edit'])
-    ->name('EditarPD.edit')
-    ->middleware('role_or_permission:doctores.editar');
-Route::put('/update-EditarPD/{id}', [App\Http\Controllers\EditarPDController::class, 'update'])
-    ->name('EditarPD.update')
-    ->middleware('role_or_permission:EditarPD.update');
 
 /**
  * -----------------------------------------------------------------------------------
@@ -187,13 +178,13 @@ Route::get('/RegistrarT', [App\Http\Controllers\RegistrarTController::class, 'in
     ->middleware('role_or_permission:RegistrarT');
 Route::post('/RegistrarT', [App\Http\Controllers\RegistrarTController::class, 'store'])
     ->name('RegistrarT.store')
-    ->middleware('role_or_permission:procedimientos-odontologicos.registrar');
+    ->middleware('role_or_permission:RegistrarT.store');
 Route::get('/eliminarT /{id}', [App\Http\Controllers\RegistrarTController::class, 'eliminarT'])
     ->name('eliminarT')
-    ->middleware('role_or_permission:eliminar');
+    ->middleware('role_or_permission:eliminarT');
 Route::get('/editarT /{id}', [App\Http\Controllers\RegistrarTController::class, 'editarT'])
     ->name('editarT')
-    ->middleware('role_or_permission:procedimientos-odontologicos.editar');
+    ->middleware('role_or_permission:editarT');
 
 Route::put('/update-RegistrarT/{id}', [App\Http\Controllers\RegistrarTController::class, 'update'])
     ->name('RegistrarT.update')
@@ -257,7 +248,7 @@ Route::get('/RegistroE', [App\Http\Controllers\RegistroEController::class, 'inde
     ->middleware('role_or_permission:RegistroE');
 Route::get('/eliminarE /{id}', [App\Http\Controllers\RegistroEController::class, 'eliminarE'])
     ->name('eliminarE')
-    ->middleware('role_or_permission:pacientes.eliminar');
+    ->middleware('role_or_permission:pacientes.eliminarE');
 
 /* Historia Clinica*/
 Route::get('/HistoriaC', [App\Http\Controllers\HistoriaCController::class, 'index'])
@@ -270,13 +261,13 @@ Route::get('/HistoriaC/buscar/{id}', [App\Http\Controllers\HistoriaCController::
 /* añadir tratamiento paciente*/
 Route::get('/AnadirT', [App\Http\Controllers\AnadirTController::class, 'index'])
     ->name('AnadirT')
-    ->middleware('role_or_permission:tratamientos.insertar');
+    ->middleware('role_or_permission:AnadirT');
 Route::post('/AnadirT', [App\Http\Controllers\AnadirTController::class, 'store'])
     ->name('AnadirT.store')
     ->middleware('role_or_permission:AnadirT.store');
 Route::put('/AnadirT/edit/{slug?}', [App\Http\Controllers\AnadirTController::class, 'edit'])
     ->name('AnadirT.edit')
-    ->middleware('role_or_permission:AnadirT.edi');
+    ->middleware('role_or_permission:AnadirT.edit');
 Route::get('/AnadirT/buscar/{id}', [App\Http\Controllers\AnadirTController::class, 'buscar'])
     ->name('AnadirT.buscar')
     ->middleware('role_or_permission:AnadirT.buscar');
@@ -370,24 +361,25 @@ Route::post('/diagnosticos/{paciente_diagnostico}/consumos', [DiagnosticoControl
 // Doctores
 Route::get('/Doctores', [App\Http\Controllers\DoctoresController::class, 'index'])
     ->name('Doctores')
-    ->middleware('role_or_permission:doctores.ver');
+    ->middleware('role_or_permission:Doctores');
 Route::get('/eliminarD /{id}', [App\Http\Controllers\DoctoresController::class, 'eliminarD'])
     ->name('eliminarD')
-    ->middleware('role_or_permission:doctores.eliminar');
+    ->middleware('role_or_permission:eliminarD');
 
 /* añadir Doctores*/
 Route::get('/AnadirD', [App\Http\Controllers\AnadirDController::class, 'index'])
     ->name('AnadirD')
-    ->middleware('role_or_permission:doctores.agregar');
+    ->middleware('role_or_permission:AnadirD');
 Route::post('/AnadirD', [App\Http\Controllers\AnadirDController::class, 'store'])
     ->name('AnadirD.store')
-    ->middleware('role_or_permission:doctores.agregar');
-Route::get('/AnadirD/{slug?}/edit', [App\Http\Controllers\AnadirDController::class, 'edit'])
-    ->name('AnadirD.edit')
-    ->middleware('role_or_permission:doctores.editar');
-Route::put('/update-AnadirD/{slug?}', [App\Http\Controllers\AnadirDController::class, 'update'])
-    ->name('AnadirD.update')
-    ->middleware('role_or_permission:doctores.actualizar');
+    ->middleware('role_or_permission:AnadirD.store');
+/*Editar Doctores */
+Route::get('/EditarPD/{id}', [App\Http\Controllers\EditarPDController::class, 'edit'])
+    ->name('EditarPD.edit')
+    ->middleware('role_or_permission:EditarPD.edit');
+Route::put('/update-EditarPD/{id}', [App\Http\Controllers\EditarPDController::class, 'update'])
+    ->name('EditarPD.update')
+    ->middleware('role_or_permission:EditarPD.update');
 
 /**
  * -----------------------------------------------------------------------------------
@@ -467,16 +459,16 @@ Route::group(['middleware' => ['role:Admin']], function () {
 
     Route::get('/Bitacora', [App\Http\Controllers\BitacoraController::class, 'index'])
         ->name('Bitacora')
-        ->middleware('role_or_permission:Secretaria');
+        ->middleware('role_or_permission:Secretaria|Admin');
     Route::get('/RespaldoB', [App\Http\Controllers\RespaldoBController::class, 'index'])
         ->name('RespaldoB')
-        ->middleware('role_or_permission:Secretaria');
+        ->middleware('role_or_permission:Secretaria|Admin');
     Route::get('/respaldo', [App\Http\Controllers\RespaldoBController::class, 'store'])
         ->name('respaldo.store')
-        ->middleware('role_or_permission:Admin');
+        ->middleware('role_or_permission:Admin|Secretaria');
     Route::get('/respaldo/download/{file}', [App\Http\Controllers\RespaldoBController::class, 'download'])
         ->name('respaldo.download')
-        ->middleware('role_or_permission:Admin');
+        ->middleware('role_or_permission:Admin|Secretaria');
 });
 
 /**

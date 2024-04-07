@@ -21,57 +21,13 @@ use Illuminate\Support\Facades\Str;
 
 class EditarPController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $estado = estado::all();
         $paciente = paciente::with('persona', 'expediente', 'persona.dato_ubicacion')
-            ->join('expedientes', 'expedientes.pacientes_id', '=', 'expedientes.id')
+            ->join('expedientes', 'expedientes.pacientes_id', '=', 'pacientes.id')
             ->find($id);
+
         return view('EditarP', compact('id', 'paciente', 'estado'));
     }
     public function buscar($id)
@@ -93,13 +49,7 @@ class EditarPController extends Controller
 
         return view('AnadirT', compact('paciente', 'pieza', 'id', 'diagnosticos'));
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $paciente = DB::table('pacientes')->where('id', $id)
@@ -112,7 +62,7 @@ class EditarPController extends Controller
 
         $foto_anterior = $paciente->persona->foto;
         $path = $foto_anterior;
-        if (isset($foto_anterior)) {
+        if (!is_null($request->file('foto'))) {
             $path = $request->file('foto')->storeAs('imagenes', \Carbon\Carbon::now()->timestamp . '.jpg', 'public');
             $path = substr($path, 9);
             Storage::delete('public/imagenes/' . $foto_anterior);
@@ -138,7 +88,7 @@ class EditarPController extends Controller
 
         $paciente = DB::table('expedientes')->where('id', $id)
             ->update([
-                'alergia_penicilina'        => $request->alergia_penicilina,
+                'alergia_penicilina'       => $request->alergia_penicilina,
                 'desc_alergia_p'           => $request->desc_alergia_p,
                 'alergia_medicamento'      => $request->alergia_medicamento,
                 'desc_alergia_m'           => $request->desc_alergia_m,
@@ -177,19 +127,6 @@ class EditarPController extends Controller
             'file' => 'Paciente'
         ]);
 
-
-
         return redirect()->route("RegistroE");
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

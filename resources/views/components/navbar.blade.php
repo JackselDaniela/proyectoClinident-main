@@ -1,3 +1,4 @@
+
 @props(['user'])
 
 @php
@@ -15,13 +16,31 @@
     <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
     <ul class="nav user-menu float-right">
         <li class="nav-item" style="color: aliceblue; padding-top:1rem;">
+          
             @php
-                date_default_timezone_set('America/Caracas');
-                $fechaActual = date('d-m-Y');
-                $horaActual = date('h:i:s');
-
-                echo "Fecha:$fechaActual Hora: $horaActual";
+            use  Illuminate\Support\Carbon;
+            Carbon::setLocale('es_VE');
+            setLocale(LC_TIME,'es_VE.UTF8');  
+            $dias=[
+                'Mon'=> 'Lunes',
+                'Tue'=> 'Martes',
+                'Wed'=> 'Miercoles',
+                'Thu'=> 'Jueves',
+                'Fri'=> 'Viernes',
+                'Sat'=> 'Sábado',
+                'Sun'=> 'Domingo',
+        ];
+          
+        
+       
+        
+               ; 
             @endphp
+            {{$dias[now()->shortLocaleDayOfWeek] }}
+          {{ now()->format('d / m / Y, H:i')}}
+          
+         
+          
         </li>
         <li class="nav-item dropdown d-none d-sm-block">
             <x-menu-notificaciones />

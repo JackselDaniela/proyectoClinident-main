@@ -27,7 +27,7 @@
             <x-navbar :user="$user" />
             <x-sidebar :user="$user" />
         @endif
-
+        @include('components.flash-alerts')
         @yield('contenido')
     </div>
 </body>

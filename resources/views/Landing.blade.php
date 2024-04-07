@@ -17,10 +17,24 @@
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!--[if lt IE 9]>
-                              <script src="assets/js/html5shiv.min.js"></script>
-                              <script src="assets/js/respond.min.js"></script>
-                             <![endif]-->
+                                                  <script src="assets/js/html5shiv.min.js"></script>
+                                                  <script src="assets/js/respond.min.js"></script>
+                                                 <![endif]-->
 @endsection
+
+@php
+    $settings = app('settings');
+    $name = $settings['nom_website'] ?? 'Clinident';
+    $logo = asset(
+        empty($settings) ? 'assets/img/logoc.png' : 'storage/imagenes/' . $settings['logo'] ?? 'assets/img/logoc.png',
+    );
+    $landing_logo = asset(
+        empty($settings)
+            ? 'landing/assets/img/isotipo.png'
+            : 'storage/imagenes/' . $settings['logo'] ?? 'landing/assets/img/isotipo.png',
+    );
+@endphp
+
 @section('contenido')
 
     <body>
@@ -39,11 +53,10 @@
         <header id="header" class="fixed-top">
             <div class="container d-flex align-items-center">
 
-                <img width="50px" style="padding-right: 10px;" src="{{ asset('landing/assets/img/isotipo.png') }}"
-                    alt="Logo">
+                <img width="50px" style="padding-right: 10px;" src="{{ $landing_logo }}" alt="Logo">
                 <h1 class="logo me-auto"><a href="{{ 'Landing' }}"
                         style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight:800;">
-                        Clinident </a></h1>
+                        {{ $name }} </a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -75,7 +88,7 @@
                         style="padding-top: 1rem">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <img src="{{ asset('assets/img/logoc.png') }}" style="width: 5rem">
+                    <img src="{{ $logo }}" style="width: 5rem">
                     <div class="modal-header">
 
                         <h5 class="modal-title text-center" id="exampleModalLongTitle" style="font-size: 1rem">Inicio de
@@ -857,20 +870,21 @@
     <script src="{{ asset('landing/assets/js/main.js') }}"></script>
 
     <!-- Vendor JS Files -->
-    <script src="{{asset('landing/assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
-    <script src="{{asset('landing/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('landing/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
-    <script src="{{asset('landing/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
-    <script src="{{asset('landing/assets/vendor/php-email-form/validate.js')}}"></script>
-    <script src="{{asset('landing/js/jquery-3.6.0.min.js')}}"></script>
-  <script type="text/javascript">
-
-    $('#add-register').click(function(event) {
-      event.preventDefault();
-      let fondo='<div class="modal-backdrop fade show"></div>'
-      $('body').append(fondo).addClass('modal-open').css({overflow: 'hidden'});
-      $('#modal-data').addClass('show').css('display', 'block');
-    });
+    <script src="{{ asset('landing/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('landing/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('landing/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('landing/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('landing/assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('landing/js/jquery-3.6.0.min.js') }}"></script>
+    <script type="text/javascript">
+        $('#add-register').click(function(event) {
+            event.preventDefault();
+            let fondo = '<div class="modal-backdrop fade show"></div>'
+            $('body').append(fondo).addClass('modal-open').css({
+                overflow: 'hidden'
+            });
+            $('#modal-data').addClass('show').css('display', 'block');
+        });
 
         //cerrar modal cuando se precione la x
         $(document).on('click', '#btn-close', function(event) {

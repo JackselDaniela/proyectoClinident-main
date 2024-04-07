@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\personalizar;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -13,7 +14,8 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $personalizar = personalizar::latest()->first();
+        return view('index', compact('personalizar'));
     }
 
     /**

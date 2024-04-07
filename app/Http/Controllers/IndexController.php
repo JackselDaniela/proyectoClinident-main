@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\personalizar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
@@ -31,6 +32,8 @@ class IndexController extends Controller
         
         //  dd($pacientes[0]->date,  $pacientes[0]->total);
         return view('index',compact('pacientes','totalPaciente','totalDoctores','totalInsumos','totalCitas'));
+        $personalizar = personalizar::latest()->first();
+        return view('index', compact('personalizar'));
     }
 
     /**

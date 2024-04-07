@@ -42,7 +42,7 @@ class PerfilController extends Controller
         $path = $usuario->foto;
 
         // Si el usuario manda una foto entonces se actualiza
-        if (isset($request->foto)) {
+        if ($request->hasFile('foto')) {
             // Selecciona la foto anterior
             $foto_anterior = $path;
             // Guarda la foto en la carpeta /storage/app/public/imagenes

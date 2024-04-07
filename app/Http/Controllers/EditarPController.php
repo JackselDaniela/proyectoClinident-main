@@ -62,7 +62,7 @@ class EditarPController extends Controller
 
         $foto_anterior = $paciente->persona->foto;
         $path = $foto_anterior;
-        if (!is_null($request->file('foto'))) {
+        if ($request->hasFile('foto')) {
             $path = $request->file('foto')->storeAs('imagenes', \Carbon\Carbon::now()->timestamp . '.jpg', 'public');
             $path = substr($path, 9);
             Storage::delete('public/imagenes/' . $foto_anterior);

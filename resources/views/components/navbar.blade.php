@@ -1,46 +1,46 @@
-
 @props(['user'])
 
 @php
     $user = $user->persona;
+    $settings = app('settings');
+    $name = $settings['nom_website'] ?? 'Clinident';
+    $logo = asset(
+        empty($settings) ? 'assets/img/logoc.png' : 'storage/imagenes/' . $settings['logo'] ?? 'assets/img/logoc.png',
+    );
 @endphp
 
 <nav class="header">
     <div class="header-left">
         <a href="{{ asset('Index') }}" class="logo">
-            <img src="{{ asset('assets/img/logoc.png') }}" width="35" height="35" alt="">
-            <span>Clinident</span>
+            <img src="{{ $logo }}" width="35" height="35" alt="">
+            <span>{{ $name }}</span>
         </a>
     </div>
     <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
     <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
     <ul class="nav user-menu float-right">
         <li class="nav-item" style="color: aliceblue; padding-top:1rem;">
-          
+
             @php
-            use  Illuminate\Support\Carbon;
-            Carbon::setLocale('es_VE');
-            setLocale(LC_TIME,'es_VE.UTF8');  
-            $dias=[
-                'Mon'=> 'Lunes',
-                'Tue'=> 'Martes',
-                'Wed'=> 'Miercoles',
-                'Thu'=> 'Jueves',
-                'Fri'=> 'Viernes',
-                'Sat'=> 'Sábado',
-                'Sun'=> 'Domingo',
-        ];
-          
-        
-       
-        
-               ; 
+                use Illuminate\Support\Carbon;
+                Carbon::setLocale('es_VE');
+                setLocale(LC_TIME, 'es_VE.UTF8');
+                $dias = [
+                    'Mon' => 'Lunes',
+                    'Tue' => 'Martes',
+                    'Wed' => 'Miercoles',
+                    'Thu' => 'Jueves',
+                    'Fri' => 'Viernes',
+                    'Sat' => 'Sábado',
+                    'Sun' => 'Domingo',
+                ];
+
             @endphp
-            {{$dias[now()->shortLocaleDayOfWeek] }}
-          {{ now()->format('d / m / Y, H:i')}}
-          
-         
-          
+            {{ $dias[now()->shortLocaleDayOfWeek] }}
+            {{ now()->format('d / m / Y, H:i') }}
+
+
+
         </li>
         <li class="nav-item dropdown d-none d-sm-block">
             <x-menu-notificaciones />

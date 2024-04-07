@@ -9,6 +9,7 @@
     <div class="main-wrapper">
         <div class="page-wrapper" id="inicio">
             <div class="content">
+                @include('components.flash-alerts')
                 <div class="row">
                     <div class="col-sm-4 col-3" style="padding-left: 1rem!important;">
                         <h4 class="page-title" id="inicio-pacientes">Pacientes Registrados</h4>

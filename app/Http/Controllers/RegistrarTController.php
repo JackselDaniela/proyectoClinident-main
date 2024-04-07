@@ -64,7 +64,8 @@ class RegistrarTController extends Controller
 
 
         if ($tratamiento != null) {
-            return redirect()->route("RegistrarT");
+            return redirect()->route("RegistrarT")
+            ->with('message', 'Se ha creado el registro correctamente.');
         } else {
             return redirect()->route("RegistrarT");
         }
@@ -93,13 +94,15 @@ class RegistrarTController extends Controller
         $tratamiento = registrar_tratamiento::with('especialidad')
             ->find($id);
         // dd($tratamiento);
-        return view('EregistrarT', compact('tratamiento', 'especialidad'));
+        return view('EregistrarT', compact('tratamiento', 'especialidad'))
+        ->with('message', 'Se ha actualizado el registro correctamente.');
     }
     public function eliminarT($id)
     {
         $tratamiento = registrar_tratamiento::find($id);
         $tratamiento->delete();
-        return redirect()->route("RegistrarT");
+        return redirect()->route("RegistrarT")
+        ->with('message', 'El registro se ha eliminado correctamente.');
     }
 
     /**
@@ -130,7 +133,8 @@ class RegistrarTController extends Controller
             'action' => 'Actualizar',
             'file' => 'Tratamiento'
         ]);
-        return redirect()->route("RegistrarT", compact('tratamiento', 'especialidad'));
+        return redirect()->route("RegistrarT", compact('tratamiento', 'especialidad'))
+        ->with('message', 'Se ha actualizado el registro correctamente.');
     }
 
     /**

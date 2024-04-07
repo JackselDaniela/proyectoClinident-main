@@ -127,6 +127,7 @@ class EditarPController extends Controller
             'file' => 'Paciente'
         ]);
 
-        return redirect()->route("RegistroE");
+        return redirect()->route("RegistroE")
+        ->with('message', 'Se ha actualizado el registro correctamente.');;
     }
 }

@@ -23,6 +23,7 @@
 @section('contenido')
 <div class="page-wrapper">
     <div class="content">
+    @include('components.flash-alerts')
         <div class="row">
             <div class="col-sm-4 col-3">
                 <h4 class="page-title">Procedimientos de la Clínica</h4>
@@ -89,7 +90,7 @@
                                     <a href="{{route('editarT',['id'=>$tratamiento->id])}}">
                                         <li class="fa fa-edit" style="width: 2rem; color:#9B59B6;"></li>
                                     </a>
-                                    <a href="{{route('eliminarT',['id'=>$tratamiento->id]) }}">
+                                    <a  href="{{route('eliminarT',['id'=>$tratamiento->id]) }}">
                                         <li class="fa fa-trash-o" style="width: 2rem; color:red;"></li>
                                     </a>
                                     

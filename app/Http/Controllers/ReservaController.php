@@ -95,7 +95,8 @@ class ReservaController extends Controller
             ]);
         });
 
-        return redirect()->route('reservas.index');
+        return redirect()->route('reservas.index')
+        ->with('message', 'Se ha registrado una reserva correctamente.');
     }
 
     /**
@@ -171,7 +172,8 @@ class ReservaController extends Controller
             'descripcion' => $request->input('descripcion'),
         ]);
 
-        return redirect()->route('reservas.show', $reserva);
+        return redirect()->route('reservas.show', $reserva)
+        ->with('message', 'Se ha actualizado una reserva correctamente.');
     }
 
     /**
@@ -188,6 +190,7 @@ class ReservaController extends Controller
 
         $reserva->delete();
 
-        return redirect()->route('reservas.index');
+        return redirect()->route('reservas.index')
+        ->with('message', 'La reserva se ha eliminado correctamente.');
     }
 }

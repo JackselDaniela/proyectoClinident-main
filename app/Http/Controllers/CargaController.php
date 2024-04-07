@@ -82,7 +82,8 @@ class CargaController extends Controller
             'file' => 'Carga'
         ]);
 
-        return redirect()->route('cargas.index');
+        return redirect()->route('cargas.index')
+        ->with('message', 'Se ha registrado una carga correctamente.');
     }
 
     /**
@@ -127,7 +128,8 @@ class CargaController extends Controller
             'file' => 'Carga'
         ]);
 
-        return redirect()->route('cargas.index');
+        return redirect()->route('cargas.index')
+        ->with('message', 'Se ha actualizado el registro de carga correctamente.');
     }
 
     /**
@@ -150,6 +152,7 @@ class CargaController extends Controller
             'file' => 'Carga'
         ]);
 
-        return redirect()->route('cargas.index');
+        return redirect()->route('cargas.index')
+        ->with('message', 'La carga se ha eliminado correctamente.');
     }
 }

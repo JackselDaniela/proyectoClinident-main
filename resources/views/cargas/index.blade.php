@@ -7,6 +7,7 @@
 @section('contenido')
   <div class="page-wrapper">
     <div class="content">
+    @include('components.flash-alerts')
       <div class="row">
         <div class="col-6">
           <h4 class="page-title">Cargas de Insumos</h4>

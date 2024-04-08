@@ -129,7 +129,8 @@ class EditarPDController extends Controller
             'file' => 'Doctores'
         ]);
 
-        return redirect()->route("Doctores");
+        return redirect()->route("Doctores")
+        ->with('message', 'Se ha actualizado el registro correctamente.');
     }
 
     /**

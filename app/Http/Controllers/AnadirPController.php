@@ -160,7 +160,8 @@ class AnadirPController extends Controller
 
 
         if ($paciente != null) {
-            return redirect()->route("RegistroE");
+            return redirect()->route("RegistroE")
+            ->with('message', 'Se ha creado el registro correctamente.');
         } else {
             return redirect()->route("AnadirP");
         }

@@ -63,7 +63,7 @@ class InsumoController extends Controller
             'codigo' => Codigo::generar('insumo'),
         ]);
 
-        $redirect = redirect()->route('insumos.index');
+        $redirect = redirect()->route('insumos.index')->with('message', 'Se ha creado el registro correctamente.');
 
         if (!$request->has('carga')) {
             return $redirect;
@@ -116,7 +116,8 @@ class InsumoController extends Controller
 
         $insumo->update($data);
 
-        return redirect()->route('insumos.index');
+        return redirect()->route('insumos.index')
+        ->with('message', 'Se ha actualizado el registro correctamente.');
     }
 
     /**
@@ -129,6 +130,7 @@ class InsumoController extends Controller
     {
         $insumo->delete();
 
-        return redirect()->route('insumos.index');
+        return redirect()->route('insumos.index')
+        ->with('message', 'El registro se ha eliminado correctamente.');
     }
 }

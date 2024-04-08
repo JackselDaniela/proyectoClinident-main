@@ -103,7 +103,7 @@
                         </li>
                     @endif
 
-                    @if ($hasRoles(['Admin', 'Secretaria', 'Doctor']))
+                    @if ($hasRoles(['Admin', 'Secretaria']))
                         <li class="submenu">
                             <a href="#"><i class="fa fa-user-md"></i> <span> Doctores</span> <span
                                     class="menu-arrow"></span></a>

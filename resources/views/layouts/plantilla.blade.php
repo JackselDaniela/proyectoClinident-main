@@ -22,12 +22,10 @@
 
 <body>
     <div class="main-wrapper">
-
         @if (!empty($user) && Route::currentRouteName() !== 'landing')
             <x-navbar :user="$user" />
             <x-sidebar :user="$user" />
         @endif
-
         @yield('contenido')
     </div>
 </body>

@@ -6,8 +6,8 @@
 @section('content')
     <main>
         <div class="container">
-            <h3 class="normal" style="text-align: center;">Reservas</h3>
-            <div class="row justify-content-center">
+            <h3 class="normal" style="text-align: center;">Reserva de Equipos</h3>
+            <div style="padding-top: 1cm" class="row justify-content-center">
                 <table>
                     <tbody>
                         <tr>

@@ -1,9 +1,5 @@
 @php
     $settings = app('settings');
-    $name = $settings['nom_website'] ?? 'Clinident';
-    $logo = asset(
-        empty($settings) ? 'assets/img/logoc.png' : 'storage/imagenes/' . $settings['logo'] ?? 'assets/img/logoc.png',
-    );
 @endphp
 
 <!DOCTYPE html>
@@ -107,9 +103,9 @@
 
 <body>
     <header>
-        <img style="padding-top: 20px;" class="imgHeader" src="{{ $logo }}" alt="">
+        <img style="padding-top: 20px;" class="imgHeader" src="{{public_path('assets/img/logoc.png')}}" alt="">
         <div class="infoHeader">
-            <h3 class="clinident" style="margin: 2px;">{{ $name }}</h3>
+            <h3 class="clinident" style="margin: 2px;">Clinident</h3>
             <h6 class="regular">
                 Dirección: Calle Huérfanos 1227, Piso 2, oficina 221, Santiago, Chile.<br>
                 Contacto: clinident@contacto.com <br>

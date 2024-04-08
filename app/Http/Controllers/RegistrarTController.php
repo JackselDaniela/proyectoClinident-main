@@ -44,7 +44,7 @@ class RegistrarTController extends Controller
      */
     public function store(Request $request)
     {
-        $especialidad = especialidas::get();
+        $especialidad = especialidad::all();
 
 
         $tratamiento = registrar_tratamiento::create([
@@ -52,7 +52,7 @@ class RegistrarTController extends Controller
             'costo_tratamiento'  => $request->post('costo_tratamiento'),
             'codigo_tratamiento' => $request->post('codigo_tratamiento'),
             'fecha_añadido'      => $request->post('fecha_añadido'),
-            'especialidads_id'      => $especialidad->id
+            'especialidads_id'   => $request->post('especialidad'),   
         ]);
 
         Bitacora::create([
@@ -64,7 +64,7 @@ class RegistrarTController extends Controller
 
 
         if ($tratamiento != null) {
-            return redirect()->route("RegistrarT");
+            return redirect()->route("RegistrarT", compact("especialidad"));
         } else {
             return redirect()->route("RegistrarT");
         }

@@ -5,7 +5,7 @@
 @endsection
 
 @php
-    $settings = app('settings')->last();
+    $settings = app('settings');
 @endphp
 
 @section('contenido')

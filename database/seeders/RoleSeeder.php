@@ -46,7 +46,7 @@ class RoleSeeder extends Seeder
             ['diagnosticos.consumos.create', ['Admin', 'Secretaria', 'Doctor']],
             ['diagnosticos.consumos.store', ['Admin', 'Secretaria', 'Doctor']],
             // procedimientos-odontologicos
-            
+
             ['RegistrarT', ['Admin', 'Secretaria', 'Doctor']],
             ['RegistrarT.store', ['Admin', 'Secretaria']],
             ['editarT', ['Admin', 'Secretaria']],
@@ -93,6 +93,7 @@ class RoleSeeder extends Seeder
             ['RutaT.buscar', ['Admin', 'Doctor']],
             ['RutaT.editar', ['Admin', 'Doctor']],
             ['RutaT.update', ['Admin', 'Doctor']],
+            ['AnadirT', ['Admin', 'Secretaria', 'Doctor']],
             ['AnadirT.store', ['Admin', 'Secretaria', 'Doctor']],
             ['AnadirT.edit', ['Admin', 'Secretaria', 'Doctor']],
             ['AnadirT.buscar', ['Admin', 'Secretaria', 'Doctor']],

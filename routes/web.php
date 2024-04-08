@@ -459,16 +459,16 @@ Route::group(['middleware' => ['role:Admin']], function () {
 
     Route::get('/Bitacora', [App\Http\Controllers\BitacoraController::class, 'index'])
         ->name('Bitacora')
-        ->middleware('role_or_permission:Secretaria|Admin');
+        ->middleware('role_or_permission:Bitacora');
     Route::get('/RespaldoB', [App\Http\Controllers\RespaldoBController::class, 'index'])
         ->name('RespaldoB')
-        ->middleware('role_or_permission:Secretaria|Admin');
+        ->middleware('role_or_permission:RespaldoB');
     Route::get('/respaldo', [App\Http\Controllers\RespaldoBController::class, 'store'])
         ->name('respaldo.store')
-        ->middleware('role_or_permission:Admin|Secretaria');
+        ->middleware('role_or_permission:respaldo.store');
     Route::get('/respaldo/download/{file}', [App\Http\Controllers\RespaldoBController::class, 'download'])
         ->name('respaldo.download')
-        ->middleware('role_or_permission:Admin|Secretaria');
+        ->middleware('role_or_permission:respaldo.download');
 });
 
 /**

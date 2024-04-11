@@ -21,11 +21,59 @@ class PacienteDiagnosticoSeeder extends Seeder
     public function run()
     {
         paciente_diagnostico::create([
-            'pacientes_id' => paciente::first()->id,
-            'diagnosticos_id' => diagnostico::find(1)->id,
-            'doctor_id' => doctor::find(1)->id,
-            'piezas_id' => pieza::find(1)->id,
-            'registrar_tratamientos_id' => registrar_tratamiento::find(1)->id,
+            'pacientes_id' => 1,
+            'diagnosticos_id' => 6,
+            'doctor_id' => 1,
+            'piezas_id' => 25,
+            'registrar_tratamientos_id' =>5,
+            'estatus_tratamientos_id' => 1,
+        ]);
+        paciente_diagnostico::create([
+            'pacientes_id' =>2,
+            'diagnosticos_id' => 2,
+            'doctor_id' => 3,
+            'piezas_id' => 30,
+            'registrar_tratamientos_id' => 2,
+            'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
+        ]);
+        paciente_diagnostico::create([
+            'pacientes_id' =>3,
+            'diagnosticos_id' => 2,
+            'doctor_id' => 3,
+            'piezas_id' => 30,
+            'registrar_tratamientos_id' => 2,
+            'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
+        ]);
+        paciente_diagnostico::create([
+            'pacientes_id' =>4,
+            'diagnosticos_id' => 2,
+            'doctor_id' => 3,
+            'piezas_id' => 30,
+            'registrar_tratamientos_id' => 2,
+            'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
+        ]);
+        paciente_diagnostico::create([
+            'pacientes_id' =>5,
+            'diagnosticos_id' => 2,
+            'doctor_id' => 3,
+            'piezas_id' => 30,
+            'registrar_tratamientos_id' => 2,
+            'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
+        ]);
+        paciente_diagnostico::create([
+            'pacientes_id' =>6,
+            'diagnosticos_id' => 2,
+            'doctor_id' => 3,
+            'piezas_id' => 30,
+            'registrar_tratamientos_id' => 2,
+            'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
+        ]);
+        paciente_diagnostico::create([
+            'pacientes_id' =>7,
+            'diagnosticos_id' => 2,
+            'doctor_id' => 3,
+            'piezas_id' => 30,
+            'registrar_tratamientos_id' => 2,
             'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
         ]);
     }

@@ -39,6 +39,7 @@ class OperacionController extends Controller
                 return $searched && $filtered;
             });
 
+
         return view('operaciones.index', [
             'operaciones' => $operaciones,
         ]);

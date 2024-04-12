@@ -88,7 +88,7 @@ class PersonaSeeder extends Seeder
         ]);
 
         $user4 = User::create([
-            'email' => 'paciente@example.com',
+            'email' => 'Dayani@example.com',
             'password' => bcrypt('paciente'),
         ])->assignRole($paciente);
 
@@ -239,7 +239,7 @@ class PersonaSeeder extends Seeder
 
         persona::create([
             'doc_identidad'      => '14789234',
-            'user_id'            => $user11->id,
+            'user_id'            => $user12->id,
             'nombre'             => 'Dora',
             'apellido'           =>  'Chacin',
             'fecha_nacimiento'   => '05/10/1975',
@@ -257,7 +257,7 @@ class PersonaSeeder extends Seeder
 
         persona::create([
             'doc_identidad'      => '30577902',
-            'user_id'            => $user11->id,
+            'user_id'            => $user13->id,
             'nombre'             => 'Liz',
             'apellido'           =>  'Villegas',
             'fecha_nacimiento'   => '05/10/2000',

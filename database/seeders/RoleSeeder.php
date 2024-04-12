@@ -118,9 +118,13 @@ class RoleSeeder extends Seeder
             ['GananciasA', ['Admin', 'Secretaria', 'Doctor']],
 
             // configuracion
-            ['configuracion', ['Admin']],
+            ['configuracion', ['Admin','Secretaria']],
             // mantenimiento
-            ['mantenimiento', ['Admin']],
+            ['mantenimiento', ['Admin','Secretaria']],
+            ['respaldo.download', ['Admin']],
+            ['respaldo.store', ['Admin']],
+            ['RespaldoB', ['Admin']],
+            ['Bitacora', ['Admin']],
         ];
 
         /**

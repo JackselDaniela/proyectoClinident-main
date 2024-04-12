@@ -12,6 +12,7 @@
 <div class="page-wrapper" style="padding: 0 0.5rem; padding-top:4rem; height:auto!important; font-size:1.4rem">
     <div class="content">
         <div class="row">
+            
             <div class="col-sm-4 col-3">
                 <h4 class="page-title">Procedimiento en Pieza Nº {{$nom_pieza}} </h4>
             </div>

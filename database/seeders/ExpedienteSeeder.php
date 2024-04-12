@@ -113,7 +113,7 @@ class ExpedienteSeeder extends Seeder
             'desc_inmunodeficiente'    => 'no',
             'fumador'                  => 0,
             'desc_fumador'             => 'no',
-            'pacientes_id'             => '2',
+            'pacientes_id'             => '3',
         ]);
         expediente::create([
             'alergia_penicilina'       => 0,
@@ -146,7 +146,7 @@ class ExpedienteSeeder extends Seeder
             'desc_inmunodeficiente'    => 'no',
             'fumador'                  => 0,
             'desc_fumador'             => 'no',
-            'pacientes_id'             => '2',
+            'pacientes_id'             => '4',
         ]);
         expediente::create([
             'alergia_penicilina'       => 0,
@@ -179,7 +179,7 @@ class ExpedienteSeeder extends Seeder
             'desc_inmunodeficiente'    => 'no',
             'fumador'                  => 0,
             'desc_fumador'             => 'no',
-            'pacientes_id'             => '2',
+            'pacientes_id'             => '5',
         ]);
         expediente::create([
             'alergia_penicilina'       => 0,
@@ -212,7 +212,7 @@ class ExpedienteSeeder extends Seeder
             'desc_inmunodeficiente'    => 'no',
             'fumador'                  => 0,
             'desc_fumador'             => 'no',
-            'pacientes_id'             => '2',
+            'pacientes_id'             => '6',
         ]);
         expediente::create([
             'alergia_penicilina'       => 0,
@@ -245,7 +245,7 @@ class ExpedienteSeeder extends Seeder
             'desc_inmunodeficiente'    => 'no',
             'fumador'                  => 0,
             'desc_fumador'             => 'no',
-            'pacientes_id'             => '2',
+            'pacientes_id'             => '7',
         ]);
     }
 }

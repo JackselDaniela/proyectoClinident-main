@@ -50,9 +50,9 @@ class Operacion extends Model
 
     public function getMovimientoAttribute()
     {
-        $signo = $this->cantidad > 0 ? '+' : '';
+        $signo = $this->cantidad > 0;
 
-        return "{$signo}{$this->cantidad}";
+        return "{$this->cantidad}";
     }
 
     public function getMotivoAttribute()

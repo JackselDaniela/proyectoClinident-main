@@ -37,12 +37,12 @@
     </div>
 
     @if ($hasRole)
-        <div class="modal" id="agendarCita">
+        <div class="modal" id="agendarCita" style="background-color: rgba(28, 28, 157, 0.6);">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
 
-                        <h3 class="h3"> Añadir Cita</h3>
+                        <h3 class="h3"> Añadir Cita </h3>
                         <button class="close" id="close-btn" data-dismiss="modal">&times;</button>
 
                     </div>
@@ -59,7 +59,7 @@
                             <div class="row">
                                 <div class='col-md-6'>
                                     <div class='form-group'>
-                                        <label>Doc. Id Paciente</label>
+                                        <label>Doc. Id Paciente<span class="text-danger">*</span></label>
                                         <input title="Ingrese el documento de identidad del paciente" class='form-control'
                                             type='number' max='99000000' placeholder="Ejm: 12000000" name='paciente'
                                             required />
@@ -67,7 +67,7 @@
                                 </div>
                                 <div class='col-md-6'>
                                     <div class='form-group'>
-                                        <label>Doc. Id Doctor</label>
+                                        <label>Doc. Id Doctor<span class="text-danger">*</span></label>
                                         <input title="Ingrese el documento de identidad del Doctor" class='form-control'
                                             type='number' max='99000000' placeholder="Ejm: 12000000" name='doctor'
                                             required />
@@ -75,19 +75,19 @@
                                 </div>
                                 <div class='col-md-6'>
                                     <div class='form-group'>
-                                        <label>Descripcion</label>
-                                        <textarea class='form-control' type='text' name='descripcion' required></textarea>
+                                        <label>Descripción<span class="text-danger">*</span></label>
+                                        <textarea class='form-control' type='text' name='descripcion' placeholder="Tiene agendada una cita de emergencia" required></textarea>
                                     </div>
                                 </div>
                                 <div class='col-md-6'>
                                     <div class='form-group'>
-                                        <label>Hora Desde</label>
+                                        <label>Hora Desde<span class="text-danger">*</span></label>
                                         <input class='form-control' type='time' name='inicio' required />
                                     </div>
                                 </div>
                                 <div class='col-md-6'>
                                     <div class='form-group'>
-                                        <label>Hora Hasta</label>
+                                        <label>Hora Hasta<span class="text-danger">*</span></label>
                                         <input class='form-control' type='time' name='fin' required />
                                         <input class='form-control' type='date' name='fecha' id="fecha" hidden />
                                     </div>
@@ -95,7 +95,7 @@
 
                                 <div class='col-md-6'>
                                     <div class='form-group'>
-                                        <label>Tipo de Cita</label>
+                                        <label>Tipo de Cita<span class="text-danger">*</span></label>
                                         <select class='select form-control' name='tipo_cita' required>
                                             @foreach ($tipo_consulta as $tipo)
                                                 <option value="{{ $tipo->id }}"> {{ $tipo->tipo_consulta }} </option>

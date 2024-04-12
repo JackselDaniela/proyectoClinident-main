@@ -65,7 +65,7 @@ class OdontogramaController extends Controller
         $request->validate([
             'diagnosticos_id' => ['required', 'numeric', 'integer'],
             'registrar_tratamientos_id' => ['required', 'numeric', 'integer'],
-            'doctor_cedula' => ['required', 'numeric', 'integer'],
+            'doctor_cedula' => ['required', 'numeric', 'integer','exists:personas,doc_identidad'],
         ]);
 
         $doctor_cedula = $request->post('doctor_cedula');

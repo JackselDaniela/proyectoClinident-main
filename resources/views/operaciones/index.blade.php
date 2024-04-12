@@ -51,7 +51,7 @@
                             'font-weight-bold',
                             'text-success' => $positivo,
                             'text-danger' => !$positivo,
-                            ])>{{ $operacion->movimiento }}</td>
+                            ])> {{ abs($operacion->movimiento) }}</td>
                           <td>{{ $operacion->motivo }}</td>
                           <td>{{ $operacion->created_at->format('d-m-Y') }}</td> 
                         </tr>

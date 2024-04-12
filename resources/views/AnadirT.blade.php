@@ -52,6 +52,9 @@
                                 @else
                                     @foreach ($doctores as $doctor)
                                         <option value="{{ $doctor->id }}">Dr. {{ $doctor->personas_id->nombre }} {{ $doctor->personas_id->apellido }}</option>
+                                        @error('doctor_cedula')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     @endforeach
                                 @endif
                             </select> -->

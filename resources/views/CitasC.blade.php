@@ -67,7 +67,7 @@
                             <table class="table table-striped custom-table">
                                 <thead>
                                     <tr>
-                                        <th>Codigo de Cita</th>
+                                        <th>Código de Cita</th>
                                         <th>Doc. Identidad </th>
                                         <th>Nombre</th>
                                         <th>Edad</th>

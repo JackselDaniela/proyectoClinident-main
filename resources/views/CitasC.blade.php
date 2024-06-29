@@ -70,7 +70,7 @@
                                         <th>Código de Cita</th>
                                         <th>Doc. Identidad </th>
                                         <th>Nombre</th>
-                                        <th>Edad</th>
+                                       
                                         <th>Doctor</th>
                                         <th>Especialidad</th>
                                         <th>Fecha</th>
@@ -85,8 +85,7 @@
                                             <td>{{ $cita->paciente->persona->doc_identidad }}</td>
                                             <td>{{ $cita->paciente->persona->nombre . ' ' . $cita->paciente->persona->apellido }}
                                             </td>
-                                            <td>{{ \Carbon\Carbon::now()->diffInYears(\Carbon\Carbon::parse($cita->paciente->persona->fecha_nacimiento)) }}
-                                            </td>
+                                           
                                             <td>{{ $cita->doctor->persona->nombre . ' ' . $cita->doctor->persona->apellido }}
                                             </td>
                                             <td>{{ $cita->doctor->especialidad->especialidad }}</td>

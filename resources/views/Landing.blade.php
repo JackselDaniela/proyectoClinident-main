@@ -191,7 +191,7 @@
                         <div class="carousel-caption d-none d-md-block"
                             style="background-color:rgb(255, 255, 255, .6); color:blueviolet; border-radius:10rem;">
                             <h1 style="font-size: 4rem; ">Bienvenidos a Clinident</h1>
-                            <p>El Software para la Gestion Odontológica más novedosa</p>
+                            <p>El Software para la Gestión Odontológica más novedoso</p>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -203,8 +203,8 @@
                     <div class="carousel-item">
                         <img class="d-block w-100" src="{{ asset('landing/assets/img/3.png') }}">
                         <div class="carousel-caption d-none d-md-block">
-                            <h1>Comodas Cuotas de Pago</h1>
-                            <p>Para aliviar tu Gestion y garantizar la seguridad de tus datos</p>
+                            <h1>Cómodas Cuotas de Pago</h1>
+                            <p>Para aliviar tu Gestión y garantizar la seguridad de tus datos</p>
                         </div>
                     </div>
                 </div>
@@ -226,10 +226,10 @@
                                 <h3 class="text-center">¿Qué es Clinident?</h3>
                                 <p>
                                     Si tu intención es ahorrar tiempo y llevar un orden de manera eficaz, la aplicación de
-                                    Software Administrativo Clinident es para ti.
+                                    Software Odontológico Procedimental Clinident es para ti.
                                     Clinident es una herramienta poderosa que te asegura eficiencia, rentabilidad y la
-                                    automatización de los procesos inherentes a tu clínica,
-                                    ademas es un software especializado para la gestión de clínicas odontológicas que ofrece
+                                    automatización de los procesos inherentes a tu consultorio o clínica,
+                                    ademas es un software especializado para la gestión de unidades odontológicas que ofrece
                                     una amplia variedad de funcionalidades diseñadas específicamente para cubrir las
                                     necesidades de tu empresa.</p>
                             </div>
@@ -240,13 +240,12 @@
                                     <div class="col-xl-4 d-flex align-items-stretch">
                                         <div class="icon-box mt-4 mt-xl-0">
                                             <i><img style="width: 50px; padding-bottom: 20px;"
-                                                    src="{{ asset('landing/assets/img/grafico-de-barras.gif') }}"
+                                                    src="{{ asset('landing/assets/img/dinero.gif') }}"
                                                     alt=""></i>
-                                            <h4>Gestión de Empleados</h4>
-                                            <p>Este módulo en la aplicación se encarga de la administración y registro de
-                                                los empleados,
-                                                generando su contrato y expediente, para llevar el control de cada uno según
-                                                su cargo en la clínica. </p>
+                                            <h4>Honorarios</h4>
+                                            <p>Con Clinident, tome el control total de sus finanzas de manera sencilla y efectiva. 
+                                                Nuestra innovadora calculadora permite a los doctores: visualizar ganancias, generar informes en PDF, 
+                                                además de llevar la gestión de Tratamientos Realizados: donde podrá consultar el listado de tratamientos completados </p>
                                         </div>
                                     </div>
                                     <div class="col-xl-4 d-flex align-items-stretch">
@@ -254,10 +253,11 @@
                                             <i><img style="width: 50px; padding-bottom: 20px;"
                                                     src="{{ asset('landing/assets/img/cliente.gif') }}"
                                                     alt=""></i>
-                                            <h4>Gestión de Pacientes</h4>
-                                            <p>Manejo de datos de los paciente registrando su expediente clínico,
+                                            <h4>Gestión de Paciente</h4>
+                                            <p>Clinident revoluciona la manera de gestionar pacientes y tratamientos dentales, donde permite:
+                                                el manejo de datos de los paciente registrando su expediente,
                                                 diagnóstico e historial clínico de tratamientos para obtener un control
-                                                eficaz de la ruta de tratamiento por paciente en el sistema. </p>
+                                                eficaz de la ruta de tratamiento por paciente en el software. </p>
                                         </div>
                                     </div>
                                     <div class="col-xl-4 d-flex align-items-stretch">
@@ -265,9 +265,11 @@
                                             <i><img style="width: 50px; padding-bottom: 20px;"
                                                     src="{{ asset('landing/assets/img/carrito-de-compras.gif') }}"
                                                     alt=""></i>
-                                            <h4>Compras de Insumos</h4>
-                                            <p>Proceso donde se encuentra la administración de los insumos requeridos por la
-                                                clínica y el control de proveedores para generar las compras.</p>
+                                            <h4>Gestión de Insumos</h4>
+                                            <p>En donde todos sus insumos y equipos médicos serán manejados de manera eficiente: 
+                                                llevando un control detallado de los consumibles y equipos en su clínica. 
+                                                Consulte y gestione las reservas de equipos médicos, además mantiene el registro completo y accesible del historial
+                                                 de su inventario.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -291,14 +293,14 @@
                         <div
                             class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                             <h3 class="text-center">¿Por qué elegir Clinident?</h3>
-                            <p>Clinident es la solución para automatizar tu clínica, siendo un software que permite agilizar
+                            <p>Clinident es la solución para automatizar tu clínica o consultorio, siendo un software que permite agilizar
                                 los trabajos entre tu clínica dental, tus trabajadores y clientes.</p>
 
                             <div class="icon-box">
                                 <div class="icon"><i class="fa fa-line-chart"></i></div>
                                 <h4 class="title"><a href="">Ágil</a></h4>
                                 <p class="description">Agilizas las tareas operativas y reduces el margen de error en los
-                                    procesos de tu clínica.</p>
+                                    procesos de tu clínica o consultorio.</p>
                             </div>
 
                             <div class="icon-box">
@@ -372,9 +374,9 @@
 
                     <div class="section-title">
                         <h2>Beneficios</h2>
-                        <p>En general, el software administrativo puede proporcionar una serie de beneficios para las
-                            clínicas dentales. Al automatizar las tareas administrativas, mejorar y proteger la seguridad de
-                            los datos, el software administrativo puede ayudar a mejorar la eficiencia, la productividad y
+                        <p>En general, el software odontológico puede proporcionar una serie de beneficios para las
+                            unidades dentales. Al automatizar las tareas odontológicas, mejorar y proteger la seguridad de
+                            los datos, el software te ayudará a mejorar la eficiencia, la productividad y
                             la rentabilidad.</p>
                     </div>
 
@@ -383,7 +385,7 @@
                             <div class="icon-box">
                                 <div class="icon"><i class="fa-solid fa-tooth"></i></div>
                                 <h4><a href="">Escalabilidad</a></h4>
-                                <p>El software administrativo se puede escalar para satisfacer las necesidades de su clínica
+                                <p>El software odontológico se puede escalar para satisfacer las necesidades de su unidad
                                     dental en crecimiento. Esto significa que puede agregar usuarios y módulos a medida que
                                     crece su clínica, sin tener que reemplazar todo su sistema de software.</p>
                             </div>
@@ -412,9 +414,9 @@
                             <div class="icon-box">
                                 <div class="icon"><i class="fa-solid fa-users"></i></div>
                                 <h4><a href="">Personalización</a></h4>
-                                <p>El software administrativo se puede personalizar para satisfacer las necesidades
-                                    específicas de su clínica dental. Esto significa que puede elegir las funciones y los
-                                    módulos que sean más importantes para usted y su personal.s</p>
+                                <p>El software odontológico se puede personalizar para satisfacer las necesidades
+                                    específicas de su unidad dental. Esto significa que puede elegir las funciones y los
+                                    módulos que sean más importantes para usted y su personal.</p>
                             </div>
                         </div>
 
@@ -422,9 +424,9 @@
                             <div class="icon-box">
                                 <div class="icon"><i class="fa-solid fa-star"></i></div>
                                 <h4><a href="">Mayor eficiencia y productividad</a></h4>
-                                <p>El software administrativo puede ayudar a agilizar muchas de las tareas administrativas
-                                    involucradas en el funcionamiento de una clínica dental, como programar citas,
-                                    administrar registros de pacientes y facturar a los pacientes.</p>
+                                <p>El software odontológico puede ayudar a agilizar muchas de las tareas
+                                    involucradas en el funcionamiento de una unidad dental, como programar citas,
+                                    administrar registros de pacientes y llevar el historial de tratamientos pagados.</p>
                             </div>
                         </div>
 
@@ -432,8 +434,8 @@
                             <div class="icon-box">
                                 <div class="icon"><i class="fas fa-notes-medical"></i></div>
                                 <h4><a href="">Costos reducidos</a></h4>
-                                <p> El software administrativo puede ayudarlo a reducir costos al automatizar muchas de las
-                                    tareas administrativas que, de otro modo, se realizarían manualmente. Esto puede
+                                <p> El software odontológico puede ayudarlo a reducir costos al automatizar muchas de las
+                                    tareas que, de otro modo, se realizarían manualmente. Esto puede
                                     ahorrarle tiempo y dinero en costos de mano de obra.</p>
                             </div>
                         </div>

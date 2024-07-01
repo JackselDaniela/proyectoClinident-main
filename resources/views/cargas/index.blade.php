@@ -72,7 +72,7 @@
                               <i class="fa fa-edit" style="width: 1rem; color:#9B59B6;"></i>
                             </a>
                             @if ($carga->mutable)
-                              <form class="d-inline" method="POST" action="{{ route('cargas.destroy', $carga) }}">
+                              <form class="d-inline formulario-eliminar" method="POST" action="{{ route('cargas.destroy', $carga) }}">
                                 @csrf @method('DELETE')
                                 <button class="btn-icon" type="submit">
                                   <i class="fa fa-trash-o" style="width: 1rem; color:red;"></i>
@@ -100,4 +100,33 @@
   <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
   <script src="{{ asset('/assets/js/app.js') }}"></script>
   <script src="{{ asset('js/tabla.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  @if (session('eliminar') == 'ok')
+        <script>
+        Swal.fire({
+            title: "Eliminado!",
+            text: "El archivo fue eliminado correctamente.",
+            icon: "success" 
+        });
+        </script>
+  @endif
+  <script>
+    $('.formulario-eliminar').submit(function(e){
+      e.preventDefault();
+        Swal.fire({
+          title: "Esta seguro de eliminar este archivo?",
+          text: "Se eliminara permanentemente!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#6f42c1",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "¡Sí, eliminar!",
+          cancelButtonText: "Cancelar",
+        }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+          }
+        });
+      })
+  </script>
 @endsection

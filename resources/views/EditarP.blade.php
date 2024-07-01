@@ -118,7 +118,7 @@
 
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group form-focus">
+                                <div class="form-group form-focus select-focus">
                                     <label class="focus-label">Estado</label>
                                     {{-- <input name="estado" type="text" class="form-control floating" value="{{$paciente->persona->dato_ubicacion->estados_id}}"> --}}
                                     <select class="select" name="estado" id="estado" required>

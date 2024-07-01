@@ -152,7 +152,6 @@ class CargaController extends Controller
             'file' => 'Carga'
         ]);
 
-        return redirect()->route('cargas.index')
-        ->with('message', 'La carga se ha eliminado correctamente.');
+        return redirect()->route('cargas.index')->with('eliminar','ok');
     }
 }

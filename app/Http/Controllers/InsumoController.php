@@ -131,6 +131,6 @@ class InsumoController extends Controller
         $insumo->delete();
 
         return redirect()->route('insumos.index')
-        ->with('message', 'El registro se ha eliminado correctamente.');
+        ->with('eliminar','ok');
     }
 }

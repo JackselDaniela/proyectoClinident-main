@@ -90,7 +90,7 @@
                                     <a href="{{route('editarT',['id'=>$tratamiento->id])}}">
                                         <li class="fa fa-edit" style="width: 2rem; color:#9B59B6;"></li>
                                     </a>
-                                    <a  href="{{route('eliminarT',['id'=>$tratamiento->id]) }}">
+                                    <a id="formularioEliminar" href="{{route('eliminarT',['id'=>$tratamiento->id]) }}">
                                         <li class="fa fa-trash-o" style="width: 2rem; color:red;"></li>
                                     </a>
                                     
@@ -103,7 +103,6 @@
                 </div>
             </div>
         </div>
-
      </section>
 
     </div>
@@ -445,12 +444,42 @@
 @endsection
 
 @section('js-externo')
-<script src="{{ asset('/assets/js/fullcalendar.min.js') }}"></script>
-<script src="{{ asset('/assets/js/bootstrap-datetimepicker.min.js') }}"></script>
-<script src="{{ asset('/assets/js/jquery.fullcalendar.js') }}"></script>
-<script src="{{ asset('/assets/js/app.js') }}"></script>
-<script src="{{ asset('/assets/js/modalTratameintos.js') }}"></script>
-<script src="{{ asset('/assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/jquery.fullcalendar.js') }}"></script>
+    <script src="{{ asset('/assets/js/app.js') }}"></script>
+    <script src="{{ asset('/assets/js/modalTratameintos.js') }}"></script>
+    <script src="{{ asset('/assets/js/popper.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('eliminar') == 'ok')
+        <script>
+        Swal.fire({
+            title: "Eliminado!",
+            text: "El archivo fue eliminado correctamente.",
+            icon: "success" 
+        });
+        </script>
+    @endif
 
-
+    <script>
+        document.querySelectorAll('#formularioEliminar').forEach(function(element) {
+            element.addEventListener('click', function(event) {
+                event.preventDefault(); // Previene la acción por defecto del enlace
+                Swal.fire({
+                    title: "¿Está seguro de eliminar este archivo?",
+                    text: "¡Se eliminará permanentemente!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#6f42c1",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "¡Sí, eliminar!",
+                    cancelButtonText: "Cancelar",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = this.href; // Redirige a la URL si el usuario confirma
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

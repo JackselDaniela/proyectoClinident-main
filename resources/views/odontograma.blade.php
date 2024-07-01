@@ -42,7 +42,7 @@
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="input-group">
-                            <input class="form-control" style="padding: 2rem;font-size:1.4rem" id="doctors" value="" type="text" placeholder="Doc. Identidad Doctor">
+                            <input class="form-control" style="padding: 2rem;font-size:1.4rem" id="doctors" value="" type="text" placeholder="Doc. Identidad Doctor" required>
                         </div>
                     </div>
                 </div>

@@ -77,7 +77,7 @@ class DoctoresController extends Controller
             'file' => 'Doctores'
         ]);
         return redirect()->route("Doctores")
-        ->with('message', 'El registro se ha eliminado correctamente.');
+        ->with('eliminar','ok');
     }
 
 

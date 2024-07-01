@@ -19,7 +19,7 @@ class GananciasAController extends Controller
             'date_fin' => ['required'],
             'doctor_cedula' => ['required', 'numeric', 'integer','exists:personas,doc_identidad'],
         ]);
-
+        
         $ganacias = Ganancias::get($data);
 
         return view('GananciasA', $ganacias);

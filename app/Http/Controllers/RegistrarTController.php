@@ -102,7 +102,7 @@ class RegistrarTController extends Controller
         $tratamiento = registrar_tratamiento::find($id);
         $tratamiento->delete();
         return redirect()->route("RegistrarT")
-        ->with('message', 'El registro se ha eliminado correctamente.');
+        ->with('eliminar','ok');
     }
 
     /**

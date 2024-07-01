@@ -212,4 +212,5 @@
             inputDateFin.min = yearMin + "-" + monthMin + "-" + dayMin
         }
     </script>
+    
 @endsection

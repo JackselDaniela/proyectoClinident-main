@@ -191,6 +191,6 @@ class ReservaController extends Controller
         $reserva->delete();
 
         return redirect()->route('reservas.index')
-        ->with('message', 'La reserva se ha eliminado correctamente.');
+        ->with('eliminar','ok');
     }
 }

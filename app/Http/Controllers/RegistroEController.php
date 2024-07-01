@@ -84,7 +84,7 @@ class RegistroEController extends Controller
             'file' => 'Paciente'
         ]);
         return redirect()->route("RegistroE")
-        ->with('message', 'El registro se ha eliminado correctamente.');
+        ->with('eliminar','ok');
     }
 
 

@@ -55,6 +55,45 @@ class PacienteSeeder extends Seeder
 
         ]);
        
+        paciente::create([
+            'ocupacion'      => 'Diseñador Grafico',
+            'personas_id'    => '14',
+
+        ]);
+       
+        paciente::create([
+            'ocupacion'      => 'Diseñador Grafico',
+            'personas_id'    => '15',
+
+        ]);
+       
+        paciente::create([
+            'ocupacion'      => 'Diseñador Grafico',
+            'personas_id'    => '16',
+
+        ]);
+       
+        paciente::create([
+            'ocupacion'      => 'Diseñador Grafico',
+            'personas_id'    => '17',
+
+        ]);
+        paciente::create([
+            'ocupacion'      => 'Diseñador Grafico',
+            'personas_id'    => '18',
+
+        ]);
+        paciente::create([
+            'ocupacion'      => 'Diseñador Grafico',
+            'personas_id'    => '19',
+
+        ]);
+        paciente::create([
+            'ocupacion'      => 'Diseñador Grafico',
+            'personas_id'    => '20',
+
+        ]);
+       
         
        
     }

@@ -39,7 +39,7 @@ class DatoUbicacionSeeder extends Seeder
             'ciudades_id'           => $lavic->id_ciudad,
             'parroquias_id'        => parroquia::firstWhere('parroquia', 'José Rafael Revenga')->id_parroquia,
             'direccion'        => 'El Consejo',
-            'telefono'         => '0412356478',
+            'telefono'         => '89499079',
         ]);
 
         dato_ubicacion::create([
@@ -57,7 +57,7 @@ class DatoUbicacionSeeder extends Seeder
             'ciudades_id'           => $lavic->id_ciudad,
             'parroquias_id'        => $castor->id_parroquia,
             'direccion'        => 'Urb Las Mercedes, sector 1',
-            'telefono'         => '0412356478',
+            'telefono'         => '953991291',
         ]);
 
         dato_ubicacion::create([
@@ -148,6 +148,54 @@ class DatoUbicacionSeeder extends Seeder
             'parroquias_id'        => $castor->id_parroquia,
             'direccion'        => 'Urb Las Mercedes, sector 1',
             'telefono'         => '0412345678',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Las Mercedes, sector 1',
+            'telefono'         => '0412345678',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Las Mercedes, sector 1',
+            'telefono'         => '942023558',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Las Mercedes, sector 1',
+            'telefono'         => '83913383',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Las Mercedes, sector 1',
+            'telefono'         => '938781210',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Las Mercedes, sector 1',
+            'telefono'         => '99795138',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'San fernando',
+            'telefono'         => '958396846',
         ]);
 
       

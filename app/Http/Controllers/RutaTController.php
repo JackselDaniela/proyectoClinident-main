@@ -20,6 +20,7 @@ class RutaTController extends Controller
         $paciente = paciente::with('persona', 'expediente', 'persona.dato_ubicacion')
             ->join('expedientes', 'expedientes.pacientes_id', '=', 'expedientes.id')->where('pacientes_id', $id)
             ->find($id);
+            dd($paciente);
 
         $estatus_tratamiento           = estatus_tratamiento::all();
         $paciente_diagnostico = paciente_diagnostico::with('pieza', 'estatus_tratamiento', 'diagnostico', 'registrar_tratamiento', 'paciente')

@@ -77,13 +77,13 @@ class EditarPController extends Controller
                 'foto' => $path
 
             ]);
-        $paciente = DB::table('dato_ubicacions')
+       /* $paciente = DB::table('dato_ubicacions')
             ->update([
                 'direccion' => $request->direccion,
                 'estados_id' => $request->estado,
                 'telefono' => $request->telefono,
 
-            ]);
+            ]); */
 
 
         $paciente = DB::table('expedientes')->where('id', $id)

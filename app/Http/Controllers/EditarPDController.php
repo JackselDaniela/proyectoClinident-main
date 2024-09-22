@@ -115,13 +115,13 @@ class EditarPDController extends Controller
                 'genero' => $request->genero,
                 'foto' => $path
             ]);
-        $doctor = DB::table('dato_ubicacions')
+       /* $doctor = DB::table('dato_ubicacions')
             ->update([
                 'direccion' => $request->direccion,
                 'estados_id' => $request->estado,
                 'telefono' => $request->telefono,
 
-            ]);
+            ]); */
 
         Bitacora::create([
             'user_id' => auth()->user()->id,

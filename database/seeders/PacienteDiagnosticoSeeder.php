@@ -31,7 +31,7 @@ class PacienteDiagnosticoSeeder extends Seeder
         paciente_diagnostico::create([
             'pacientes_id' =>2,
             'diagnosticos_id' => 2,
-            'doctor_id' => 3,
+            'doctor_id' => 2,
             'piezas_id' => 30,
             'registrar_tratamientos_id' => 2,
             'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
@@ -39,7 +39,7 @@ class PacienteDiagnosticoSeeder extends Seeder
         paciente_diagnostico::create([
             'pacientes_id' =>3,
             'diagnosticos_id' => 2,
-            'doctor_id' => 3,
+            'doctor_id' => 2,
             'piezas_id' => 30,
             'registrar_tratamientos_id' => 2,
             'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
@@ -47,7 +47,7 @@ class PacienteDiagnosticoSeeder extends Seeder
         paciente_diagnostico::create([
             'pacientes_id' =>4,
             'diagnosticos_id' => 2,
-            'doctor_id' => 3,
+            'doctor_id' => 2,
             'piezas_id' => 30,
             'registrar_tratamientos_id' => 2,
             'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
@@ -71,7 +71,63 @@ class PacienteDiagnosticoSeeder extends Seeder
         paciente_diagnostico::create([
             'pacientes_id' =>7,
             'diagnosticos_id' => 2,
+            'doctor_id' => 2,
+            'piezas_id' => 30,
+            'registrar_tratamientos_id' => 2,
+            'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
+        ]);
+        paciente_diagnostico::create([
+            'pacientes_id' =>8,
+            'diagnosticos_id' => 2,
+            'doctor_id' => 1,
+            'piezas_id' => 30,
+            'registrar_tratamientos_id' => 2,
+            'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
+        ]);
+        paciente_diagnostico::create([
+            'pacientes_id' =>9,
+            'diagnosticos_id' => 2,
             'doctor_id' => 3,
+            'piezas_id' => 30,
+            'registrar_tratamientos_id' => 2,
+            'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
+        ]);
+        paciente_diagnostico::create([
+            'pacientes_id' =>10,
+            'diagnosticos_id' => 2,
+            'doctor_id' => 2,
+            'piezas_id' => 30,
+            'registrar_tratamientos_id' => 2,
+            'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
+        ]);
+        paciente_diagnostico::create([
+            'pacientes_id' =>11,
+            'diagnosticos_id' => 2,
+            'doctor_id' => 1,
+            'piezas_id' => 30,
+            'registrar_tratamientos_id' => 2,
+            'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
+        ]);
+        paciente_diagnostico::create([
+            'pacientes_id' =>12,
+            'diagnosticos_id' => 2,
+            'doctor_id' => 3,
+            'piezas_id' => 30,
+            'registrar_tratamientos_id' => 2,
+            'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
+        ]);
+        paciente_diagnostico::create([
+            'pacientes_id' =>13,
+            'diagnosticos_id' => 2,
+            'doctor_id' => 2,
+            'piezas_id' => 30,
+            'registrar_tratamientos_id' => 2,
+            'estatus_tratamientos_id' => estatus_tratamiento::first()->id,
+        ]);
+        paciente_diagnostico::create([
+            'pacientes_id' =>14,
+            'diagnosticos_id' => 2,
+            'doctor_id' => 1,
             'piezas_id' => 30,
             'registrar_tratamientos_id' => 2,
             'estatus_tratamientos_id' => estatus_tratamiento::first()->id,

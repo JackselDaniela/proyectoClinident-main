@@ -197,6 +197,214 @@ class DatoUbicacionSeeder extends Seeder
             'direccion'        => 'San fernando',
             'telefono'         => '958396846',
         ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'San Carlos',
+            'telefono'         => '9583345678',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'San Carlos',
+            'telefono'         => '9583323458',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'San Joaquin',
+            'telefono'         => '9583312348',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'San Juan',
+            'telefono'         => '9583312348',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 3',
+            'telefono'         => '9583000348',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 4',
+            'telefono'         => '9583000348',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 3',
+            'telefono'         => '988300012',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Araguaney av 2',
+            'telefono'         => '3418300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb La Rosas av 2',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb pelicano, transversal 2 casa 10',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Joaquina Del sur vereda 3 casa 6',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 2',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 1',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 2',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 1',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 1',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 1',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 1',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 1',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 1',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 1',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 1',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 1',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 1',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 1',
+            'telefono'         => '958300077',
+        ]);
+        dato_ubicacion::create([
+            'estados_id'           => $aragua->id_estado,
+            'municipios_id'        => $jose->id_municipio,
+            'ciudades_id'           => $lavic->id_ciudad,
+            'parroquias_id'        => $castor->id_parroquia,
+            'direccion'        => 'Urb Casimiro av 1',
+            'telefono'         => '958300077',
+        ]);
 
       
     }

@@ -395,6 +395,457 @@ class PersonaSeeder extends Seeder
 
     ]);
 
+ $user21 = User::create([
+            'email' => 'adriana@ejemplo.com',
+            'password' => bcrypt('adriana'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '18950490',
+            'user_id'            => $user21->id,
+            'nombre'             => 'Adriana',
+            'apellido'           =>  'Madriz',
+            'fecha_nacimiento'   => '15/06/1990',
+            'genero'             => 'Femenino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '21',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user22 = User::create([
+            'email' => 'Ruben@ejemplo.com',
+            'password' => bcrypt('ruben'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '18950490',
+            'user_id'            => $user22->id,
+            'nombre'             => 'Ruben',
+            'apellido'           =>  'Alvarez',
+            'fecha_nacimiento'   => '11/06/1987',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '22',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user23 = User::create([
+            'email' => 'alejandro@ejemplo.com',
+            'password' => bcrypt('pestana'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '20987654',
+            'user_id'            => $user23->id,
+            'nombre'             => 'Alejandro',
+            'apellido'           =>  'Pestana',
+            'fecha_nacimiento'   => '10/05/1987',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '23',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user24 = User::create([
+            'email' => 'Romer@ejemplo.com',
+            'password' => bcrypt('romer'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '17984654',
+            'user_id'            => $user24->id,
+            'nombre'             => 'Romer',
+            'apellido'           =>  'Mena',
+            'fecha_nacimiento'   => '10/05/1987',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '24',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user25 = User::create([
+            'email' => 'Andreina@ejemplo.com',
+            'password' => bcrypt('andreina'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '14984654',
+            'user_id'            => $user25->id,
+            'nombre'             => 'Andreina',
+            'apellido'           =>  'Guerra',
+            'fecha_nacimiento'   => '22/05/1987',
+            'genero'             => 'Femenino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '25',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user26 = User::create([
+            'email' => 'Juana@ejemplo.com',
+            'password' => bcrypt('andreina'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '17914754',
+            'user_id'            => $user26->id,
+            'nombre'             => 'Juana',
+            'apellido'           =>  'Del Carmen',
+            'fecha_nacimiento'   => '25/05/1986',
+            'genero'             => 'Femenino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '26',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user27 = User::create([
+            'email' => 'Victor@ejemplo.com',
+            'password' => bcrypt('victor'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '17914754',
+            'user_id'            => $user27->id,
+            'nombre'             => 'Victor',
+            'apellido'           =>  'Ramos',
+            'fecha_nacimiento'   => '25/05/1986',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '27',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user28 = User::create([
+            'email' => 'Ysabel@ejemplo.com',
+            'password' => bcrypt('ysabel'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '8956754',
+            'user_id'            => $user28->id,
+            'nombre'             => 'Ysabel',
+            'apellido'           =>  'Coello',
+            'fecha_nacimiento'   => '25/07/1970',
+            'genero'             => 'Femenino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '28',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user29 = User::create([
+            'email' => 'Valentina@ejemplo.com',
+            'password' => bcrypt('valentina'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '20426754',
+            'user_id'            => $user29->id,
+            'nombre'             => 'Valentina',
+            'apellido'           =>  'Coronado',
+            'fecha_nacimiento'   => '25/07/1991',
+            'genero'             => 'Femenino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '29',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user30 = User::create([
+            'email' => 'Valeria@ejemplo.com',
+            'password' => bcrypt('valeria'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '22422754',
+            'user_id'            => $user30->id,
+            'nombre'             => 'Valeria',
+            'apellido'           =>  'Coronel',
+            'fecha_nacimiento'   => '25/04/1991',
+            'genero'             => 'Femenino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '30',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user31 = User::create([
+            'email' => 'Fabiola@ejemplo.com',
+            'password' => bcrypt('fabiola'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '21022754',
+            'user_id'            => $user31->id,
+            'nombre'             => 'Fabiola',
+            'apellido'           =>  'Davila',
+            'fecha_nacimiento'   => '25/07/1991',
+            'genero'             => 'Femenino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '31',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user32 = User::create([
+            'email' => 'Antonio@ejemplo.com',
+            'password' => bcrypt('Antonio'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '23420754',
+            'user_id'            => $user32->id,
+            'nombre'             => 'Antonio',
+            'apellido'           =>  'Aizaga',
+            'fecha_nacimiento'   => '25/07/1980',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '32',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user33 = User::create([
+            'email' => 'Solimar@ejemplo.com',
+            'password' => bcrypt('solimar'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '23420754',
+            'user_id'            => $user33->id,
+            'nombre'             => 'Solimar',
+            'apellido'           =>  'Garcia',
+            'fecha_nacimiento'   => '23/01/2000',
+            'genero'             => 'Femenino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '33',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user34 = User::create([
+            'email' => 'Ilkamida@ejemplo.com',
+            'password' => bcrypt('ilkamida'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '30420756',
+            'user_id'            => $user34->id,
+            'nombre'             => 'Ilkamida',
+            'apellido'           =>  'Dominguez',
+            'fecha_nacimiento'   => '23/01/2000',
+            'genero'             => 'Femenino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '34',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user36 = User::create([
+            'email' => 'Raul@ejemplo.com',
+            'password' => bcrypt('raul'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '30445756',
+            'user_id'            => $user36->id,
+            'nombre'             => 'Raul',
+            'apellido'           =>  'Guaido',
+            'fecha_nacimiento'   => '23/03/2000',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '36',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user37 = User::create([
+            'email' => 'Abraham@ejemplo.com',
+            'password' => bcrypt('abraham'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '31445756',
+            'user_id'            => $user37->id,
+            'nombre'             => 'Abraham',
+            'apellido'           =>  'Rojas',
+            'fecha_nacimiento'   => '23/03/2002',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '37',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user38 = User::create([
+            'email' => 'carolina@ejemplo.com',
+            'password' => bcrypt('carolina'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '31450756',
+            'user_id'            => $user38->id,
+            'nombre'             => 'Carolina',
+            'apellido'           =>  'Ricart',
+            'fecha_nacimiento'   => '28/03/1990',
+            'genero'             => 'Femenino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '38',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user39 = User::create([
+            'email' => 'Leandro@ejemplo.com',
+            'password' => bcrypt('leandro'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '21450756',
+            'user_id'            => $user39->id,
+            'nombre'             => 'Leandro',
+            'apellido'           =>  'Rios',
+            'fecha_nacimiento'   => '29/04/1990',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '39',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user40 = User::create([
+            'email' => 'pablo@ejemplo.com',
+            'password' => bcrypt('pablo'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '22850756',
+            'user_id'            => $user40->id,
+            'nombre'             => 'Pablo',
+            'apellido'           =>  'Garrido',
+            'fecha_nacimiento'   => '29/04/1992',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '40',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user41 = User::create([
+            'email' => 'Robert@ejemplo.com',
+            'password' => bcrypt('robert'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '21950756',
+            'user_id'            => $user41->id,
+            'nombre'             => 'Robert',
+            'apellido'           =>  'Moreno',
+            'fecha_nacimiento'   => '29/08/1992',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '41',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user42 = User::create([
+            'email' => 'xavier@ejemplo.com',
+            'password' => bcrypt('xavier'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '26760756',
+            'user_id'            => $user42->id,
+            'nombre'             => 'Xavier',
+            'apellido'           =>  'Bracho',
+            'fecha_nacimiento'   => '29/09/1999',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '42',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user43 = User::create([
+            'email' => 'hector@ejemplo.com',
+            'password' => bcrypt('hector'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '25878956',
+            'user_id'            => $user43->id,
+            'nombre'             => 'Hector',
+            'apellido'           =>  'Centeno',
+            'fecha_nacimiento'   => '29/04/1998',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '43',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user44 = User::create([
+            'email' => 'Theylor@ejemplo.com',
+            'password' => bcrypt('theylor'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '21976006',
+            'user_id'            => $user44->id,
+            'nombre'             => 'Theylor',
+            'apellido'           =>  'Mendez',
+            'fecha_nacimiento'   => '29/04/1994',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '44',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user45 = User::create([
+            'email' => 'Erick@ejemplo.com',
+            'password' => bcrypt('erick'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '22023756',
+            'user_id'            => $user45->id,
+            'nombre'             => 'Erick',
+            'apellido'           =>  'Garrido',
+            'fecha_nacimiento'   => '09/01/1992',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '45',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+ $user46 = User::create([
+            'email' => 'Eliotk@ejemplo.com',
+            'password' => bcrypt('eliot'),
+        ])->assignRole($paciente);
+
+        persona::create([
+            'doc_identidad'      => '22025656',
+            'user_id'            => $user46->id,
+            'nombre'             => 'Eliot',
+            'apellido'           =>  'Briceño',
+            'fecha_nacimiento'   => '16/01/1993',
+            'genero'             => 'Masculino',
+            'tipo_personas_id'   => '2',
+            'dato_ubicacions_id' => '46',
+            'nacionalidads_id' => $ve->id,
+            'foto' => ''
+
+    ]);
+
 
     }
 }

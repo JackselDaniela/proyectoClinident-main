@@ -80,8 +80,10 @@ class CalendarioController extends Controller
             'descripcion'   => $request->post('descripcion'),
             'token' => $token,
 
-        ]);
+        ]); 
+        
         $cita->load('paciente.persona.user');
+        
 
         Mail::to($cita->paciente->persona->user)->send(new ConfirmacionCita($cita, $paciente, $token));
 
@@ -91,6 +93,7 @@ class CalendarioController extends Controller
             'action' => 'Registrar',
             'file' => 'Cita'
         ]);
+        dd($cita);
 
         return redirect()->route("Calendario");
     }
